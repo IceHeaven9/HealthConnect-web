@@ -27,7 +27,7 @@ function App() {
             element={<EditConsultationPage />}
           />
           <Route
-            path="/reset-password/:token"
+            path="/reset-password"
             element={<ResetPasswordPage />}
           />
           <Route path="*" element={<NotFoundPage />} />
