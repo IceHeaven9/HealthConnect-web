@@ -1,3 +1,7 @@
 export const NotFoundPage = () => {
-	return <div>404 not found route</div>;
+  return (
+    <div>
+      <h1 className="">404 NOT FOUND</h1>
+    </div>
+  );
 };
