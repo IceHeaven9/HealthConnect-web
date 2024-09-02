@@ -29,7 +29,7 @@ function App() {
             element={<EditConsultationPage />}
           />
           <Route
-            path="/recovery-password"
+            path="/recovery-account"
             element={<RecoveryPasswordPage />}
           />
           <Route

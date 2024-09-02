@@ -3,51 +3,56 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-const sendRecoveryEmail = (email) => {
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  const raw = JSON.stringify({ email });
-
-  const requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow"
-  };
-
-  return fetch("http://localhost:3000/recover-password", requestOptions)
-    .then((response) => {
-      if (response.status === 200) {
-        return response.text();
-      } else {
-        throw new Error('Error en la solicitud');
-      }
-    })
-    .then((result) => {
-      const { message } = JSON.parse(result);
-      notify(message);
-    });
-};
-const notify = (message) => toast(message, {
-  position: "top-right",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  style: {
-    backgroundColor: '#ffffff',
-    color: '#000000',
-    fontSize: '16px'
-  }
-});
 
 export const RecoveryPassForm = () => {
   const [email, setEmail] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [timer, setTimer] = useState(0);
+
+
+  const sendRecoveryEmail = (email) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+  
+    const raw = JSON.stringify({ email });
+  
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+  
+    return fetch("http://localhost:3000/recover-password", requestOptions)
+      .then((response) => {
+        if (response.status === 200) {
+          return response.text();
+        } else {
+          throw new Error('Error en la solicitud');
+        }
+      })
+      .then((result) => {
+        const { message } = JSON.parse(result);
+        notify(message);
+      });
+  };
+  const notify = (message) => toast(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    style: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
+      fontSize: '16px'
+    }
+  });
+  
+
+
 
   useEffect(() => {
     let interval;
@@ -80,7 +85,10 @@ export const RecoveryPassForm = () => {
       });
   };
   return (
-    <div className="flex flex-col w-full md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl h-[25rem] ">
+    <div className="flex flex-col w-full md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl h-max ">
+    <div className="w-28 h-28">
+      <img src="/public/images/Perfil_healthConnect-Photoroom.png"></img>
+    </div>
       <div className="flex flex-row gap-3 pb-4">
       <button
   className="font-bold rounded-md text-3xl w-10 h-10 text-[#628eff] bg-[#ffffff] flex flex-col items-center justify-center"
@@ -91,10 +99,10 @@ export const RecoveryPassForm = () => {
 >
   <IoMdArrowRoundBack />
 </button>
-        <h1 className="text-3xl font-bold text-[#4B5563] my-auto">Recuperación de contraseña</h1>
+        <h1 className="text-3xl font-bold text-[#4B5563] my-auto">Recuperación de la cuenta</h1>
       </div>
       <div className="text-sm font-light text-[#6B7280] pb-8">
-        Introduce el correo electronico de tu cuenta para recuperar la contraseña.
+        Introduce el correo electronico de tu cuenta.
       </div>
       <form className="flex flex-col">
         <div className="pb-2">
@@ -134,7 +142,7 @@ export const RecoveryPassForm = () => {
         <div className="flex flex-col items-center">
         <button
   type="submit"
-  className={`w-28 text-[#FFFFFF] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${isButtonDisabled || email === '' ? 'bg-[#bdd0ff]' : 'bg-[#628eff]'}`}
+  className={`w-full text-[#FFFFFF] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${isButtonDisabled || email === '' ? 'bg-[#bdd0ff]' : 'bg-[#628eff]'}`}
   onClick={handleSubmit}
   disabled={isButtonDisabled || email === ''} // Deshabilitar si el email está vacío
 >
