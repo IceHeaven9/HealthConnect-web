@@ -120,21 +120,21 @@ export const RecoveryPassForm = () => {
               </svg>
             </span>
             <input
-  type="email"
-  name="email"
-  id="email"
-  className="pl-12 mb-2 bg-[#ecf1ff] text-gray-600 border focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
-  placeholder="name@company.com"
-  autoComplete="off"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-/>
+                type="email"
+                name="email"
+                id="email"
+                className="pl-12 mb-2 bg-[#ecf1ff] text-gray-600 border focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
+                placeholder="name@company.com"
+                autoComplete="off"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+            />
           </div>
         </div>
         <div className="flex flex-col items-center">
         <button
   type="submit"
-  className={`w-28 text-[#FFFFFF] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${isButtonDisabled || email === '' ? 'bg-[#bdd0ff]' : 'bg-[#628eff]'}`}
+  className={`w-28 text-[#FFFFFF] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${isButtonDisabled || email === '' ? 'bg-[#bdd0ff              ]' : 'bg-[#628eff]'}`}
   onClick={handleSubmit}
   disabled={isButtonDisabled || email === ''} // Deshabilitar si el email está vacío
 >
