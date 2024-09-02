@@ -134,7 +134,7 @@ export const RecoveryPassForm = () => {
         <div className="flex flex-col items-center">
         <button
   type="submit"
-  className={`w-28 text-[#FFFFFF] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${isButtonDisabled || email === '' ? 'bg-[#bdd0ff              ]' : 'bg-[#628eff]'}`}
+  className={`w-28 text-[#FFFFFF] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${isButtonDisabled || email === '' ? 'bg-[#bdd0ff]' : 'bg-[#628eff]'}`}
   onClick={handleSubmit}
   disabled={isButtonDisabled || email === ''} // Deshabilitar si el email está vacío
 >
