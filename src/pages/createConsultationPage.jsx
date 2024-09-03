@@ -186,12 +186,14 @@ export const CreateConsultationPage = () => {
   </form>
 </Modal>
 </section>
-    <section className="flex flex-col items-center justify-center w-full">
+    <section className="flex flex-col items-center justify-center w-full bg-[#cad6ff]">
       <Calendar
         onChange={handleDateChange}
         value={selectedDate}
       />
+    </section>
       <h2 className="p-4 mt-2 text-[#628eff] font-medium">Horas disponibles para {selectedDate.toLocaleDateString('es-ES')}:</h2>
+			<div className="border-t-[0.1rem] border-solid border-[#628eff] w-[90%] mt-4 mb-2"></div>
 			<section className="w-full">
       <ul className="grid grid-cols-5 auto-rows-auto justify-items-center gap-2 px-4 py-2.5 w-full">
         {availableTimes.map((time, index) => (
@@ -199,8 +201,6 @@ export const CreateConsultationPage = () => {
         ))}
       </ul>
 			</section>
-			<div className="border-t-[0.1rem] border-solid border-[#628eff] w-[90%] mt-4 mb-2"></div>
-    </section>
 		<form className="flex flex-col items-start justify-center mx-4 ">
 		<label className="text-sm text-[#111827] p-1">Motivo de la consulta</label> 
 			<textarea className="border-[0.1rem] border-solid border-[#cad6ff] w-full rounded-2xl h-44 pl-4 p-2" name="descripcion" placeholder="Escribe tu problema aqui..." required></textarea>
