@@ -2,14 +2,120 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import { FcOpenedFolder } from "react-icons/fc";
 import { GrAdd } from "react-icons/gr";
+import { IoClose } from "react-icons/io5";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import Modal from 'react-modal';
 import 'react-calendar/dist/Calendar.css';
+
+const customStyles = {
+  content: {
+    height:" 90%",
+    width: "90%",
+    borderRadius: "25px",
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
+const specialties = [{
+  id: 1,
+  name: "Cardiología",
+  icon:""
+},
+{
+  id: 2,
+  name: "Dermatología",
+  icon:""
+},
+{
+  id: 3,
+  name: "Endocrinología",
+  icon:""
+},{
+  id: 4,
+  name: "Gastroenterología",
+  icon:""
+},{
+  id: 5,
+  name: "Geriatría",
+  icon:""
+},{
+  id: 6,
+  name: "Ginecología",
+  icon:""
+},{
+  id: 7,
+  name: "Hematología",
+  icon:""
+},{
+  id: 8,
+  name: "Infectología",
+  icon:""
+},{
+  id: 9,
+  name: "Medicina interna",
+  icon:""
+},{
+  id: 10,
+  name: "Nefrología",
+  icon:""
+},{
+  id: 11,
+  name: "Neumología",
+  icon:""
+},{
+  id: 12,
+  name: "Neurología",
+  icon:""
+},{
+  id: 13,
+  name: "Oftalmología",
+  icon:""
+},{
+  id: 14,
+  name: "Oncología",
+  icon:""
+},{
+  id: 15,
+  name: "Pediatría",
+  icon:""
+},{
+  id: 16,
+  name: "Psiquiatría",
+  icon:""
+},{
+  id: 17,
+  name: "Reumatología",
+  icon:""
+},{
+  id: 18,
+  name: "Traumatología",
+  icon:""
+},{
+  id: 19,
+  name: "Urología",
+  icon:""
+},{
+  id: 20,
+  name: "Otorrinolaringología",
+  icon:""
+}]
 
 export const CreateConsultationPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availableTimes, setAvailableTimes] = useState([
     "09:00 AM", "10:00 AM", "11:00 AM", "01:00 PM", "02:00 PM", "03:00 PM", "09:00 AM", "10:00 AM", "11:00 AM", "01:00 PM", "02:00 PM", "03:00 PM", "01:00 PM", "02:00 PM", "03:00 PM"
   ]);
+  const [specialtyModalIsOpen, specialtyModaSetIsOpen] = useState(false);
+  const [doctorsModalIsOpen, doctorsModaSetIsOpen] = useState(false);
+  const [selectedSpecialty, setSelectedSpecialty] = useState(null);
+  console.log(selectedSpecialty)
+
+
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -26,8 +132,59 @@ export const CreateConsultationPage = () => {
       <h1 className="w-full">Nueva Consulta</h1>
 	</div>
 <section className="bg-[#cad6ff] flex flex-col items-center"> 
-<button className="flex flex-row text-xl font-medium text-[#2260ff] items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mt-6 mb-2 bg-[#fbf8f8]">Selecciona una Especialidad<GrAdd /></button>
-<button className="flex flex-row text-xl font-medium text-[#2260ff] items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mb-6 mt-2 bg-[#fbf8f8]">Selecciona un Doctor<GrAdd /></button>
+<button 
+  className="flex flex-row text-xl font-medium text-[#2260ff] items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mt-6 mb-2 bg-[#fbf8f8]" 
+  onClick={() => specialtyModaSetIsOpen(true)}
+>
+  Selecciona una Especialidad<GrAdd />
+</button>  
+<Modal
+  isOpen={specialtyModalIsOpen}
+  onRequestClose={() => specialtyModaSetIsOpen(false)}
+  style={customStyles}
+  contentLabel="Example Modal"
+>
+  <button className="text-2xl" onClick={() => specialtyModaSetIsOpen(false)}><IoClose /></button>
+  <div className="text-center text-3xl">Especialidades</div>
+  <ul className="flex flex-col items-center justify-center text-xl gap-2">
+    {specialties.map((specialty) => (
+      <li key={specialty.id}>
+        <label>
+          <input 
+            type="radio" 
+            name="specialty" 
+            value={specialty.id} 
+            onChange={() => setSelectedSpecialty(specialty.id)} 
+          />
+          {specialty.name}
+        </label>
+      </li>
+    ))}
+  </ul>
+</Modal>
+<button 
+  className="flex flex-row text-xl font-medium text-[#2260ff] items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mt-2 mb-6 bg-[#fbf8f8]" 
+  onClick={() => doctorsModaSetIsOpen(true)}
+>
+  Selecciona un Doctor<GrAdd />
+</button>  
+<Modal
+  isOpen={doctorsModalIsOpen}
+  onRequestClose={() => doctorsModaSetIsOpen(false)}
+  style={customStyles}
+  contentLabel="Example Modal"
+>
+
+  <button className="text-2xl" onClick={() => doctorsModaSetIsOpen(false)}><IoClose /></button>
+  <div>I am a modal</div>
+  <form>
+    <input />
+    <button>tab navigation</button>
+    <button>stays</button>
+    <button>inside</button>
+    <button>the modal</button>
+  </form>
+</Modal>
 </section>
     <section className="flex flex-col items-center justify-center w-full">
       <Calendar
