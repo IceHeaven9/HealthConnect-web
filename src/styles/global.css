@@ -3,3 +3,6 @@
 @tailwind utilities;
 
 /* ANIMACIONES */
+.react-calendar{
+  margin-bottom: 1.5rem !important;
+}
