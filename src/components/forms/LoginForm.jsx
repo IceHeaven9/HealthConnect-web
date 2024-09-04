@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from './../../contexts/authContext';
 import { useNavigate } from 'react-router-dom';
+import {toast, ToastContainer} from 'react-toastify';
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -36,15 +37,32 @@ export const LoginForm = () => {
     };
 
     fetch("http://localhost:3000/login", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result.token) {
-          onLogin(result.token);
-          navigate('/');
-        }
-      })
-      .catch((error) => console.error(error));
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.token) {
+        onLogin(result.token);
+        navigate('/');
+      } else {
+        notify(result.message || 'Error desconocido');
+      }
+    })
+    .catch((error) => notify(error.message || 'Error en la solicitud'));
   };
+
+  const notify = (message) => toast(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    style: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
+      fontSize: '16px'
+    }
+  });
 
   return (
     <div className="flex flex-col w-full md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl">
@@ -142,6 +160,7 @@ export const LoginForm = () => {
           </a>
         </div>
       </form>
+      <ToastContainer/>
     </div>
   );
 };
