@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Calendar from "react-calendar";
-import { FcOpenedFolder } from "react-icons/fc";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Modal from 'react-modal';
 import {SpecialtiesModal} from '../components/createConsutations/SpecialtiesModal';
@@ -72,6 +71,7 @@ export const CreateConsultationPage = () => {
   availableTimes={availableTimes}
 />
 		<DescriptionForm/>
+    
 		</main>
   );
 };
