@@ -50,7 +50,7 @@ export const LoginForm = () => {
     <div className="flex flex-col w-full md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl">
       <div className="flex flex-row gap-3 pb-4">
         <div>
-          <img src="/public/images/Perfil_healthConnect-Photoroom.png" width="50" alt="Logo" />
+          <img src="/images/Perfil_healthConnect-Photoroom.png" width="50" alt="Logo" />
         </div>
         <h1 className="text-3xl font-bold text-[#4B5563] my-auto">HealthConnect</h1>
       </div>
