@@ -130,7 +130,8 @@ export const LoginForm = () => {
         </div>
         <button
           type="submit"
-          className="w-full text-[#FFFFFF] bg-[#628eff] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6"
+          className={`w-full text-[#FFFFFF] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${!email || !password ? 'bg-[#bdd0ff]' : 'bg-[#628eff]'}`}
+          disabled={!email || !password}
         >
           Continuar
         </button>
