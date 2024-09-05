@@ -7,7 +7,7 @@ export const DoctorsModal = ({doctorsModaSetIsOpen,setDoctors,selectedDoctor,doc
   return (
    <>
 <button 
-  className={`flex flex-row text-xl font-medium text-[#2260ff] items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mt-2 mb-6 ${!selectedSpecialty ? 'text-[#bdd0ff] bg-white' : 'bg-white'}`} 
+  className={`flex flex-row text-xl font-medium items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mt-2 mb-6 ${!selectedDoctor ? 'bg-white' : 'bg-[#628eff] text-white'} ${!selectedSpecialty ? 'text-[#bdd0ff]' : 'text-[#2260ff]'}`} 
   onClick={() => {
     doctorsModaSetIsOpen(true);
     const requestOptions = {
@@ -40,7 +40,7 @@ export const DoctorsModal = ({doctorsModaSetIsOpen,setDoctors,selectedDoctor,doc
   <div className="text-center text-2xl pb-4 pl-4 pr-4">Doctores</div>
   <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
   {doctors.length > 0 && doctors.map((doctor) => (
-    <li key={doctor.id} className={`flex items-center p-4 border rounded-lg ${selectedDoctor?.id === doctor.id ? 'bg-[#628eff] text-white' : ''}`}>
+    <li key={doctor.id} className={`flex items-center p-4 border rounded-lg ${selectedDoctor?.id === doctor.id ? 'bg-[#628eff] text-white ' : ''}`}>
       <label className="flex items-center space-x-4">
       <input
   type="radio"

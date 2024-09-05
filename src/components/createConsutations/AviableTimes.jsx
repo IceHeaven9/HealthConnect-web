@@ -10,18 +10,28 @@ export const AviableTimes = ({ selectedDoctor, availableTimes }) => {
 
 
   if (!Array.isArray(availableTimes) || availableTimes.length === 0) {
-    return <div>Sewlecciona una especialidad para poder ver las horas disponibles</div>;
+    return (<>
+    <div className='flex flex-col items-center justify-center text-2xl font-medium'>
+      <img className='w-32 h-32' src='/images/Perfil_healthConnect-Photoroom.png' alt=""/>
+    <p>Bienvenido</p>
+    <div className='text-center text-lg font-medium p-2 m-4'>Selecciona una especialidad para poder ver las horas disponibles</div>
+    </div>
+    </>);
   }
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % availableTimes.length);
-    setSelectedHour(null)
+    if (selectedHour) {
+      setSelectedHour(null)
+    };
   };
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + availableTimes.length) % availableTimes.length);
+    if (selectedHour) {
     setSelectedHour(null)
   };
+}
 
   const currentSlot = availableTimes[currentIndex];
 
@@ -31,7 +41,7 @@ if (!currentSlot) {
 }
 
 return (
-  <div className='my-8 border-solid border-[0.1rem] border-[#628eff] mx-4 bg-[#fbf8f8]  rounded-xl  p-6'>
+  <div className='my-8 border-solid border-[0.1rem] border-[#628eff] mx-4 bg-[#fbf8f8]  rounded-xl shadow-[0px_12px_11px_2px_rgba(0,0,0,0.2)] p-6'>
     <div className='flex gap-12 items-center justify-start'>
       <img className='border-solid border-[0.15rem] border-[#628eff] rounded-xl w-16 h-16 ' src={ currentSlot.avatar} alt=""/> 
       <h3 className='text-2xl font-medium' >{currentSlot.doctorName}</h3>
@@ -40,7 +50,7 @@ return (
       <ul className='grid grid-cols-5 mb-4 mt-6 justify-items-center'>
         {currentSlot.freeHours.map((hour, idx) => (
           <li 
-            className={`rounded-xl font-medium p-1.5 m-1 w-max text-black ${selectedHour === hour ? 'bg-[#628eff]' : 'bg-[#cad6ff]'}`} 
+          className={`rounded-xl font-medium p-1.5 m-1 w-max text-black ${selectedHour === hour ? 'bg-[#628eff] text-white shadow-[inset_0px_0px_9px_5px_rgba(0,0,0,0.2)]' : 'bg-[#cad6ff] shadow-[0px_0px_5px_1px_rgba(0,0,0,0.2)]'}`} 
             key={idx}
           >
             <label>

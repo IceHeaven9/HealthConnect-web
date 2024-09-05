@@ -63,7 +63,7 @@ export const CreateConsultationPage = () => {
 
   return (
     <main className="flex flex-col items-center justify-center">
-      <div className="flex text-center  p-6 text-[#628eff] font-bold text-2xl w-full mt-6">
+      <div className="flex text-center p-6 text-[#628eff] font-bold text-2xl w-full mt-6">
         <button className="w-max"> <IoMdArrowRoundBack /></button>
         <h1 className="w-full">Nueva Consulta</h1>
       </div>

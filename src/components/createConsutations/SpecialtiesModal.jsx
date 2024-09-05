@@ -7,7 +7,7 @@ export const SpecialtiesModal = ({setSelectedSpecialty,specialtyModaSetIsOpen,se
   return (
     <>
     <button 
-  className="flex flex-row text-xl font-medium text-[#2260ff] items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mt-6 mb-2 bg-[#fbf8f8]" 
+  className={`flex flex-row text-xl font-medium items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mt-6 mb-2 ${!selectedSpecialty ? 'text-[#2260ff]  bg-white' : 'bg-[#628eff] text-white'}`} 
   onClick={() => {
     specialtyModaSetIsOpen(true);
     const requestOptions = {
