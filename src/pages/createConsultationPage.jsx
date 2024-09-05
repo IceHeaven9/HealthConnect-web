@@ -7,6 +7,7 @@ import {DoctorsModal} from '../components/createConsutations/DoctorsModal';
 import { customStyles } from "../constants";
 import {AviableTimes} from '../components/createConsutations/AviableTimes';
 import 'react-calendar/dist/Calendar.css';
+import { DescriptionForm } from './../components/createConsutations/DescriptionForm';
 
 Modal.setAppElement('#root');
 
@@ -19,6 +20,8 @@ export const CreateConsultationPage = () => {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [doctors, setDoctors] = useState([]);
   const [availableTimes, setAvailableTimes] = useState([]);
+  const [showDescriptionForm, setShowDescriptionForm] = useState(false);
+  const [selectedHour, setSelectedHour] = useState(null);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -61,12 +64,17 @@ export const CreateConsultationPage = () => {
     setSelectedDoctor(null); // Vaciar la variable del doctor
   };
 
+  if (showDescriptionForm) {
+    return <DescriptionForm />;
+  }
+
   return (
     <main className="flex flex-col items-center justify-center">
       <div className="flex text-center p-6 text-[#628eff] font-bold text-2xl w-full mt-6">
         <button className="w-max"> <IoMdArrowRoundBack /></button>
         <h1 className="w-full">Nueva Consulta</h1>
       </div>
+      
       <section className="bg-[#cad6ff] flex flex-col items-center w-full">
         <SpecialtiesModal
           setSelectedSpecialty={handleSpecialtyChange}
@@ -100,10 +108,12 @@ export const CreateConsultationPage = () => {
       <AviableTimes
       selectedDoctor={selectedDoctor}
         availableTimes={availableTimes}
+        selectedHour={selectedHour}
+        setSelectedHour={setSelectedHour}
       />
       </section>
       <div className="flex flex-row items-center justify-center my-6 rounded-xl text-white text-xl w-[90%] p-4 font-medium bg-[#628eff]">
-     <button>Continuar</button>
+     <button onClick={() => setShowDescriptionForm(true)} disabled={!selectedSpecialty || !selectedHour}>Continuar</button>
      </div>
     </main>
   );

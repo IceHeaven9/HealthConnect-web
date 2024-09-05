@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { FcRight } from "react-icons/fc";
 import { FcLeft } from "react-icons/fc";
 
-export const AviableTimes = ({ selectedDoctor, availableTimes }) => {
+export const AviableTimes = ({ selectedHour, setSelectedHour, selectedDoctor, availableTimes }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedHour, setSelectedHour] = useState(null);
+
 
 
 
@@ -41,7 +41,8 @@ if (!currentSlot) {
 }
 
 return (
-  <div className='my-8 border-solid border-[0.1rem] border-[#628eff] mx-4 bg-[#fbf8f8]  rounded-xl shadow-[0px_12px_11px_2px_rgba(0,0,0,0.2)] p-6'>
+  <div className='my-8 border-solid border-[0.1rem] border-[#628eff] mx-4 bg-[#fbf8f8]  rounded-xl shadow-[0px_12px_11px_2px_rgba(0,0,0,0.2)] p-4'>
+    
     <div className='flex gap-12 items-center justify-start'>
       <img className='border-solid border-[0.15rem] border-[#628eff] rounded-xl w-16 h-16 ' src={ currentSlot.avatar} alt=""/> 
       <h3 className='text-2xl font-medium' >{currentSlot.doctorName}</h3>
@@ -71,6 +72,9 @@ return (
       {!selectedDoctor && (
         <>
           <button onClick={handlePrevious}><FcLeft /></button>
+          <div className='flex gap-2 items-center justify-center'>
+      <img className='rounded-xl w-14 h-14 ' src="/public/images/Perfil_healthConnect_blue.png" alt=""/> 
+    </div>
           <button onClick={handleNext}><FcRight /></button>
         </>
       )}
@@ -84,8 +88,12 @@ AviableTimes.propTypes = {
     PropTypes.shape({
       doctorName: PropTypes.string.isRequired,
       freeHours: PropTypes.arrayOf(PropTypes.string).isRequired,
-      avatar: PropTypes.string, 
+      avatar: PropTypes.string,
     })
   ).isRequired,
-  selectedDoctor: PropTypes.object
+  selectedHour: PropTypes.string,
+  setSelectedHour: PropTypes.func.isRequired,
+  selectedDoctor: PropTypes.object,
 };
+
+
