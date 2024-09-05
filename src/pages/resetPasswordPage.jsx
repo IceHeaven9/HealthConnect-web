@@ -1,8 +1,11 @@
-import { RecoveryPassForm } from "../components/forms/RecoveryPassForm";
+import { Footer } from '../components/Footer';
+import {ResetPassForm} from '../components/forms/ResetPassForm';
+
+
 export const ResetPasswordPage = () => {
-  return (
-     <div className="bg-white ">
-      <RecoveryPassForm />
-    </div>
-  );
-};
+  return (<>
+    <ResetPassForm/>
+    <Footer/>
+    </>
+  )
+}

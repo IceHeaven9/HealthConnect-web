@@ -6,9 +6,11 @@ import { RegisterPage } from "./pages/registerPage";
 import { LoginPage } from "./pages/loginPage";
 import { EditConsultationPage } from "./pages/editConsultationPage";
 import { CreateConsultationPage } from "./pages/createConsultationPage";
-import { ResetPasswordPage } from "./pages/resetPasswordPage";
+import { RecoveryPasswordPage } from "./pages/recoveryPasswordPage";
 import { ValidateEmailPage } from "./pages/validateEmailPage";
 import { AuthContextProvider } from "./contexts/authProvider";
+import { ResetPasswordPage } from './pages/resetPasswordPage';
+
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +27,10 @@ function App() {
           <Route
             path="/consultation/:id/edit"
             element={<EditConsultationPage />}
+          />
+          <Route
+            path="/recovery-account"
+            element={<RecoveryPasswordPage />}
           />
           <Route
             path="/reset-password"

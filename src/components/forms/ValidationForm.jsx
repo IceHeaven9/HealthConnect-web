@@ -55,19 +55,19 @@ export const VerificationForm = () => {
   return (
     <div className="flex flex-col w-full md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl h-[25rem] ">
     <div className="w-28 h-28">
-      <img src="/images/Perfil_healthConnect-Photoroom.png"></img>
+      <img src="/images/Perfil_healthConnect-Photoroom.png" alt=""></img>
     </div>
-      <h1 className="text-3xl font-bold text-[#4B5563] mt-2 mb-4">Validación de Usuario</h1>
+      <h1 className="text-3xl font-bold text-[#4B5563] mt-2 mb-8">Validación de Usuario</h1>
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <div className="pb-2">
-          <label htmlFor="verificationCode" className="block mb-2 text-sm font-medium text-[#111827]">
+          <label htmlFor="verificationCode" className="block mb-4 text-sm font-medium text-[#111827]">
             Código de Verificación
           </label>
           <input
             type="number"
             name="verificationCode"
             id="verificationCode"
-            className="mb-2 bg-[#ecf1ff] text-gray-600 border focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
+            className="mb-4 bg-[#ecf1ff] text-gray-600 border focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
             placeholder="Ingrese el código de verificación"
             value={verificationCode}
             onChange={(e) => setVerificationCode(e.target.value)}
@@ -76,7 +76,7 @@ export const VerificationForm = () => {
         <div className="flex flex-col items-center">
           <button
             type="submit"
-            className={`w-28 text-[#FFFFFF] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${isButtonDisabled ? 'bg-[#bdd0ff]' : 'bg-[#628eff]'}`}
+            className={`w-full text-[#FFFFFF] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${isButtonDisabled ? 'bg-[#bdd0ff]' : 'bg-[#628eff]'}`}
             disabled={isButtonDisabled}
           >
             Validar
