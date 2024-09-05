@@ -1,26 +1,81 @@
-
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { FcRight } from "react-icons/fc";
+import { FcLeft } from "react-icons/fc";
 
-export const AviableTimes = ({selectedDate,availableTimes}) => {
-  return (
-    <>
-     <section className="flex flex-col items-center justify-center w-full">
-      <h2 className="p-2 mt-4 text-[#628eff] font-medium">Horas disponibles para {selectedDate.toLocaleDateString('es-ES')}</h2>
-			<div className="border-t-[0.1rem] border-solid border-[#628eff] w-[90%] mt-4 mb-2"></div>
-      </section>
-			<section className="w-full">
-      <ul className="grid grid-cols-5 auto-rows-auto justify-items-center gap-2 px-4 py-2.5 w-full">
-        {availableTimes.map((time, index) => (
-          <li className=" p-2 text-xs  bg-[#e0e4f2] rounded-3xl text-[#809cff] w-max" key={index}><p>{time}</p></li>
-        ))}
-      </ul>
-			</section>
-    </>
-  )
+export const AviableTimes = ({ selectedDoctor, availableTimes }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedHour, setSelectedHour] = useState(null);
+
+
+
+  if (!Array.isArray(availableTimes) || availableTimes.length === 0) {
+    return <div>Sewlecciona una especialidad para poder ver las horas disponibles</div>;
+  }
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % availableTimes.length);
+    setSelectedHour(null)
+  };
+
+  const handlePrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + availableTimes.length) % availableTimes.length);
+    setSelectedHour(null)
+  };
+
+  const currentSlot = availableTimes[currentIndex];
+
+if (!currentSlot) {
+  setCurrentIndex(0); // Ajusta el índice si está fuera de rango
+  return <div>No hay horas disponibles</div>;
 }
 
+return (
+  <div className='my-8 border-solid border-[0.1rem] border-[#628eff] mx-4 bg-[#fbf8f8]  rounded-xl  p-6'>
+    <div className='flex gap-12 items-center justify-start'>
+      <img className='border-solid border-[0.15rem] border-[#628eff] rounded-xl w-16 h-16 ' src={ currentSlot.avatar} alt=""/> 
+      <h3 className='text-2xl font-medium' >{currentSlot.doctorName}</h3>
+    </div>
+    <div className=''> 
+      <ul className='grid grid-cols-5 mb-4 mt-6 justify-items-center'>
+        {currentSlot.freeHours.map((hour, idx) => (
+          <li 
+            className={`rounded-xl font-medium p-1.5 m-1 w-max text-black ${selectedHour === hour ? 'bg-[#628eff]' : 'bg-[#cad6ff]'}`} 
+            key={idx}
+          >
+            <label>
+              <input 
+                type="radio" 
+                name="selectedHour" 
+                value={hour} 
+                className="hidden" 
+                onChange={() => setSelectedHour(hour)} 
+              />
+              {hour}
+            </label>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div className='flex text-4xl justify-between'>
+      {!selectedDoctor && (
+        <>
+          <button onClick={handlePrevious}><FcLeft /></button>
+          <button onClick={handleNext}><FcRight /></button>
+        </>
+      )}
+    </div>
+  </div>
+);
+};
 
 AviableTimes.propTypes = {
-  selectedDate: PropTypes.instanceOf(Date).isRequired,
-  availableTimes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  availableTimes: PropTypes.arrayOf(
+    PropTypes.shape({
+      doctorName: PropTypes.string.isRequired,
+      freeHours: PropTypes.arrayOf(PropTypes.string).isRequired,
+      avatar: PropTypes.string, 
+    })
+  ).isRequired,
+  selectedDoctor: PropTypes.object
 };

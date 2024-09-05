@@ -42,16 +42,20 @@ export const DoctorsModal = ({doctorsModaSetIsOpen,setDoctors,selectedDoctor,doc
   {doctors.length > 0 && doctors.map((doctor) => (
     <li key={doctor.id} className={`flex items-center p-4 border rounded-lg ${selectedDoctor?.id === doctor.id ? 'bg-[#628eff] text-white' : ''}`}>
       <label className="flex items-center space-x-4">
-        <input
-          type="radio"
-          name="doctor"
-          value={doctor.id}
-          className="hidden"
-          onChange={() => {
-            setSelectedDoctor(doctor);
-            doctorsModaSetIsOpen(false);
-          }}
-        />
+      <input
+  type="radio"
+  name="doctor"
+  value={doctor.id}
+  className="hidden"
+  onChange={() => {
+    if (selectedDoctor?.id === doctor.id) {
+      setSelectedDoctor(null);
+    } else {
+      setSelectedDoctor(doctor);
+    }
+    doctorsModaSetIsOpen(false);
+  }}
+/>
         <img
           src={doctor.avatar}
           alt={`${doctor.firstName} ${doctor.lastName}`}
@@ -93,7 +97,7 @@ DoctorsModal.propTypes = {
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
-      avatar: PropTypes.string.isRequired,
+      avatar: PropTypes.string,
       specialities: PropTypes.string.isRequired,
       averageRating: PropTypes.number.isRequired,
       biography: PropTypes.string.isRequired,
