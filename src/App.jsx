@@ -9,7 +9,8 @@ import { CreateConsultationPage } from "./pages/createConsultationPage";
 import { RecoveryPasswordPage } from "./pages/recoveryPasswordPage";
 import { ValidateEmailPage } from "./pages/validateEmailPage";
 import { AuthContextProvider } from "./contexts/authProvider";
-import { ResetPasswordPage } from './pages/resetPasswordPage';
+import { ResetPasswordPage } from "./pages/resetPasswordPage";
+import { DetailsConsultationPage } from "./pages/detailsConsultationsPage";
 
 function App() {
   return (
@@ -25,17 +26,15 @@ function App() {
             element={<CreateConsultationPage />}
           />
           <Route
+            path="/consultations/:id/details"
+            element={<DetailsConsultationPage />}
+          />
+          <Route
             path="/consultation/:id/edit"
             element={<EditConsultationPage />}
           />
-          <Route
-            path="/recovery-account"
-            element={<RecoveryPasswordPage />}
-          />
-          <Route
-            path="/reset-password"
-            element={<ResetPasswordPage />}
-          />
+          <Route path="/recovery-account" element={<RecoveryPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AuthContextProvider>
