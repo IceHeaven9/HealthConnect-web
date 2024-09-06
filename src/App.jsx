@@ -26,7 +26,7 @@ function App() {
             element={<CreateConsultationPage />}
           />
           <Route
-            path="/consultations/:id/details"
+            path="/consultation/:id/details"
             element={<DetailsConsultationPage />}
           />
           <Route

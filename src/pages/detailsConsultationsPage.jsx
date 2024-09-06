@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
 
 export const DetailsConsultationPage = () => {
   const { id } = useParams();
   const [consultationDetails, setConsultationDetails] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchConsultationDetails = async () => {
@@ -41,26 +42,45 @@ export const DetailsConsultationPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#cad6ff]">
-      <div className="flex items-center justify-start gap-20 w-full ">
-        <button className="text-[#628eff] p-4">
-          <IoMdArrowRoundBack size={40} />
+      <div className="flex text-center p-6 text-[#628eff] font-bold text-3xl w-full mt-6">
+        <button onClick={() => navigate("/")} className="w-max">
+          {" "}
+          <IoMdArrowRoundBack />
         </button>
-        <div className="flex flex-col items-center text-[#628eff] gap-4">
-          <img
-            className="w-32 h-32"
-            src="/public/images/Perfil_healthConnect-Photoroom.png"
-            alt=""
-          />
-        </div>
-        <div className="w-6"></div>
+        <h1 className="w-full">Detalles de la consulta</h1>
       </div>
-      <header className="text-2xl font-bold mb-4 relative w-full">
-        Detalles de la consulta
-      </header>
       <main className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl">
-        <button className="absolute right-1 mt-2 mr-2 p-2  text-[#628eff] rounded">
+        <button
+          className="absolute right-1 mt-2 mr-2 p-2 text-[#628eff] rounded"
+          onClick={() => {
+            document
+              .querySelectorAll("input, textarea")
+              .forEach((input) => (input.disabled = !input.disabled));
+          }}
+        >
           <FiEdit size={25} />
         </button>
+        <div>
+          <h2 className="text-lg font-semibold mb-2">Fecha de la consulta:</h2>
+          <p className="mb-2 w-full h-auto break-words">
+            Dia:{" "}
+            {new Date(consultationDetails.date)
+              .toLocaleDateString("es-ES", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })
+              .toUpperCase()}
+            .
+            <br />
+            Hora:{" "}
+            {new Date(consultationDetails.date).toLocaleTimeString("es-ES", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+            {"."}
+          </p>
+        </div>
         <h2 className="text-lg font-semibold mb-2">Paciente:</h2>
         <div className="flex items-center mb-4">
           <img
@@ -74,7 +94,7 @@ export const DetailsConsultationPage = () => {
             </label>
             <input
               type="text"
-              className="text-lg w-auto h-auto"
+              className="text-lg w-full h-auto break-words"
               value={consultationDetails.patientName}
               disabled
             />
@@ -93,7 +113,7 @@ export const DetailsConsultationPage = () => {
             </label>
             <input
               type="text"
-              className="text-lg w-auto h-auto"
+              className="text-lg w-full h-auto break-words"
               value={consultationDetails.doctorName}
               disabled
             />
@@ -102,13 +122,12 @@ export const DetailsConsultationPage = () => {
         <h1 className="text-2xl font-bold text-[#4B5563] mb-4">
           {consultationDetails.title}
         </h1>
-        <div>
+        <div className="w-full">
           <label className="block text-sm font-medium text-gray-700">
             Descripción
           </label>
-          <input
-            type="text"
-            className="mb-2 w-auto h-auto"
+          <textarea
+            className="mb-2 w-full h-auto ite"
             value={consultationDetails.description}
             disabled
           />
@@ -119,7 +138,7 @@ export const DetailsConsultationPage = () => {
           </label>
           <input
             type="text"
-            className="mb-2 w-auto h-auto"
+            className="mb-2 w-full h-auto break-words"
             value={
               consultationDetails.severity === "high"
                 ? "Alta"
@@ -138,29 +157,19 @@ export const DetailsConsultationPage = () => {
           </label>
           <input
             type="text"
-            className="mb-2 w-auto h-auto"
+            className="mb-2 w-full h-auto break-words"
             value={consultationDetails.status}
             disabled
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Fecha
-          </label>
-          <input
-            type="text"
-            className="mb-2 w-auto h-auto"
-            value={new Date(consultationDetails.date).toLocaleString()}
-            disabled
-          />
-        </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Especialidad
           </label>
           <input
             type="text"
-            className="mb-2 w-auto h-auto"
+            className="mb-2 w-full h-auto break-words"
             value={consultationDetails.specialityName}
             disabled
           />
@@ -172,7 +181,7 @@ export const DetailsConsultationPage = () => {
           </label>
           <input
             type="text"
-            className="mb-2 w-auto h-auto"
+            className="mb-2 w-full h-auto break-words"
             value={consultationDetails.responseContent}
             disabled
           />
