@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import {toast, ToastContainer} from 'react-toastify';
+import {IoMdArrowRoundBack} from 'react-icons/io';
 
-export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor, selectedHour}) => {
+export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor, selectedHour,setShowDescriptionForm}) => {
   const [previews, setPreviews] = useState([]);
   const [files, setFiles] = useState([]);
   const [textinput , setTextinput] = useState('');
@@ -95,7 +96,7 @@ export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor
             .then((fileResult) => {
               notify(fileResult.message);
               setTimeout(() => {
-               navigate(`/`);
+                navigate(`/`);
               }, 1000);
             })
             .catch((error) => notify(error.message));
@@ -124,10 +125,12 @@ export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor
 
   return (
     <>
-       
-      <div className='flex items-center justify-start text-center text-[#628eff] gap-4'>
+<div className='h-min w-max pl-4 pr-4 pt-6 text-[#628eff]'> 
+  </div>
+      <div className='flex items-center justify-start text-center  text-[#628eff] h-min p-4 mb-8'>
       <ToastContainer/>
-        <img className=' w-32 h-32' src='/images/Perfil_healthConnect-Photoroom.png' alt="" />
+  <button className='pr-20' onClick={() => setShowDescriptionForm(false)}> <IoMdArrowRoundBack size={30} /></button>
+    
         <p className='text-4xl font-medium'> Descripción</p>
       </div>
       <form className="flex flex-col items-start justify-center mx-4 text-center " onSubmit={handleSubmit}>
@@ -137,9 +140,9 @@ export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor
         
         <label className="text-md text-[#111827] p-2 font-medium">Motivo de la consulta:</label>
         <textarea value={textinput} onChange={(e) => setTextinput(e.target.value)} className="border-[0.1rem] border-solid border-[#cad6ff] w-full rounded-2xl h-72 pl-4 p-2 outline-none" name="descripcion" placeholder="Describe tu problema..." required></textarea>
-       
-         
+
         <p className="font-medium p-2 text-center">Severidad:</p>
+
 <section className='flex items-center justify-center text-center w-full'>
   <div className="flex gap-4">
     <label className="flex items-center gap-2 ">
@@ -161,7 +164,6 @@ export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor
         <div className='border-[#cad6ff] border-[0.1rem] border-solid min-w-full h-max  rounded-xl grid grid-cols-5 gap-4'>
   {files.length === 0 ? (
     <div className="flex items-center justify-center min-h-20 w-full text-7xl col-span-5">
-      
     </div>
   ) : (
     files.map((file, index) => (
@@ -188,7 +190,7 @@ export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor
     ))
   )}
 </div>
-       
+
         <div className="flex text-center justify-end w-full">
         <input aria-label='files' type="file" name='files' id='files' className="hidden" onChange={handleFileChange} multiple />
 <label htmlFor='files' className="flex items-center justify-center gap-1 font-bold text-xl text-[#628eff] w-max h-10 bg-transparent transition-all duration-300 my-6 cursor-pointer">
@@ -196,13 +198,13 @@ export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor
 </label>
         </div>
 
-        <div className="w-full text-center p-2 mb-4 rounded-lg text-white bg-[#628eff] ">
+        <div className="w-full text-center p-4 text-xl mb-4 rounded-lg text-white bg-[#628eff] ">
         <button type="submit" disabled={!textinput} onClick={() => {
         }}>Confirmar</button>
         </div>
 
       </form>
-   
+
     </>
   );
 };

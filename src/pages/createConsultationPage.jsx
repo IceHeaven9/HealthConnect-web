@@ -9,6 +9,7 @@ import {AviableTimes} from '../components/createConsutations/AviableTimes';
 import { DescriptionForm } from './../components/createConsutations/DescriptionForm';
 import { useAuthGuard } from "../hooks/authGuard";
 import 'react-calendar/dist/Calendar.css';
+import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement('#root');
 
@@ -23,6 +24,7 @@ export const CreateConsultationPage = () => {
   const [availableTimes, setAvailableTimes] = useState([]);
   const [showDescriptionForm, setShowDescriptionForm] = useState(false);
   const [selectedHour, setSelectedHour] = useState(null);
+  const navigate = useNavigate();
 
 
   const handleDateChange = (date) => {
@@ -65,7 +67,7 @@ export const CreateConsultationPage = () => {
 
   const handleSpecialtyChange = (specialty) => {
     setSelectedSpecialty(specialty);
-    setSelectedDoctor(null); // Vaciar la variable del doctor
+    setSelectedDoctor(null); 
   };
 
   if (showDescriptionForm) {
@@ -78,13 +80,14 @@ export const CreateConsultationPage = () => {
     setSelectedDoctor={setSelectedDoctor}
     selectedHour={selectedHour}
     setSelectedHour={setSelectedHour}
+    setShowDescriptionForm={setShowDescriptionForm}
      />;
   }
 
   return (
     <main className="flex flex-col items-center justify-center">
-      <div className="flex text-center p-6 text-[#628eff] font-bold text-2xl w-full mt-6">
-        <button className="w-max"> <IoMdArrowRoundBack /></button>
+      <div className="flex text-center p-6 text-[#628eff] font-bold text-3xl w-full mt-6">
+        <button onClick={() => navigate("/")} className="w-max"> <IoMdArrowRoundBack /></button>
         <h1 className="w-full">Nueva Consulta</h1>
       </div>
       
@@ -111,8 +114,14 @@ export const CreateConsultationPage = () => {
       </section>
       <section className="flex flex-col items-center justify-center w-full bg-[#cad6ff]">
         <Calendar
+          defaultActiveStartDate={new Date()}
+          minDate={new Date()}
           onChange={handleDateChange}
           value={selectedDate}
+          tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6}
+          tileClassName={({ date }) => (date.getDay() === 0 || date.getDay() === 6 ? 'disabled-day' : '')}
+          showFixedNumberOfWeeks={false}
+          
         />
       </section>
       <h2 className='text-center text-xl font-medium text-[#628eff] my-4'>Horas disponibles para el dia {selectedDate.toLocaleDateString("es-ES")}</h2>
@@ -124,6 +133,7 @@ export const CreateConsultationPage = () => {
         selectedHour={selectedHour}
         setSelectedHour={setSelectedHour}
       />
+
       </section>
       <div className="flex flex-row items-center justify-center my-6 rounded-xl text-white text-xl w-[90%] p-4 font-medium bg-[#628eff]">
      <button onClick={() => setShowDescriptionForm(true)} disabled={!selectedSpecialty || !selectedHour}>Continuar</button>
