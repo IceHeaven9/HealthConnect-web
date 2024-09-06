@@ -11,6 +11,7 @@ import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import { fetchAvailableTimes } from "../components/createConsutations/fetch/availableTimesFetch";
 import { NewConsultationTitle } from "../components/createConsutations/NewConsultationTitle";
+import { Footer } from "../components/Footer";
 
 Modal.setAppElement("#root");
 
@@ -124,6 +125,7 @@ export const CreateConsultationPage = () => {
 					Continuar
 				</button>
 			</div>
+      <Footer/>
 		</main>
 	);
 };

@@ -7,6 +7,7 @@ import { DescriptionTitle } from "./DescriptionTitle";
 import { DescriptionFormTopSection } from "./DescriptionFormTopSection";
 import { DescriptionFormMidSection } from "./DescriptionFormMidSection";
 import { DescriptionFormBottomSection } from "./DescriptionFormBottomSection";
+import { Footer } from "../Footer";
 
 export const DescriptionForm = ({
 	selectedDate,
@@ -104,6 +105,7 @@ export const DescriptionForm = ({
 					</button>
 				</div>
 			</form>
+			<Footer/>
 		</>
 	);
 };
