@@ -6,9 +6,9 @@ import { RegisterPage } from "./pages/registerPage";
 import { LoginPage } from "./pages/loginPage";
 import { EditConsultationPage } from "./pages/editConsultationPage";
 import { CreateConsultationPage } from "./pages/createConsultationPage";
-import { RecoveryPasswordPage } from "./pages/recoveryPasswordPage";
 import { ValidateEmailPage } from "./pages/validateEmailPage";
 import { ResetPasswordPage } from './pages/resetPasswordPage';
+import { RecoveryAccountPage } from "./pages/recoveryAccountPage";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           />
           <Route
             path="/recovery-account"
-            element={<RecoveryPasswordPage />}
+            element={<RecoveryAccountPage />}
           />
           <Route
             path="/reset-password"
