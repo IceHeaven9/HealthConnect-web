@@ -1,14 +1,17 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { FaCloudUploadAlt } from "react-icons/fa";
-import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import {toast, ToastContainer} from 'react-toastify';
 
-export const DescriptionForm = ({selectedDate,selectedSpecialty,selectedDoctor,selectedHour}) => {
+export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor, selectedHour}) => {
   const [previews, setPreviews] = useState([]);
   const [files, setFiles] = useState([]);
   const [textinput , setTextinput] = useState('');
   const [title, setTitle] = useState('');
   const [severity, setSeverity] = useState('');
-  console.log( selectedDoctor);
+  const navigate = useNavigate();
+
 
   const token = localStorage.getItem('TOKEN');
 
@@ -23,7 +26,7 @@ export const DescriptionForm = ({selectedDate,selectedSpecialty,selectedDoctor,s
       parseInt(hour, 10),
       parseInt(minute, 10)
     );
-    combinedDateTime.setHours(combinedDateTime.getHours() + 2); // Adjust for the 2-hour offset
+    combinedDateTime.setHours(combinedDateTime.getHours() + 2); 
     formattedDateTime = combinedDateTime.toISOString().replace('T', ' ').substring(0, 16);
 
   } else {
@@ -50,7 +53,7 @@ export const DescriptionForm = ({selectedDate,selectedSpecialty,selectedDoctor,s
       severity: severity,
       specialityid: selectedSpecialty,
       date: formattedDateTime,
-      doctorid: selectedDoctor ? selectedDoctor.id : null
+      doctorId: selectedDoctor ? Number(selectedDoctor.id) : undefined
     });
   
     const requestOptions = {
@@ -61,15 +64,70 @@ export const DescriptionForm = ({selectedDate,selectedSpecialty,selectedDoctor,s
     };
   
     fetch("http://localhost:3000/consultations", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.error(error));
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.message) {
+          setTitle('');
+          setTextinput('');
+          setSeverity('');
+          setFiles([]);
+          setPreviews([]);
+          notify(result.message);
+  
+          // Upload files
+          const fileHeaders = new Headers();
+          fileHeaders.append("Authorization", token);
+  
+          const formdata = new FormData();
+          files.forEach((file) => {
+            formdata.append("files", file);
+          });
+  
+          const fileRequestOptions = {
+            method: "POST",
+            headers: fileHeaders,
+            body: formdata,
+            redirect: "follow"
+          };
+  
+          fetch(`http://localhost:3000/consultations/${result.id}/files`, fileRequestOptions)
+            .then((response) => response.text())
+            .then((fileResult) => {
+              notify(fileResult.message);
+              setTimeout(() => {
+               navigate(`/`);
+              }, 1000);
+            })
+            .catch((error) => notify(error.message));
+        }
+      })
+      .catch((error) => {
+        notify(error.message);
+      });
   };
+
+  const notify = (message) => toast(message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    style: {
+      backgroundColor: '#ffffff',
+      color: '#000000',
+      fontSize: '16px'
+    }
+  });
+  
 
   return (
     <>
+       
       <div className='flex items-center justify-start text-center text-[#628eff] gap-4'>
-        <img className=' w-32 h-32' src='/public/images/Perfil_healthConnect-Photoroom.png' alt="" />
+      <ToastContainer/>
+        <img className=' w-32 h-32' src='/images/Perfil_healthConnect-Photoroom.png' alt="" />
         <p className='text-4xl font-medium'> Descripción</p>
       </div>
       <form className="flex flex-col items-start justify-center mx-4 text-center " onSubmit={handleSubmit}>
@@ -85,15 +143,15 @@ export const DescriptionForm = ({selectedDate,selectedSpecialty,selectedDoctor,s
 <section className='flex items-center justify-center text-center w-full'>
   <div className="flex gap-4">
     <label className="flex items-center gap-2 ">
-      <input type="radio" name="severity" value="low" className="hidden" onChange={(e) => setSeverity(e.target.value)} />
+      <input aria-label='low' type="radio" name="severity" value="low" className="hidden" onChange={(e) => setSeverity(e.target.value)} />
       <span className={`p-2 rounded-xl cursor-pointer ${severity === 'low' ? 'bg-[#628eff] text-white' : 'bg-gray-200'}`} data-severity="low">Baja</span>
     </label>
     <label className="flex items-center gap-2">
-      <input type="radio" name="severity" value="medium" className="hidden" onChange={(e) => setSeverity(e.target.value)} />
+      <input aria-label='medium' type="radio" name="severity" value="medium" className="hidden" onChange={(e) => setSeverity(e.target.value)} />
       <span className={`p-2 rounded-xl cursor-pointer ${severity === 'medium' ? 'bg-[#628eff] text-white' : 'bg-gray-200'}`} data-severity="medium">Media</span>
     </label>
     <label className="flex items-center gap-2">
-      <input type="radio" name="severity" value="high" className="hidden" onChange={(e) => setSeverity(e.target.value)} />
+      <input aria-label='hight' type="radio" name="severity" value="high" className="hidden" onChange={(e) => setSeverity(e.target.value)} />
       <span className={`p-2 rounded-xl cursor-pointer ${severity === 'high' ? 'bg-[#628eff] text-white' : 'bg-gray-200'}`} data-severity="high">Alta</span>
     </label>
   </div>
@@ -139,10 +197,12 @@ export const DescriptionForm = ({selectedDate,selectedSpecialty,selectedDoctor,s
         </div>
 
         <div className="w-full text-center p-2 mb-4 rounded-lg text-white bg-[#628eff] ">
-        <button type="submit" disabled={!textinput}>Confirmar</button>
+        <button type="submit" disabled={!textinput} onClick={() => {
+        }}>Confirmar</button>
         </div>
 
       </form>
+   
     </>
   );
 };

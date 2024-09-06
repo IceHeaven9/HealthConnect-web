@@ -73,7 +73,7 @@ return (
         <>
           <button onClick={handlePrevious}><FcLeft /></button>
           <div className='flex gap-2 items-center justify-center'>
-      <img className='rounded-xl w-14 h-14 ' src="/public/images/Perfil_healthConnect_blue.png" alt=""/> 
+      <img className='rounded-xl w-14 h-14 ' src="/images/Perfil_healthConnect_blue.png" alt=""/> 
     </div>
           <button onClick={handleNext}><FcRight /></button>
         </>

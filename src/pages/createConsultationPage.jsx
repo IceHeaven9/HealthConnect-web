@@ -71,9 +71,13 @@ export const CreateConsultationPage = () => {
   if (showDescriptionForm) {
     return <DescriptionForm 
     selectedDate={selectedDate}
+    setSelectedDate={setSelectedDate}
     selectedSpecialty={selectedSpecialty}
+    setSelectedSpecialty={setSelectedSpecialty}
     selectedDoctor={selectedDoctor}
+    setSelectedDoctor={setSelectedDoctor}
     selectedHour={selectedHour}
+    setSelectedHour={setSelectedHour}
      />;
   }
 
