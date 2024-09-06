@@ -87,7 +87,7 @@ export const RecoveryPassForm = () => {
   return (
     <div className="flex flex-col w-full md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl h-max ">
     <div className="w-28 h-28">
-      <img src="/images/Perfil_healthConnect-Photoroom.png"></img>
+      <img src="/images/Perfil_healthConnect-Photoroom.png" alt=""></img>
     </div>
       <div className="flex flex-row gap-3 pb-4">
       <button
