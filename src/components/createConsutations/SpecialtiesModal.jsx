@@ -26,11 +26,11 @@ export const SpecialtiesModal = ({setSelectedSpecialty,specialtyModaSetIsOpen,se
   isOpen={specialtyModalIsOpen}
   onRequestClose={() => specialtyModaSetIsOpen(false)}
   style={customStyles}
-  contentLabel="Example Modal"
+  contentLabel="Specialties"
 >
   <button className="text-2xl" onClick={() => specialtyModaSetIsOpen(false)}><IoClose /></button>
-  <div className="text-center text-3xl pb-4">Especialidades</div>
-  <ul className="flex flex-col items-start justify-start text-xl gap-2 w-full">
+  <div className=" text-center text-3xl pb-4">Especialidades</div>
+  <ul className="custom-scrollbar flex flex-col items-start justify-start text-xl gap-2 w-full">
     {specialties.map((specialty) => (
       <li className={`w-full p-4 rounded-xl ${selectedSpecialty === specialty.id ? 'bg-[#628eff] text-white' : ''}`}
       key={specialty.id}>

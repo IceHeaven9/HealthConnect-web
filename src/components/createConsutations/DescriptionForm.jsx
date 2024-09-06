@@ -92,14 +92,16 @@ export const DescriptionForm = ({selectedDate, selectedSpecialty, selectedDoctor
           };
   
           fetch(`http://localhost:3000/consultations/${result.id}/files`, fileRequestOptions)
-            .then((response) => response.text())
-            .then((fileResult) => {
-              notify(fileResult.message);
+          .then((response) => response.text().then((fileResult) => ({ response, fileResult })))
+          .then(({ response, fileResult }) => {
+            notify(fileResult.message);
+            if (response.ok) {
               setTimeout(() => {
                 navigate(`/`);
               }, 1000);
-            })
-            .catch((error) => notify(error.message));
+            }
+          })
+          .catch((error) => notify(error.message));
         }
       })
       .catch((error) => {
@@ -214,4 +216,5 @@ DescriptionForm.propTypes = {
   selectedSpecialty: PropTypes.number,
   selectedDoctor: PropTypes.object,
   selectedHour: PropTypes.string,
+  setShowDescriptionForm: PropTypes.func.isRequired
 };

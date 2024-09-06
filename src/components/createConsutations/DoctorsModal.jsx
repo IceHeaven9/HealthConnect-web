@@ -37,7 +37,7 @@ export const DoctorsModal = ({doctorsModaSetIsOpen,setDoctors,selectedDoctor,doc
 >
 
   <button className="text-2xl" onClick={() => doctorsModaSetIsOpen(false)}><IoClose /></button>
-  <div className="text-center text-2xl pb-4 pl-4 pr-4">Doctores</div>
+  <div className="text-center text-2xl pb-4 pl-4 pr-4 mb-4 font-medium">Doctores</div>
   <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
   {doctors.length > 0 && doctors.map((doctor) => (
     <li key={doctor.id} className={`flex items-center p-4 border rounded-lg ${selectedDoctor?.id === doctor.id ? 'bg-[#628eff] text-white ' : ''}`}>
