@@ -6,8 +6,9 @@ import {SpecialtiesModal} from '../components/createConsutations/SpecialtiesModa
 import {DoctorsModal} from '../components/createConsutations/DoctorsModal';
 import { customStyles } from "../constants";
 import {AviableTimes} from '../components/createConsutations/AviableTimes';
-import 'react-calendar/dist/Calendar.css';
 import { DescriptionForm } from './../components/createConsutations/DescriptionForm';
+import { useAuthGuard } from "../hooks/authGuard";
+import 'react-calendar/dist/Calendar.css';
 
 Modal.setAppElement('#root');
 
@@ -23,9 +24,12 @@ export const CreateConsultationPage = () => {
   const [showDescriptionForm, setShowDescriptionForm] = useState(false);
   const [selectedHour, setSelectedHour] = useState(null);
 
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  useAuthGuard("/create-consultation");
 
   const fetchAvailableTimes = (date, specialtyId, doctor) => {
     const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);

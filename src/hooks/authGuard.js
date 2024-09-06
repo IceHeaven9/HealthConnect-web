@@ -9,5 +9,5 @@ export function useAuthGuard(redirect) {
     if (!currentUser) {
       navigate(`/login${redirect ? "?redirect=" + redirect : ""}`);
     }
-  }, [currentUser]);
+  }, [currentUser, navigate, redirect]);
 }
