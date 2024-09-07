@@ -7,11 +7,11 @@ import { customStyles } from "../constants";
 import { AviableTimes } from "../components/createConsutations/AviableTimes";
 import { DescriptionForm } from "./../components/createConsutations/DescriptionForm";
 import { useAuthGuard } from "../hooks/authGuard";
-import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import { fetchAvailableTimes } from "../components/createConsutations/fetch/availableTimesFetch";
 import { NewConsultationTitle } from "../components/createConsutations/NewConsultationTitle";
 import { Footer } from "../components/Footer";
+import "react-calendar/dist/Calendar.css";
 
 Modal.setAppElement("#root");
 
