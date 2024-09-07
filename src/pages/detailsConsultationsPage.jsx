@@ -40,7 +40,7 @@ export const DetailsConsultationPage = () => {
 			setConsultationDetails,
 			id
 		);
-	}, [id]);
+	}, [id, currentUser]);
 
 	if (!consultationDetails) {
 		return <div>Loading...</div>;

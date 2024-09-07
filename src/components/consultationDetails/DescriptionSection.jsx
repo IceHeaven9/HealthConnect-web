@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { FiEdit } from "react-icons/fi";
 import { MdSaveAs } from "react-icons/md";
 import { handleEditConsultation } from "./fetch/editConsultationFetch";
+import { useNavigate } from "react-router-dom";
 
 export const DescriptionSection = ({
 	userType,
@@ -11,6 +12,7 @@ export const DescriptionSection = ({
 	consultationDetails,
 	setConsultationDetails,
 }) => {
+	const navigate = useNavigate();
 	return (
 		<>
 			<div className="w-full h-max">
@@ -28,12 +30,15 @@ export const DescriptionSection = ({
 						>
 							{isEditing.description ? (
 								<MdSaveAs
-									onClick={handleEditConsultation(
-										id,
-										consultationDetails,
-										setConsultationDetails,
-										setIsEditing
-									)}
+									onClick={() =>
+										handleEditConsultation(
+											id,
+											consultationDetails,
+											setConsultationDetails,
+											setIsEditing,
+											navigate
+										)
+									}
 								/>
 							) : (
 								<FiEdit />

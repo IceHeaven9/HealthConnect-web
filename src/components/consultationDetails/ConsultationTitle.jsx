@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { FiEdit } from "react-icons/fi";
 import { MdSaveAs } from "react-icons/md";
 import { handleEditConsultation } from "./fetch/editConsultationFetch";
+import { useNavigate } from "react-router-dom";
 
 export const ConsultationTitle = ({
 	userType,
@@ -11,6 +12,7 @@ export const ConsultationTitle = ({
 	consultationDetails,
 	setConsultationDetails,
 }) => {
+	const navigate=useNavigate();
 	return (
 		<>
 			<div className="flex justify-between items-center mb-2 w-full">
@@ -24,12 +26,15 @@ export const ConsultationTitle = ({
 					>
 						{isEditing.title ? (
 							<MdSaveAs
-								onClick={handleEditConsultation(
-									id,
-									consultationDetails,
-									setConsultationDetails,
-									setIsEditing
-								)}
+								onClick={() =>
+									handleEditConsultation(
+										id,
+										consultationDetails,
+										setConsultationDetails,
+										setIsEditing,
+										navigate
+									)
+								}
 							/>
 						) : (
 							<FiEdit />
