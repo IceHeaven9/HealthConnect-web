@@ -1,5 +1,6 @@
 import { Footer } from '../components/Footer';
-import {ResetPassForm} from '../components/forms/ResetPassForm';
+import { ResetPassForm } from '../components/resetPassword/ResetPassForm';
+
 
 
 export const ResetPasswordPage = () => {

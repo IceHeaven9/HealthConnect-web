@@ -27,9 +27,9 @@ export const RecoveryFormTopSection = ({ navigate }) => {
 			</div>
 
 			<div className="flex flex-row items-center justify-center gap-3 pb-4">
-				<h1 className="text-2xl text-center font-bold text-[#4B5563] mt-8">
+				<h2 className="text-2xl text-center font-bold text-[#4B5563] mt-8">
 					Recuperación de la cuenta
-				</h1>
+				</h2>
 			</div>
 			<div className="text-lg font-medium text-[#6B7280] pb-8 text-center">
 				Introduce el correo electronico de tu cuenta para recibir un código de
