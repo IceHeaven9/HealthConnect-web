@@ -1,6 +1,5 @@
 import { CiMenuFries } from "react-icons/ci";
 import { RiHomeHeartFill } from "react-icons/ri";
-import { FaUserDoctor } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { useState } from "react";
