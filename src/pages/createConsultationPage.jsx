@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchAvailableTimes } from "../components/createConsutations/fetch/availableTimesFetch";
 import { NewConsultationTitle } from "../components/createConsutations/NewConsultationTitle";
 import { Footer } from "../components/Footer";
+import {HamburgerMenu} from '../components/HamburgerMenu';
 import "react-calendar/dist/Calendar.css";
 
 Modal.setAppElement("#root");
@@ -68,6 +69,7 @@ export const CreateConsultationPage = () => {
 
 	return (
 		<main className="flex flex-col items-center justify-center">
+			<HamburgerMenu/>
 			<NewConsultationTitle navigate={navigate} />
 
 			<section className="bg-[#cad6ff] flex flex-col items-center w-full">

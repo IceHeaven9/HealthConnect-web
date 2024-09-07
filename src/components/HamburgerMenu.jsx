@@ -13,7 +13,7 @@ export const HamburgerMenu = () => {
 
 	return (
 		<>
-			<section className="flex justify-end items-center w-full">
+			<section className="flex justify-end items-center w-max absolute top-2 right-1">
 				{showMenu && (
 					<article className="">
 						<ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-[#628eff]">

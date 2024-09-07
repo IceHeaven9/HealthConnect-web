@@ -8,6 +8,7 @@ import { DescriptionFormTopSection } from "./DescriptionFormTopSection";
 import { DescriptionFormMidSection } from "./DescriptionFormMidSection";
 import { DescriptionFormBottomSection } from "./DescriptionFormBottomSection";
 import { Footer } from "../Footer";
+import {HamburgerMenu} from '../HamburgerMenu';
 
 export const DescriptionForm = ({
     selectedDate,
@@ -78,6 +79,7 @@ export const DescriptionForm = ({
 
     return (
         <>
+        <HamburgerMenu/>
             <DescriptionTitle setShowDescriptionForm={setShowDescriptionForm} />
             <form
                 className="flex flex-col items-start justify-center mx-4 text-center "
