@@ -13,7 +13,6 @@ export const RegisterForm = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  {/*Si el usuario selecciona paciente, se limpian los campos reservados a Doctor.*/}
   const handleUserTypeChange = (type) => {
     setUserType(type);
     if (type === 'Patient') {
@@ -23,7 +22,6 @@ export const RegisterForm = () => {
     }
   };
 
-  {/*Validamos si el formulario está completo*/}
   const isFormValid = () => {
     if (userType === 'Doctor') {
       return email && username && password && name && lastName && doctorCode && experience;
@@ -34,20 +32,18 @@ export const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    {/*Objeto con datos del usuario*/}
     const userData = {
-      name,
+      firstName: name,  // Modificado para coincidir con el backend
       lastName,
       email,
-      username,
+      userName: username,  // Modificado para coincidir con el backend
       password,
-      userType,
-      doctorCode: userType === 'Doctor' ? doctorCode : undefined,
+      userType: userType.toLowerCase(),  // Convertido a minúsculas para coincidir con el backend
+      codigoMedico: userType === 'Doctor' ? doctorCode : undefined,  // Modificado para coincidir con el backend
       experience: userType === 'Doctor' ? experience : undefined,
-      bio: userType === 'Doctor' ? bio : undefined,
+      biography: userType === 'Doctor' ? bio : undefined,  // Modificado para coincidir con el backend
     };
 
-    {/*Llamamos a la API*/}
     try {
       const response = await fetch('http://localhost:3000/register', {
         method: 'POST',
@@ -76,7 +72,6 @@ export const RegisterForm = () => {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       <header className="text-blue-500 py-4 px-8 flex justify-center items-center relative">
-        {/* Flecha back */}
         <button
           type="button"
           className="absolute left-4 font-bold text-lg"
@@ -85,7 +80,6 @@ export const RegisterForm = () => {
           <span className="text-2xl">{'<'}</span>
         </button>
 
-        {/* Sign Up */}
         <span className="font-bold text-lg">Sign Up</span>
       </header>
 
@@ -95,7 +89,6 @@ export const RegisterForm = () => {
           {success && <p className="text-green-500 text-sm mb-4">Registration successful!</p>}
 
           <form onSubmit={handleSubmit}>
-            {/* Campo Nombre */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">First Name</label>
               <input 
@@ -108,7 +101,6 @@ export const RegisterForm = () => {
               />
             </div>
 
-            {/* Campo Apellidos */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
               <input 
@@ -121,7 +113,6 @@ export const RegisterForm = () => {
               />
             </div>
 
-            {/* Campo Email */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
               <input 
@@ -134,7 +125,6 @@ export const RegisterForm = () => {
               />
             </div>
 
-            {/* Campo Username */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
               <input 
@@ -147,7 +137,6 @@ export const RegisterForm = () => {
               />
             </div>
 
-            {/* Campo Password */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
               <input 
@@ -160,7 +149,6 @@ export const RegisterForm = () => {
               />
             </div>
 
-            {/* Campo User Type */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">User type</label>
               <div className="flex justify-between">
@@ -181,15 +169,13 @@ export const RegisterForm = () => {
               </div>
             </div>
 
-            {/* Campos adicionales si es Doctor */}
             {userType === 'Doctor' && (
               <>
-                {/* Campo Código de Doctor */}
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Doctor Code</label>
                   <input 
-                    type="password" 
-                    placeholder="******" 
+                    type="text"  // Cambiado a "text" para coincidir con el backend, ya que el backend espera un número
+                    placeholder="123456" 
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                     value={doctorCode}
                     onChange={(e) => setDoctorCode(e.target.value)}
@@ -197,27 +183,24 @@ export const RegisterForm = () => {
                   />
                 </div>
 
-                {/* Campo Años de Experiencia */}
                 <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">Years of Experience</label>
-                <input 
+                  <label className="block text-gray-700 text-sm font-bold mb-2">Years of Experience</label>
+                  <input 
                     type="number" 
                     min="0" 
                     placeholder="Years" 
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                     value={experience}
                     onChange={(e) => {
-                    const value = e.target.value;
-                    if (value >= 0) {
+                      const value = e.target.value;
+                      if (value >= 0) {
                         setExperience(value);
-                    }
+                      }
                     }}
                     required
-                />
+                  />
                 </div>
 
-
-                {/* Campo Biografía */}
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Biography (optional)</label>
                   <textarea
@@ -245,4 +228,3 @@ export const RegisterForm = () => {
     </div>
   );
 };
-
