@@ -1,47 +1,65 @@
 import { useState } from 'react';
 
 export const RegisterForm = () => {
-  const [userType, setUserType] = useState('Patient');
+  const [userType, setUserType] = useState('Patient'); 
   const [doctorCode, setDoctorCode] = useState('');
-  const [experience, setExperience] = useState('');
-  const [bio, setBio] = useState('');
-  const [name, setName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
+  const [experience, setExperience] = useState(''); 
+  const [bio, setBio] = useState(''); 
+  const [name, setName] = useState(''); 
+  const [lastName, setLastName] = useState(''); 
+  const [email, setEmail] = useState(''); 
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  const [password, setPassword] = useState(''); 
+  const [error, setError] = useState(''); 
+  const [success, setSuccess] = useState(false); 
+  const [specialties, setSpecialties] = useState([]); 
+  const [selectedSpecialties, setSelectedSpecialties] = useState([]);
 
-  const handleUserTypeChange = (type) => {
-    setUserType(type);
+  {/*Cambio tipo de usuario y fetch de especialidades si es Doctor*/}
+  const handleUserTypeChange = async (type) => {
+    setUserType(type); 
     if (type === 'Patient') {
+      {/*Si el tipo de usuario es Patient se limpian los campos de Doctor*/}
       setDoctorCode('');
       setExperience('');
       setBio('');
+    } else if (type === 'Doctor') {
+      {/*Si el tipo de usuario es Doctor se hace fetch para especialidades al backend*/}
+      try {
+        const response = await fetch('http://localhost:3000/specialities');
+        const data = await response.json();
+        setSpecialties(data);
+      } catch (error) {
+        console.error('Error fetch specialties:', error);
+      }
     }
   };
 
+  {/*Revisamos que todos los campos estén cumplimentados antes de enviar*/}
   const isFormValid = () => {
     if (userType === 'Doctor') {
-      return email && username && password && name && lastName && doctorCode && experience;
+      {/*Si es Doctor de activan los campos correspondientes */}
+      return email && username && password && name && lastName && doctorCode && experience && selectedSpecialties.length > 0;
     }
+    {/*Si es Paciente se validan solo los campos correspondientes*/}
     return email && username && password && name && lastName;
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
+    {/*Objeto con los datos que se enviarán al Back */}
     const userData = {
-      firstName: name,  // Modificado para coincidir con el backend
+      firstName: name,
       lastName,
       email,
-      userName: username,  // Modificado para coincidir con el backend
+      userName: username,
       password,
-      userType: userType.toLowerCase(),  // Convertido a minúsculas para coincidir con el backend
-      codigoMedico: userType === 'Doctor' ? doctorCode : undefined,  // Modificado para coincidir con el backend
-      experience: userType === 'Doctor' ? experience : undefined,
-      biography: userType === 'Doctor' ? bio : undefined,  // Modificado para coincidir con el backend
+      userType: userType.toLowerCase(),
+      codigoMedico: userType === 'Doctor' ? doctorCode : undefined, 
+      experience: userType === 'Doctor' ? experience : undefined, 
+      biography: userType === 'Doctor' ? bio : undefined, 
+      specialties: userType === 'Doctor' ? selectedSpecialties : undefined, 
     };
 
     try {
@@ -50,27 +68,28 @@ export const RegisterForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(userData), 
       });
 
-      const responseData = await response.json();
+      const responseData = await response.json(); 
       console.log('Response Data:', responseData);
 
       if (!response.ok) {
-        throw new Error('Failed to register');
+        throw new Error('Error al registrarse.');
       }
 
-      setSuccess(true);
-      setError('');
-      console.log('User registered successfully');
+      setSuccess(true); 
+      setError(''); 
+      console.log('Usuario registrado correctamente.');
     } catch (err) {
-      setError('Failed to register. Please try again.');
+      setError('Error al registrarse, por favor intentelo de nuevo.');
       console.error(err);
     }
   };
 
   return (
     <div className="bg-white min-h-screen flex flex-col">
+      {/* Header*/}
       <header className="text-blue-500 py-4 px-8 flex justify-center items-center relative">
         <button
           type="button"
@@ -79,40 +98,44 @@ export const RegisterForm = () => {
         >
           <span className="text-2xl">{'<'}</span>
         </button>
-
         <span className="font-bold text-lg">Sign Up</span>
       </header>
 
+      {/* Main */}
       <main className="flex justify-center items-center flex-grow">
         <div className="bg-white p-8 rounded-lg w-full max-w-md">
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-          {success && <p className="text-green-500 text-sm mb-4">Registration successful!</p>}
+          {success && <p className="text-green-500 text-sm mb-4">Registration successful!</p>} 
 
+          {/* Formulario*/}
           <form onSubmit={handleSubmit}>
+            {/* Campo nombre */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">First Name</label>
               <input 
                 type="text" 
-                placeholder="Denisse" 
+                placeholder="Example" 
                 className="w-full px-3 py-2 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)} 
                 required
               />
             </div>
 
+            {/* Campo apellido */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
               <input 
                 type="text" 
-                placeholder="Babio" 
+                placeholder="Example" 
                 className="w-full px-3 py-2 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                 value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={(e) => setLastName(e.target.value)} 
                 required
               />
             </div>
 
+            {/* Campo mail*/}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
               <input 
@@ -120,23 +143,25 @@ export const RegisterForm = () => {
                 placeholder="example@example.com" 
                 className="w-full px-3 py-2 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)} 
                 required
               />
             </div>
 
+            {/* Campo nombre de usuario */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Username</label>
               <input 
                 type="text" 
-                placeholder="Example" 
+                placeholder="Example1" 
                 className="w-full px-3 py-2 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)} 
                 required
               />
             </div>
 
+            {/* Campo contraseña */}
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
               <input 
@@ -144,84 +169,96 @@ export const RegisterForm = () => {
                 placeholder="******" 
                 className="w-full px-3 py-2 mb-3 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)} 
                 required
               />
             </div>
 
+            {/* Campo tipo de usuario */}
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">User type</label>
-              <div className="flex justify-between">
-                <button
-                  type="button"
-                  className={`w-full mr-2 py-2 text-sm font-semibold rounded-full ${userType === 'Patient' ? 'bg-blue-300 text-white' : 'bg-gray-200 text-gray-700'}`}
-                  onClick={() => handleUserTypeChange('Patient')}
-                >
-                  Patient
-                </button>
-                <button
-                  type="button"
-                  className={`w-full py-2 text-sm font-semibold rounded-full ${userType === 'Doctor' ? 'bg-blue-300 text-white' : 'bg-gray-200 text-gray-700'}`}
-                  onClick={() => handleUserTypeChange('Doctor')}
-                >
-                  Doctor
-                </button>
-              </div>
+              <label className="block text-gray-700 text-sm font-bold mb-2">I am a...</label>
+              <select
+                className="w-full px-3 py-2 mb-3 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500"
+                value={userType}
+                onChange={(e) => handleUserTypeChange(e.target.value)} 
+              >
+                <option value="Patient">Patient</option>
+                <option value="Doctor">Doctor</option>
+              </select>
             </div>
 
+            {/* Campos para Doctor */}
             {userType === 'Doctor' && (
               <>
+                {/* Campo para el código de doctor */}
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">Doctor Code</label>
                   <input 
-                    type="text"  // Cambiado a "text" para coincidir con el backend, ya que el backend espera un número
-                    placeholder="123456" 
+                    type="text" 
+                    placeholder="*******" 
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                     value={doctorCode}
-                    onChange={(e) => setDoctorCode(e.target.value)}
+                    onChange={(e) => setDoctorCode(e.target.value)} 
                     required
                   />
                 </div>
 
+                {/* Campo años de experiencia */}
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Years of Experience</label>
+                  <label className="block text-gray-700 text-sm font-bold mb-2">Experience</label>
                   <input 
                     type="number" 
-                    min="0" 
-                    placeholder="Years" 
+                    placeholder="5" 
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-full appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                     value={experience}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      if (value >= 0) {
-                        setExperience(value);
-                      }
-                    }}
+                    onChange={(e) => setExperience(e.target.value)} 
                     required
                   />
                 </div>
 
+                {/* Campo especialidades */}
                 <div className="mb-4">
-                  <label className="block text-gray-700 text-sm font-bold mb-2">Biography (optional)</label>
-                  <textarea
-                    placeholder="Tell us about yourself"
+                  <label className="block text-gray-700 text-sm font-bold mb-2">Specialties</label>
+                  <select
+                    multiple
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-lg appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500"
+                    value={selectedSpecialties}
+                    onChange={(e) =>
+                      setSelectedSpecialties(
+                        Array.from(e.target.selectedOptions, (option) => option.value)
+                      ) 
+                    }
+                    required
+                  >
+                    {specialties.map((specialty) => (
+                      <option key={specialty.id} value={specialty.name}>
+                        {specialty.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Campo biografía*/}
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">Biography (Optional)</label>
+                  <textarea 
+                    placeholder="Tell us about yourself..." 
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-blue-500 bg-blue-100 border rounded-lg appearance-none focus:outline-none focus:shadow-outline placeholder-blue-500" 
                     value={bio}
-                    onChange={(e) => setBio(e.target.value)}
+                    onChange={(e) => setBio(e.target.value)} 
                   />
                 </div>
               </>
             )}
 
-            <div className="flex items-center justify-center">
-              <button 
-                type="submit" 
-                className={`w-full font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline ${isFormValid() ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-600 cursor-not-allowed'}`}
-                disabled={!isFormValid()}
-              >
-                Sign Up
-              </button>
-            </div>
+            {/* Botón de envío */}
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline hover:bg-blue-600"
+              disabled={!isFormValid()} 
+            >
+              Sign Up
+            </button>
           </form>
         </div>
       </main>
