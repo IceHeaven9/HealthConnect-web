@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
 export const RegisterForm = () => {
-  const [userType, setUserType] = useState('Patient'); 
+  const [userType, setUserType] = useState('Patient');
   const [doctorCode, setDoctorCode] = useState('');
-  const [experience, setExperience] = useState(''); 
-  const [bio, setBio] = useState(''); 
-  const [name, setName] = useState(''); 
-  const [lastName, setLastName] = useState(''); 
-  const [email, setEmail] = useState(''); 
+  const [experience, setExperience] = useState('');
+  const [bio, setBio] = useState('');
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState(''); 
-  const [error, setError] = useState(''); 
-  const [success, setSuccess] = useState(false); 
-  const [specialties, setSpecialties] = useState([]); 
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [specialties, setSpecialties] = useState([]);
   const [selectedSpecialties, setSelectedSpecialties] = useState([]);
 
   {/*Cambio tipo de usuario y fetch de especialidades si es Doctor*/}
@@ -26,11 +26,11 @@ export const RegisterForm = () => {
     } else if (type === 'Doctor') {
       {/*Si el tipo de usuario es Doctor se hace fetch para especialidades al backend*/}
       try {
-        const response = await fetch('http://localhost:3000/specialities');
+        const response = await fetch('http://localhost:3000/specialties');
         const data = await response.json();
         setSpecialties(data);
       } catch (error) {
-        console.error('Error fetch specialties:', error);
+        console.error('Error fetching specialties', error);
       }
     }
   };
@@ -59,7 +59,8 @@ export const RegisterForm = () => {
       codigoMedico: userType === 'Doctor' ? doctorCode : undefined, 
       experience: userType === 'Doctor' ? experience : undefined, 
       biography: userType === 'Doctor' ? bio : undefined, 
-      specialties: userType === 'Doctor' ? selectedSpecialties : undefined, 
+      specialityId: userType === 'Doctor' ? selectedSpecialties.map(id => parseInt(id, 10)) : undefined, 
+
     };
 
     try {
@@ -231,7 +232,7 @@ export const RegisterForm = () => {
                     required
                   >
                     {specialties.map((specialty) => (
-                      <option key={specialty.id} value={specialty.name}>
+                      <option key={specialty.id} value={specialty.id}>
                         {specialty.name}
                       </option>
                     ))}
