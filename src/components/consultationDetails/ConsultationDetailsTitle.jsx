@@ -9,7 +9,7 @@ export const ConsultationDetailsTitle = ({ navigate }) => {
 					{" "}
 					<IoMdArrowRoundBack />
 				</button>
-				<p className="w-full">Detalles de la consulta</p>
+				<p className="w-full">Detalles</p>
 			</div>
 		</>
 	);

@@ -3,10 +3,10 @@ export const DateSection = ({ consultationDetails }) => {
 	return (
 		<>
 			<div className="w-full">
-				<h3 className="text-xl font-semibold mb-2 w-full">
+				<h3 className="text-lg font-semibold  w-full text-[#628eff]">
 					Fecha de la consulta:
 				</h3>
-				<p className="mb-2 w-full h-auto break-words">
+				<p className="mb-6 w-full text-lg h-auto break-words font-medium ">
 					Dia:{" "}
 					{new Date(consultationDetails.date)
 						.toLocaleDateString("es-ES", {

@@ -3,8 +3,8 @@ export const SpecialtySection = ({ consultationDetails }) => {
 	return (
 		<>
 			<div className="w-full">
-				<h3 className="text-xl font-semibold mb-2">Especialidad:</h3>
-				<p className="mb-2 w-full h-auto break-words">
+				<h3 className="text-lg font-semibold text-[#628eff]">Especialidad:</h3>
+				<p className="mb-4 text-xl font-medium w-full h-auto break-words">
 					{consultationDetails.specialityName}
 				</p>
 			</div>

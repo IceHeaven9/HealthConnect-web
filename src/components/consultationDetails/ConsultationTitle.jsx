@@ -15,17 +15,18 @@ export const ConsultationTitle = ({
 	const navigate=useNavigate();
 	return (
 		<>
-			<div className="flex justify-between items-center mb-2 w-full">
-				<h3 className="text-xl font-semibold h-min">Título:</h3>
+			<div className="flex justify-between items-center w-full">
+				<h3 className="text-lg font-semibold h-min text-[#628eff]">Título:</h3>
 				{userType === "patient" && (
 					<button
-						className="p-2 text-[#628eff] rounded"
+						className="p-2 text-[#628eff] "
 						onClick={() =>
 							setIsEditing({ ...isEditing, title: !isEditing.title })
 						}
 					>
 						{isEditing.title ? (
 							<MdSaveAs
+							size={20}
 								onClick={() =>
 									handleEditConsultation(
 										id,
@@ -37,7 +38,7 @@ export const ConsultationTitle = ({
 								}
 							/>
 						) : (
-							<FiEdit />
+							<FiEdit size={20}/>
 						)}
 					</button>
 				)}
@@ -45,7 +46,7 @@ export const ConsultationTitle = ({
 			<input
 				type="text"
 				name="title"
-				className="text-lg font-semibold mb-4 w-full h-min break-words"
+				className="text-xl font-semibold mb-4 w-full h-min break-words"
 				value={consultationDetails.title}
 				onChange={(e) =>
 					setConsultationDetails({

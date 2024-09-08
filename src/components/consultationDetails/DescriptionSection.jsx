@@ -17,7 +17,7 @@ export const DescriptionSection = ({
 		<>
 			<div className="w-full h-max">
 				<div className="flex justify-between items-center mb-2 h-max">
-					<h3 className="text-xl font-semibold">Descripción:</h3>
+					<h3 className="text-lg font-semibold text-[#628eff] ">Descripción:</h3>
 					{userType === "patient" && (
 						<button
 							className="p-2 text-[#628eff] rounded"
@@ -30,6 +30,7 @@ export const DescriptionSection = ({
 						>
 							{isEditing.description ? (
 								<MdSaveAs
+								size={20}
 									onClick={() =>
 										handleEditConsultation(
 											id,
@@ -41,14 +42,14 @@ export const DescriptionSection = ({
 									}
 								/>
 							) : (
-								<FiEdit />
+								<FiEdit size={20} />
 							)}
 						</button>
 					)}
 				</div>
 				<textarea
 					name="description"
-					className=" w-full h-[15rem] p-2  "
+					className=" w-full h-[10rem] p-2 font-medium break-words"
 					value={consultationDetails.description}
 					onChange={(e) =>
 						setConsultationDetails({

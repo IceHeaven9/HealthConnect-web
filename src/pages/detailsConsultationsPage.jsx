@@ -14,6 +14,7 @@ import { SpecialtySection } from "../components/consultationDetails/SpecialtySec
 import { DoctorButton } from "../components/consultationDetails/DoctorButton";
 import { ConsultationFilesButton } from "../components/consultationDetails/ConsultationFilesSection";
 import { ResponseButton } from "../components/consultationDetails/ResponseButton";
+import { Footer } from './../components/Footer';
 
 export const DetailsConsultationPage = () => {
 	const { id } = useParams();
@@ -47,8 +48,8 @@ export const DetailsConsultationPage = () => {
 	}
 
 	return (
-		<div className="flex flex-col items-center justify-center  min-h-screen">
-			<ConsultationDetailsTitle navigate={navigate} />
+		<div className="flex flex-col items-center justify-center  min-h-full mb-20">
+			<ConsultationDetailsTitle navigate={navigate}/>
 			<main className="flex flex-col justify-start items-center bg-[#f3f0f0] border-[0.1rem] border-solid border-[#a9bbf5] p-6 rounded-lg shadow-md w-[90%] mx-4 h-full">
 				<PatientSection consultationDetails={consultationDetails} />
 				<DateSection consultationDetails={consultationDetails} />
@@ -96,6 +97,7 @@ export const DetailsConsultationPage = () => {
 					/>
 				</div>
 			</main>
+        <Footer/>
 		</div>
 	);
 };

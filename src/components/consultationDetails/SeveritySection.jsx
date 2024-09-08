@@ -16,8 +16,8 @@ export const SeveritySection = ({
 	return (
 		<>
 			<div className="w-full">
-				<div className="flex justify-between items-center mb-2">
-					<h3 className="text-xl font-semibold">Severidad:</h3>
+				<div className="flex justify-between items-center ">
+					<h3 className="text-lg font-semibold text-[#628eff]">Severidad:</h3>
 					{userType === "patient" && (
 						<button
 							className="p-2 text-[#628eff] rounded"
@@ -27,6 +27,7 @@ export const SeveritySection = ({
 						>
 							{isEditing.severity ? (
 								<MdSaveAs
+								size={20}
 									onClick={() =>
 										handleEditConsultation(
 											id,
@@ -38,7 +39,7 @@ export const SeveritySection = ({
 									}
 								/>
 							) : (
-								<FiEdit />
+								<FiEdit size={20} />
 							)}
 						</button>
 					)}
@@ -46,7 +47,7 @@ export const SeveritySection = ({
 				<input
 					type="text"
 					name="severity"
-					className="mb-2 w-full h-auto break-words"
+					className="mb-4 w-full h-auto break-words text-xl font-medium"
 					value={
 						consultationDetails.severity === "high"
 							? "Alta"
