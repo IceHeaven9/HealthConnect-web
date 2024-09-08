@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -13,7 +13,17 @@ export const LoginForm = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
-	const { onLogin } = useContext(AuthContext);
+	const { onLogin} = useContext(AuthContext);
+	const token = localStorage.getItem("TOKEN");
+
+
+	useEffect(() => {
+		if (token) {
+				navigate("/");
+				notify("Tu sesion esta iniciada");
+		}
+}, [token, navigate]);
+
 
 	const handleEmailChange = (e) => {
 		setEmail(e.target.value);

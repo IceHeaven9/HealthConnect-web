@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState, useEffect} from 'react';
 import { RegisterPagetItle } from "./registerPagetItle";
 import { EmailInput } from "./EmailInput";
 import { UserNameInput } from "./UserNameInput";
@@ -16,6 +16,7 @@ import { handleSubmit } from "./fetch/handleSubmit";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+
 export const RegisterForm = () => {
 	const [userType, setUserType] = useState("Patient");
 	const [doctorCode, setDoctorCode] = useState("");
@@ -29,6 +30,16 @@ export const RegisterForm = () => {
 	const [specialties, setSpecialties] = useState([]);
 	const [selectedSpecialties, setSelectedSpecialties] = useState([]);
 	const navigate = useNavigate()
+
+	const token = localStorage.getItem("TOKEN");
+
+
+	useEffect(() => {
+		if (token) {
+				navigate("/");
+		}
+}, [token, navigate]);
+
 
 	const handleUserTypeChangeWrapper = (type) => {
 		handleUserTypeChange(
