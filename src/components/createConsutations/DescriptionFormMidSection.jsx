@@ -16,7 +16,7 @@ export const DescriptionFormMidSection = ({ severity, setSeverity }) => {
 						/>
 						<span
 							className={`p-2 rounded-xl cursor-pointer ${
-								severity === "low" ? "bg-[#628eff] text-white" : "bg-gray-200"
+								severity === "low" ? "bg-lightBlue text-smokeWhite" : "bg-gray-200"
 							}`}
 							data-severity="low"
 						>
@@ -35,7 +35,7 @@ export const DescriptionFormMidSection = ({ severity, setSeverity }) => {
 						<span
 							className={`p-2 rounded-xl cursor-pointer ${
 								severity === "medium"
-									? "bg-[#628eff] text-white"
+									? "bg-lightBlue text-smokeWhite"
 									: "bg-gray-200"
 							}`}
 							data-severity="medium"
@@ -54,7 +54,7 @@ export const DescriptionFormMidSection = ({ severity, setSeverity }) => {
 						/>
 						<span
 							className={`p-2 rounded-xl cursor-pointer ${
-								severity === "high" ? "bg-[#628eff] text-white" : "bg-gray-200"
+								severity === "high" ? "bg-lightBlue text-smokeWhite" : "bg-gray-200"
 							}`}
 							data-severity="high"
 						>

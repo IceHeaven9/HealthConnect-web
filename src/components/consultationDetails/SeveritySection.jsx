@@ -17,10 +17,10 @@ export const SeveritySection = ({
         <>
             <div className="w-full">
                 <div className="flex justify-between items-center ">
-                    <h3 className="text-lg font-semibold text-[#628eff]">Severidad:</h3>
+                    <h3 className="text-lg font-semibold text-lightBlue">Severidad:</h3>
                     {userType === "patient" && (
                         <button
-                            className="p-2 text-[#628eff] rounded"
+                            className="p-2 text-lightBlue"
                             onClick={() =>
                                 setIsEditing({ ...isEditing, severity: !isEditing.severity })
                             }

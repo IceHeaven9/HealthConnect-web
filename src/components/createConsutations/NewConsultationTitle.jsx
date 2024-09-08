@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export const NewConsultationTitle = ({ navigate }) => {
 	return (
 		<>
-			<div className="flex text-center p-6 text-[#628eff] font-bold text-3xl w-full">
+			<div className="flex text-center p-6 text-lightBlue font-bold text-3xl w-full">
 				<button onClick={() => navigate("/")} className="w-max">
 					{" "}
 					<IoMdArrowRoundBack />

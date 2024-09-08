@@ -104,7 +104,7 @@ export const DescriptionForm = ({
                     handleFileRemove={handleFileRemove}
                 />
 
-                <div className="w-full text-center p-4 text-xl mb-4 rounded-lg text-white bg-[#628eff] ">
+                <div className="w-full text-center p-4 text-xl mb-4 rounded-lg text-smokeWhite bg-lightBlue ">
                     <button type="submit" disabled={!textinput}>
                         Confirmar
                     </button>

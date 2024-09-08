@@ -16,8 +16,8 @@ export const ResponseButton = ({
     return (
         <>
             <button
-                className={`mb-4 p-2 w-full text-end text-white rounded-lg flex flex-col items-center font-medium ${
-                    isDisabled ? "bg-[#628eff80]" : "bg-[#628eff]"
+                className={`mb-4 p-2 w-full text-end text-smokeWhite rounded-lg flex flex-col items-center font-medium ${
+                    isDisabled ? "bg-darkBlue" : "bg-lightBlue"
                 }`}
                 onClick={() => setShowResponseFiles(!showResponseFiles)}
                 disabled={isDisabled}

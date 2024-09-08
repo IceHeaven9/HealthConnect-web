@@ -19,8 +19,8 @@ export const SpecialtiesModal = ({
 			<button
 				className={`flex flex-row text-xl font-medium items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mt-6 mb-2 ${
 					!selectedSpecialty
-						? "text-[#2260ff]  bg-white"
-						: "bg-[#628eff] text-white"
+						? "text-lightBlue bg-smokeWhite"
+						: "bg-lightBlue text-smokeWhite"
 				}`}
 				onClick={() => {
 					specialtyModaSetIsOpen(true);
@@ -51,7 +51,7 @@ export const SpecialtiesModal = ({
 						<li
 							className={`w-full p-4 rounded-xl ${
 								selectedSpecialty === specialty.id
-									? "bg-[#628eff] text-white"
+									? "bg-lightBlue text-smokeWhite"
 									: ""
 							}`}
 							key={specialty.id}

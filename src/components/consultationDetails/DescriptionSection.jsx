@@ -17,10 +17,10 @@ export const DescriptionSection = ({
 		<>
 			<div className="w-full h-max">
 				<div className="flex justify-between items-center mb-2 h-max">
-					<h3 className="text-lg font-semibold text-[#628eff] ">Descripción:</h3>
+					<h3 className="text-lg font-semibold text-lightBlue">Descripción:</h3>
 					{userType === "patient" && (
 						<button
-							className="p-2 text-[#628eff] rounded"
+							className="p-2 text-lightBlue rounded"
 							onClick={() =>
 								setIsEditing({
 									...isEditing,

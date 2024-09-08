@@ -17,8 +17,8 @@ export const SpecialtiesSection = ({
 							key={specialty.id}
 							className={`flex items-center p-2  rounded-lg cursor-pointer  w-full ${
 								selectedSpecialties.includes(specialty.id)
-									? "bg-blue-500 text-white"
-									: "bg-white text-gray-700"
+									? "bg-lightBlue text-white"
+									: "bg-smokeWhite text-gray-700"
 							}`}
 							onClick={() => {
 								const value = specialty.id;

@@ -31,7 +31,7 @@ export const HamburgerMenu = () => {
 			<section className="flex justify-end items-center w-max absolute top-2 right-1">
 				{showMenu && (
 					<article className="">
-						<ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-[#628eff]">
+						<ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-lightBlue">
 							<li className="pl-6">
 								<a href="/">
 									<RiHomeHeartFill size={30} color="#ffffff" />
@@ -57,7 +57,7 @@ export const HamburgerMenu = () => {
 										{token ? (
 											<li>
 												<button
-													className="flex items-center gap-2 text-md bg-[#628eff] rounded-lg mt-1 text-white p-2"
+													className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
 													onClick={handleLogout}
 												>
 													<CiLogout size={40} /> Cerrar sesión
@@ -67,7 +67,7 @@ export const HamburgerMenu = () => {
 											<>
 												<li>
 													<Link
-														className="flex items-center gap-2 text-md bg-[#628eff] rounded-lg mt-1 text-white p-2"
+														className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
 														to="/register"
 													>
 														<FaUserPlus size={40} />
@@ -76,7 +76,7 @@ export const HamburgerMenu = () => {
 												</li>
 												<li>
 													<Link
-														className="flex items-center gap-2 text-md bg-[#628eff] rounded-lg mt-1 text-white p-2"
+														className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
 														to="/login"
 													>
 														<PiSignInLight size={40} /> Iniciar Sesión

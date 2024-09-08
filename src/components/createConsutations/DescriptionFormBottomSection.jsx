@@ -10,7 +10,7 @@ export const DescriptionFormBottomSection = ({
     return (
         <>
             <p className="font-medium mt-4  p-2">Imágenes:</p>
-            <div className="border-[#cad6ff] border-[0.1rem] border-solid min-w-full h-max  rounded-xl grid grid-cols-5 gap-4">
+            <div className="border-light border-[0.1rem] border-solid min-w-full h-max  rounded-xl grid grid-cols-5 gap-4">
                 {files.length === 0 ? (
                     <div className="flex items-center justify-center min-h-20 w-full text-7xl col-span-5"></div>
                 ) : (
@@ -25,7 +25,7 @@ export const DescriptionFormBottomSection = ({
                                     />
                                     <button
                                         type="button"
-                                        className="absolute top-0 -right-2 bg-red-500 text-white rounded-full p-1"
+                                        className="absolute top-0 -right-2 bg-red-500 text-smokeWhite rounded-full p-1"
                                         onClick={() => handleFileRemove(index)}
                                     >
                                         <FaTimes />
@@ -37,7 +37,7 @@ export const DescriptionFormBottomSection = ({
             </div>
 
             <p className="font-medium mt-4  p-2">Documentos:</p>
-            <div className="border-[#cad6ff] p-2 gap-2 border-[0.1rem] border-solid min-w-full h-max mb-6 rounded-xl grid grid-cols-1 ">
+            <div className="border-light p-2 gap-2 border-[0.1rem] border-solid min-w-full h-max mb-6 rounded-xl grid grid-cols-1 ">
                 {files.filter((file) => !file.type.startsWith("image/")).length ===
                 0 ? (
                     <div className="flex items-center justify-center w-full h-full text-2xl p-2 font-medium"></div>
@@ -52,7 +52,7 @@ export const DescriptionFormBottomSection = ({
                                     <p>{file.name}</p>
                                     <button
                                         type="button"
-                                        className="absolute top-0 -right-2 bg-red-500 text-white rounded-full p-1"
+                                        className="absolute top-0 -right-2 bg-red-500 text-smokeWhite rounded-full p-1"
                                         onClick={() => handleFileRemove(index)}
                                     >
                                         <FaTimes />
@@ -75,7 +75,7 @@ export const DescriptionFormBottomSection = ({
                 />
                 <label
                     htmlFor="files"
-                    className="flex items-center justify-center gap-1 font-bold text-xl text-[#628eff] w-max h-10 bg-transparent transition-all duration-300 my-6 cursor-pointer"
+                    className="flex items-center justify-center gap-1 font-bold text-xl text-lightBlue w-max h-10 bg-transparent transition-all duration-300 my-6 cursor-pointer"
                 >
                     <div className="text-3xl">
                         <FaCloudUploadAlt />

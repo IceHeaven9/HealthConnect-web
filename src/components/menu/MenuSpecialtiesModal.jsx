@@ -66,7 +66,7 @@ export const MenuSpecialtiesModal = ({
                         {specialties.map((specialty) => (
                             <label
                                 key={specialty.id}
-                                className={`flex flex-col items-center gap-2 p-4 m-3 rounded-xl ${selectedSpecialty?.id === specialty.id ? 'bg-[#bdd0ff] border-[0.1rem] border-solid border-[#90b2ff] text-white' : ' '}`}
+                                className={`flex flex-col items-center gap-2 p-4 m-3 rounded-xl ${selectedSpecialty?.id === specialty.id ? 'bg-lightCakeBlue border-[0.1rem] border-solid border-cakeBlue text-smokeWhite' : ' '}`}
                             >
                                 <input
                                     type="radio"

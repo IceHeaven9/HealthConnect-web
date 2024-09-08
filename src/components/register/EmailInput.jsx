@@ -4,7 +4,7 @@ export const EmailInput = ({ email, setEmail }) => {
 	return (
 		<>
 			<div className="mb-4">
-				<label className="block text-gray-700 text-md font-semibold mb-2">
+				<label className="block text-carbon text-md font-semibold mb-2">
 					Correo electronico
 				</label>
 				<div className="relative text-gray-400">
@@ -28,7 +28,7 @@ export const EmailInput = ({ email, setEmail }) => {
 					<input
 						type="email"
 						placeholder="example@example.com"
-						className="pl-12 mb-2 bg-gray-50 text-gray-600 border focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
+						className="pl-12 mb-2 bg-gray-50 text-carbon  focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required

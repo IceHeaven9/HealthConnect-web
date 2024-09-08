@@ -16,10 +16,10 @@ export const ConsultationTitle = ({
 	return (
 		<>
 			<div className="flex justify-between items-center w-full">
-				<h3 className="text-lg font-semibold h-min text-[#628eff]">Título:</h3>
+				<h3 className="text-lg font-semibold h-min text-lightBlue">Título:</h3>
 				{userType === "patient" && (
 					<button
-						className="p-2 text-[#628eff] "
+						className="p-2 text-lightBlue "
 						onClick={() =>
 							setIsEditing({ ...isEditing, title: !isEditing.title })
 						}

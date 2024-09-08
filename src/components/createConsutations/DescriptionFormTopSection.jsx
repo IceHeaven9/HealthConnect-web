@@ -16,7 +16,7 @@ export const DescriptionFormTopSection = ({
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
 				placeholder="Titulo de la consulta"
-				className="border-[0.1rem] border-solid border-[#cad6ff] w-full rounded-2xl pl-4 p-2 outline-none"
+				className="border-[0.1rem] border-solid border-light w-full rounded-2xl pl-4 p-2 outline-none"
 				id="title"
 				name="title"
 				type="text"
@@ -28,7 +28,7 @@ export const DescriptionFormTopSection = ({
 			<textarea
 				value={textinput}
 				onChange={(e) => setTextinput(e.target.value)}
-				className="border-[0.1rem] border-solid border-[#cad6ff] w-full rounded-2xl h-72 pl-4 p-2 outline-none"
+				className="border-[0.1rem] border-solid border-light w-full rounded-2xl h-72 pl-4 p-2 outline-none"
 				name="descripcion"
 				placeholder="Describe tu problema..."
 				required

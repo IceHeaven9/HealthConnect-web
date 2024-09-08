@@ -19,8 +19,8 @@ export const DoctorsModal = ({
 		<>
 			<button
 				className={`flex flex-row text-xl font-medium items-center justify-center rounded-2xl gap-2 w-[90%] py-2 px-4 mt-2 mb-6 ${
-					!selectedDoctor ? "bg-white" : "bg-[#628eff] text-white"
-				} ${!selectedSpecialty ? "text-[#bdd0ff]" : "text-[#2260ff]"}`}
+					!selectedDoctor ? "bg-smokeWhite" : "bg-lightBlue text-smokeWhite"
+				} ${!selectedSpecialty ? "text-lightCakeBlue" : "text-lightBlue"}`}
 				onClick={() => {
 					doctorsModaSetIsOpen(true);
 					fetchDoctors(selectedSpecialty, setDoctors);
@@ -54,7 +54,7 @@ export const DoctorsModal = ({
 								key={doctor.id}
 								className={`flex items-center p-4 border rounded-lg ${
 									selectedDoctor?.id === doctor.id
-										? "bg-[#628eff] text-white "
+										? "bg-lightBlue text-smokeWhite "
 										: ""
 								}`}
 							>

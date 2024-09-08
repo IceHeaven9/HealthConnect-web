@@ -55,7 +55,7 @@ export const MenuDoctorsModal = ({
                 <section className="flex flex-col items-center justify-center gap-2 text-xl w-full">
                     <h2 className="text-3xl p-6 text-center">Doctores</h2>
                     {doctors.map((doctor) => (
-                        <label key={doctor.id} className={`flex flex-col items-center w-full gap-2 p-4 m-3 rounded-xl border-[0.1rem] border-solid border-[#90b2ff] text-black cursor-pointer ${selectedDoctorId === doctor.id ? 'bg-blue-200' : 'bg-[#bdd0ff]'}`}>
+                        <label key={doctor.id} className={`flex flex-col items-center w-full gap-2 p-4 m-3 rounded-xl border-[0.1rem] border-solid border-cakeBlue text-carbon cursor-pointer ${selectedDoctorId === doctor.id ? 'bg-blue-200' : 'bg-lightCakeBlue'}`}>
                             <input
                                 type="radio"
                                 name="doctor"

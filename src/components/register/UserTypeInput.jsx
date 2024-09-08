@@ -14,7 +14,7 @@ export const UserTypeInput = ({ userType, handleUserTypeChange }) => {
 						htmlFor="patient"
 						className={`mr-4 px-3 py-2 rounded-lg text-sm w-full font-medium cursor-pointer flex flex-col items-center justify-center ${
 							userType === "Patient"
-								? "bg-blue-500 text-white"
+								? "bg-lightBlue text-white"
 								: "bg-gray-200 text-gray-700"
 						}`}
 					>
@@ -34,7 +34,7 @@ export const UserTypeInput = ({ userType, handleUserTypeChange }) => {
 						htmlFor="doctor"
 						className={`px-3 py-2 rounded-lg cursor-pointer text-sm w-full font-medium flex flex-col items-center justify-center ${
 							userType === "Doctor"
-								? "bg-blue-500 text-white"
+								? "bg-lightBlue text-white"
 								: "bg-gray-200 text-gray-700"
 						}`}
 					>

@@ -72,7 +72,7 @@ export const CreateConsultationPage = () => {
 			<HamburgerMenu/>
 			<NewConsultationTitle navigate={navigate} />
 
-			<section className="bg-[#cad6ff] flex flex-col items-center w-full">
+			<section className="bg-smokeWhite flex flex-col items-center w-full">
 				<SpecialtiesModal
 					setSelectedSpecialty={handleSpecialtyChange}
 					specialtyModaSetIsOpen={specialtyModaSetIsOpen}
@@ -93,7 +93,7 @@ export const CreateConsultationPage = () => {
 					selectedSpecialty={selectedSpecialty}
 				/>
 			</section>
-			<section className="flex flex-col items-center justify-center w-full bg-[#cad6ff]">
+			<section className="flex flex-col items-center justify-center w-full bg-light">
 				<Calendar
 					defaultActiveStartDate={new Date()}
 					minDate={new Date()}
@@ -108,10 +108,10 @@ export const CreateConsultationPage = () => {
 					showFixedNumberOfWeeks={false}
 				/>
 			</section>
-			<h2 className="text-center text-xl font-medium text-[#628eff] my-4">
+			<h2 className="text-center text-xl font-medium text-lightBlue my-4">
 				Horas disponibles para el dia {selectedDate.toLocaleDateString("es-ES")}
 			</h2>
-			<section className="bg-[#cad6ff] w-full">
+			<section className="bg-light w-full">
 				<AviableTimes
 					selectedDoctor={selectedDoctor}
 					availableTimes={availableTimes}
@@ -119,7 +119,7 @@ export const CreateConsultationPage = () => {
 					setSelectedHour={setSelectedHour}
 				/>
 			</section>
-			<div className="flex flex-row items-center justify-center my-6 rounded-xl text-white text-xl w-[90%] p-4 font-medium bg-[#628eff]">
+			<div className="flex flex-row items-center justify-center my-6 rounded-xl text-smokeWhite text-xl w-[90%] p-4 font-medium bg-lightBlue">
 				<button
 					onClick={() => setShowDescriptionForm(true)}
 					disabled={!selectedSpecialty || !selectedHour}

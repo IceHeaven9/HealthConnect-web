@@ -3,7 +3,7 @@ export const DateSection = ({ consultationDetails }) => {
 	return (
 		<>
 			<div className="w-full">
-				<h3 className="text-lg font-semibold  w-full text-[#628eff]">
+				<h3 className="text-lg font-semibold  w-full text-lightBlue">
 					Fecha de la consulta:
 				</h3>
 				<p className="mb-6 w-full text-lg h-auto break-words font-medium ">

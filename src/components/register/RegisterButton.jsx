@@ -6,7 +6,7 @@ export const RegisterButton = ({ isFormValid }) => {
 		<>
 			<button
 				type="submit"
-				className="w-full bg-blue-500 my-4 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline hover:bg-blue-600"
+				className="w-full bg-lightBlue my-4 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline hover:bg-blue-600"
 				disabled={!isFormValid()}
 			>
 				Confirmar

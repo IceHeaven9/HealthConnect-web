@@ -54,10 +54,10 @@ export const AviableTimes = ({
 	}
 
 	return (
-		<div className="my-8 border-solid border-[0.1rem] border-[#628eff] mx-4 bg-[#fbf8f8]  rounded-xl shadow-[0px_12px_11px_2px_rgba(0,0,0,0.2)] p-4">
+		<div className="my-8 border-solid border-[0.1rem] border-lightBlue mx-4 bg-smokeWhite  rounded-xl shadow-[0px_12px_11px_2px_rgba(0,0,0,0.2)] p-4">
 			<div className="flex gap-12 items-center justify-start">
 				<img
-					className="border-solid border-[0.15rem] border-[#628eff] rounded-xl w-16 h-16 "
+					className="border-solid border-[0.15rem] border-lightBlue  rounded-xl w-16 h-16 "
 					src={currentSlot.avatar}
 					alt=""
 				/>
@@ -67,10 +67,10 @@ export const AviableTimes = ({
 				<ul className="grid grid-cols-5 mb-4 mt-6 justify-items-center">
 					{currentSlot.freeHours.map((hour, idx) => (
 						<li
-							className={`rounded-xl font-medium p-1.5 m-1 w-max text-black ${
+							className={`rounded-xl font-medium p-1.5 m-1 w-max text-carbon ${
 								selectedHour === hour
-									? "bg-[#628eff] text-white shadow-[inset_0px_0px_9px_5px_rgba(0,0,0,0.2)]"
-									: "bg-[#cad6ff] shadow-[0px_0px_5px_1px_rgba(0,0,0,0.2)]"
+									? "bg-lightBlue text-smokeWhite shadow-[inset_0px_0px_9px_5px_rgba(0,0,0,0.2)]"
+									: "bg-light shadow-[0px_0px_5px_1px_rgba(0,0,0,0.2)]"
 							}`}
 							key={idx}
 						>
