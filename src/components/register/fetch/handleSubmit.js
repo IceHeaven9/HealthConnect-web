@@ -1,4 +1,4 @@
-import { notify } from "./../../../utils/notify";
+import { notify } from "../../../utils/notify";
 export const handleSubmit = async (
 	e,
 	name,
@@ -10,7 +10,8 @@ export const handleSubmit = async (
 	doctorCode,
 	experience,
 	bio,
-	selectedSpecialties
+	selectedSpecialties,
+	navigate
 ) => {
 	e.preventDefault();
 
@@ -45,7 +46,11 @@ export const handleSubmit = async (
 			throw new Error(responseData.message || "Error al registrarse.");
 		}
 
-		notify("Usuario registrado correctamente.");
+		notify("Te has registrado correctamente, se te ha enviado un correo para verificar la cuenta");
+
+		setTimeout(() => {
+			navigate("/validate-email");
+		}, 3000);
 	} catch (err) {
 		notify(err.message || "Ocurrió un error.");
 	}

@@ -14,6 +14,7 @@ import { RegisterButton } from "./RegisterButton";
 import { handleUserTypeChange } from "./fetch/handleUserType";
 import { handleSubmit } from "./fetch/handleSubmit";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const RegisterForm = () => {
 	const [userType, setUserType] = useState("Patient");
@@ -27,6 +28,7 @@ export const RegisterForm = () => {
 	const [password, setPassword] = useState("");
 	const [specialties, setSpecialties] = useState([]);
 	const [selectedSpecialties, setSelectedSpecialties] = useState([]);
+	const navigate = useNavigate()
 
 	const handleUserTypeChangeWrapper = (type) => {
 		handleUserTypeChange(
@@ -68,7 +70,8 @@ export const RegisterForm = () => {
 			doctorCode,
 			experience,
 			bio,
-			selectedSpecialties
+			selectedSpecialties,
+			navigate
 		);
 	};
 
