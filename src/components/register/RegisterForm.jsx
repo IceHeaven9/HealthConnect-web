@@ -5,12 +5,12 @@ import { UserNameInput } from "./UserNameInput";
 import { FirstNameInput } from "./FirstNameInput";
 import { LastNameInput } from "./LastNameInput";
 import { PasswordInput } from "./PasswordInput";
-import { Link } from "react-router-dom";
 import { UserTypeInput } from "./UserTypeInput";
 import { DoctorCodeInput } from "./DoctorCodeInput";
-import {ExperienceInput} from './ExperienceInput';
-import {BiographyInput} from './BiographyInput';
-import {SpecialtiesSection} from './SpecialtiesSection';
+import { ExperienceInput } from "./ExperienceInput";
+import { BiographyInput } from "./BiographyInput";
+import { SpecialtiesSection } from "./SpecialtiesSection";
+import { RegisterButton } from "./RegisterButton";
 
 export const RegisterForm = () => {
 	const [userType, setUserType] = useState("Patient");
@@ -146,40 +146,23 @@ export const RegisterForm = () => {
 									doctorCode={doctorCode}
 									setDoctorCode={setDoctorCode}
 								/>
-								
-							<ExperienceInput
-							experience={experience}
-							setExperience={setExperience}
-							/>
 
-							<BiographyInput
-							bio={bio}
-							setBio={setBio}
-							/>
-							
-							<SpecialtiesSection
-							specialties={specialties}
-							setSelectedSpecialties={setSelectedSpecialties}
-							selectedSpecialties={selectedSpecialties}
-							/>
-								
+								<ExperienceInput
+									experience={experience}
+									setExperience={setExperience}
+								/>
+
+								<BiographyInput bio={bio} setBio={setBio} />
+
+								<SpecialtiesSection
+									specialties={specialties}
+									setSelectedSpecialties={setSelectedSpecialties}
+									selectedSpecialties={selectedSpecialties}
+								/>
 							</>
 						)}
 
-						{/* Botón de envío */}
-						<button
-							type="submit"
-							className="w-full bg-blue-500 my-4 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline hover:bg-blue-600"
-							disabled={!isFormValid()}
-						>
-							Confirmar
-						</button>
-						<p className="p-2 m-2 text-center text-lg">
-							Ya tienes una cuenta?{" "}
-							<Link className="text-[#628eff]" to="/login">
-								Inicia sesión
-							</Link>
-						</p>
+						<RegisterButton isFormValid={isFormValid} />
 					</form>
 				</div>
 			</main>
