@@ -7,14 +7,9 @@ import { LoginPage } from "./pages/loginPage";
 import { EditConsultationPage } from "./pages/editConsultationPage";
 import { CreateConsultationPage } from "./pages/createConsultationPage";
 import { ValidateEmailPage } from "./pages/validateEmailPage";
-<<<<<<< HEAD
-import { ResetPasswordPage } from './pages/resetPasswordPage';
 import { RecoveryAccountPage } from "./pages/recoveryAccountPage";
-=======
-import { AuthContextProvider } from "./contexts/authProvider";
 import { ResetPasswordPage } from "./pages/resetPasswordPage";
-import { DetailsConsultationPage } from "./pages/detailsConsultationsPage";
->>>>>>> detailsConsultations
+import { DetailsConsultationPage } from "./pages/detailsConsultationsPage"
 
 function App() {
   return (
@@ -36,7 +31,6 @@ function App() {
             path="/consultation/:id/edit"
             element={<EditConsultationPage />}
           />
-<<<<<<< HEAD
           <Route
             path="/recovery-account"
             element={<RecoveryAccountPage />}
@@ -45,10 +39,7 @@ function App() {
             path="/reset-password"
             element={<ResetPasswordPage />}
           />
-=======
-          <Route path="/recovery-account" element={<RecoveryPasswordPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
->>>>>>> detailsConsultations
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
     </BrowserRouter>

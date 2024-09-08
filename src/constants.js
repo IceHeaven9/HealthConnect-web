@@ -32,6 +32,22 @@ export const miniCustomStyles = {
 	},
 };
 
+export const microCustomStyles = {
+	content: {
+		height: "20%",
+		width: "90%",
+		borderRadius: "25px",
+		top: "50%",
+		left: "50%",
+		right: "auto",
+		bottom: "auto",
+		marginRight: "-50%",
+		transform: "translate(-50%, -50%)",
+		overflow: "auto",
+		WebkitOverflowScrolling: "touch",
+	},
+};
+
 
  export const specialtiesIcons = [
 	{

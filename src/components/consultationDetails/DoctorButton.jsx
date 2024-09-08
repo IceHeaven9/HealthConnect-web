@@ -1,34 +1,49 @@
 import PropTypes from "prop-types";
 import { FaUserDoctor } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
+import Modal from "react-modal";
+import { microCustomStyles } from "../../constants";
 
 export const DoctorButton = ({
 	setShowDoctor,
 	showDoctor,
 	consultationDetails,
 }) => {
+	const isDisabled =
+	!consultationDetails.doctorName
 	return (
 		<>
 			<button
-				className="mb-4 p-2 bg-[#628eff] w-full text-end text-white rounded-lg flex flex-col items-center font-medium mt-8"
+				className={`mb-4 p-2 w-full text-end text-white rounded-lg flex flex-col items-center font-medium ${
+					isDisabled ? "bg-[#628eff80]" : "bg-[#628eff]"
+			}`}
 				onClick={() => setShowDoctor(!showDoctor)}
+				disabled={isDisabled}
 			>
 				{showDoctor ? <IoMdClose /> : <FaUserDoctor size={30} />}Doctor
 			</button>
-			{showDoctor && (
-				<div className="flex items-center mb-4">
+			<Modal
+				isOpen={showDoctor}
+				onRequestClose={() => setShowDoctor(false)}
+				contentLabel="Doctor Details"
+				style={microCustomStyles}
+			>
+				<button className="text-2xl" onClick={() => setShowDoctor(false)}>
+					<IoMdClose />
+				</button>
+				<div className="flex items-center gap-6">
 					<img
-						className="w-16 h-16 rounded-full mr-2"
+						className="w-20 h-20 m-2 rounded-full mr-2"
 						src={consultationDetails.doctorAvatar}
 						alt="Avatar del doctor"
 					/>
 					<div className="w-full gap-2 p-4">
-						<p className="text-lg w-full h-auto break-words">
+						<p className="text-2xl font-medium w-full h-auto break-words">
 							{consultationDetails.doctorName}
 						</p>
 					</div>
 				</div>
-			)}
+			</Modal>
 		</>
 	);
 };
