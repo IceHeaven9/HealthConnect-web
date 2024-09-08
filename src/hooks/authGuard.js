@@ -10,4 +10,8 @@ export function useAuthGuard(redirect) {
       navigate(`/login${redirect ? "?redirect=" + redirect : ""}`);
     }
   }, [currentUser, navigate, redirect]);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> detailsConsultations
