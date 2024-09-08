@@ -4,17 +4,15 @@ import { HomePage } from "./pages/homePage";
 import { NotFoundPage } from "./pages/notFoundPage";
 import { RegisterPage } from "./pages/registerPage";
 import { LoginPage } from "./pages/loginPage";
-import { EditConsultationPage } from "./pages/editConsultationPage";
 import { CreateConsultationPage } from "./pages/createConsultationPage";
-import { RecoveryPasswordPage } from "./pages/recoveryPasswordPage";
 import { ValidateEmailPage } from "./pages/validateEmailPage";
-import { AuthContextProvider } from "./contexts/authProvider";
-import { ResetPasswordPage } from './pages/resetPasswordPage';
+import { RecoveryAccountPage } from "./pages/recoveryAccountPage";
+import { ResetPasswordPage } from "./pages/resetPasswordPage";
+import { DetailsConsultationPage } from "./pages/detailsConsultationsPage"
 
 function App() {
   return (
     <BrowserRouter>
-      <AuthContextProvider>
         <Routes>
           <Route path="/" exact element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
@@ -25,20 +23,20 @@ function App() {
             element={<CreateConsultationPage />}
           />
           <Route
-            path="/consultation/:id/edit"
-            element={<EditConsultationPage />}
+            path="/consultation/:id/details"
+            element={<DetailsConsultationPage />}
           />
           <Route
             path="/recovery-account"
-            element={<RecoveryPasswordPage />}
+            element={<RecoveryAccountPage />}
           />
           <Route
             path="/reset-password"
             element={<ResetPasswordPage />}
           />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </AuthContextProvider>
     </BrowserRouter>
   );
 }

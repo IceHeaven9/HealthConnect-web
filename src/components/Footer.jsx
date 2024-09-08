@@ -2,7 +2,7 @@
 
 export const Footer = () => {
   return (
-    <div className="flex flex-col items-center w-full h-fit bg-[#cad6ff] text-[#628eff] pb-4 mt-48">
+    <div className="flex flex-col items-center w-full h-fit bg-[#cad6ff] text-[#628eff] pb-4 mt-4">
       <div className="flex flex-col justify-center items-center">
         <div className=" w-full flex flex-col items-center">
           <div className=" w-28 h-28">

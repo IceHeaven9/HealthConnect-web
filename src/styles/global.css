@@ -2,4 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ANIMACIONES */
+
+/* Estilos para el calendario */
+.react-calendar{
+  width: 350px;
+  max-width: 100%;
+  background: #fbf8f8;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+  margin-top: 1.5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  box-shadow: 0px 8px 11px 2px rgba(0,0,0,0.2) !important;
+}
+
+.ReactModal__Content{
+  overflow-y: hidden;
+}
+
+/* Estilos para la barra de scroll */
+.ReactModal__Content::-webkit-scrollbar {
+  width: 10px; 
+}
+
+.ReactModal__Content::-webkit-scrollbar-thumb {
+  background: transparent; 
+  border-radius: 15px;
+  height: 1rem;
+}
+
+/* Para Firefox */
+.ReactModal__Content {
+  scrollbar-width:calc(15px) ;
+  scrollbar-color: transparent;
+}
+
