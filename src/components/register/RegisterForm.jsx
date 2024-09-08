@@ -13,6 +13,7 @@ import { SpecialtiesSection } from "./SpecialtiesSection";
 import { RegisterButton } from "./RegisterButton";
 import { handleUserTypeChange } from "./fetch/handleUserType";
 import { handleSubmit } from "./fetch/handleSubmit";
+import { ToastContainer } from "react-toastify";
 
 export const RegisterForm = () => {
 	const [userType, setUserType] = useState("Patient");
@@ -116,6 +117,7 @@ export const RegisterForm = () => {
 						<RegisterButton isFormValid={isFormValid} />
 					</form>
 				</div>
+				<ToastContainer/>
 			</main>
 		</div>
 	);
