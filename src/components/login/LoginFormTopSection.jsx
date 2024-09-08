@@ -1,14 +1,16 @@
+import { Link } from "react-router-dom";
+
 export const LoginFormTopSection = () => {
 	return (
 		<>
 			<div className="flex flex-row pb-4">
-				<div>
+				<Link to="/">
 					<img
 						src="/images/Perfil_healthConnect-Photoroom.png"
 						width="80"
 						alt="Logo"
 					/>
-				</div>
+				</Link>
 				<h1 className="text-center text-4xl font-bold text-[#4B5563] my-auto">
 					HealthConnect
 				</h1>

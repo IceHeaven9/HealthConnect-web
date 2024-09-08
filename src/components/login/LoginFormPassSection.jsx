@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export const LoginFormPassSection = ({ password, handlePasswordChange }) => {
 	return (
@@ -41,6 +42,7 @@ export const LoginFormPassSection = ({ password, handlePasswordChange }) => {
 						onChange={handlePasswordChange}
 					/>
 				</div>
+					<Link className=" text-center text-sm text-[#628eff]" to="/recovery-account">¿Has olvidado la contraseña?</Link>
 			</div>
 		</>
 	);

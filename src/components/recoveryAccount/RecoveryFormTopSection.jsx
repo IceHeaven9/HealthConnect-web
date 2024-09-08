@@ -1,18 +1,16 @@
-import PropTypes from "prop-types";
-import { IoMdArrowRoundBack } from "react-icons/io";
 
-export const RecoveryFormTopSection = ({ navigate }) => {
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { Link } from "react-router-dom";
+
+export const RecoveryFormTopSection = () => {
 	return (
 		<>
-			<button
+			<Link to="/login"
 				className="font-bold rounded-md text-3xl w-10 h-10 text-[#628eff] bg-[#ffffff] flex flex-col items-center justify-center"
-				onClick={(e) => {
-					e.preventDefault();
-					navigate("/login");
-				}}
+				
 			>
 				<IoMdArrowRoundBack />
-			</button>
+			</Link>
 			<div className="flex flex-row pb-4">
 				<div>
 					<img
@@ -39,6 +37,4 @@ export const RecoveryFormTopSection = ({ navigate }) => {
 	);
 };
 
-RecoveryFormTopSection.propTypes = {
-	navigate: PropTypes.func.isRequired,
-};
+
