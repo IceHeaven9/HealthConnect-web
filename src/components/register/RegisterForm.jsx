@@ -11,6 +11,8 @@ import { ExperienceInput } from "./ExperienceInput";
 import { BiographyInput } from "./BiographyInput";
 import { SpecialtiesSection } from "./SpecialtiesSection";
 import { RegisterButton } from "./RegisterButton";
+import { handleUserTypeChange } from "./fetch/handleUserType";
+import { handleSubmit } from "./fetch/handleSubmit";
 
 export const RegisterForm = () => {
 	const [userType, setUserType] = useState("Patient");
@@ -25,40 +27,19 @@ export const RegisterForm = () => {
 	const [specialties, setSpecialties] = useState([]);
 	const [selectedSpecialties, setSelectedSpecialties] = useState([]);
 
-	{
-		/*Cambio tipo de usuario y fetch de especialidades si es Doctor*/
-	}
-	const handleUserTypeChange = async (type) => {
-		setUserType(type);
-		if (type === "Patient") {
-			{
-				/*Si el tipo de usuario es Patient se limpian los campos de Doctor*/
-			}
-			setDoctorCode("");
-			setExperience("");
-			setBio("");
-		} else if (type === "Doctor") {
-			{
-				/*Si el tipo de usuario es Doctor se hace fetch para especialidades al backend*/
-			}
-			try {
-				const response = await fetch("http://localhost:3000/specialities");
-				const data = await response.json();
-				setSpecialties(data);
-			} catch (error) {
-				console.error("Error fetching specialties", error);
-			}
-		}
+	const handleUserTypeChangeWrapper = (type) => {
+		handleUserTypeChange(
+			type,
+			setUserType,
+			setDoctorCode,
+			setExperience,
+			setBio,
+			setSpecialties
+		);
 	};
 
-	{
-		/*Revisamos que todos los campos estén cumplimentados antes de enviar*/
-	}
 	const isFormValid = () => {
 		if (userType === "Doctor") {
-			{
-				/*Si es Doctor se activan los campos correspondientes */
-			}
 			return (
 				email &&
 				username &&
@@ -70,54 +51,24 @@ export const RegisterForm = () => {
 				selectedSpecialties.length > 0
 			);
 		}
-		{
-			/*Si es Paciente se validan solo los campos correspondientes*/
-		}
+
 		return email && username && password && name && lastName;
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-
-		{
-			/*Objeto con los datos que se enviarán al Back */
-		}
-		const userData = {
-			firstName: name,
+	const handleSubmitWrapper = (e) => {
+		handleSubmit(
+			e,
+			name,
 			lastName,
 			email,
-			userName: username,
+			username,
 			password,
-			userType: userType.toLowerCase(),
-			codigoMedico: userType === "Doctor" ? doctorCode : undefined,
-			experience: userType === "Doctor" ? experience : null,
-			biography: userType === "Doctor" ? bio : "null",
-			specialityId:
-				userType === "Doctor"
-					? selectedSpecialties.map((id) => parseInt(id, 10))
-					: undefined,
-		};
-
-		try {
-			const response = await fetch("http://localhost:3000/register", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(userData),
-			});
-
-			const responseData = await response.json();
-			console.log("Response Data:", responseData);
-
-			if (!response.ok) {
-				throw new Error("Error al registrarse.");
-			}
-
-			console.log("Usuario registrado correctamente.");
-		} catch (err) {
-			console.error(err);
-		}
+			userType,
+			doctorCode,
+			experience,
+			bio,
+			selectedSpecialties
+		);
 	};
 
 	return (
@@ -125,7 +76,7 @@ export const RegisterForm = () => {
 			<main className="flex flex-col w-full mb-20 md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-6 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl">
 				<div className="bg-white rounded-lg w-full">
 					<RegisterPagetItle />
-					<form onSubmit={handleSubmit}>
+					<form onSubmit={handleSubmitWrapper}>
 						<EmailInput email={email} setEmail={setEmail} />
 
 						<UserNameInput username={username} setUsername={setUsername} />
@@ -138,7 +89,7 @@ export const RegisterForm = () => {
 
 						<UserTypeInput
 							userType={userType}
-							handleUserTypeChange={handleUserTypeChange}
+							handleUserTypeChange={handleUserTypeChangeWrapper}
 						/>
 						{userType === "Doctor" && (
 							<>
