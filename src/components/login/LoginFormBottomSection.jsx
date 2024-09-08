@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export const LoginFormBottomSection = ({ email, password }) => {
 	return (
@@ -14,12 +15,12 @@ export const LoginFormBottomSection = ({ email, password }) => {
 			</button>
 			<div className="text-sm font-light text-[#6B7280] text-center">
 				No tienes una cuenta?{" "}
-				<a
-					href="/register"
+				<Link
+					to="/register"
 					className="font-medium text-[#628eff] hover:underline"
 				>
 					Registrate
-				</a>
+				</Link>
 			</div>
 		</>
 	);

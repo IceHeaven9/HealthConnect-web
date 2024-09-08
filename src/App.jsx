@@ -4,7 +4,6 @@ import { HomePage } from "./pages/homePage";
 import { NotFoundPage } from "./pages/notFoundPage";
 import { RegisterPage } from "./pages/registerPage";
 import { LoginPage } from "./pages/loginPage";
-import { EditConsultationPage } from "./pages/editConsultationPage";
 import { CreateConsultationPage } from "./pages/createConsultationPage";
 import { ValidateEmailPage } from "./pages/validateEmailPage";
 import { RecoveryAccountPage } from "./pages/recoveryAccountPage";
@@ -26,10 +25,6 @@ function App() {
           <Route
             path="/consultation/:id/details"
             element={<DetailsConsultationPage />}
-          />
-          <Route
-            path="/consultation/:id/edit"
-            element={<EditConsultationPage />}
           />
           <Route
             path="/recovery-account"
