@@ -1,4 +1,14 @@
-import {HamburgerMenu} from '../components/HamburgerMenu';
+import { HomeHeader } from '../components/home/homeHeader';
+import { HomeContent } from '../components/home/homeContent';
+import {Footer} from '../components/Footer'
+
 export const HomePage = () => {
-	return <HamburgerMenu/>
+	return (
+		<>
+			<HomeHeader/>
+			<HomeContent/>
+			<Footer />
+	</>
+	)
+
 };
