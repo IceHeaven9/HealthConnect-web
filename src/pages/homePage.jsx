@@ -1,5 +1,5 @@
-import { HomeHeader } from "../components/home/homeHeader";
-import { HomeContent } from "../components/home/homeContent";
+import { HomeContent } from "../components/home/HomeContent";
+import { HomeHeader } from "../components/home/HomeHeader";
 
 export const HomePage = () => {
   return (
