@@ -10,9 +10,11 @@ import { RecoveryAccountPage } from "./pages/recoveryAccountPage";
 import { ResetPasswordPage } from "./pages/resetPasswordPage";
 import { DetailsConsultationPage } from "./pages/detailsConsultationsPage"
 import {UserProfilePage} from './pages/userProfilePage';
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
+    <>
     <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<HomePage />} />
@@ -39,7 +41,9 @@ function App() {
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+    <Footer/>
     </BrowserRouter>
+    </>
   );
 }
 

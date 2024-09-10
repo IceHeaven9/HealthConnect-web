@@ -33,9 +33,9 @@ export const HamburgerMenu = () => {
 					<article className="animate-fade-left animate-once animate-duration-1000 animate-ease-in animate-normal">
 						<ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-lightBlue">
 							<li className="pl-6">
-								<a href="/">
+								<Link to="/">
 									<RiHomeHeartFill size={30} color="#ffffff" />
-								</a>
+								</Link>
 							</li>
 							<MenuSpecialtiesModal
 								specialtyModalIsOpen={specialtyModalIsOpen}
@@ -88,9 +88,9 @@ export const HamburgerMenu = () => {
 								)}
 							</li>
 							<li className="pr-6">
-								<a href="/create-consultation">
+								<Link to="/create-consultation">
 									<PiCalendarDotsLight size={30} color="#ffffff" />
-								</a>
+								</Link>
 							</li>
 						</ul>
 					</article>
