@@ -36,13 +36,13 @@ export const LoginFormPassSection = ({ password, handlePasswordChange }) => {
 						name="password"
 						id="password"
 						placeholder="••••••••••"
-						className="pl-12 mb-2 bg-gray-50 text-gray-600  focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
+						className="pl-12 mb-2 bg-gray-50 text-gray-600 font-inter focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
 						autoComplete="new-password"
 						value={password}
 						onChange={handlePasswordChange}
 					/>
 				</div>
-					<Link className=" text-center text-sm text-lightBlue" to="/recovery-account">¿Has olvidado la contraseña?</Link>
+					<Link className=" text-center text-sm font-ubuntu text-lightBlue" to="/recovery-account">¿Has olvidado la contraseña?</Link>
 			</div>
 		</>
 	);

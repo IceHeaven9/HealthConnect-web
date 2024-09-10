@@ -3,7 +3,7 @@ export const UserNameInput = ({ username, setUsername }) => {
 	return (
 		<>
 			<div className="mb-4">
-				<label className="block text-carbon text-md font-semibold  mb-2">
+				<label className="block text-carbon text-md font-ubuntu font-semibold  mb-2">
 					Nombre de usuario
 				</label>
 				<div className="relative text-gray-400">
@@ -27,7 +27,7 @@ export const UserNameInput = ({ username, setUsername }) => {
 					<input
 						type="text"
 						placeholder="Escribe tu nombre de usuario"
-						className="pl-12 mb-2 bg-gray-50 text-carbon focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
+						className="pl-12 mb-2 bg-gray-50 font-inter text-carbon focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required

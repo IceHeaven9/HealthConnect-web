@@ -4,7 +4,7 @@ export const BiographyInput = ({ bio, setBio }) => {
 	return (
 		<>
 			<div className="mb-4">
-				<label className="block text-gray-700 text-md font-semibold  mb-2 ">
+				<label className="block text-gray-700 font-ubuntu text-md font-semibold  mb-2 ">
 					Biografia (Opcional)
 				</label>
 				<div className="relative text-gray-400">
@@ -27,7 +27,7 @@ export const BiographyInput = ({ bio, setBio }) => {
 					</span>
 					<textarea
 						placeholder="Tell us about yourself..."
-						className="pl-12 mb-2 bg-gray-50 min-h-40 text-gray-600 focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
+						className="pl-12 mb-2 bg-gray-50 min-h-40 font-inter text-gray-600 focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
 						value={bio}
 						onChange={(e) => setBio(e.target.value)}
 					/>

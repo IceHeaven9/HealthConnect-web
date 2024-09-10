@@ -9,14 +9,14 @@ export const RegisterPagetItle = () => {
 						alt="Logo"
 					/>
 				</div>
-				<h1 className="text-center text-4xl font-bold text-[#4B5563] my-auto">
+				<h1 className="text-center text-4xl font-bold text-[#4B5563] font-roboto my-auto">
 					HealthConnect
 				</h1>
 			</div>
-			<p className="text-center text-2xl py-6 font-medium w-full">
+			<p className="text-center font-ubuntu text-2xl py-6 font-bold w-full">
 				Crear Cuenta
 			</p>
-			<div className="text-lg font-light text-[#6B7280] pb-8 pl-7 text-left">
+			<div className="text-lg font-bold text-[#6B7280] pb-8 pl-7 font-ubuntu text-left">
 				Introduce tus datos para complletar el registro
 			</div>
 		</>

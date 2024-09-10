@@ -6,14 +6,14 @@ export const LoginFormBottomSection = ({ email, password }) => {
 		<>
 			<button
 				type="submit"
-				className={`w-full text-smokeWhite focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6 ${
+				className={`w-full font-ubuntu text-smokeWhite focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center mb-6 ${
 					!email || !password ? "bg-lightCakeBlue" : "bg-lightBlue"
 				}`}
 				disabled={!email || !password}
 			>
 				Continuar
 			</button>
-			<div className="text-sm font-light text-blueGray text-center">
+			<div className="text-sm font-light font-ubuntu text-blueGray text-center">
 				No tienes una cuenta?{" "}
 				<Link
 					to="/register"

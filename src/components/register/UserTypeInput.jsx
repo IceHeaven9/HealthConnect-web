@@ -12,7 +12,7 @@ export const UserTypeInput = ({ userType, handleUserTypeChange }) => {
 				<div className="flex items-center">
 					<label
 						htmlFor="patient"
-						className={`mr-4 px-3 py-2 rounded-lg text-sm w-full font-medium cursor-pointer flex flex-col items-center justify-center ${
+						className={`mr-4 px-3 py-2 rounded-lg font-inter text-sm w-full font-medium cursor-pointer flex flex-col items-center justify-center ${
 							userType === "Patient"
 								? "bg-lightBlue text-white"
 								: "bg-gray-200 text-gray-700"
@@ -32,7 +32,7 @@ export const UserTypeInput = ({ userType, handleUserTypeChange }) => {
 					</label>
 					<label
 						htmlFor="doctor"
-						className={`px-3 py-2 rounded-lg cursor-pointer text-sm w-full font-medium flex flex-col items-center justify-center ${
+						className={`px-3 py-2 rounded-lg cursor-pointer font-inter text-sm w-full font-medium flex flex-col items-center justify-center ${
 							userType === "Doctor"
 								? "bg-lightBlue text-white"
 								: "bg-gray-200 text-gray-700"

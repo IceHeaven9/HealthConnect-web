@@ -4,7 +4,7 @@ export const DoctorCodeInput = ({ doctorCode, setDoctorCode }) => {
 	return (
 		<>
 			<div className="mb-4">
-				<label className="block text-gray-700 text-md font-semibold  mb-2">
+				<label className="block text-gray-700 text-md font-ubuntu font-semibold  mb-2">
 					Codigo de medico
 				</label>
 				<div className="relative text-gray-400">
@@ -30,7 +30,7 @@ export const DoctorCodeInput = ({ doctorCode, setDoctorCode }) => {
 					<input
 						type="text"
 						placeholder="*******"
-						className="pl-12 mb-2 bg-gray-50 text-gray-600  focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
+						className="pl-12 mb-2 bg-gray-50 text-gray-600 font-inter focus:border-transparent border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-gray-400 block w-full p-2.5 rounded-l-lg py-3 px-4"
 						value={doctorCode}
 						onChange={(e) => setDoctorCode(e.target.value)}
 						required

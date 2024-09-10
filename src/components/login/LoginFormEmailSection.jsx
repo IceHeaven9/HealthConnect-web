@@ -7,7 +7,7 @@ export const LoginFormEmailSection = ({email,handleEmailChange}) => {
           <label htmlFor="email" className="block mb-2 text-sm font-medium text-blackBlue ">
             Email
           </label>
-          <div className="relative text-gray-400">
+          <div className="relative text-gray-400 font-inter">
             <span className="absolute inset-y-0 left-0 flex items-center p-1 pl-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
