@@ -1,3 +1,5 @@
+import tailwindcssAnimated from 'tailwindcss-animated';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -6,8 +8,8 @@ export default {
   theme: {
     extend: {
       colors:{
-        blackBlue:"#111827",
-        darkBlue:"#628eff80",
+              blackBlue:"#111827",
+              darkBlue:"#628eff80",
               lightBlue:"#628eff",
               cakeBlue:"#90b2ff",
               lightCakeBlue:"#bdd0ff",
@@ -21,6 +23,6 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [tailwindcssAnimated],
 }
 

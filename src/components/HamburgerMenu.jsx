@@ -30,7 +30,7 @@ export const HamburgerMenu = () => {
 		<>
 			<section className="flex justify-end items-center w-max absolute top-2 right-1">
 				{showMenu && (
-					<article className="">
+					<article className="animate-fade-left animate-once animate-duration-1000 animate-ease-in animate-normal">
 						<ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-lightBlue">
 							<li className="pl-6">
 								<a href="/">
