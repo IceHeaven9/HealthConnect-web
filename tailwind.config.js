@@ -19,7 +19,9 @@ export default {
               smokeWhite:"#f5f5f5"
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        roboto: ["roboto-regular", "sans-serif"],
+        ubuntu:[ "ubuntu-regular", "sans-serif" ],
       },
     },
   },

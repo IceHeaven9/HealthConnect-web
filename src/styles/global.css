@@ -3,6 +3,25 @@
 @tailwind utilities;
 
 
+
+/* FUENTES */
+
+@font-face {
+  font-family: roboto;
+  src: url(../../public/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: inter;
+  src: url(../../public/fonts/Inter_18pt-Regular.ttf);
+}
+
+@font-face {
+  font-family: ubuntu;
+  src: url(../../public/fonts/Ubuntu-Regular.ttf);
+}
+
+
 /* Estilos para el calendario */
 .react-calendar{
   width: 350px;
