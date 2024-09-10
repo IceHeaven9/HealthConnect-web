@@ -11,6 +11,7 @@ import { ResetPasswordPage } from "./pages/resetPasswordPage";
 import { DetailsConsultationPage } from "./pages/detailsConsultationsPage"
 import {UserProfilePage} from './pages/userProfilePage';
 import { Footer } from "./components/Footer";
+import {ConsultationPage} from './pages/ConsultationPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/validate-email" element={<ValidateEmailPage />} />
+          <Route path="/my-consultations" element={<ConsultationPage/>} />
           <Route
             path="/create-consultation"
             element={<CreateConsultationPage />}

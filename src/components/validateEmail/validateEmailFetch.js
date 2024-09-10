@@ -16,7 +16,7 @@ export const validateEmail = async (verificationCode) => {
 	};
 
 	const response = await fetch(
-		`${API_HOST}}/validate-email`,
+		`${API_HOST}/validate-email`,
 		requestOptions
 	);
 	if (response.status === 200) {
