@@ -1,3 +1,5 @@
+import { API_HOST } from "../../../constants";
+
 // submitHandler.js
 export const createConsultationFetch = (
 	event,
@@ -39,7 +41,7 @@ export const createConsultationFetch = (
 		redirect: "follow",
 	};
 
-	fetch("http://localhost:3000/consultations", requestOptions)
+	fetch(`${API_HOST}}/consultations`, requestOptions)
 		.then((response) => response.json())
 		.then((result) => {
 			if (result.message) {
@@ -67,7 +69,7 @@ export const createConsultationFetch = (
 				};
 
 				fetch(
-					`http://localhost:3000/consultations/${result.id}/files`,
+					`${API_HOST}/consultations/${result.id}/files`,
 					fileRequestOptions
 				)
 					.then((response) =>

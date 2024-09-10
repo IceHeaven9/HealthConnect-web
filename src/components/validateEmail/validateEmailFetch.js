@@ -1,5 +1,7 @@
 // src/utils/api.js
 
+import { API_HOST } from "../../constants";
+
 export const validateEmail = async (verificationCode) => {
 	const myHeaders = new Headers();
 	myHeaders.append("Content-Type", "application/json");
@@ -14,7 +16,7 @@ export const validateEmail = async (verificationCode) => {
 	};
 
 	const response = await fetch(
-		"http://localhost:3000/validate-email",
+		`${API_HOST}}/validate-email`,
 		requestOptions
 	);
 	if (response.status === 200) {

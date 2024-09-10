@@ -1,11 +1,11 @@
-
+import { API_HOST } from "../../../constants";
 export const fetchConsultationDetails = async (setUserType,currentUser,setConsultationDetails,id ) => {
 
   const token = localStorage.getItem("TOKEN");
 
   try {
     const response = await fetch(
-      `http://localhost:3000/consultations/${id}/details`,
+      `${API_HOST}/consultations/${id}/details`,
       {
         headers: {
           Authorization: `${token}`,

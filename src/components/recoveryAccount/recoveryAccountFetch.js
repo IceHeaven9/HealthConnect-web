@@ -1,3 +1,4 @@
+import { API_HOST } from "../../constants";
 import { notify } from "../../utils/notify";
 
 // src/utils/api.js
@@ -14,7 +15,7 @@ export const sendRecoveryEmail = (email) => {
 		redirect: "follow",
 	};
 
-	return fetch("http://localhost:3000/recover-password", requestOptions)
+	return fetch(`${API_HOST}}/recover-password`, requestOptions)
 		.then((response) => {
 			if (response.status === 200) {
 				return response.text();

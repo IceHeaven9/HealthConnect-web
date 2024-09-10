@@ -1,3 +1,5 @@
+import { API_HOST } from "../../constants";
+
 // src/services/authService.js
 export const login = async (email, password) => {
   const myHeaders = new Headers();
@@ -15,6 +17,6 @@ export const login = async (email, password) => {
     redirect: "follow"
   };
 
-  const response = await fetch("http://localhost:3000/login", requestOptions);
+  const response = await fetch(`${API_HOST}}/login`, requestOptions);
   return response.json();
 };
