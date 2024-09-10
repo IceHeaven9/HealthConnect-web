@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { notify } from "../../utils/notify";
 import { validateEmail } from "./validateEmailFetch";
-import { ValidateFormTopSection } from "./validateFormTopSection";
-import { ValidateFormMidSection } from "./validateFormMidSection";
+
+import { ValidateFormMidSection } from "./ValidateFormMidSection";
+import { ValidateFormTopSection } from "./ValidateFormTopSection";
+
 
 export const VerificationForm = () => {
 	const [verificationCode, setVerificationCode] = useState("");

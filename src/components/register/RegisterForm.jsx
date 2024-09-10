@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { RegisterPagetItle } from "./registerPagetItle";
+import { RegisterPagetItle } from "./RegisterPagetItle";
 import { EmailInput } from "./EmailInput";
 import { UserNameInput } from "./UserNameInput";
 import { FirstNameInput } from "./FirstNameInput";
