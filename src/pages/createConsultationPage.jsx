@@ -27,6 +27,7 @@ export const CreateConsultationPage = () => {
 	const [availableTimes, setAvailableTimes] = useState([]);
 	const [showDescriptionForm, setShowDescriptionForm] = useState(false);
 	const [selectedHour, setSelectedHour] = useState(null);
+
 	const navigate = useNavigate();
 
 	const handleDateChange = (date) => {
