@@ -1,32 +1,42 @@
 import { Link } from "react-router-dom";
-import { CiLogout } from "react-icons/ci";
-import { FaUserPlus } from "react-icons/fa6";
-import { PiSignInLight } from "react-icons/pi";
+import { useState } from "react";
+import { MenuSpecialtiesModal } from "../menu/MenuSpecialtiesModal";
+import { MenuDoctorsModal } from "../menu/MenuDoctorsModal";
 
 export const HomeButtons = () => {
-  return (
-    <div className="flex flex-col gap-4 items-center w-full">
-      <div className="flex flex-col gap-4 items-center w-full">
-        {/* Botón Cierre de sesión */}
-        {localStorage.getItem("TOKEN") ? (
-          <button
-            className="flex items-center gap-2 text-sm bg-red-500 rounded-lg text-white p-3 w-full max-w-xs"
-            onClick={() => {
-              localStorage.removeItem("TOKEN");
-              window.location.href = "/login";
-            }}
-          >
-            <CiLogout size={24} /> Cerrar sesión
-          </button>
-        ) : (
-          <>
-            {/* Botón de Registro */}
-            <Link
-              className="flex items-center gap-2 text-sm bg-blue-700 rounded-lg text-white p-3 w-full max-w-xs"
-              to="/register"
+    {/*Estados para los modales */}
+    const [specialtyModalIsOpen, specialtyModaSetIsOpen] = useState(false);
+    const [doctorsModalIsOpen, doctorsModaSetIsOpen] = useState(false);
+
+    return (
+        <div className="flex flex-row items-center space-x-4">
+            {/* Botón Especialidades */}
+            <button
+                className="flex items-center justify-center gap-2 bg-blue-700 text-white py-3 px-6 rounded-lg"
+                onClick={() => specialtyModaSetIsOpen(true)}
             >
-              <FaUserPlus size={24} />
-              Regístrate
+                Especialidades
+            </button>
+            <MenuSpecialtiesModal
+                specialtyModalIsOpen={specialtyModalIsOpen}
+                specialtyModaSetIsOpen={specialtyModaSetIsOpen}
+            />
+
+            {/* Botón Doctores */}
+            <button
+                className="flex items-center justify-center gap-2 bg-blue-700 text-white py-3 px-6 rounded-lg"
+                onClick={() => doctorsModaSetIsOpen(true)}
+            >
+                Doctores
+            </button>
+            <MenuDoctorsModal
+                doctorsModalIsOpen={doctorsModalIsOpen}
+                doctorsModaSetIsOpen={doctorsModaSetIsOpen}
+            />
+
+            {/* Botón Crear Consulta */}
+            <Link to="/create-consultation" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                Crear Consulta
             </Link>
             {/* Botón de inicio de sesión */}
             <Link
