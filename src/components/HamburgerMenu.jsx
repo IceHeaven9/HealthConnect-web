@@ -89,7 +89,7 @@ export const HamburgerMenu = () => {
 								)}
 							</li>
 							<li className="pr-6">
-								<Link to="/create-consultation">
+								<Link to="/my-consultations">
 									<PiCalendarDotsLight size={30} color="#ffffff" />
 								</Link>
 							</li>
