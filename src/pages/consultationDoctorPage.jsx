@@ -48,6 +48,18 @@ export const ConsultationDoctorPage = () => {
           erat quis sodales. Nam ex enim, eleifend venenatis lectus vitae,
           accumsan auctor mi.
         </AccordionItem>
+
+        <AccordionItem
+          header={
+            <div className="flex gap-1">
+              <div>CONSULTAS PENDIENTES</div>
+              <IoIosArrowDown />
+            </div>
+          }
+        >
+          Suspendisse massa risus, pretium id interdum in, dictum sit amet ante.
+          Fusce vulputate purus sed tempus feugiat.
+        </AccordionItem>
       </Accordion>
     </main>
   );
