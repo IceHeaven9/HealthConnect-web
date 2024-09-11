@@ -12,72 +12,72 @@ import { EndedConsultation } from "../components/myConsultations/EndedConsultati
 import { fetchConsultations } from "../components/myConsultations/fetch/consultationsFetch";
 import { MyConsultationsTitle } from "../components/myConsultations/MyConsultationsTitle";
 import { useAuthGuard } from "../hooks/authGuard";
-import {UserCard} from '../components/myConsultations/UserCard';
+import { UserCard } from "../components/myConsultations/UserCard";
 
 export const ConsultationPage = () => {
-	const { currentUser } = useContext(AuthContext);
-	const [consultations, setConsultations] = useState([]);
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [historyConsultations, setHistoryConsultations] = useState([]);
-	const [status, setStatus] = useState("");
-	const [startOrEndDate, setstartOrEndDate] = useState("");
-	const navigate = useNavigate();
-	const token = currentUser?.coded;
-	const date = new Date(Date.now())
-		.toISOString()
-		.slice(0, 19)
-		.replace("T", " ");
+  const { currentUser } = useContext(AuthContext);
+  const [consultations, setConsultations] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [historyConsultations, setHistoryConsultations] = useState([]);
+  const [status, setStatus] = useState("");
+  const [startOrEndDate, setstartOrEndDate] = useState("");
+  const navigate = useNavigate();
+  const token = currentUser?.coded;
+  const date = new Date(Date.now())
+    .toISOString()
+    .slice(0, 19)
+    .replace("T", " ");
 
-	useAuthGuard("/consultation/:id/details");
+  useAuthGuard("/consultation/:id/details");
 
-	const openModal = () => setIsModalOpen(true);
-	const closeModal = () => setIsModalOpen(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
-	useEffect(() => {
-		fetchConsultations(startOrEndDate, date, status, token, setConsultations);
-	}, [startOrEndDate, status]);
+  useEffect(() => {
+    fetchConsultations(startOrEndDate, date, status, token, setConsultations);
+  }, [startOrEndDate, status]);
 
-	return (
-		<main className="w-full mb-20">
-			<HamburgerMenu />
-			<ToastContainer />
-			<MyConsultationsTitle />
-			<UserCard/>
-			<NewConsultationAndHistoryButton
-				navigate={navigate}
-				openModal={openModal}
-				isModalOpen={isModalOpen}
-				token={token}
-				setHistoryConsultations={setHistoryConsultations}
-				historyConsultations={historyConsultations}
-				closeModal={closeModal}
-			/>
+  return (
+    <main className="w-full mb-20">
+      <HamburgerMenu />
+      <ToastContainer />
+      <MyConsultationsTitle />
+      <UserCard />
+      <NewConsultationAndHistoryButton
+        navigate={navigate}
+        openModal={openModal}
+        isModalOpen={isModalOpen}
+        token={token}
+        setHistoryConsultations={setHistoryConsultations}
+        historyConsultations={historyConsultations}
+        closeModal={closeModal}
+      />
 
-			<div className="border rounded-xl bg-smokeWhites mx-4 bg-light shadow-xl mb-[10.6rem]">
-				<Accordion>
-					<SillNoAnswer
-						setstartOrEndDate={setstartOrEndDate}
-						setStatus={setStatus}
-						consultations={consultations}
-						navigate={navigate}
-					/>
-					<div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-					<NextConsultations
-						setstartOrEndDate={setstartOrEndDate}
-						setStatus={setStatus}
-						consultations={consultations}
-						navigate={navigate}
-					/>
-					<div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-					<EndedConsultation
-						setstartOrEndDate={setstartOrEndDate}
-						setStatus={setStatus}
-						consultations={consultations}
-						navigate={navigate}
-					/>
-					<div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-				</Accordion>
-			</div>
-		</main>
-	);
+      <div className="border rounded-xl bg-smokeWhites mx-4 bg-light shadow-xl mb-[10.6rem]">
+        <Accordion>
+          <SillNoAnswer
+            setstartOrEndDate={setstartOrEndDate}
+            setStatus={setStatus}
+            consultations={consultations}
+            navigate={navigate}
+          />
+          <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+          <NextConsultations
+            setstartOrEndDate={setstartOrEndDate}
+            setStatus={setStatus}
+            consultations={consultations}
+            navigate={navigate}
+          />
+          <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+          <EndedConsultation
+            setstartOrEndDate={setstartOrEndDate}
+            setStatus={setStatus}
+            consultations={consultations}
+            navigate={navigate}
+          />
+          <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+        </Accordion>
+      </div>
+    </main>
+  );
 };
