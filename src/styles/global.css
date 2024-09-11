@@ -8,17 +8,17 @@
 
 @font-face {
   font-family: roboto;
-  src: url(../../public/fonts/Roboto-Regular.ttf);
+  src: url(/fonts/Roboto-Regular.ttf);
 }
 
 @font-face {
   font-family: inter;
-  src: url(../../public/fonts/Inter_18pt-Regular.ttf);
+  src: url(/fonts/Inter_18pt-Regular.ttf);
 }
 
 @font-face {
   font-family: ubuntu;
-  src: url(../../public/fonts/Ubuntu-Regular.ttf);
+  src: url(/fonts/Ubuntu-Regular.ttf);
 }
 
 

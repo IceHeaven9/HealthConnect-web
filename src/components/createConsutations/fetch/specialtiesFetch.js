@@ -6,7 +6,7 @@ export const fetchSpecialties = (setSpecialties) => {
 		method: "GET",
 		redirect: "follow",
 	};
-	fetch(`${API_HOST}}/specialities`, requestOptions)
+	fetch(`${API_HOST}/specialities`, requestOptions)
 		.then((response) => response.json())
 		.then((result) => setSpecialties(result))
 		.catch((error) => console.error(error));
