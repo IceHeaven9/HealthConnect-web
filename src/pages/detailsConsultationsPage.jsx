@@ -14,7 +14,6 @@ import { SpecialtySection } from "../components/consultationDetails/SpecialtySec
 import { DoctorButton } from "../components/consultationDetails/DoctorButton";
 import { ConsultationFilesButton } from "../components/consultationDetails/ConsultationFilesSection";
 import { ResponseButton } from "../components/consultationDetails/ResponseButton";
-import { Footer } from './../components/Footer';
 import { HamburgerMenu } from "../components/HamburgerMenu";
 
 export const DetailsConsultationPage = () => {
@@ -106,7 +105,6 @@ export const DetailsConsultationPage = () => {
 					/>
 				</div>
 			</main>
-        <Footer/>
 		</div>
 	);
 };

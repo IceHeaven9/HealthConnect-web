@@ -34,7 +34,10 @@ function getUserFromLocalStorage() {
   let currentUser = null;
   const userToken = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
   if (userToken) {
-    currentUser = getUserFromToken(userToken);
+    currentUser = {
+      decoded: getUserFromToken(userToken),
+      coded: userToken
+    };
   }
   return currentUser;
 }

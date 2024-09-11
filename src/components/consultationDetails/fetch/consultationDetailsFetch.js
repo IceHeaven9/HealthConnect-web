@@ -38,7 +38,7 @@ export const fetchConsultationDetails = async (setUserType,currentUser,setConsul
       responseFiles: data.responseFiles,
     });
   
-    setUserType(currentUser.userType);
+    setUserType(currentUser.decoded.userType);
   } catch (error) {
     console.error("Error fetching consultation details:", error);
   }

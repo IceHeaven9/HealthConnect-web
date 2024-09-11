@@ -1,11 +1,63 @@
-import { ToastContainer } from "react-toastify";
-import { IoMdArrowRoundBack } from "react-icons/io";
-import { HamburgerMenu } from "../components/HamburgerMenu";
 import { Accordion, AccordionItem } from "@szhsin/react-accordion";
-import { IoIosArrowDown } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { IoIosArrowDown, IoMdArrowRoundBack } from "react-icons/io";
+import { ToastContainer } from "react-toastify";
+import { HamburgerMenu } from "./../components/HamburgerMenu";
+import { AuthContext } from "../contexts/authContext";
+import { API_HOST } from "../constants";
+import { Link, useNavigate } from "react-router-dom";
 
 export const ConsultationPage = () => {
+	const { currentUser } = useContext(AuthContext);
+	const [consultations, setConsultations] = useState([]);
+	const [status, setStatus] = useState("");
+
+	const [startOrEndDate, setstartOrEndDate] = useState("");
+	const navigate = useNavigate();
+	const token = currentUser?.coded;
+	const date = new Date(Date.now()).toISOString().slice(0, 19).replace("T", " ")
+
+	const handleFetch = () => {
+		if (!startOrEndDate) return;
+
+		const url = `${API_HOST}/my-consultations?${startOrEndDate}=${date}&status=${status}`;
+
+		const myHeaders = new Headers();
+		myHeaders.append("Authorization", token);
+		const requestOptions = {
+			method: "GET",
+			headers: myHeaders,
+			redirect: "follow",
+		};
+		fetch(url, requestOptions)
+			.then((response) => response.json())
+			.then((result) => {
+				const translatedResult = result.map((consultation) => {
+					let translatedStatus;
+					switch (consultation.status) {
+						case "pending":
+							translatedStatus = "pendiente";
+							break;
+						case "completed":
+							translatedStatus = "completada";
+							break;
+						case "cancelled":
+							translatedStatus = "cancelada";
+							break;
+						default:
+							translatedStatus = consultation.status;
+					}
+					return { ...consultation, status: translatedStatus };
+				});
+				setConsultations(translatedResult);
+			})
+			.catch((error) => console.error(error));
+	};
+
+	useEffect(() => {
+		handleFetch();
+	}, [startOrEndDate, status]);
+
 	return (
 		<main className="w-full mb-20">
 			<HamburgerMenu />
@@ -51,94 +103,177 @@ export const ConsultationPage = () => {
 								<IoIosArrowDown size={25} />
 							</div>
 						}
+						onClick={() => {
+							setstartOrEndDate("endDate"), setStatus("pending");
+						}}
 					>
 						<section className="w-full">
-							<article>
-								<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
-									<div className="flex flex-col p-8">
-										<div className="text-lg font-bold   text-[#374151] pb-6">
-											02/09/2024
-										</div>
-										<div className=" text-sm   text-[#374151]">
-											Titulo de consulta
-										</div>
-										<div className="flex justify-end pt-6">
-											<button className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform">
-												Ver Ficha
-											</button>
+							{consultations.length === 0 ? (
+								<article>
+									<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
+										<div className="flex flex-col p-8">
+											<div className="text-md font-inter font-bold text-center text-[#374151]">
+												No hay consultas disponibles
+											</div>
+											<div className="flex justify-end pt-6"></div>
 										</div>
 									</div>
-								</div>
-							</article>
+								</article>
+							) : (
+								consultations.map((consultation) => (
+									<article key={consultation.id}>
+										<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
+											<div className="flex flex-col p-8">
+												<div className="text-lg flex justify-between items-center font-bold text-[#374151] pb-6">
+													{new Date(consultation.date).toLocaleDateString()}
+													<div className="text-sm text-warning">
+														{consultation.status.toUpperCase()}
+													</div>
+												</div>
+												<div className="text-md text-start font-inter font-bold text-[#374151]">
+													{consultation.title.toUpperCase()}
+												</div>
+												<div className="flex justify-end pt-6">
+													<button
+														className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform"
+														onClick={() =>
+															navigate( `/consultation/${consultation.id}/details`)
+														}
+													>
+														Ver Ficha
+													</button>
+												</div>
+											</div>
+										</div>
+									</article>
+								))
+							)}
 						</section>
 					</AccordionItem>
 					<div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
 					<AccordionItem
 						header={
-							<div className="flex justify-between bg-smokeWhite font-inter font-bold text-lightBlue w-full p-3">
-								<div className="w-full text-center  h-max text-lg font-ubuntu ">
-									PROXIMAS CONSULTAS
+							<div className="flex rounded-t-lg justify-between font-inter font-bold text-lightBlue bg-smokeWhite w-full p-3">
+								<div className="w-full text-center h-max text-lg ">
+									PRÓXIMAS CONSULTAS
 								</div>
 								<IoIosArrowDown size={25} />
 							</div>
 						}
+						onClick={() => {
+							setstartOrEndDate("startDate"), setStatus("pending");
+						}}
 					>
 						<section className="w-full">
-							<article>
-								<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
-									<div className="flex flex-col p-8">
-										<div className="text-lg font-bold   text-[#374151] pb-6">
-											02/09/2024
-										</div>
-										<div className=" text-sm   text-[#374151]">
-											Titulo de consulta
-										</div>
-										<div className="flex justify-end pt-6">
-											<button className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform">
-												Ver Ficha
-											</button>
+							{consultations.length === 0 ? (
+								<article>
+									<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
+										<div className="flex flex-col p-8">
+											<div className="text-md font-inter font-bold text-center text-[#374151]">
+												No hay consultas disponibles
+											</div>
+											<div className="flex justify-end pt-6"></div>
 										</div>
 									</div>
-								</div>
-							</article>
+								</article>
+							) : (
+								consultations.map((consultation) => (
+									<article key={consultation.id}>
+										<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
+											<div className="flex flex-col p-8">
+												<div className="text-lg flex justify-between items-center font-bold text-[#374151] pb-6">
+													{new Date(consultation.date).toLocaleDateString()}
+													<div className="text-sm text-warning">
+														{consultation.status.toUpperCase()}
+													</div>
+												</div>
+												<div className="text-md text-start font-inter font-bold text-[#374151]">
+													{consultation.title.toUpperCase()}
+												</div>
+												<div className="flex justify-end pt-6">
+												<button
+														className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform"
+														onClick={() =>
+															navigate( `/consultation/${consultation.id}/details`)
+														}
+													>
+														Ver Ficha
+													</button>
+												</div>
+											</div>
+										</div>
+									</article>
+								))
+							)}
 						</section>
 					</AccordionItem>
 					<div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
 					<AccordionItem
 						header={
-							<div className="flex justify-between bg-smokeWhite font-inter font-bold text-lightBlue w-full p-3">
-								<div className="w-full text-center h-max text-lg font-ubuntu  ">
-									CONSULTAS FINALIZADAS{" "}
+							<div className="flex rounded-t-lg justify-between font-inter font-bold text-lightBlue bg-smokeWhite w-full p-3">
+								<div className="w-full text-center h-max text-lg ">
+									CONSULTAS COMPLETADAS
 								</div>
 								<IoIosArrowDown size={25} />
 							</div>
 						}
+						onClick={() => {
+							setstartOrEndDate("endDate");
+
+							setStatus("completed");
+						}}
 					>
-					<section className="w-full">
-							<article>
-								<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
-									<div className="flex flex-col p-8">
-										<div className="text-lg font-bold   text-[#374151] pb-6">
-											02/09/2024
-										</div>
-										<div className=" text-sm   text-[#374151]">
-											Titulo de consulta
-										</div>
-										<div className="flex justify-end pt-6">
-											<button className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform">
-												Ver Ficha
-											</button>
+						<section className="w-full">
+							{consultations.length === 0 ? (
+								<article>
+									<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
+										<div className="flex flex-col p-8">
+											<div className="text-md font-inter font-bold text-center text-[#374151]">
+												No hay consultas disponibles
+											</div>
+											<div className="flex justify-end pt-6"></div>
 										</div>
 									</div>
-								</div>
-							</article>
+								</article>
+							) : (
+								consultations.map((consultation) => (
+									<article key={consultation.id}>
+										<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
+											<div className="flex flex-col p-8">
+												<div className="text-lg flex justify-between items-center font-bold text-[#374151] pb-6">
+													{new Date(consultation.date).toLocaleDateString()}
+													<div className="text-sm text-warning">
+														{consultation.status.toUpperCase()}
+													</div>
+												</div>
+												<div className="text-md text-start font-inter font-bold text-[#374151]">
+													{consultation.title.toUpperCase()}
+												</div>
+												<div className="flex justify-end pt-6">
+												<button
+														className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform"
+														onClick={() =>
+															navigate( `/consultation/${consultation.id}/details`)
+														}
+													>
+														Ver Ficha
+													</button>
+												</div>
+											</div>
+										</div>
+									</article>
+								))
+							)}
 						</section>
 					</AccordionItem>
 					<div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
 				</Accordion>
 			</div>
 			<div className="flex  mx-4 mb-48 md:mb-[27rem] gap-2">
-				<Link to="/create-consultation" className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform">
+				<Link
+					to="/create-consultation"
+					className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform"
+				>
 					Añadir nueva consulta
 				</Link>
 				<button className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform">

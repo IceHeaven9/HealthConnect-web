@@ -16,7 +16,8 @@ export default {
               light:"#cad6ff",
               carbon:"#161617",
               blueGray:"#6B7280",
-              smokeWhite:"#f5f5f5"
+              smokeWhite:"#f5f5f5",
+              warning:"#ffb032"
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
