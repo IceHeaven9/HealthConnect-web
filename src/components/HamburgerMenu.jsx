@@ -10,6 +10,7 @@ import { CiLogout } from "react-icons/ci";
 import { AuthContext } from "../contexts/authContext";
 import { FaUserPlus } from "react-icons/fa6";
 import { PiSignInLight } from "react-icons/pi";
+import { IoMdClose } from "react-icons/io";
 
 export const HamburgerMenu = () => {
 	const [showMenu, setShowMenu] = useState(false);
@@ -30,7 +31,7 @@ export const HamburgerMenu = () => {
 		<>
 			<section className="flex justify-end items-center w-max absolute top-2 right-1">
 				{showMenu && (
-					<article className="animate-fade-left animate-once animate-duration-1000 animate-ease-in animate-normal">
+					<article className="animate-fade-left animate-once animate-duration-500 animate-ease-in animate-normal">
 						<ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-lightBlue">
 							<li className="pl-6">
 								<Link to="/">
@@ -96,13 +97,13 @@ export const HamburgerMenu = () => {
 					</article>
 				)}
 				<div className="w-max p-1 rounded-md m-4">
-					<button
-						onClick={() => {
-							setShowMenu(!showMenu), setShowLogOptions(false);
-						}}
-					>
-						<CiMenuFries size={30} />
-					</button>
+				<button className="text-lightBlue"
+                        onClick={() => {
+                            setShowMenu(!showMenu), setShowLogOptions(false);
+                        }}
+                    >
+                        {showMenu ? <IoMdClose size={30}/> : <CiMenuFries size={30} />}
+                    </button>
 				</div>
 			</section>
 		</>

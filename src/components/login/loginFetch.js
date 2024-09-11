@@ -17,6 +17,6 @@ export const login = async (email, password) => {
     redirect: "follow"
   };
 
-  const response = await fetch(`${API_HOST}}/login`, requestOptions);
+  const response = await fetch(`${API_HOST}/login`, requestOptions);
   return response.json();
 };

@@ -59,6 +59,14 @@
   scrollbar-width:calc(15px) ;
   scrollbar-color: transparent;
 }
+
+
+
+.szh-accordion__item-btn{
+  width: 100%;
+}
+
+
 /* -------------------------------------------------------------- */
 
 
