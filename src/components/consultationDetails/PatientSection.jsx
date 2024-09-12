@@ -19,6 +19,8 @@ export const PatientSection = ({ consultationDetails }) => {
 	);
 };
 
+
+
 PatientSection.propTypes = {
 	consultationDetails: PropTypes.shape({
 		patientAvatar: PropTypes.string.isRequired,
