@@ -25,9 +25,11 @@ export const HomeContent = () => {
             <HomeButtons />
 
             {/* Contenedor para el texto */}
-            <p className="text-blue-700 text-center max-w-2xl text-sm mb-4">
-                Tu salud, simplificada. Facilitamos la programación de citas con los mejores profesionales de la salud, y estamos aquí para ayudarte.
-                <br /><br />
+            <div className="text-blue-700 text-center max-w-2xl text-sm mb-4">
+                <p>
+                    Tu salud, simplificada. Facilitamos la programación de citas con los mejores profesionales de la salud, y estamos aquí para ayudarte.
+                </p>
+                <br />
                 <strong className="text-blue-800">¿Por qué elegirnos?</strong>
                 <br />
                 <ul className="list-disc list-inside pl-4 mt-2 text-xs">
@@ -37,8 +39,8 @@ export const HomeContent = () => {
                     <li>Seguro y Privado: Tu información médica está protegida con nosotros.</li>
                 </ul>
                 <br />
-                ¡Únete hoy y toma el control de tu salud con facilidad!
-            </p>
+                <p>¡Únete hoy y toma el control de tu salud con facilidad!</p>
+            </div>
 
             {/* Campo para los botones de autenticación */}
             <div className="flex flex-col gap-4 items-center w-full">
