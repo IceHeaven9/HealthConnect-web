@@ -265,10 +265,7 @@ export const ConsultationPage = () => {
                           <div
                             className={`text-sm ${
                               consultation.status === "completada"
-                                ? "text-green-500"
-                                : consultation.status === "cancelada"
-                                ? "cancelColor"
-                                : ""
+                                ? "text-green-500": "text-green-500"
                             }`}
                           >
                             {consultation.status.toUpperCase()}
