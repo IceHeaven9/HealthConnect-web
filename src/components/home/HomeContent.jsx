@@ -1,12 +1,46 @@
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CiLogout } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci"; // Importa el ícono necesario
 import { AuthContext } from "../../contexts/authContext";
-import { FaUserPlus } from "react-icons/fa6";
-import { PiSignInLight } from "react-icons/pi";
-import { HomeButtons } from "./homeButtons";  
+import { HomeButtons } from "./homeButtons";
+import { FaUserPlus } from "react-icons/fa6"; // Importa el ícono necesario
+import { PiSignInLight } from "react-icons/pi"; // Importa el ícono necesario
 
 export const HomeContent = () => {
+    // Estados para los datos de especialidades y doctores
+    const [specialties, setSpecialties] = useState([]);
+    const [doctors, setDoctors] = useState([]);
+
+    // Obtener especialidades
+    const fetchSpecialties = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/specialities");
+            const result = await response.json();
+            console.log("Especialidades obtenidas:", result);
+            setSpecialties(result);
+        } catch (error) {
+            console.error("Error al obtener las especialidades:", error);
+        }
+    };
+
+    // Obtener doctores
+    const fetchDoctors = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/doctors");
+            const result = await response.json();
+            console.log("Doctores obtenidos:", result);
+            setDoctors(result);
+        } catch (error) {
+            console.error("Error al obtener los doctores:", error);
+        }
+    };
+
+    // Llamar a las funciones de fetch al montar el componente
+    useEffect(() => {
+        fetchSpecialties();
+        fetchDoctors();
+    }, []);
+
     {/*AuthContext y hook de navegación */}
     const { onLogout } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -24,22 +58,35 @@ export const HomeContent = () => {
             {/* Contenedor para los botones, ahora usando HomeButtons */}
             <HomeButtons />
 
-            {/* Contenedor para el texto */}
-            <div className="text-blue-700 text-center max-w-2xl text-sm mb-4">
-                <p>
-                    Tu salud, simplificada. Facilitamos la programación de citas con los mejores profesionales de la salud, y estamos aquí para ayudarte.
-                </p>
-                <br />
-                <strong className="text-blue-800">¿Por qué elegirnos?</strong>
-                <br />
-                <ul className="list-disc list-inside pl-4 mt-2 text-xs">
-                    <li>Cuidado Experto: Conéctate con médicos calificados en varias especialidades.</li>
-                    <li>Reserva Fácil: Programa tus citas en línea con solo unos clics.</li>
-                    <li>Sin Esperas: Elige el horario que mejor te convenga.</li>
-                    <li>Seguro y Privado: Tu información médica está protegida con nosotros.</li>
-                </ul>
-                <br />
-                <p>¡Únete hoy y toma el control de tu salud con facilidad!</p>
+            {/* Sección de Especialidades */}
+            <div>
+                <h2 className="text-xl font-bold">Especialidades</h2>
+                {specialties.length > 0 ? (
+                    <ul className="list-disc pl-5">
+                        {specialties.map(specialty => (
+                            <li key={specialty.id} className="mb-2">{specialty.name}</li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No hay especialidades disponibles.</p>
+                )}
+            </div>
+
+            {/* Sección de Doctores */}
+            <div>
+                <h2 className="text-xl font-bold">Doctores</h2>
+                {doctors.length > 0 ? (
+                    <ul className="list-disc pl-5">
+                        {doctors.map(doctor => (
+                            <li key={doctor.id} className="mb-2 flex items-center">
+                                <img src={doctor.avatar} alt="doctor" className="w-12 h-12 rounded-full mr-2" />
+                                {doctor.firstName} {doctor.lastName}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No hay doctores disponibles.</p>
+                )}
             </div>
 
             {/* Campo para los botones de autenticación */}
@@ -72,3 +119,4 @@ export const HomeContent = () => {
         </main>
     );
 };
+
