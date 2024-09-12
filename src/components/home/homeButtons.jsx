@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export const HomeButtons = () => {
-    {/* Estados para especialidades y doctores*/}
+    // Estados para los datos de especialidades y doctores
     const [specialties, setSpecialties] = useState([]);
     const [doctors, setDoctors] = useState([]);
 
-    {/*Obtenemos las especialidades */}
+    // Obtener especialidades
     const fetchSpecialties = async () => {
         try {
             const response = await fetch("http://localhost:3000/specialities");
@@ -18,7 +18,7 @@ export const HomeButtons = () => {
         }
     };
 
-    {/*Obtenemos los doctores */}
+    // Obtener doctores
     const fetchDoctors = async () => {
         try {
             const response = await fetch("http://localhost:3000/doctors");
@@ -30,6 +30,7 @@ export const HomeButtons = () => {
         }
     };
 
+    // Llamar a las funciones de fetch al montar el componente
     useEffect(() => {
         fetchSpecialties();
         fetchDoctors();
@@ -37,7 +38,7 @@ export const HomeButtons = () => {
 
     return (
         <div className="space-y-4">
-            {/* Campo Especialidades */}
+            {/* Sección de Especialidades */}
             <div>
                 <h2 className="text-xl font-bold">Especialidades</h2>
                 {specialties.length > 0 ? (
@@ -51,14 +52,22 @@ export const HomeButtons = () => {
                 )}
             </div>
 
-            {/* Campo Doctores */}
+            {/* Sección de Doctores */}
             <div>
                 <h2 className="text-xl font-bold">Doctores</h2>
                 {doctors.length > 0 ? (
                     <ul className="list-disc pl-5">
                         {doctors.map(doctor => (
-                            <li key={doctor.id} className="mb-2">
-                                {doctor.firstName ? doctor.firstName : "Nombre no disponible"} {doctor.lastName ? doctor.lastName : "Apellido no disponible"}
+                            <li key={doctor.id} className="mb-2 flex items-center gap-4">
+                                {/* Mostrar la foto del doctor */}
+                                <img 
+                                    src={doctor.avatar} 
+                                    alt={`${doctor.firstName} ${doctor.lastName}`} 
+                                    className="w-12 h-12 rounded-full"
+                                />
+                                <span>
+                                    {doctor.firstName ? doctor.firstName : "Nombre no disponible"} {doctor.lastName ? doctor.lastName : "Apellido no disponible"}
+                                </span>
                             </li>
                         ))}
                     </ul>
@@ -74,5 +83,3 @@ export const HomeButtons = () => {
         </div>
     );
 };
-
-
