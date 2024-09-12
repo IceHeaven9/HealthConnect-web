@@ -1,6 +1,7 @@
 import { API_HOST } from "../../../constants";
 
 export const sendRating = async (consultationId, rating) => {
+
   const token = localStorage.getItem("TOKEN"); 
 
   const url = `${API_HOST}/consultations/${consultationId}/response/rate`;
@@ -9,7 +10,7 @@ export const sendRating = async (consultationId, rating) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, 
+      Authorization: `${token}`, 
     },
     body: JSON.stringify({ rating }),
   };
@@ -27,4 +28,3 @@ export const sendRating = async (consultationId, rating) => {
     throw error;
   }
 };
-

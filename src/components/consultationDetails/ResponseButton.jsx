@@ -35,8 +35,7 @@ export const StarRating = ({ rating, onRate }) => {
     </div>
   );
 };
-
-// Fin de componente de Estrella
+//FIN DE COMPONENTE
 
 export const ResponseButton = ({
   showResponseFiles,
