@@ -12,7 +12,6 @@ export const DoctorButton = ({
 }) => {
     const [isFirstOpen, setIsFirstOpen] = useState(true);
     const [doctorDetails, setDoctorDetails] = useState({});
-		console.log(doctorDetails)
 
     useEffect(() => {
         if (showDoctor && isFirstOpen) {
@@ -46,10 +45,8 @@ export const DoctorButton = ({
                 contentLabel="Doctor Details"
                 style={maxContent}
             >
-                <button className="text-2xl" onClick={() => setShowDoctor(false)}>
-                    <IoMdClose />
-                </button>
-                <div className="flex flex-col items-center border-light border-solid border-[0.1rem] h-max rounded-xl mt-6 bg-smokeWhite">
+               
+             
                     <img
                         className="w-20 h-20 m-2 rounded-full mt-4"
                         src={doctorDetails.avatar}
@@ -62,7 +59,7 @@ export const DoctorButton = ({
                         {doctorDetails && (
                             <div className="mt-4">
 															   <div className=" border-t-[0.1rem] border-lightBlue border-solid my-2"></div>
-                               <p className="text-start font-ubuntu font-bold " >{doctorDetails.biography}</p>
+                               <p className="text-start font-ubuntu font-bold text-lg" >{doctorDetails.biography}</p>
 															 <div className=" border-t-[0.1rem] border-lightBlue border-solid my-2"></div>
 															 <div className="flex justify-between my-4 ">
 															 <p className="font-inter font-bold text-md  ">Años de Experiencia: {doctorDetails.experience}</p>
@@ -71,7 +68,9 @@ export const DoctorButton = ({
                             </div>
                         )}
                     </div>
-                </div>
+                    <button className="text-2xl rounded-full bg-lightBlue text-smokeWhite p-2" onClick={() => setShowDoctor(false)}>
+                    <IoMdClose />
+                </button>
             </Modal>
         </>
     );

@@ -10,7 +10,6 @@ export const handleEditConsultation = async (
 	const token = localStorage.getItem("TOKEN");
 
 	try {
-		console.log("Sending data:", consultationDetails); // Agrega este log
 
 		const response = await fetch(`${API_HOST}/consultations/${id}`, {
 			method: "PATCH",
@@ -31,7 +30,6 @@ export const handleEditConsultation = async (
 
 		const data = await response.json();
 		setConsultationDetails(data.consultation);
-		console.log("Consultation edited successfully:", data);
 		setIsEditing({ title: false, description: false, severity: false });
     navigate(0)
 	} catch (error) {

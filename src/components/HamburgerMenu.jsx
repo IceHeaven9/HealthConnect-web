@@ -20,7 +20,6 @@ export const HamburgerMenu = () => {
     const { onLogout, currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const token = currentUser?.token;
-		console.log(currentUser);
 
     const handleLogout = () => {
         onLogout();
