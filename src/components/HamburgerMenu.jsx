@@ -19,7 +19,7 @@ export const HamburgerMenu = () => {
     const [showLogOptions, setShowLogOptions] = useState(false);
     const { onLogout, currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
-    const token = currentUser?.token;
+    const token = currentUser?.coded;
 
     const handleLogout = () => {
         onLogout();

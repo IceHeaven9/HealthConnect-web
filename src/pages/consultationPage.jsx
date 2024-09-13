@@ -10,8 +10,8 @@ import { SillNoAnswer } from "../components/myConsultations/SillNoAnswer";
 import { NextConsultations } from "../components/myConsultations/NextConsultations";
 import { EndedConsultation } from "../components/myConsultations/EndedConsultation";
 import { fetchConsultations } from "../components/myConsultations/fetch/consultationsFetch";
-import {MyConsultationsTitle} from '../components/myConsultations/MyConsultationsTitle';
-import {useAuthGuard} from '../hooks/authGuard';
+import { MyConsultationsTitle } from "../components/myConsultations/MyConsultationsTitle";
+import { useAuthGuard } from "../hooks/authGuard";
 
 export const ConsultationPage = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -27,7 +27,7 @@ export const ConsultationPage = () => {
 		.slice(0, 19)
 		.replace("T", " ");
 
-    useAuthGuard("/consultation/:id/details");
+	useAuthGuard("/consultation/:id/details");
 
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
@@ -40,7 +40,7 @@ export const ConsultationPage = () => {
 		<main className="w-full mb-20">
 			<HamburgerMenu />
 			<ToastContainer />
-      <MyConsultationsTitle/>
+			<MyConsultationsTitle />
 			<SearchBar />
 			<NewConsultationAndHistoryButton
 				navigate={navigate}
