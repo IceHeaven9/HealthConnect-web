@@ -53,7 +53,7 @@ export const ConsultationPage = () => {
 				closeModal={closeModal}
 			/>
 
-			<div className="border rounded-xl bg-smokeWhites mx-4 bg-light shadow-xl mb-[10.6rem]">
+			<div className="border rounded-xl bg-smokeWhites mx-4 bg-light shadow-xl mb-28">
 				<Accordion>
 					<SillNoAnswer
 						setstartOrEndDate={setstartOrEndDate}

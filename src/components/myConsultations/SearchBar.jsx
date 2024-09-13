@@ -45,9 +45,6 @@ export const SearchBar = () => {
     .catch((error) => console.error(error));
   };
 
-  const handleOnHover = (result) => {
- 
-  };
 
   const handleOnSelect = (item) => {
 
@@ -77,7 +74,6 @@ export const SearchBar = () => {
           <ReactSearchAutocomplete
             items={searchResults}
             onSearch={handleOnSearch}
-            onHover={handleOnHover}
             onSelect={handleOnSelect}
             onFocus={handleOnFocus}
             autoFocus
