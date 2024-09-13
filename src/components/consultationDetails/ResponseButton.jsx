@@ -101,7 +101,7 @@ export const ResponseButton = ({
               </div>
             </div>
             {/* Sistema de calificación con estrellas */}
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <StarRating rating={rating} onRate={handleRating} isDisabled={isRated} />
             </div>
           </div>
