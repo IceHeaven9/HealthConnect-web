@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { HamburgerMenu } from "./../components/HamburgerMenu";
 import { AuthContext } from "../contexts/authContext";
-import { SearchBar } from "../components/myConsultations/SearchBar";
+
 import { NewConsultationAndHistoryButton } from "../components/myConsultations/NewConsultation&HistoryButton";
 import { SillNoAnswer } from "../components/myConsultations/SillNoAnswer";
 import { NextConsultations } from "../components/myConsultations/NextConsultations";
@@ -12,6 +12,7 @@ import { EndedConsultation } from "../components/myConsultations/EndedConsultati
 import { fetchConsultations } from "../components/myConsultations/fetch/consultationsFetch";
 import { MyConsultationsTitle } from "../components/myConsultations/MyConsultationsTitle";
 import { useAuthGuard } from "../hooks/authGuard";
+import {UserCard} from '../components/myConsultations/UserCard';
 
 export const ConsultationPage = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -41,7 +42,7 @@ export const ConsultationPage = () => {
 			<HamburgerMenu />
 			<ToastContainer />
 			<MyConsultationsTitle />
-			<SearchBar />
+			<UserCard/>
 			<NewConsultationAndHistoryButton
 				navigate={navigate}
 				openModal={openModal}

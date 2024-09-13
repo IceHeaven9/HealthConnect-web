@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import { customStyles } from "../../constants";
 import { fetchHistoryConsultations } from "./fetch/historyFetch";
+import { SearchBar } from "./SearchBar";
 
 export const NewConsultationAndHistoryButton = ({
 	navigate,
@@ -43,6 +44,7 @@ export const NewConsultationAndHistoryButton = ({
 					<h2 className="text-3xl font-bold text-center text-lightBlue font-roboto  my-6">
 						Historial de consultas
 					</h2>
+					<SearchBar />
 					<section className="w-full">
 						{historyConsultations.length === 0 ? (
 							<article>
@@ -59,6 +61,7 @@ export const NewConsultationAndHistoryButton = ({
 							historyConsultations
 								.sort((a, b) => new Date(b.date) - new Date(a.date))
 								.map((consultation) => (
+									
 									<article key={consultation.id}>
 										<div className="flex flex-col rounded-2xl m-6 bg-smokeWhite shadow-xl">
 											<div className="flex flex-col p-8">

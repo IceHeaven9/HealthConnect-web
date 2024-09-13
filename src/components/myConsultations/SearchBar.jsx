@@ -1,30 +1,90 @@
+import { useContext, useState } from 'react';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+import { AuthContext } from './../../contexts/authContext';
+import { API_HOST } from '../../constants';
 
 export const SearchBar = () => {
-	return (
-		<>
-	
-			<div className="flex justify-center relative">
-				<input
-					type="text"
-					placeholder="Buscar consulta..."
-					className="bg-lightCakeBlue  rounded-xl p-2 w-full mb-10 mx-4 outline-none pl-10 shadow-xl placeholder-lightBlue"
-				/>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					className="absolute left-7 top-5 transform -translate-y-1/2 text-lightBlue"
-					width="20"
-					height="20"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					strokeWidth="2"
-					strokeLinecap="round"
-					strokeLinejoin="round"
-				>
-					<circle cx="11" cy="11" r="8"></circle>
-					<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-				</svg>
-			</div>
-		</>
-	);
+  const token = useContext(AuthContext);
+  const [searchResults, setSearchResults] = useState([]);
+  console.log(searchResults);
+
+  const handleOnSearch = (string, results) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", token.currentUser.coded);
+
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    fetch(`${API_HOST}/my-consultations?title=${string}`, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.length === 0) {
+        return fetch(`${API_HOST}/my-consultations?description=${string}`, requestOptions)
+          .then((response) => response.json());
+      }
+      return result;
+    })
+    .then((result) => {
+      const formattedResults = Array.isArray(result) ? result.map(item => ({
+        id: item.id,
+        name: item.patientName,
+        date: item.date,
+        title: item.title,
+        severity: item.severity,
+        description: item.description,
+        doctorName: item.doctorName,
+        doctorAvatar: item.doctorAvatar,
+        specialityName: item.specialityName,
+        status: item.status
+      })) : [];
+      setSearchResults(formattedResults);
+    })
+    .catch((error) => console.error(error));
+  };
+
+  const handleOnHover = (result) => {
+ 
+  };
+
+  const handleOnSelect = (item) => {
+
+  };
+
+  const handleOnFocus = () => {
+    console.log('Focused');
+  };
+
+  const formatResult = (item) => {
+    return (
+      <div className="result-item">
+        <img src={item.doctorAvatar} alt="" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+        <div>
+          <span style={{ display: 'block', textAlign: 'left' }}>Name: {item.name}</span>
+          <span style={{ display: 'block', textAlign: 'left' }}>Title: {item.title}</span>
+          <span style={{ display: 'block', textAlign: 'left' }}>Speciality: {item.specialityName}</span>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <div>
+          <ReactSearchAutocomplete
+            items={searchResults}
+            onSearch={handleOnSearch}
+            onHover={handleOnHover}
+            onSelect={handleOnSelect}
+            onFocus={handleOnFocus}
+            autoFocus
+            formatResult={formatResult}
+          />
+        </div>
+      </header>
+    </div>
+  );
 };
