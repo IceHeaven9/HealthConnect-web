@@ -8,7 +8,6 @@ import { DescriptionFormTopSection } from "./DescriptionFormTopSection";
 import { DescriptionFormMidSection } from "./DescriptionFormMidSection";
 import { DescriptionFormBottomSection } from "./DescriptionFormBottomSection";
 import {HamburgerMenu} from '../HamburgerMenu';
-
 export const DescriptionForm = ({
     selectedDate,
     selectedSpecialty,
@@ -55,8 +54,8 @@ export const DescriptionForm = ({
         setPreviews((prev) => prev.filter((_, i) => i !== index));
     };
 
-    const handleSubmitWrapper = (event) => {
-        createConsultationFetch(
+    const handleSubmitWrapper = async (event) => {
+        const consultationId = await createConsultationFetch(
             event,
             token,
             title,
@@ -74,8 +73,10 @@ export const DescriptionForm = ({
             notify,
             navigate
         );
+        if (consultationId) {
+            navigate(`/consultation/${consultationId}/details`);
+        }
     };
-
     return (
         <>
         <HamburgerMenu/>

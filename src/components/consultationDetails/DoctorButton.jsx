@@ -80,8 +80,8 @@ DoctorButton.propTypes = {
     setShowDoctor: PropTypes.func.isRequired,
     showDoctor: PropTypes.bool.isRequired,
     consultationDetails: PropTypes.shape({
-        doctorAvatar: PropTypes.string.isRequired,
-        doctorName: PropTypes.string.isRequired,
-        doctorId: PropTypes.number.isRequired,
+        doctorAvatar: PropTypes.string,
+        doctorName: PropTypes.string,
+        doctorId: PropTypes.number,
     }).isRequired,
 };
