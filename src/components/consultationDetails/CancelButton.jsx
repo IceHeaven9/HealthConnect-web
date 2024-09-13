@@ -9,7 +9,7 @@ import Modal from "react-modal";
 export const CancelButton = ({ consultationDetails, setConsultationDetails }) => {
   const token = useContext(AuthContext);
   const [isDisabled, setIsDisabled] = useState(
-    consultationDetails.status === "cancelled" || consultationDetails.status === "completed"
+    consultationDetails.status === "Cancelada" || consultationDetails.status === "Completada"
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,7 +28,7 @@ export const CancelButton = ({ consultationDetails, setConsultationDetails }) =>
         notify(result.message);
         setConsultationDetails((prevDetails) => ({
           ...prevDetails,
-          status: "cancelled",
+          status: "Cancelada",
         }));
         setIsDisabled(true);
         setIsModalOpen(false);

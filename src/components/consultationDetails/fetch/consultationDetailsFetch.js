@@ -23,7 +23,7 @@ export const fetchConsultationDetails = async (setUserType,currentUser,setConsul
         ? "Pendiente"
         : data.status === "cancelled"
         ? "Cancelada"
-        : "Completada";
+        : data.status === "completed"? "Completada" : "";
     setConsultationDetails({
       id: data.id,
       title: data.title,
