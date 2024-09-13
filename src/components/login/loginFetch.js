@@ -9,6 +9,7 @@ export const login = async (email, password) => {
     email: email,
     password: password
   });
+  console.log(raw);
 
   const requestOptions = {
     method: "POST",
