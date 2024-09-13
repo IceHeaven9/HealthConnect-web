@@ -10,6 +10,7 @@ import { SillNoAnswer } from "../components/myConsultations/SillNoAnswer";
 import { NextConsultations } from "../components/myConsultations/NextConsultations";
 import { EndedConsultation } from "../components/myConsultations/EndedConsultation";
 import { fetchConsultations } from "../components/myConsultations/fetch/consultationsFetch";
+import {MyConsultationsTitle} from '../components/myConsultations/MyConsultationsTitle';
 
 export const ConsultationPage = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -36,6 +37,7 @@ export const ConsultationPage = () => {
 		<main className="w-full mb-20">
 			<HamburgerMenu />
 			<ToastContainer />
+      <MyConsultationsTitle/>
 			<SearchBar />
 			<NewConsultationAndHistoryButton
 				navigate={navigate}
