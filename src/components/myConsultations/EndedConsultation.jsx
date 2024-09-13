@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { AccordionItem } from "@szhsin/react-accordion";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -78,19 +78,16 @@ export const EndedConsultation = ({
 	);
 };
 
-
-
-
 EndedConsultation.propTypes = {
-    setstartOrEndDate: PropTypes.func.isRequired,
-    setStatus: PropTypes.func.isRequired,
-    consultations: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            date: PropTypes.string.isRequired,
-            status: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-        })
-    ).isRequired,
-    navigate: PropTypes.func.isRequired,
+	setstartOrEndDate: PropTypes.func.isRequired,
+	setStatus: PropTypes.func.isRequired,
+	consultations: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.number.isRequired,
+			date: PropTypes.string.isRequired,
+			status: PropTypes.string.isRequired,
+			title: PropTypes.string.isRequired,
+		})
+	).isRequired,
+	navigate: PropTypes.func.isRequired,
 };

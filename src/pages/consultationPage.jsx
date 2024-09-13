@@ -1,15 +1,15 @@
 import { Accordion } from "@szhsin/react-accordion";
 import { useContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { HamburgerMenu } from "./../components/HamburgerMenu";
 import { AuthContext } from "../contexts/authContext";
-import { API_HOST } from "../constants";
-import { useNavigate } from "react-router-dom";
 import { SearchBar } from "../components/myConsultations/SearchBar";
 import { NewConsultationAndHistoryButton } from "../components/myConsultations/NewConsultation&HistoryButton";
 import { SillNoAnswer } from "../components/myConsultations/SillNoAnswer";
 import { NextConsultations } from "../components/myConsultations/NextConsultations";
 import { EndedConsultation } from "../components/myConsultations/EndedConsultation";
+import { fetchConsultations } from "../components/myConsultations/fetch/consultationsFetch";
 
 export const ConsultationPage = () => {
 	const { currentUser } = useContext(AuthContext);
@@ -28,45 +28,8 @@ export const ConsultationPage = () => {
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
 
-	const handleFetch = () => {
-		if (!startOrEndDate) return;
-
-		const url = `${API_HOST}/my-consultations?${startOrEndDate}=${date}&status=${status}`;
-
-		const myHeaders = new Headers();
-		myHeaders.append("Authorization", token);
-		const requestOptions = {
-			method: "GET",
-			headers: myHeaders,
-			redirect: "follow",
-		};
-		fetch(url, requestOptions)
-			.then((response) => response.json())
-			.then((result) => {
-				const translatedResult = result.map((consultation) => {
-					let translatedStatus;
-					switch (consultation.status) {
-						case "pending":
-							translatedStatus = "pendiente";
-							break;
-						case "completed":
-							translatedStatus = "completada";
-							break;
-						case "cancelled":
-							translatedStatus = "cancelada";
-							break;
-						default:
-							translatedStatus = consultation.status;
-					}
-					return { ...consultation, status: translatedStatus };
-				});
-				setConsultations(translatedResult);
-			})
-			.catch((error) => console.error(error));
-	};
-
 	useEffect(() => {
-		handleFetch();
+		fetchConsultations(startOrEndDate, date, status, token, setConsultations);
 	}, [startOrEndDate, status]);
 
 	return (
@@ -74,7 +37,6 @@ export const ConsultationPage = () => {
 			<HamburgerMenu />
 			<ToastContainer />
 			<SearchBar />
-
 			<NewConsultationAndHistoryButton
 				navigate={navigate}
 				openModal={openModal}
