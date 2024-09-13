@@ -42,6 +42,7 @@ export const ConsultationPage = () => {
     fetch(url, requestOptions)
       .then((response) => response.json())
       .then((result) => {
+        console.log(result);
         const translatedResult = result.map((consultation) => {
           let translatedStatus;
           switch (consultation.status) {

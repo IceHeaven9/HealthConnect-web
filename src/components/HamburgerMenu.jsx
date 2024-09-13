@@ -17,12 +17,11 @@ export const HamburgerMenu = () => {
 	const [specialtyModalIsOpen, specialtyModaSetIsOpen] = useState(false);
 	const [doctorsModalIsOpen, doctorsModaSetIsOpen] = useState(false);
 	const [showLogOptions, setShowLogOptions] = useState(false);
-	const { onLogout } = useContext(AuthContext);
+	const { onLogout,currentUser } = useContext(AuthContext);
 	const { navigate } = useNavigate();
-	const token = localStorage.getItem("TOKEN");
+	const token = currentUser.coded
 
 	const handleLogout = () => {
-		localStorage.removeItem("TOKEN");
 		onLogout();
 		navigate("/login");
 	};
