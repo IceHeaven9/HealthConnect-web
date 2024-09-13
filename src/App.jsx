@@ -8,15 +8,15 @@ import { CreateConsultationPage } from "./pages/createConsultationPage";
 import { ValidateEmailPage } from "./pages/validateEmailPage";
 import { RecoveryAccountPage } from "./pages/recoveryAccountPage";
 import { ResetPasswordPage } from "./pages/resetPasswordPage";
-import { DetailsConsultationPage } from "./pages/detailsConsultationsPage"
-import {UserProfilePage} from './pages/userProfilePage';
+import { DetailsConsultationPage } from "./pages/detailsConsultationsPage";
+import { UserProfile } from "./pages/UserProfilePage";
 
 function App() {
   return (
     <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<HomePage />} />
-          <Route path="/profile" element={<UserProfilePage />} />
+          <Route path="/profile" element={<UserProfile/>} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/validate-email" element={<ValidateEmailPage />} />
