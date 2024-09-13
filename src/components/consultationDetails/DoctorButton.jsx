@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { FaUserDoctor } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import Modal from "react-modal";
-import {API_HOST,  maxContent} from '../../constants';
 import { useEffect, useState } from "react";
+import {API_HOST,  maxContent} from '../../constants';
 
 export const DoctorButton = ({
     setShowDoctor,

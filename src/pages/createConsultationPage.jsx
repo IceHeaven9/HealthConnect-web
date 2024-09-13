@@ -1,13 +1,13 @@
 import Calendar from "react-calendar";
 import Modal from "react-modal";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SpecialtiesModal } from "../components/createConsutations/SpecialtiesModal";
 import { DoctorsModal } from "../components/createConsutations/DoctorsModal";
 import { customStyles } from "../constants";
 import { AviableTimes } from "../components/createConsutations/AviableTimes";
 import { DescriptionForm } from "./../components/createConsutations/DescriptionForm";
 import { useAuthGuard } from "../hooks/authGuard";
-import { useNavigate } from "react-router-dom";
 import { fetchAvailableTimes } from "../components/createConsutations/fetch/availableTimesFetch";
 import { NewConsultationTitle } from "../components/createConsutations/NewConsultationTitle";
 import {HamburgerMenu} from '../components/HamburgerMenu';

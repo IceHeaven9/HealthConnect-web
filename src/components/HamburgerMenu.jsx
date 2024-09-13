@@ -3,14 +3,14 @@ import { RiHomeHeartFill } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { useContext, useState } from "react";
-import { MenuSpecialtiesModal } from "./menu/MenuSpecialtiesModal";
-import { MenuDoctorsModal } from "./menu/MenuDoctorsModal";
 import { Link, useNavigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
-import { AuthContext } from "../contexts/authContext";
 import { FaUserPlus } from "react-icons/fa6";
 import { PiSignInLight } from "react-icons/pi";
 import { IoMdClose } from "react-icons/io";
+import { AuthContext } from "../contexts/authContext";
+import { MenuSpecialtiesModal } from "./menu/MenuSpecialtiesModal";
+import { MenuDoctorsModal } from "./menu/MenuDoctorsModal";
 
 export const HamburgerMenu = () => {
     const [showMenu, setShowMenu] = useState(false);

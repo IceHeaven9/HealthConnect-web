@@ -101,7 +101,7 @@ NewConsultationAndHistoryButton.propTypes = {
 	navigate: PropTypes.func.isRequired,
 	openModal: PropTypes.func.isRequired,
 	isModalOpen: PropTypes.bool.isRequired,
-	token: PropTypes.string.isRequired,
+	token: PropTypes.string,
 	setHistoryConsultations: PropTypes.func.isRequired,
 	historyConsultations: PropTypes.arrayOf(
 		PropTypes.shape({

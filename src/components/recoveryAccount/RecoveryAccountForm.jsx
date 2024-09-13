@@ -1,8 +1,8 @@
 import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { notify } from "../../utils/notify";
 import { sendRecoveryEmail } from "./recoveryAccountFetch";
-import { useNavigate } from "react-router-dom";
 import { RecoveryFormTopSection } from "./RecoveryFormTopSection";
 import { RecoveryFormMidSection } from "./RecoveryFormMidSection";
 import "react-toastify/dist/ReactToastify.css";

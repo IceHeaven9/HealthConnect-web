@@ -1,10 +1,10 @@
 import PropTypes from "prop-types"
 import { FaTimes } from "react-icons/fa";
-import { AuthContext } from "../../contexts/authContext";
+import Modal from "react-modal";
 import { useContext, useState } from "react";
+import { AuthContext } from "../../contexts/authContext";
 import { API_HOST, microCustomStyles } from "../../constants";
 import { notify } from "../../utils/notify";
-import Modal from "react-modal";
 
 export const CancelButton = ({ consultationDetails, setConsultationDetails }) => {
   const token = useContext(AuthContext);

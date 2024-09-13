@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { FaEdit, FaSave } from "react-icons/fa";
+import { useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import { API_HOST } from "../../constants";
 import { notify } from './../../utils/notify';
-import { useState, useEffect } from "react";
 
 export const EditButton = ({ setIsEditing, scrollToRef, isEditing, consultationDetails }) => {
   const token = useContext(AuthContext);

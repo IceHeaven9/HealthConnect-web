@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { GrValidate } from "react-icons/gr";
 import {ToastContainer} from 'react-toastify';
-import { notify } from "../../utils/notify";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../../utils/notify";
 
 export const ResetPassForm = () => {
   const [validationCode, setValidationCode] = useState("");

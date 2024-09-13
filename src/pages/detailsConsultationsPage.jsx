@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState, useRef} from 'react';
 import { useParams, useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 import { useAuthGuard } from "../hooks/authGuard";
 import { AuthContext } from "../contexts/authContext";
 import { fetchConsultationDetails } from "../components/consultationDetails/fetch/consultationDetailsFetch";
@@ -17,7 +18,6 @@ import { ResponseButton } from "../components/consultationDetails/ResponseButton
 import { HamburgerMenu } from "../components/HamburgerMenu";
 import { EditButton } from "../components/consultationDetails/EditButton";
 import { CancelButton } from "../components/consultationDetails/CancelButton";
-import { ToastContainer } from 'react-toastify';
 
 export const DetailsConsultationPage = () => {
   const { id } = useParams();
