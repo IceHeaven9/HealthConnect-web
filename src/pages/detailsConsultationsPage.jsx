@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import {useContext, useEffect, useState, useRef} from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuthGuard } from "../hooks/authGuard";
 import { AuthContext } from "../contexts/authContext";
@@ -17,6 +17,7 @@ import { ResponseButton } from "../components/consultationDetails/ResponseButton
 import { HamburgerMenu } from "../components/HamburgerMenu";
 import { EditButton } from "../components/consultationDetails/EditButton";
 import { CancelButton } from "../components/consultationDetails/CancelButton";
+import { ToastContainer } from 'react-toastify';
 
 export const DetailsConsultationPage = () => {
   const { id } = useParams();
@@ -25,6 +26,7 @@ export const DetailsConsultationPage = () => {
   const [showResponseFiles, setShowResponseFiles] = useState(false);
   const [showDoctor, setShowDoctor] = useState(false);
   const [userType, setUserType] = useState(null);
+  const scrollToTopRef = useRef(null);
   const { currentUser } = useContext(AuthContext);
   const [isEditing, setIsEditing] = useState({
     title: false,
@@ -52,7 +54,7 @@ export const DetailsConsultationPage = () => {
   return (
     <div className="flex flex-col items-center justify-center  min-h-full ">
       <HamburgerMenu />
-      <ConsultationDetailsTitle navigate={navigate} />
+      <ConsultationDetailsTitle ref={scrollToTopRef} navigate={navigate} />
       <main className="flex flex-col justify-start items-center bg-smokeWhite border-[0.1rem] border-solid border-lightCakeBlue p-6 rounded-lg shadow-md w-[90%] mx-4 h-full mb-20">
         <PatientSection consultationDetails={consultationDetails} />
         <div className="w-full border-t-[0.1rem] border solid border-lightBlue my-2 "></div>
@@ -106,8 +108,9 @@ export const DetailsConsultationPage = () => {
             consultationDetails={consultationDetails}
           />
           <div className="w-full flex  mx-4  gap-2">
-            <EditButton setIsEditing={setIsEditing} isEditing={isEditing} />
-            <CancelButton />
+            <EditButton consultationDetails={consultationDetails}  scrollToRef={scrollToTopRef} setIsEditing={setIsEditing} isEditing={isEditing} />
+            <CancelButton setConsultationDetails={setConsultationDetails} consultationDetails={consultationDetails} />
+            <ToastContainer/>
           </div>
         </div>
       </main>

@@ -9,8 +9,7 @@ export const ConsultationFilesButton = ({
 	showConsultationFiles,
 	consultationDetails,
 }) => {
-	const isDisabled =
-	!consultationDetails.consultationFiles;
+	const isDisabled = !consultationDetails.consultationFiles || consultationDetails.consultationFiles.length === 0;
 	return (
 		<>
 			<button

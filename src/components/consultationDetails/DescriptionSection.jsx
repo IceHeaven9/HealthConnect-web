@@ -13,7 +13,7 @@ export const DescriptionSection = ({
         </div>
         <textarea
           name="description"
-          className=" w-full h-[10rem] p-2 font-medium break-words"
+          className={`w-full h-[10rem] p-2 font-medium break-words rounded-lg ${isEditing.description ? "border-solid border-[0.2rem] border-lightBlue": "" } `}
           value={consultationDetails.description}
           onChange={(e) =>
             setConsultationDetails({

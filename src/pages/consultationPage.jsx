@@ -296,16 +296,22 @@ export const ConsultationPage = () => {
           <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
         </Accordion>
       </div>
-      <div className="flex  mx-4 md:mb-[27rem] gap-2">
+      <div className="flex  mx-4 md:mb-[27rem] mb-48 gap-2">
         <Link
           to="/create-consultation"
-          className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform"
+          className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base text-center p-2 rounded-lg active:scale-95 transition-transform transform"
         >
           Añadir nueva consulta
         </Link>
         <button
           className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform"
-          onClick={() => {
+          onClick={() => openModal()}
+        >
+          Historial de consultas
+        </button>
+        <Modal
+          isOpen={isModalOpen}
+          onAfterOpen={() => {
             const historyUrl = `${API_HOST}/my-consultations`;
             const myHeaders = new Headers();
             myHeaders.append("Authorization", token);
@@ -317,16 +323,19 @@ export const ConsultationPage = () => {
             fetch(historyUrl, requestOptions)
               .then((response) => response.json())
               .then((result) => {
-                setHistoryConsultations(result);
-                openModal();
+                const translatedResult = result.map((consultation) => ({
+                  ...consultation,
+                  status:
+                    consultation.status === "pending"
+                      ? "pendiente"
+                      : consultation.status === "cancelled"
+                      ? "cancelada"
+                      : "completada",
+                }));
+                setHistoryConsultations(translatedResult);
               })
               .catch((error) => console.error(error));
           }}
-        >
-          Historial de consultas
-        </button>
-        <Modal
-          isOpen={isModalOpen}
           onRequestClose={closeModal}
           style={customStyles}
         >

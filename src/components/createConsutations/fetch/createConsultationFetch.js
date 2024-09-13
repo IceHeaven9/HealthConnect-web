@@ -41,7 +41,7 @@ export const createConsultationFetch = (
 		redirect: "follow",
 	};
 
-	fetch(`${API_HOST}}/consultations`, requestOptions)
+	fetch(`${API_HOST}/consultations`, requestOptions)
 		.then((response) => response.json())
 		.then((result) => {
 			if (result.message) {

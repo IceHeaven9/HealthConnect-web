@@ -7,7 +7,6 @@ import { DescriptionTitle } from "./DescriptionTitle";
 import { DescriptionFormTopSection } from "./DescriptionFormTopSection";
 import { DescriptionFormMidSection } from "./DescriptionFormMidSection";
 import { DescriptionFormBottomSection } from "./DescriptionFormBottomSection";
-import { Footer } from "../Footer";
 import {HamburgerMenu} from '../HamburgerMenu';
 
 export const DescriptionForm = ({
@@ -110,7 +109,6 @@ export const DescriptionForm = ({
                     </button>
                 </div>
             </form>
-            <Footer/>
         </>
     );
 };

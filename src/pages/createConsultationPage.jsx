@@ -10,7 +10,6 @@ import { useAuthGuard } from "../hooks/authGuard";
 import { useNavigate } from "react-router-dom";
 import { fetchAvailableTimes } from "../components/createConsutations/fetch/availableTimesFetch";
 import { NewConsultationTitle } from "../components/createConsutations/NewConsultationTitle";
-import { Footer } from "../components/Footer";
 import {HamburgerMenu} from '../components/HamburgerMenu';
 import "react-calendar/dist/Calendar.css";
 
@@ -128,7 +127,7 @@ export const CreateConsultationPage = () => {
 					Continuar
 				</button>
 			</div>
-      <Footer/>
+    
 		</main>
 	);
 };

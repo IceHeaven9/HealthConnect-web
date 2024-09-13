@@ -18,12 +18,19 @@ export const fetchConsultationDetails = async (setUserType,currentUser,setConsul
     }
 
     const data = await response.json();
+    const translatedStatus =
+      data.status === "pending"
+        ? "Pendiente"
+        : data.status === "cancelled"
+        ? "Cancelada"
+        : "Completada";
     setConsultationDetails({
       id: data.id,
       title: data.title,
       severity: data.severity,
       description: data.description,
-      status: data.status,
+      status: translatedStatus,
+      doctorId:data.doctorId,
       date: data.date,
       patientAvatar: data.patientAvatar,
       patientName: data.patientName,
