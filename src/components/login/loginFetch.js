@@ -7,15 +7,14 @@ export const login = async (email, password) => {
 
   const raw = JSON.stringify({
     email: email,
-    password: password
+    password: password,
   });
-  console.log(raw);
 
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
     body: raw,
-    redirect: "follow"
+    redirect: "follow",
   };
 
   const response = await fetch(`${API_HOST}/login`, requestOptions);

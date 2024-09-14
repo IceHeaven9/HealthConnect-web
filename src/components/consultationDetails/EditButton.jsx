@@ -4,14 +4,22 @@ import { FaEdit, FaSave } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/authContext";
 import { API_HOST } from "../../constants";
-import { notify } from './../../utils/notify';
+import { notify } from "./../../utils/notify";
 
-export const EditButton = ({ setIsEditing, scrollToRef, isEditing, consultationDetails }) => {
+export const EditButton = ({
+  setIsEditing,
+  scrollToRef,
+  isEditing,
+  consultationDetails,
+}) => {
   const token = useContext(AuthContext);
   const [isDisabled, setIsDisabled] = useState(false);
 
   useEffect(() => {
-    if (consultationDetails.status === "Completada" || consultationDetails.status === "Cancelada") {
+    if (
+      consultationDetails.status === "Completada" ||
+      consultationDetails.status === "Cancelada"
+    ) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
@@ -41,12 +49,14 @@ export const EditButton = ({ setIsEditing, scrollToRef, isEditing, consultationD
       .then((result) => {
         notify(result.message);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   return (
     <button
-      className={`mb-4 p-2 w-full text-end text-smokeWhite rounded-lg flex flex-col items-center font-medium ${isDisabled ? "bg-warning/50": ""} ${isEditing.title ? "bg-green-500" : "bg-warning"} `}
+      className={`mb-4 p-2 w-full text-end text-smokeWhite rounded-lg flex flex-col items-center font-medium ${
+        isDisabled ? "bg-warning/50" : ""
+      } ${isEditing.title ? "bg-green-500" : "bg-warning"} `}
       onClick={() => {
         if (isEditing.title) {
           handleSave();
@@ -56,7 +66,10 @@ export const EditButton = ({ setIsEditing, scrollToRef, isEditing, consultationD
           description: !prev.description,
           severity: !prev.severity,
         }));
-        scrollToRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollToRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       }}
       disabled={isDisabled}
     >
