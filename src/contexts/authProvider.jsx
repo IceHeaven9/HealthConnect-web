@@ -9,7 +9,10 @@ export function AuthContextProvider({ children }) {
 
   function onLogin(token) {
     localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, token);
-    setCurrentUser(getUserFromToken(token));
+    setCurrentUser({
+      decoded: getUserFromToken(token),
+      coded: token
+    });
   }
 
   function onLogout() {
@@ -34,7 +37,10 @@ function getUserFromLocalStorage() {
   let currentUser = null;
   const userToken = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
   if (userToken) {
-    currentUser = getUserFromToken(userToken);
+    currentUser = {
+      decoded: getUserFromToken(userToken),
+      coded: userToken
+    };
   }
   return currentUser;
 }

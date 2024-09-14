@@ -1,3 +1,5 @@
+import { API_HOST } from "../../../constants";
+
 // fetchDoctors.js
 export const fetchDoctors = (selectedSpecialty, setDoctors) => {
 	const requestOptions = {
@@ -5,7 +7,7 @@ export const fetchDoctors = (selectedSpecialty, setDoctors) => {
 		redirect: "follow",
 	};
 	fetch(
-		`http://localhost:3000/specialities/${selectedSpecialty}/doctors`,
+		`${API_HOST}/specialities/${selectedSpecialty}/doctors`,
 		requestOptions
 	)
 		.then((response) => response.json())

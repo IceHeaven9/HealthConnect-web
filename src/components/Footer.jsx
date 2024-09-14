@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 export const Footer = () => {
@@ -12,8 +13,8 @@ export const Footer = () => {
         <div className="flex flex-row w-[65%] items-center justify-center gap-16 text-nowrap">
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="font-bold text-3xl text-center text-[#ffffff] pb-3">HealthConnect</div>
-            <a href="#xxx" className="hover:underline text-xl">Sobre nosotros</a>
-            <a href="#xxx" className="hover:underline text-xl">Politica de privacidad</a>
+            <Link to="#xxx" className="hover:underline text-xl">Sobre nosotros</Link>
+            <Link to="#xxx" className="hover:underline text-xl">Politica de privacidad</Link>
           </div>
         </div>
       </div>

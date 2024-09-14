@@ -16,6 +16,31 @@ export const customStyles = {
 	},
 };
 
+export const maxContent = {
+	content: {
+		height: "max-content",
+		display: "flex",
+		flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+		border: "1px solid rgb(98, 142, 255)",
+		backgroundColor: "rgb(245, 245, 245)",
+		width: "90%",
+		borderRadius: "25px",
+		top: "50%",
+		left: "50%",
+		right: "auto",
+		bottom: "auto",
+		marginRight: "-50%",
+		transform: "translate(-50%, -50%)",
+		overflow: "auto",
+		WebkitOverflowScrolling: "touch",
+	},
+};
+
+
+export const API_HOST = import.meta.env.VITE_API_HOST;
+
 export const miniCustomStyles = {
 	content: {
 		height: "55%",

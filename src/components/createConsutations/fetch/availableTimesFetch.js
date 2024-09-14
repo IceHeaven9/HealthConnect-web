@@ -1,3 +1,5 @@
+import { API_HOST } from "../../../constants";
+
 // fetchAvailableTimes.js
 export const fetchAvailableTimes = (
 	date,
@@ -7,7 +9,7 @@ export const fetchAvailableTimes = (
 ) => {
 	const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
 	const formattedDate = localDate.toISOString().split("T")[0];
-	let url = `http://localhost:3000/availability?specialityId=${specialtyId}&date=${formattedDate}`;
+	let url = `${API_HOST}/availability?specialityId=${specialtyId}&date=${formattedDate}`;
 	if (doctor) {
 		url += `&doctorId=${doctor.id}`;
 	}

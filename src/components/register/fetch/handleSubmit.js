@@ -1,3 +1,4 @@
+import { API_HOST } from "../../../constants";
 import { notify } from "../../../utils/notify";
 export const handleSubmit = async (
 	e,
@@ -32,7 +33,7 @@ export const handleSubmit = async (
 	};
 
 	try {
-		const response = await fetch("http://localhost:3000/register", {
+		const response = await fetch(`${API_HOST}/register`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

@@ -1,9 +1,9 @@
 import Modal from "react-modal";
 import PropTypes from "prop-types";
 import { IoClose } from "react-icons/io5";
-import { customStyles, miniCustomStyles } from "../../constants";
 import { FaUserDoctor } from 'react-icons/fa6';
 import { useState } from 'react';
+import { customStyles, miniCustomStyles } from "../../constants";
 
 export const MenuDoctorsModal = ({
     doctorsModalIsOpen,

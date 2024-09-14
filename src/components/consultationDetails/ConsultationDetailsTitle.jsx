@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
+import { forwardRef } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-export const ConsultationDetailsTitle = ({ navigate }) => {
+export const ConsultationDetailsTitle = forwardRef(({ navigate }, ref) => {
 	return (
 		<>
-			<div className="flex text-center p-6 text-lightBlue font-bold text-3xl w-full ">
-				<button onClick={() => navigate("/")} className="w-max">
+			<div  ref={ref} className="flex text-center p-6 text-lightBlue font-bold text-3xl w-full ">
+				<button onClick={() => navigate(-1)} className="w-max">
 					{" "}
 					<IoMdArrowRoundBack />
 				</button>
@@ -13,8 +14,10 @@ export const ConsultationDetailsTitle = ({ navigate }) => {
 			</div>
 		</>
 	);
-};
+})
 
 ConsultationDetailsTitle.propTypes = {
 	navigate: PropTypes.func.isRequired,
 };
+
+ConsultationDetailsTitle.displayName = "ConsultationDetailsTitle";

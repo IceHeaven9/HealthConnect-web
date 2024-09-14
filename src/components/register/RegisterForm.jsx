@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react';
-import { RegisterPagetItle } from "./registerPagetItle";
+import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { RegisterPagetItle } from "./RegisterPagetItle";
 import { EmailInput } from "./EmailInput";
 import { UserNameInput } from "./UserNameInput";
 import { FirstNameInput } from "./FirstNameInput";
@@ -13,8 +15,6 @@ import { SpecialtiesSection } from "./SpecialtiesSection";
 import { RegisterButton } from "./RegisterButton";
 import { handleUserTypeChange } from "./fetch/handleUserType";
 import { handleSubmit } from "./fetch/handleSubmit";
-import { ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 
 export const RegisterForm = () => {

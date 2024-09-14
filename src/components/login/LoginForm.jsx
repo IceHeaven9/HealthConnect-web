@@ -1,13 +1,13 @@
 import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../../contexts/authContext";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { AuthContext } from "../../contexts/authContext";
 import { login } from "./loginFetch";
 import { notify } from "../../utils/notify";
-import { LoginFormTopSection } from "./loginFormTopSection";
+import { LoginFormTopSection } from "./LoginFormTopSection";
 import { LoginFormEmailSection } from "./LoginFormEmailSection";
 import { LoginFormPassSection } from "./LoginFormPassSection";
-import { LoginFormBottomSection } from "./loginFormBottomSection";
+import { LoginFormBottomSection } from "./LoginFormBottomSection";
 
 export const LoginForm = () => {
 	const [email, setEmail] = useState("");

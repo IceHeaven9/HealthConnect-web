@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Footer } from "../components/Footer";
 
 export const UserProfile = () => {
   // Estado para manejar la imagen
   const [image, setImage] = useState(null);
+
+  const fileInputRef = useRef(null);
 
   // Estados para manejar el modo de edición y los valores de los campos
   const [isEditing, setIsEditing] = useState(false);
@@ -17,12 +19,16 @@ export const UserProfile = () => {
   // Función para manejar la subida de la imagen
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    setImage(URL.createObjectURL(file));
+    if (file){
+      setImage(URL.createObjectURL(file));
+      fileInputRef.current.value = null; //Esto va a resetear el valor del input
+    }
   };
 
   // Función para eliminar la imagen y volver a la del placeholder
   const handleRemoveImage = () => {
     setImage(null); // Restablecer la imagen a null para mostrar el placeholder
+    fileInputRef.current.value = null; //Esto resetea el valor del input
   };
 
   // Función para cambiar el estado de edición
@@ -32,7 +38,7 @@ export const UserProfile = () => {
 
   return (
     <div className='px-4'>  
-      <div className="flex flex-col w-full max-w-md mx-auto p-6 rounded-3xl shadow-lg mt-8 bg-lightBlue ">
+      <div className="flex flex-col w-full max-w-md mx-auto p-6 rounded-lg shadow-lg mt-8 bg-lightBlue ">
         {/* Encabezado con logo */}
         <div className="flex flex-row gap-3 pb-4 bg-lightBlue">
           <div className="flex items-center w-full">
@@ -52,6 +58,7 @@ export const UserProfile = () => {
               alt="Profile"
               className="w-24 h-24 object-cover rounded-full border-4 border-white shadow-md"
             />
+
             {/* Botón para subir imagen */}
             <label
               htmlFor="upload"
@@ -60,6 +67,7 @@ export const UserProfile = () => {
               <input
                 id="upload"
                 type="file"
+                ref={fileInputRef}
                 className="hidden"
                 onChange={handleImageUpload}
               />
@@ -76,10 +84,14 @@ export const UserProfile = () => {
               </button>
             )}
           </div>
-          <h2 className="mt-4 text-2xl font-semibold text-smokeWhite">
-            Bienvenido/a, {name} {lastName}
+          {/* Mostraremos el saludo solo si el nombre es diferente de "Nombre" */}
+          {name !== "Nombre" && (
+            <h2 className="mt-4 text-2xl font-semibold text-smokeWhite">
+              Bienvenido/a, {name}
           </h2>
-          <p className="text-sm text-gray-500">{email}</p>
+          )}
+          
+          <p className="text-sm text-gray-300">{email}</p>
         </div>
 
         {/* Formulario de Edición / Vista de Información */}
@@ -153,7 +165,6 @@ export const UserProfile = () => {
                     <option value="Carretera">Carretera</option>
                     <option value="Camino">Camino</option>
                     <option value="Vía">Vía</option>
-
 
                   </select>
                   <input

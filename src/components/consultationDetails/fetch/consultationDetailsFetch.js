@@ -1,11 +1,11 @@
-
+import { API_HOST } from "../../../constants";
 export const fetchConsultationDetails = async (setUserType,currentUser,setConsultationDetails,id ) => {
 
   const token = localStorage.getItem("TOKEN");
 
   try {
     const response = await fetch(
-      `http://localhost:3000/consultations/${id}/details`,
+      `${API_HOST}/consultations/${id}/details`,
       {
         headers: {
           Authorization: `${token}`,
@@ -18,12 +18,19 @@ export const fetchConsultationDetails = async (setUserType,currentUser,setConsul
     }
 
     const data = await response.json();
+    const translatedStatus =
+      data.status === "pending"
+        ? "Pendiente"
+        : data.status === "cancelled"
+        ? "Cancelada"
+        : data.status === "completed"? "Completada" : "";
     setConsultationDetails({
       id: data.id,
       title: data.title,
       severity: data.severity,
       description: data.description,
-      status: data.status,
+      status: translatedStatus,
+      doctorId:data.doctorId,
       date: data.date,
       patientAvatar: data.patientAvatar,
       patientName: data.patientName,
@@ -38,7 +45,7 @@ export const fetchConsultationDetails = async (setUserType,currentUser,setConsul
       responseFiles: data.responseFiles,
     });
   
-    setUserType(currentUser.userType);
+    setUserType(currentUser.decoded.userType);
   } catch (error) {
     console.error("Error fetching consultation details:", error);
   }
