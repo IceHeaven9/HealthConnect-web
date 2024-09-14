@@ -1,20 +1,21 @@
-import { Accordion, AccordionItem } from "@szhsin/react-accordion";
 import { HamburgerMenu } from "../components/HamburgerMenu";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { IoIosArrowDown } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
-import { AuthContext } from "../contexts/authContext";
 import { Link } from "react-router-dom";
 import { customStyles } from "../constants";
-import { fetchHistoryConsultations } from "../components/myConsultations/fetch/historyFetch";
 import { useState, useContext } from "react";
-import Modal from "react-modal"; // Ensure Modal is imported
+import Modal from "react-modal";
+import { useAuthGuard } from "../hooks/authGuard";
+import { AuthContext } from "../contexts/authContext";
+import { UserCard } from "../components/myConsultations/UserCard";
 
 export const ConsultationDoctorPage = () => {
   const { currentUser } = useContext(AuthContext);
-  const [historyConsultations, setHistoryConsultations] = useState([]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const token = currentUser?.coded;
+
+  useAuthGuard("/consultation/:id/details");
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
@@ -33,14 +34,16 @@ export const ConsultationDoctorPage = () => {
         <p className="text-4xl font-bold font-roboto mt-1"> Mis consultas</p>
       </div>
 
-      {/* BUSCADOR */}
-      <div className="flex justify-center mt-4">
-        <input
-          type="text"
-          placeholder="Buscar consulta..."
-          className="bg-lightCakeBlue rounded-xl p-2 w-1/2"
+      {/* DATOS DEL DOCTOR */}
+      <UserCard />
+      {/* <div className="flex flex-col gap-3 p-3 items-center mx-auto mb-8">
+        <img
+          src={currentUser?.decoded.avatar}
+          alt="Doctor Avatar"
+          className="w-20 h-20 rounded-full border-[0.1rem] border-solid border-lightBlue"
         />
-      </div>
+        <p className="text-2xl font-bold">{currentUser?.decoded.userName}</p>
+      </div> */}
 
       {/* BOTON DE ASIGNAR CONSULTA */}
       <div className="flex  mx-4 md:mb-[27rem] mb-12 gap-2">
@@ -60,43 +63,14 @@ export const ConsultationDoctorPage = () => {
         </button>
         <Modal
           isOpen={isModalOpen}
-          onAfterOpen={() =>
-            fetchHistoryConsultationsºº(token, setHistoryConsultations)
-          }
           onRequestClose={closeModal}
           style={customStyles}
         ></Modal>
       </div>
 
-      {/* ACCORDION */}
       {/* PRÓXIMAS CONSULTAS */}
-      <Accordion>
-        <AccordionItem
-          header={
-            <div className="flex gap-1">
-              <div>PRÓXIMAS CONSULTAS</div>
-              <IoIosArrowDown />
-            </div>
-          }
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </AccordionItem>
 
-        {/* CONSULTAS PENDIENTES */}
-        <AccordionItem
-          header={
-            <div className="flex gap-1">
-              <div>CONSULTAS PENDIENTES</div>
-              <IoIosArrowDown />
-            </div>
-          }
-        >
-          Quisque eget luctus mi, vehicula mollis lorem. Proin fringilla vel
-          erat quis sodales. Nam ex enim, eleifend venenatis lectus vitae,
-          accumsan auctor mi.
-        </AccordionItem>
-      </Accordion>
+      {/* CONSULTAS PENDIENTES */}
     </main>
   );
 };
