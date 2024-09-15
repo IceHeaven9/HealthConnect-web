@@ -31,11 +31,6 @@ export const UnassignedDoctorConsultationPage = () => {
       .catch((error) => console.error(error));
   };
 
-  useEffect(() => {
-    fetchDoctorData();
-    fetchUnassignedConsultations();
-  }, []);
-
   // Fetch para las consultas no asignadas
   const fetchUnassignedConsultations = useCallback(() => {
     const myHeaders = new Headers();
@@ -65,9 +60,14 @@ export const UnassignedDoctorConsultationPage = () => {
   }, [token, data.specialityIds]);
 
   useEffect(() => {
-    fetchUnassignedConsultations();
-  }, [fetchUnassignedConsultations]);
+    fetchDoctorData();
+  }, []);
 
+  useEffect(() => {
+    if (data.specialityIds) {
+      fetchUnassignedConsultations();
+    }
+  }, [data.specialityIds]);
   return (
     <main>
       {/* MENU */}
