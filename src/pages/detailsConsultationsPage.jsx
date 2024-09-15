@@ -28,6 +28,7 @@ export const DetailsConsultationPage = () => {
   const [userType, setUserType] = useState(null);
   const scrollToTopRef = useRef(null);
   const { currentUser } = useContext(AuthContext);
+  const userTypeForRender = currentUser?.decoded?.userType;
   const [isEditing, setIsEditing] = useState({
     title: false,
     description: false,
@@ -92,11 +93,13 @@ export const DetailsConsultationPage = () => {
         <SpecialtySection consultationDetails={consultationDetails} />
         <div className="w-full border-t-[0.1rem] border solid border-lightBlue my-2 "></div>
         <div className="w-full flex flex-col items-center gap-4">
-          <DoctorButton
-            setShowDoctor={setShowDoctor}
-            showDoctor={showDoctor}
-            consultationDetails={consultationDetails}
-          />
+        {userTypeForRender !== "doctor" && (
+            <DoctorButton
+              setShowDoctor={setShowDoctor}
+              showDoctor={showDoctor}
+              consultationDetails={consultationDetails}
+            />
+          )}
           <ConsultationFilesButton
             setShowConsultationFiles={setShowConsultationFiles}
             showConsultationFiles={showConsultationFiles}
@@ -108,8 +111,12 @@ export const DetailsConsultationPage = () => {
             consultationDetails={consultationDetails}
           />
           <div className="w-full flex  mx-4  gap-2">
+          {userTypeForRender !== "doctor" && (
+            <>
             <EditButton consultationDetails={consultationDetails}  scrollToRef={scrollToTopRef} setIsEditing={setIsEditing} isEditing={isEditing} />
             <CancelButton setConsultationDetails={setConsultationDetails} consultationDetails={consultationDetails} />
+            </>
+          )}
             <ToastContainer/>
           </div>
         </div>

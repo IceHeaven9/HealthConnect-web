@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import { API_HOST, customStyles } from "../../constants";
+import {  customStyles } from "../../constants";
 import { IoClose } from "react-icons/io5";
 import { SearchBar } from "../myConsultations/SearchBar";
 import { fetchHistoryConsultations } from "./fetch/historyFetch";
@@ -9,6 +9,7 @@ export const HistoryButton = ({
 	closeModal,
 	isModalOpen,
 	token,
+	navigate,
 	currentUser,
 	historyConsultations,
 	setHistoryConsultations,

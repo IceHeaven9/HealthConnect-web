@@ -76,6 +76,7 @@ export const ConsultationDoctorPage = () => {
 					closeModal={closeModal}
 					isModalOpen={isModalOpen}
 					token={token}
+					navigate={navigate}
 					currentUser={currentUser}
 					historyConsultations={historyConsultations}
 					setHistoryConsultations={setHistoryConsultations}
