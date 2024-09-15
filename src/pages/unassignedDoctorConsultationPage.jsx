@@ -20,7 +20,6 @@ export const UnassignedDoctorConsultationPage = () => {
     fetch(`${API_HOST}/doctors/${currentUser.decoded.id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log("Doctor data:", data);
         const specialityIds = data.specialities
           ? Object.keys(data.specialities).map(Number)
           : [];
