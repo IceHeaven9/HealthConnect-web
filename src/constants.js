@@ -16,6 +16,24 @@ export const customStyles = {
 	},
 };
 
+export const consultationsFilesModal = {
+	content: {
+		height: "max-content",
+		width: "90%",
+		borderRadius: "25px",
+		top: "50%",
+		left: "50%",
+		right: "auto",
+		bottom: "auto",
+		marginRight: "-50%",
+		transform: "translate(-50%, -50%)",
+		overflow: "auto",
+		WebkitOverflowScrolling: "touch",
+		backgroundColor: "rgb(202, 214, 255)",
+	},
+};
+
+
 export const maxContent = {
 	content: {
 		height: "max-content",

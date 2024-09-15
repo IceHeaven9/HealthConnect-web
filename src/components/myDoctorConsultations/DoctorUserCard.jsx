@@ -23,11 +23,11 @@ export const DoctorUserCard = ({ currentUser, data }) => {
 DoctorUserCard.propTypes = {
 	currentUser: PropTypes.shape({
 		decoded: PropTypes.shape({
-			avatar: PropTypes.string.isRequired,
-			userName: PropTypes.string.isRequired,
-		}).isRequired,
-	}).isRequired,
+			avatar: PropTypes.string,
+			userName: PropTypes.string,
+		}),
+	}),
 	data: PropTypes.shape({
 		specialities: PropTypes.string,
-	}).isRequired,
+	}),
 };

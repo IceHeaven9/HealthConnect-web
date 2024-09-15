@@ -58,9 +58,9 @@ export const DetailsConsultationPage = () => {
       <ConsultationDetailsTitle ref={scrollToTopRef} navigate={navigate} />
       <main className="flex flex-col justify-start items-center bg-smokeWhite border-[0.1rem] border-solid border-lightCakeBlue p-6 rounded-lg shadow-md w-[90%] mx-4 h-full mb-20">
         <PatientSection consultationDetails={consultationDetails} />
-        <div className="w-full border-t-[0.1rem] border solid border-lightBlue my-2 "></div>
+        <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
         <DateSection consultationDetails={consultationDetails} />
-        <div className="w-full border-t-[0.1rem] border solid border-lightBlue my-2 "></div>
+        <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
         <ConsultationTitle
           userType={userType}
           isEditing={isEditing}
@@ -69,7 +69,7 @@ export const DetailsConsultationPage = () => {
           consultationDetails={consultationDetails}
           setConsultationDetails={setConsultationDetails}
         />
-        <div className="w-full border-t-[0.1rem] border solid border-lightBlue my-2 "></div>
+        <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
         <DescriptionSection
           userType={userType}
           setIsEditing={setIsEditing}
@@ -78,7 +78,7 @@ export const DetailsConsultationPage = () => {
           consultationDetails={consultationDetails}
           setConsultationDetails={setConsultationDetails}
         />
-        <div className="w-full border-t-[0.1rem] border solid border-lightBlue my-2 "></div>
+        <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
         <SeveritySection
           userType={userType}
           setIsEditing={setIsEditing}
@@ -87,11 +87,11 @@ export const DetailsConsultationPage = () => {
           consultationDetails={consultationDetails}
           setConsultationDetails={setConsultationDetails}
         />
-        <div className="w-full border-t-[0.1rem] border solid border-lightBlue my-2 "></div>
+        <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
         <StatusSection consultationDetails={consultationDetails} />
-        <div className="w-full border-t-[0.1rem] border solid border-lightBlue my-2 "></div>
+        <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
         <SpecialtySection consultationDetails={consultationDetails} />
-        <div className="w-full border-t-[0.1rem] border solid border-lightBlue my-2 "></div>
+        <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
         <div className="w-full flex flex-col items-center gap-4">
         {userTypeForRender !== "doctor" && (
             <DoctorButton

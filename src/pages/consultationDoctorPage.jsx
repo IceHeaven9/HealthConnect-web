@@ -19,17 +19,23 @@ export const ConsultationDoctorPage = () => {
 	const [data, setData] = useState({});
 	const [currentPage, setCurrentPage] = useState(0); // Define currentPage state
 	const [historyConsultations, setHistoryConsultations] = useState([]);
-	const [limit, setLimit] = useState(5); // Define limit state
+	const [limit] = useState(5); // Define limit state
 	const token = currentUser?.coded;
+	console.log(token);
 	const navigate = useNavigate();
 	const urlDate = new Date(Date.now()).toISOString().slice(0, 10);
 	const [startOrEndDate, setStartOrEndDate] = useState("");
+	
+	
+	useAuthGuard("/my-doctor-consultations");
 
-	useAuthGuard("/consultation/:id/details");
+	
+	useEffect(() => {
+		if (currentUser?.decoded?.userType === "patient") {
+				navigate("/*");
+		}
+}, [currentUser, navigate]);
 
-	if (currentUser.decoded.userType === "patient") {
-		navigate("/*");
-	}
 
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
