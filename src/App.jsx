@@ -13,6 +13,7 @@ import { UserProfilePage } from "./pages/userProfilePage";
 import { Footer } from "./components/Footer";
 import { ConsultationPage } from "./pages/ConsultationPage";
 import { ConsultationDoctorPage } from "./pages/consultationDoctorPage";
+import { UnassignedDoctorConsultationPage } from "./pages/UnassignedDoctorConsultationPage";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
           <Route
             path="/my-doctor-consultations"
             element={<ConsultationDoctorPage />}
+          />
+          <Route
+            path="/my-doctor-unassigned-consultations"
+            element={<UnassignedDoctorConsultationPage />}
           />
           <Route
             path="/create-consultation"
