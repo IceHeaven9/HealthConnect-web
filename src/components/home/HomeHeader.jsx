@@ -1,4 +1,4 @@
-import { HamburgerMenu } from "../HamburgerMenu"; 
+import { HamburgerMenu } from "../HamburgerMenu";
 
 export const HomeHeader = () => {
     return (
@@ -6,9 +6,9 @@ export const HomeHeader = () => {
             {/* Logo y Nombre */}
             <div className="flex items-center space-x-4">
                 <div className="w-20 h-20">
-                    <img 
-                        src="/images/Perfil_healthConnect-Photoroom.png" 
-                        alt="Logo Preview" 
+                    <img
+                        src="/images/Perfil_healthConnect-Photoroom.png"
+                        alt="Logo Preview"
                         className="w-full h-full object-cover"
                     />
                 </div>
@@ -17,7 +17,7 @@ export const HomeHeader = () => {
                 </div>
             </div>
             {/* Menú Hamburguesa */}
-            <div className="relative">
+            <div className="flex justify-center items-center h-12 w-12">
                 <HamburgerMenu />
                 {/* Ocultar el botón de inicio en la página actual */}
                 <style>{`
