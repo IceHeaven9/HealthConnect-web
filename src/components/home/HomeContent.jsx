@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { HomeButtons } from "./homeButtons";
 import { API_HOST } from "../../constants";
 
-{/*Iconos especialidades*/}
+{
+  /*Iconos especialidades*/
+}
 const specialtyIcons = [
   { id: 1, icon: "cardiologia.png" },
   { id: 2, icon: "cabello.png" },
@@ -30,7 +32,9 @@ export const HomeContent = () => {
   const [specialties, setSpecialties] = useState([]);
   const [doctors, setDoctors] = useState([]);
 
-  {/*Función para obtener los iconos de especialidades */}
+  {
+    /*Función para obtener los iconos de especialidades */
+  }
   const getSpecialtyIcon = (specialtyId) => {
     const icon = specialtyIcons.find(
       (iconObj) => iconObj.id === specialtyId
@@ -40,7 +44,9 @@ export const HomeContent = () => {
       : "/images/specialtyIcons/default.png";
   };
 
-  {/*Función para obtener especialidades desde el backend */}
+  {
+    /*Función para obtener especialidades desde el backend */
+  }
   const fetchSpecialties = async () => {
     try {
       const response = await fetch(`${API_HOST}/specialities`);
@@ -51,7 +57,9 @@ export const HomeContent = () => {
     }
   };
 
-  {/* Función para obtener doctores desde el backend*/}
+  {
+    /* Función para obtener doctores desde el backend*/
+  }
   const fetchDoctors = async () => {
     try {
       const response = await fetch(`${API_HOST}/doctors`);
@@ -79,8 +87,8 @@ export const HomeContent = () => {
             Tu salud simplificada.
           </h1>
           <p className="text-base md:text-lg leading-relaxed mb-6 text-blue-600">
-            Hacemos que sea fácil reservar citas con los mejores profesionales de
-            la salud.
+            Hacemos que sea fácil reservar citas con los mejores profesionales
+            de la salud.
           </p>
           <ul className="list-disc list-inside text-base md:text-lg leading-relaxed mb-6 text-blue-600">
             <li>
@@ -92,8 +100,8 @@ export const HomeContent = () => {
               citas en línea con solo unos pocos clics.
             </li>
             <li>
-              <span className="font-semibold">Sin esperas:</span> elija el horario
-              que mejor se adapte a sus necesidades.
+              <span className="font-semibold">Sin esperas:</span> elija el
+              horario que mejor se adapte a sus necesidades.
             </li>
             <li>
               <span className="font-semibold">Seguro y Privado:</span> su
@@ -114,7 +122,7 @@ export const HomeContent = () => {
       {/* Contenedor especialidades y doctores */}
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Especialidades */}
-        <div className="bg-blue-200 p-4 rounded-lg shadow-lg overflow-auto max-h-96">
+        <div className="bg-blue-200 px-4 pb-4 rounded-lg shadow-lg overflow-auto max-h-96">
           <h2 className="text-xl font-bold mb-4 text-blue-800 sticky top-0 bg-blue-200 p-2">
             Especialidades
           </h2>
@@ -141,7 +149,7 @@ export const HomeContent = () => {
         </div>
 
         {/* Doctores */}
-        <div className="bg-blue-200 p-4 rounded-lg shadow-lg overflow-auto max-h-96">
+        <div className="bg-blue-200 px-4 pb-4 rounded-lg shadow-lg overflow-auto max-h-96">
           <h2 className="text-xl font-bold mb-4 text-blue-800 sticky top-0 bg-blue-200 p-2">
             Doctores
           </h2>
