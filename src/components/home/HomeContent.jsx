@@ -29,13 +29,13 @@ export const HomeContent = () => {
     const [specialties, setSpecialties] = useState([]);
     const [doctors, setDoctors] = useState([]);
 
-    {/* Funcion para iconos especialidades */}
+    {/* Función para iconos de especialidades */}
     const getSpecialtyIcon = (specialtyId) => {
         const icon = specialtyIcons.find((iconObj) => iconObj.id === specialtyId)?.icon;
         return icon ? `/images/specialtyIcons/${icon}` : "/images/specialtyIcons/default.png";
     };
 
-    {/* Funcion para especialidades desde el back */}
+    {/* Función para especialidades desde el backend */}
     const fetchSpecialties = async () => {
         try {
             const response = await fetch("http://localhost:3000/specialities");
@@ -46,7 +46,7 @@ export const HomeContent = () => {
         }
     };
 
-    {/* Funcion para doctores desde el back */}
+    {/* Función para doctores desde el backend */}
     const fetchDoctors = async () => {
         try {
             const response = await fetch("http://localhost:3000/doctors");
@@ -64,21 +64,26 @@ export const HomeContent = () => {
 
     return (
         <main className="flex flex-col items-center bg-white p-4 gap-4 min-h-screen">
-            {/* Texto */}
-            <div className="text-center mb-6 max-w-4xl bg-blue-100 text-blue-600 p-6 rounded-lg shadow-md">
-                <h1 className="text-2xl md:text-3xl font-bold mb-4">Tu salud simplificada.</h1>
-                <p className="text-base md:text-lg leading-relaxed">
-                    Hacemos que sea fácil reservar citas con los mejores profesionales de la salud.
-                </p>
-                <ul className="list-disc list-inside text-base md:text-lg leading-relaxed">
-                    <li><span className="font-semibold">Atención experta:</span> conéctese con médicos calificados de diversas especialidades.</li>
-                    <li><span className="font-semibold">Reserva fácil:</span> programe sus citas en línea con solo unos pocos clics.</li>
-                    <li><span className="font-semibold">Sin esperas:</span> elija el horario que mejor se adapte a sus necesidades.</li>
-                    <li><span className="font-semibold">Seguro y Privado:</span> su información médica está protegida con nosotros.</li>
-                </ul>
-                <p className="text-base md:text-lg leading-relaxed mt-6">
-                    ¡Únase hoy y tome el control de su salud con facilidad!
-                </p>
+            {/* Texto con imagen de fondo */}
+            <div 
+                className="text-center mb-6 max-w-4xl text-blue-600 p-6 rounded-lg shadow-md bg-cover bg-center" 
+                style={{ backgroundImage: "url('/images/fondotext.jpg')" }}
+            >
+                <div className="bg-white bg-opacity-75 p-6 rounded-lg">
+                    <h1 className="text-2xl md:text-3xl font-bold mb-4">Tu salud simplificada.</h1>
+                    <p className="text-base md:text-lg leading-relaxed">
+                        Hacemos que sea fácil reservar citas con los mejores profesionales de la salud.
+                    </p>
+                    <ul className="list-disc list-inside text-base md:text-lg leading-relaxed">
+                        <li><span className="font-semibold">Atención experta:</span> conéctese con médicos calificados de diversas especialidades.</li>
+                        <li><span className="font-semibold">Reserva fácil:</span> programe sus citas en línea con solo unos pocos clics.</li>
+                        <li><span className="font-semibold">Sin esperas:</span> elija el horario que mejor se adapte a sus necesidades.</li>
+                        <li><span className="font-semibold">Seguro y Privado:</span> su información médica está protegida con nosotros.</li>
+                    </ul>
+                    <p className="text-base md:text-lg leading-relaxed mt-6">
+                        ¡Únase hoy y tome el control de su salud con facilidad!
+                    </p>
+                </div>
             </div>
 
             {/* Botones */}
@@ -86,12 +91,13 @@ export const HomeContent = () => {
                 <HomeButtons />
             </div>
 
-            {/* Contenedor especialidades */}
-            <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-blue-200 p-4 rounded-lg shadow-lg overflow-auto max-h-96">
-                    <h2 className="text-xl font-bold mb-4 text-blue-800">Especialidades</h2>
+            {/* Contenedor especialidades y doctores */}
+            <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Especialidades */}
+                <div className="bg-blue-200 p-4 rounded-lg shadow-lg max-h-96 overflow-y-auto">
+                    <h2 className="text-xl font-bold mb-4 text-blue-800 sticky top-0 bg-blue-200 p-2">Especialidades</h2>
                     {specialties.length > 0 ? (
-                        <ul className="space-y-3">
+                        <ul className="space-y-4">
                             {specialties.map(specialty => (
                                 <li key={specialty.id} className="flex items-center">
                                     <img
@@ -113,10 +119,10 @@ export const HomeContent = () => {
                 </div>
 
                 {/* Contenedor doctores */}
-                <div className="bg-blue-200 p-4 rounded-lg shadow-lg overflow-auto max-h-96">
-                    <h2 className="text-xl font-bold mb-4 text-blue-800">Doctores</h2>
+                <div className="bg-blue-200 p-4 rounded-lg shadow-lg max-h-96 overflow-y-auto">
+                    <h2 className="text-xl font-bold mb-4 text-blue-800 sticky top-0 bg-blue-200 p-2">Doctores</h2>
                     {doctors.length > 0 ? (
-                        <ul className="space-y-3">
+                        <ul className="space-y-4">
                             {doctors.map(doctor => (
                                 <li key={doctor.id} className="flex items-center">
                                     <img
@@ -140,3 +146,4 @@ export const HomeContent = () => {
         </main>
     );
 };
+
