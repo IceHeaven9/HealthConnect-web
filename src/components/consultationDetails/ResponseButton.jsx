@@ -2,18 +2,21 @@ import PropTypes from "prop-types";
 import { IoMdClose } from "react-icons/io";
 import { FaLaptopMedical, FaPlus } from "react-icons/fa6";
 import Modal from "react-modal";
-import { consultationsFilesModal } from "../../constants";
+import { API_HOST, consultationsFilesModal } from "../../constants";
 import { AuthContext } from "../../contexts/authContext";
 import { useContext, useState } from "react";
 import { FaEdit, FaSave } from "react-icons/fa";
 import { MdAddComment } from "react-icons/md";
 import { RiFolderAddFill } from "react-icons/ri";
+import { notify } from "../../utils/notify";
 export const ResponseButton = ({
 	showResponseFiles,
 	setShowResponseFiles,
 	consultationDetails,
+	consultationId,
 }) => {
 	const { currentUser } = useContext(AuthContext);
+	const token = currentUser?.coded;
 	const [isEditing, setIsEditing] = useState(false);
 	const [showUploadModal, setShowUploadModal] = useState(false);
 	const [selectedFiles, setSelectedFiles] = useState([]);
@@ -36,9 +39,29 @@ export const ResponseButton = ({
 	};
 
 	const handleSaveClick = () => {
-		// Logic to save the response content
+		const myHeaders = new Headers();
+		myHeaders.append("Authorization",token );
+		myHeaders.append("Content-Type", "application/json");
+
+		const raw = JSON.stringify({
+				"content": responseContent
+		});
+
+		const requestOptions = {
+				method: "POST",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow"
+		};
+
+		fetch(`${API_HOST}/consultations/${consultationId}/response`, requestOptions)
+				.then((response) => response.json())
+				.then((result) => notify(result.message))
+				.catch((error) => console.error(error));
+
 		setIsEditing(false);
-	};
+};
+
 	const handleFileUpload = (e, fileType) => {
 		const files = Array.from(e.target.files);
 		setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
@@ -98,7 +121,7 @@ export const ResponseButton = ({
                             <textarea
                                 className="mb-2 w-full h-max font-ubuntu font-bold text-md p-2 min-h-40 break-words rounded-xl"
                                 value={responseContent}
-                                onChange={(e) => setResponseContent(e.target.value)}
+                                onChange={(e) => {setglobalResponseContent(e.target.value),setResponseContent(e.target.value)}}
                             />
                         ) : responseContent ? (
                             <p className="mb-2 w-full h-max font-ubuntu font-bold text-md p-2 min-h-40 break-words">

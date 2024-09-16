@@ -17,11 +17,10 @@ export const ConsultationDoctorPage = () => {
 	const { currentUser } = useContext(AuthContext);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [data, setData] = useState({});
-	const [currentPage, setCurrentPage] = useState(0); // Define currentPage state
+	const [currentPage, setCurrentPage] = useState(0); 
 	const [historyConsultations, setHistoryConsultations] = useState([]);
-	const [limit] = useState(5); // Define limit state
+	const [limit] = useState(5); 
 	const token = currentUser?.coded;
-	console.log(token);
 	const navigate = useNavigate();
 	const urlDate = new Date(Date.now()).toISOString().slice(0, 10);
 	const [startOrEndDate, setStartOrEndDate] = useState("");
