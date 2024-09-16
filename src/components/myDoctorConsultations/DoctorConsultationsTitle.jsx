@@ -1,8 +1,9 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { ToastContainer } from "react-toastify";
 
-export const DoctorConsultationsTitle = () => {
+export const DoctorConsultationsTitle = ({navigate}) => {
+	
 	return (
 		<>
 			<div className="h-min w-max pl-4 pr-4 pt-1 text-lightBlue"></div>
@@ -17,4 +18,10 @@ export const DoctorConsultationsTitle = () => {
 			</div>
 		</>
 	);
+};
+
+
+
+DoctorConsultationsTitle.propTypes = {
+    navigate: PropTypes.func.isRequired,
 };

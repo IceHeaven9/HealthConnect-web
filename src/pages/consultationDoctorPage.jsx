@@ -64,7 +64,9 @@ export const ConsultationDoctorPage = () => {
 		<main className="mb-20">
 			{/* MENU */}
 			<HamburgerMenu />
-			<DoctorConsultationsTitle />
+			<DoctorConsultationsTitle 
+			navigate={navigate}
+			/>
 			{/* DATOS DEL DOCTOR */}
 			<DoctorUserCard currentUser={currentUser} data={data} />
 			{/* BOTON DE ASIGNAR CONSULTA */}
