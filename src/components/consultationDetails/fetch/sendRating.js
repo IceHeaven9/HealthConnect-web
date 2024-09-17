@@ -1,10 +1,11 @@
 import { API_HOST } from "../../../constants";
 
-export const sendRating = async (consultationId, rating) => {
-
-  const token = localStorage.getItem("TOKEN"); 
+export const sendRating = async (consultationId, newRating,token) => {
+console.log('Enviando nueva calificación:', newRating);
 
   const url = `${API_HOST}/consultations/${consultationId}/response/rate`;
+
+  const raw = JSON.stringify( {rating: newRating} );
 
   const requestOptions = {
     method: "PATCH",
@@ -12,8 +13,11 @@ export const sendRating = async (consultationId, rating) => {
       "Content-Type": "application/json",
       Authorization: `${token}`, 
     },
-    body: JSON.stringify({ rating }),
+    body: raw,
+    redirect: "follow"
   };
+
+  console.log(raw)
 
   try {
     const response = await fetch(url, requestOptions);

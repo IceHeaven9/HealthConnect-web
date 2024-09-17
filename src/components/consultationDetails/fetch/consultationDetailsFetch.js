@@ -24,6 +24,8 @@ export const fetchConsultationDetails = async (setUserType,currentUser,setConsul
         : data.status === "cancelled"
         ? "Cancelada"
         : data.status === "completed"? "Completada" : "";
+
+        
     setConsultationDetails({
       id: data.id,
       title: data.title,

@@ -12,7 +12,7 @@ import { notify } from "../../utils/notify";
 import { sendRating } from "./fetch/sendRating";
 
 // Componente de estrellas para calificación
-export const StarRating = ({ rating, onRate }) => {
+export const StarRating = ({ rating, handleRating }) => {
   const [hoverRating, setHoverRating] = useState(0);
 
   return (
@@ -25,7 +25,7 @@ export const StarRating = ({ rating, onRate }) => {
               ? "text-yellow-500"
               : "text-lightBlue"
           }`}
-          onClick={() => onRate(index + 1)}
+          onClick={() => handleRating(index + 1)}
           onMouseEnter={() => setHoverRating(index + 1)}
           onMouseLeave={() => setHoverRating(0)}
         >
@@ -70,7 +70,7 @@ export const ResponseButton = ({
     }
 
     try {
-      await sendRating(consultationDetails.id, newRating);
+      await sendRating(consultationId, newRating,token);
       setRating(newRating);
     } catch (error) {
       console.error("Error al enviar la calificación", error);
@@ -376,7 +376,7 @@ export const ResponseButton = ({
           >
             <IoMdClose size={30} />
           </button>
-          <StarRating rating={rating} onRate={handleRating} />
+          <StarRating rating={rating} handleRating={handleRating} />
         </div>
       </Modal>
     </>
@@ -387,7 +387,7 @@ ResponseButton.propTypes = {
   showResponseFiles: PropTypes.bool.isRequired,
   setShowResponseFiles: PropTypes.func.isRequired,
   consultationDetails: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     responseContent: PropTypes.string,
     responseFiles: PropTypes.arrayOf(
       PropTypes.shape({
@@ -396,7 +396,7 @@ ResponseButton.propTypes = {
       })
     ),
   }).isRequired,
-  consultationId: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  onRate: PropTypes.func.isRequired,
+  consultationId: PropTypes.number.isRequired,
+  rating: PropTypes.number,
+  onRate: PropTypes.func,
 };
