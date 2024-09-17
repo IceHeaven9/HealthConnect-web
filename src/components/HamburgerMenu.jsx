@@ -88,7 +88,7 @@ export const HamburgerMenu = () => {
                                 )}
                             </li>
                             <li className="pr-6">
-                                <Link to="/my-consultations">
+                                <Link to={currentUser.decoded.userType === "doctor" ? "/my-doctor-consultations" : "/my-consultations"}>
                                     <PiCalendarDotsLight size={30} color="#ffffff" />
                                 </Link>
                             </li>

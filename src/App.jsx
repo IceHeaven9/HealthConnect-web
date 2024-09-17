@@ -9,14 +9,11 @@ import { ValidateEmailPage } from "./pages/validateEmailPage";
 import { RecoveryAccountPage } from "./pages/recoveryAccountPage";
 import { ResetPasswordPage } from "./pages/resetPasswordPage";
 import { DetailsConsultationPage } from "./pages/detailsConsultationsPage";
-<<<<<<< HEAD
-import { UserProfile } from "./pages/UserProfilePage";
-=======
-import { UserProfilePage } from "./pages/userProfilePage";
+import { UserProfilePage } from "./pages/UserProfilePage";
 import { Footer } from "./components/Footer";
 import { ConsultationPage } from "./pages/ConsultationPage";
 import { ConsultationDoctorPage } from "./pages/consultationDoctorPage";
->>>>>>> 1df6d238ae83439ffbb24b7e9d35ed783bb76ba2
+import { UnassignedDoctorConsultationPage } from "./pages/UnassignedDoctorConsultationPage";
 
 function App() {
   return (
@@ -24,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<HomePage />} />
-          <Route path="/profile" element={<UserProfile/>} />
+          <Route path="/profile" element={<UserProfilePage/>} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/validate-email" element={<ValidateEmailPage />} />
@@ -32,6 +29,10 @@ function App() {
           <Route
             path="/my-doctor-consultations"
             element={<ConsultationDoctorPage />}
+          />
+          <Route
+            path="/my-doctor-unassigned-consultations"
+            element={<UnassignedDoctorConsultationPage />}
           />
           <Route
             path="/create-consultation"
