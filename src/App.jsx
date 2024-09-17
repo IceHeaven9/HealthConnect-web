@@ -9,7 +9,7 @@ import { ValidateEmailPage } from "./pages/validateEmailPage";
 import { RecoveryAccountPage } from "./pages/recoveryAccountPage";
 import { ResetPasswordPage } from "./pages/resetPasswordPage";
 import { DetailsConsultationPage } from "./pages/detailsConsultationsPage";
-import { UserProfile } from "./pages/userProfilePage";
+import { UserProfile } from "./pages/UserProfilePage";
 import { Footer } from "./components/Footer";
 import { ConsultationPage } from "./pages/ConsultationPage";
 import { ConsultationDoctorPage } from "./pages/consultationDoctorPage";
