@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import { customStyles, specialtiesIcons, miniCustomStyles, specialtiesResume } from "../../constants";
 
 const fetchSpecialties = (setSpecialties) => {
@@ -37,6 +38,26 @@ export const MenuSpecialtiesModal = ({
         setSecondModalIsOpen(true);
     };
 
+ 
+
+    const handleOnSelect = (item) => {
+        const selectedSpecialty = specialties.find(specialty => specialty.id === item.id);
+        setSelectedSpecialty(selectedSpecialty);
+        setSecondModalIsOpen(true);
+    };
+
+    const formatResult = (item) => {
+        return (
+            <div className='relative min-h-max z-50'>
+                <div className='flex flex-col p-2 m-1'>
+                    <div className='flex items-center justify-between'>
+                        <span className='font-ubuntu font-bold text-carbon text-sm'>{item.name}</span>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     return (
         <>
             <button>
@@ -61,8 +82,18 @@ export const MenuSpecialtiesModal = ({
                     <IoClose />
                 </button>
                 <section className="flex flex-col items-center justify-center gap-2 text-xl w-full">
-                    <div className="">
+                    <div className="w-full">
                         <h2 className="text-3xl p-6 text-center">Especialidades</h2>
+                    <div className="w-full p-4">
+                        <ReactSearchAutocomplete
+                            items={specialties}
+                            onSelect={handleOnSelect}
+                            autoFocus
+                            formatResult={formatResult}
+                            fuseOptions={{ keys: ["name"] }}
+                            resultStringKeyName="name"
+                        />
+                    </div>
                         {specialties.map((specialty) => (
                             <label
                                 key={specialty.id}

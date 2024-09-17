@@ -199,6 +199,7 @@ export const UserProfile = () => {
                     <option value="Carretera">Carretera</option>
                     <option value="Camino">Camino</option>
                     <option value="Vía">Vía</option>
+                    <option value="Vía">Callejón</option>
                   </select>
 
                   <input
