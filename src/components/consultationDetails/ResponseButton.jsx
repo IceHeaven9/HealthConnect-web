@@ -35,6 +35,7 @@ export const StarRating = ({ rating, onRate }) => {
     </div>
   );
 };
+
 //FIN DE COMPONENTE
 
 export const ResponseButton = ({
@@ -395,4 +396,7 @@ ResponseButton.propTypes = {
       })
     ),
   }).isRequired,
+  consultationId: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  onRate: PropTypes.func.isRequired,
 };
