@@ -10,7 +10,7 @@ export const UnassignedDoctorConsultationPage = () => {
   const [unassignedConsultations, setUnassignedConsultations] = useState([]);
   const [data, setData] = useState({});
   const token = currentUser?.coded;
-
+  console.log(unassignedConsultations);
   // Fetch para los datos del doctor
   const fetchDoctorData = () => {
     const requestOptions = {
@@ -50,11 +50,8 @@ export const UnassignedDoctorConsultationPage = () => {
     fetch(`${API_HOST}/unassigned-consultations`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        if (Array.isArray(data)) {
-          setUnassignedConsultations(data);
-        } else {
-          console.error("Unexpected response format:", data);
-        }
+        console.log(data);
+        setUnassignedConsultations(data);
       })
       .catch((error) => console.error(error));
   }, [token, data.specialityIds]);
