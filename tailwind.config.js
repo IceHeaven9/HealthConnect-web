@@ -30,8 +30,4 @@ export default {
     },
   },
   plugins: [tailwindcssAnimated],
-<<<<<<< HEAD
-}
-=======
 };
->>>>>>> 1df6d238ae83439ffbb24b7e9d35ed783bb76ba2
