@@ -4,6 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { FaUserDoctor } from 'react-icons/fa6';
 import { useState } from 'react';
 import { customStyles, miniCustomStyles } from "../../constants";
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 
 export const MenuDoctorsModal = ({
     doctorsModalIsOpen,
@@ -27,6 +28,35 @@ export const MenuDoctorsModal = ({
     const handleDoctorSelect = (doctor) => {
         setSelectedDoctorId(doctor.id);
         setSelectedDoctor(doctor);
+    };
+
+    const handleOnSearch = (string, results) => {
+        if (string === "") {
+            fetchDoctors();
+        } else {
+            const filteredDoctors = doctors.filter(doctor =>
+                doctor.firstName.toLowerCase().includes(string.toLowerCase()) ||
+                doctor.lastName.toLowerCase().includes(string.toLowerCase()) || 
+                doctor.specialities.toLowerCase().includes(string.toLowerCase())
+            );
+            setDoctors(filteredDoctors);
+        }
+    };
+
+    const handleOnSelect = (item) => {
+        handleDoctorSelect(item);
+    };
+
+    const formatResult = (item) => {
+        return (
+            <div className='relative min-h-max z-50'>
+                <div className='flex flex-col p-2 m-1'>
+                    <div className='flex items-center justify-between'>
+                        <span className='font-ubuntu font-bold text-carbon text-sm'>{item.firstName} {item.lastName}</span>
+                    </div>
+                </div>
+            </div>
+        );
     };
 
     return (
@@ -54,6 +84,17 @@ export const MenuDoctorsModal = ({
                 </button>
                 <section className="flex flex-col items-center justify-center gap-2 text-xl w-full">
                     <h2 className="text-3xl p-6 text-center">Doctores</h2>
+                    <div className='relative z-50 w-full'>
+                        <ReactSearchAutocomplete
+                            items={doctors}
+                            onSearch={handleOnSearch}
+                            onSelect={handleOnSelect}
+                            autoFocus
+                            formatResult={formatResult}
+                            fuseOptions={{ keys: ["firstName", "lastName", "specialities"] }} 
+                            resultStringKeyName="firstName" 
+                        />
+                    </div>
                     {doctors.map((doctor) => (
                         <label key={doctor.id} className={`flex flex-col items-center w-full gap-2 p-4 m-3 rounded-xl border-[0.1rem] border-solid border-cakeBlue text-carbon cursor-pointer ${selectedDoctorId === doctor.id ? 'bg-blue-200' : 'bg-lightCakeBlue'}`}>
                             <input

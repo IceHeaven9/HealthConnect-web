@@ -121,7 +121,7 @@ export const ResponseButton = ({
                             <textarea
                                 className="mb-2 w-full h-max font-ubuntu font-bold text-md p-2 min-h-40 break-words rounded-xl"
                                 value={responseContent}
-                                onChange={(e) => {setglobalResponseContent(e.target.value),setResponseContent(e.target.value)}}
+                                onChange={(e) => {setResponseContent(e.target.value)}}
                             />
                         ) : responseContent ? (
                             <p className="mb-2 w-full h-max font-ubuntu font-bold text-md p-2 min-h-40 break-words">
