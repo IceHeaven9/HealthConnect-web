@@ -386,14 +386,23 @@ ResponseButton.propTypes = {
   showResponseFiles: PropTypes.bool.isRequired,
   setShowResponseFiles: PropTypes.func.isRequired,
   consultationDetails: PropTypes.shape({
+<<<<<<< HEAD
     id: PropTypes.string.isRequired,
+=======
+>>>>>>> c8af32db4f1976689928946bf91eb03f2c88b3bb
     responseContent: PropTypes.string,
     responseFiles: PropTypes.arrayOf(
       PropTypes.shape({
         filePath: PropTypes.string,
         fileName: PropTypes.string,
       })
+<<<<<<< HEAD
     ),
   }).isRequired,
   consultationId: PropTypes.string.isRequired,
 };
+=======
+    ).isRequired,
+  }).isRequired,
+};
+>>>>>>> c8af32db4f1976689928946bf91eb03f2c88b3bb
