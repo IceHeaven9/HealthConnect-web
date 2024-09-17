@@ -10,10 +10,19 @@ import { MdAddComment } from "react-icons/md";
 import { RiFolderAddFill } from "react-icons/ri";
 import { notify } from "../../utils/notify";
 import { sendRating } from "./fetch/sendRating";
-
-// Componente de estrellas para calificación
-export const StarRating = ({ rating, handleRating }) => {
+export const StarRating = ({ rating, handleRating, consultationDetails,currentUser }) => {
   const [hoverRating, setHoverRating] = useState(0);
+  const [selectedRating, setSelectedRating] = useState(consultationDetails.rating || 0);
+  const [isDisabled, setIsDisabled] = useState(
+  currentUser.decoded.userType === "doctor"
+  );
+  const displayRating = selectedRating || 0;
+
+  const handleClick = (newRating) => {
+    setSelectedRating(newRating);
+    handleRating(newRating);
+  };
+
 
   return (
     <div className="flex items-center absolute right-4 bottom-2 mb-4">
@@ -21,13 +30,14 @@ export const StarRating = ({ rating, handleRating }) => {
         <button
           key={index}
           className={`text-3xl ${
-            hoverRating > index || rating > index
+            hoverRating > index || displayRating > index
               ? "text-yellow-500"
               : "text-lightBlue"
           }`}
-          onClick={() => handleRating(index + 1)}
+          onClick={() => handleClick(index + 1)}
           onMouseEnter={() => setHoverRating(index + 1)}
           onMouseLeave={() => setHoverRating(0)}
+          disabled={isDisabled}
         >
           ★
         </button>
@@ -35,8 +45,6 @@ export const StarRating = ({ rating, handleRating }) => {
     </div>
   );
 };
-
-//FIN DE COMPONENTE
 
 export const ResponseButton = ({
   showResponseFiles,
@@ -52,6 +60,8 @@ export const ResponseButton = ({
   const [responseContent, setResponseContent] = useState(
     consultationDetails.responseContent || ""
   );
+  console.log(consultationDetails
+  )
 
   // Establecer rating
   const [rating, setRating] = useState(0);
@@ -376,7 +386,7 @@ export const ResponseButton = ({
           >
             <IoMdClose size={30} />
           </button>
-          <StarRating rating={rating} handleRating={handleRating} />
+          <StarRating rating={rating} handleRating={handleRating} consultationDetails={consultationDetails} currentUser={currentUser} />
         </div>
       </Modal>
     </>
