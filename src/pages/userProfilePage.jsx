@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { Footer } from "../components/Footer";
 
 export const UserProfile = () => {
@@ -31,18 +31,25 @@ export const UserProfile = () => {
   };
 
   return (
-    <div className='px-4'>  
+    <div className="px-4">
       <div className="flex flex-col w-full max-w-md mx-auto p-6 rounded-3xl shadow-lg mt-8 bg-lightBlue ">
         {/* Encabezado con logo */}
         <div className="flex flex-row gap-3 pb-4 bg-lightBlue">
           <div className="flex items-center w-full">
             <div>
-              <img src="public/images/Perfil_healthConnect-Photoroom.png" width="50" alt="Logo" />
+              <img
+                src="public/images/Perfil_healthConnect-Photoroom.png"
+                width="50"
+                alt="Logo"
+              />
             </div>
-            <h1 className="ml-3 text-3xl font-bold text-white">HealthConnect</h1>
+
+            <h1 className="ml-3 text-3xl font-bold text-white">
+              HealthConnect
+            </h1>
           </div>
         </div>
-  
+
         {/* Encabezado y Foto de Perfil */}
         <div className="relative flex flex-col items-center">
           {/* Contenedor de la Imagen */}
@@ -65,7 +72,7 @@ export const UserProfile = () => {
               />
               📷
             </label>
-  
+
             {/* Botón para eliminar la imagen y volver al placeholder */}
             {image && (
               <button
@@ -87,7 +94,12 @@ export const UserProfile = () => {
           <form className="w-full max-w-md">
             {/* Nombre */}
             <div className="pb-2">
-              <label htmlFor="name" className="block mb-2 text-base font-medium text-gray-700">Nombre:</label>
+              <label
+                htmlFor="name"
+                className="block mb-2 text-base font-medium text-gray-700"
+              >
+                Nombre:
+              </label>
               {!isEditing ? (
                 <div className="bg-gray-200 p-2 rounded-lg">{name}</div>
               ) : (
@@ -103,7 +115,12 @@ export const UserProfile = () => {
 
             {/* Apellidos */}
             <div className="pb-2">
-              <label htmlFor="lastName" className="block mb-2 text-base font-medium text-gray-700">Apellidos:</label>
+              <label
+                htmlFor="lastName"
+                className="block mb-2 text-base font-medium text-gray-700"
+              >
+                Apellidos:
+              </label>
               {!isEditing ? (
                 <div className="bg-gray-200 p-2 rounded-lg">{lastName}</div>
               ) : (
@@ -119,7 +136,12 @@ export const UserProfile = () => {
 
             {/* Email */}
             <div className="pb-2">
-              <label htmlFor="email" className="block mb-2 text-base font-medium text-gray-700">Email:</label>
+              <label
+                htmlFor="email"
+                className="block mb-2 text-base font-medium text-gray-700"
+              >
+                Email:
+              </label>
               {!isEditing ? (
                 <div className="bg-gray-200 p-2 rounded-lg">{email}</div>
               ) : (
@@ -135,9 +157,16 @@ export const UserProfile = () => {
 
             {/* Tipo de dirección y Dirección */}
             <div className="pb-6">
-              <label htmlFor="addressType" className="block mb-2 text-base font-medium text-gray-700">Dirección:</label>
+              <label
+                htmlFor="addressType"
+                className="block mb-2 text-base font-medium text-gray-700"
+              >
+                Dirección:
+              </label>
               {!isEditing ? (
-                <div className="bg-gray-200 p-2 rounded-lg">{addressType} {address}</div>
+                <div className="bg-gray-200 p-2 rounded-lg">
+                  {addressType} {address}
+                </div>
               ) : (
                 <div className="flex gap-2">
                   <select
@@ -153,9 +182,8 @@ export const UserProfile = () => {
                     <option value="Carretera">Carretera</option>
                     <option value="Camino">Camino</option>
                     <option value="Vía">Vía</option>
-
-
                   </select>
+
                   <input
                     type="text"
                     id="address"
@@ -170,7 +198,12 @@ export const UserProfile = () => {
 
             {/* Ciudad */}
             <div className="pb-6">
-              <label htmlFor="town" className="block mb-2 text-base font-medium text-gray-700">Ciudad:</label>
+              <label
+                htmlFor="town"
+                className="block mb-2 text-base font-medium text-gray-700"
+              >
+                Ciudad:
+              </label>
               {!isEditing ? (
                 <div className="bg-gray-200 p-2 rounded-lg">{town}</div>
               ) : (
@@ -185,7 +218,7 @@ export const UserProfile = () => {
             </div>
           </form>
 
-               {/* Botón para editar o guardar cambios */}
+          {/* Botón para editar o guardar cambios */}
           <button
             onClick={handleEditProfile}
             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full"
@@ -196,11 +229,13 @@ export const UserProfile = () => {
 
         {/* Enlace de cierre de sesión */}
         <div className="text-sm font-light text-gray-500 text-center mt-6">
-          <a href="#" className="font-medium text-blue-500 hover:underline">Cerrar sesión</a>
+          <a href="#" className="font-medium text-blue-500 hover:underline">
+            Cerrar sesión
+          </a>
         </div>
 
         <Footer />
       </div>
-    </div> 
+    </div>
   );
 };
