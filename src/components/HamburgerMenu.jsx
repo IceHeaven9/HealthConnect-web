@@ -26,76 +26,6 @@ export const HamburgerMenu = () => {
     navigate("/login");
   };
 
-<<<<<<< HEAD
-    return (
-        <>
-            <section className="flex justify-end items-center w-max absolute top-2 right-1">
-                {showMenu && (
-                    <article className="animate-fade-left animate-once animate-duration-500 animate-ease-in animate-normal">
-                        <ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-lightBlue">
-                            <li className="pl-6">
-                                <Link to="/">
-                                    <RiHomeHeartFill size={30} color="#ffffff" />
-                                </Link>
-                            </li>
-                            <MenuSpecialtiesModal
-                                specialtyModalIsOpen={specialtyModalIsOpen}
-                                specialtyModaSetIsOpen={specialtyModaSetIsOpen}
-                            ></MenuSpecialtiesModal>
-                            <MenuDoctorsModal
-                                doctorsModalIsOpen={doctorsModalIsOpen}
-                                doctorsModaSetIsOpen={doctorsModaSetIsOpen}
-                            />
-                            <li className="relative">
-                                <button
-                                    className="mt-2"
-                                    onClick={() => setShowLogOptions(!showLogOptions)}
-                                >
-                                    <CgProfile size={30} color="#ffffff" />
-                                </button>
-                                {showLogOptions && (
-                                    <ul className="absolute -right-7 bg-white shadow-md rounded-md mt-2">
-                                        {token ? (
-                                            <li>
-                                                <button
-                                                    className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
-                                                    onClick={handleLogout}
-                                                >
-                                                    <CiLogout size={40} /> Cerrar sesión
-                                                </button>
-                                            </li>
-                                        ) : (
-                                            <>
-                                                <li>
-                                                    <Link
-                                                        className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
-                                                        to="/register"
-                                                    >
-                                                        <FaUserPlus size={40} />
-                                                        Registrate
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link
-                                                        className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
-                                                        to="/login"
-                                                    >
-                                                        <PiSignInLight size={40} /> Iniciar Sesión
-                                                    </Link>
-                                                </li>
-                                            </>
-                                        )}
-                                    </ul>
-                                )}
-                            </li>
-                            <li className="pr-6">
-                                <Link to={currentUser.decoded.userType === "doctor" ? "/my-doctor-consultations" : "/my-consultations"}>
-                                    <PiCalendarDotsLight size={30} color="#ffffff" />
-                                </Link>
-                            </li>
-                        </ul>
-                    </article>
-=======
   return (
     <>
       <section className="flex justify-end items-center w-max absolute top-2 right-1">
@@ -155,7 +85,6 @@ export const HamburgerMenu = () => {
                       </>
                     )}
                   </ul>
->>>>>>> main
                 )}
               </li>
               <li className="pr-6">

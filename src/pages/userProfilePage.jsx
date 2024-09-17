@@ -1,12 +1,9 @@
-import { useState, useRef } from 'react';
+import { useState } from "react";
 import { Footer } from "../components/Footer";
 
 export const UserProfile = () => {
-
   // Estado para manejar la imagen
   const [image, setImage] = useState(null);
-
-  const fileInputRef = useRef(null);
 
   // Estados para manejar el modo de edición y los valores de los campos
   const [isEditing, setIsEditing] = useState(false);
@@ -20,18 +17,12 @@ export const UserProfile = () => {
   // Función para manejar la subida de la imagen
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-
-    if (file) {
-      setImage(URL.createObjectURL(file));
-
-      fileInputRef.current.value = null; // Esto resetea el valor del input
-    }
+    setImage(URL.createObjectURL(file));
   };
 
   // Función para eliminar la imagen y volver a la del placeholder
   const handleRemoveImage = () => {
     setImage(null); // Restablecer la imagen a null para mostrar el placeholder
-    fileInputRef.current.value = null; // Esto resetea el valor del input
   };
 
   // Función para cambiar el estado de edición
@@ -40,16 +31,16 @@ export const UserProfile = () => {
   };
 
   return (
-    <div className='px-4'>  
-      <div className="flex flex-col w-full max-w-md mx-auto p-6 rounded-lg shadow-lg mt-8 bg-lightBlue ">
-
+    <div className="px-4">
+      <div className="flex flex-col w-full max-w-md mx-auto p-6 rounded-3xl shadow-lg mt-8 bg-lightBlue ">
         {/* Encabezado con logo */}
         <div className="flex flex-row gap-3 pb-4 bg-lightBlue">
           <div className="flex items-center w-full">
             <div>
               <img
                 src="public/images/Perfil_healthConnect-Photoroom.png"
-                width="50" alt="Logo"
+                width="50"
+                alt="Logo"
               />
             </div>
 
@@ -61,7 +52,6 @@ export const UserProfile = () => {
 
         {/* Encabezado y Foto de Perfil */}
         <div className="relative flex flex-col items-center">
-
           {/* Contenedor de la Imagen */}
           <div className="relative">
             <img
@@ -69,7 +59,6 @@ export const UserProfile = () => {
               alt="Profile"
               className="w-24 h-24 object-cover rounded-full border-4 border-white shadow-md"
             />
-
             {/* Botón para subir imagen */}
             <label
               htmlFor="upload"
@@ -78,7 +67,6 @@ export const UserProfile = () => {
               <input
                 id="upload"
                 type="file"
-                ref={fileInputRef}
                 className="hidden"
                 onChange={handleImageUpload}
               />
@@ -95,15 +83,10 @@ export const UserProfile = () => {
               </button>
             )}
           </div>
-
-          {/* Mostraremos el saludo solo si el nombre es diferente de "Nombre" */}
-          {name !== "Nombre" && (
-            <h2 className="mt-4 text-2xl font-semibold text-smokeWhite">
-              Bienvenido/a, {name}
-            </h2>
-          )}
-
-          <p className="text-sm text-gray-300">{email}</p>
+          <h2 className="mt-4 text-2xl font-semibold text-smokeWhite">
+            Bienvenido/a, {name} {lastName}
+          </h2>
+          <p className="text-sm text-gray-500">{email}</p>
         </div>
 
         {/* Formulario de Edición / Vista de Información */}
