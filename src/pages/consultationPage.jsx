@@ -36,7 +36,7 @@ export const ConsultationPage = () => {
   }, [startOrEndDate, status]);
 
   return (
-    <div className="max-w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
+    <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
       <main>
         <DinamicTitle text="Mis consultas" />
         <ToastContainer />

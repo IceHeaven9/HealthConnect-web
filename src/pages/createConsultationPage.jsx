@@ -64,10 +64,10 @@ export const CreateConsultationPage = () => {
   }
 
   return (
-    <div>
+    <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
       <DinamicTitle text="Crear consulta" />
-      <main className="flex flex-col items-center justify-center">
-        <section className="bg-smokeWhite flex flex-col items-center w-full">
+      <main className="flex flex-col items-center rounded-t-xl justify-center bg-lightCakeBlue">
+        <section className="bg-lightCakeBlue  flex flex-col items-center w-full">
           <SpecialtiesModal
             setSelectedSpecialty={handleSpecialtyChange}
             specialtyModaSetIsOpen={specialtyModaSetIsOpen}
@@ -88,7 +88,7 @@ export const CreateConsultationPage = () => {
             selectedSpecialty={selectedSpecialty}
           />
         </section>
-        <section className="flex flex-col items-center justify-center w-full bg-light">
+        <section className="flex flex-col items-center justify-center w-full bg-lightCakeBlue">
           <Calendar
             defaultActiveStartDate={new Date()}
             minDate={new Date()}
@@ -107,7 +107,7 @@ export const CreateConsultationPage = () => {
           Horas disponibles para el dia{" "}
           {selectedDate.toLocaleDateString("es-ES")}
         </h2>
-        <section className="bg-light w-full">
+        <section className="bg-lightCakeBlue w-full">
           <AviableTimes
             selectedDoctor={selectedDoctor}
             availableTimes={availableTimes}
@@ -115,7 +115,7 @@ export const CreateConsultationPage = () => {
             setSelectedHour={setSelectedHour}
           />
         </section>
-        <div className="flex flex-row items-center justify-center my-6 rounded-xl text-smokeWhite text-xl w-[90%] p-4 font-medium bg-lightBlue">
+        <div className="flex flex-row items-center justify-center my-6 rounded-xl text-smokeWhite text-xl w-[200px] p-4 font-medium bg-lightBlue">
           <button
             onClick={() => setShowDescriptionForm(true)}
             disabled={!selectedSpecialty || !selectedHour}

@@ -76,7 +76,7 @@ export const HomeContent = () => {
   }, []);
 
   return (
-    <main className="flex flex-col items-center bg-white p-4 gap-4 min-h-screen">
+    <main className="flex flex-col items-center bg-smokeWhite p-4 gap-4 min-h-screen">
       {/* Texto */}
       <div
         className="text-center mb-6 w-full bg-cover bg-center p-6 rounded-lg shadow-md"

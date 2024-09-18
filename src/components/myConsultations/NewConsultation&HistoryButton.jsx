@@ -17,15 +17,15 @@ export const NewConsultationAndHistoryButton = ({
 }) => {
   return (
     <>
-      <div className="flex  mx-4 mb-12 gap-2">
+      <div className="flex justify-around mx-4 mb-12 gap-2">
         <Link
           to="/create-consultation"
-          className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base text-center p-2 rounded-lg active:scale-95 transition-transform transform"
+          className="bg-[#628eff] text-[#f5f5f5] w-[200px] font-bold text-base text-center p-2 rounded-lg active:scale-95 transition-transform transform"
         >
           Añadir nueva consulta
         </Link>
         <button
-          className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform"
+          className="bg-[#628eff] text-[#f5f5f5] w-[200px] font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform"
           onClick={() => openModal()}
         >
           Historial de consultas

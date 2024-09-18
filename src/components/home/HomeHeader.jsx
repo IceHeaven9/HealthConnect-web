@@ -2,7 +2,7 @@ import { HamburgerMenu } from "../HamburgerMenu";
 
 export const HomeHeader = () => {
   return (
-    <header className="flex items-center justify-between p-2 bg-[#cad6ff] text-white h-20">
+    <header className="flex items-center justify-between p-2 bg-smokeWhite text-white h-20">
       {/* Logo y Nombre */}
       <div className="flex items-center space-x-4">
         <div className="w-20 h-20">
@@ -20,8 +20,8 @@ export const HomeHeader = () => {
       </div>
       {/* Menú Hamburguesa */}
       <div className="flex justify-center items-center h-12 w-12">
-          <HamburgerMenu />
-       
+        <HamburgerMenu />
+
         {/* Ocultar el botón de inicio en la página actual */}
         <style>{`
                     a[href="/"] {

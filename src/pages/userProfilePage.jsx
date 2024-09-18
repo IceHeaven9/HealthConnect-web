@@ -32,7 +32,7 @@ export const UserProfile = () => {
   };
 
   return (
-    <div className="max-w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
+    <div className="max-w-full sm:max-w-[600px] bg-smokeWhite  md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
       <DinamicTitle text="Mi perfil" />
       <div className="flex flex-col w-full p-6 rounded-t-xl shadow-lg bg-lightCakeBlue ">
         {/* Encabezado con logo */}

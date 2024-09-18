@@ -55,7 +55,7 @@ export const DetailsConsultationPage = () => {
   }
 
   return (
-    <div>
+    <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
       <DinamicTitle text="Detalles de la consulta" />
       <div className="flex flex-col items-center justify-center  min-h-full ">
         <ConsultationDetailsTitle ref={scrollToTopRef} navigate={navigate} />
