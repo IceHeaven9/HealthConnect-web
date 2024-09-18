@@ -36,45 +36,47 @@ export const ConsultationPage = () => {
   }, [startOrEndDate, status]);
 
   return (
-    <main className="w-full mb-20">
-      <DinamicTitle text="Mis consultas" />
-      <ToastContainer />
-      <UserCard />
-      <NewConsultationAndHistoryButton
-        navigate={navigate}
-        openModal={openModal}
-        isModalOpen={isModalOpen}
-        token={token}
-        setHistoryConsultations={setHistoryConsultations}
-        historyConsultations={historyConsultations}
-        closeModal={closeModal}
-      />
+    <div className="max-w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
+      <main>
+        <DinamicTitle text="Mis consultas" />
+        <ToastContainer />
+        <UserCard />
+        <NewConsultationAndHistoryButton
+          navigate={navigate}
+          openModal={openModal}
+          isModalOpen={isModalOpen}
+          token={token}
+          setHistoryConsultations={setHistoryConsultations}
+          historyConsultations={historyConsultations}
+          closeModal={closeModal}
+        />
 
-      <div className="border rounded-xl bg-smokeWhites mx-4 bg-light shadow-xl mb-28">
-        <Accordion>
-          <SillNoAnswer
-            setstartOrEndDate={setstartOrEndDate}
-            setStatus={setStatus}
-            consultations={consultations}
-            navigate={navigate}
-          />
-          <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-          <NextConsultations
-            setstartOrEndDate={setstartOrEndDate}
-            setStatus={setStatus}
-            consultations={consultations}
-            navigate={navigate}
-          />
-          <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-          <EndedConsultation
-            setstartOrEndDate={setstartOrEndDate}
-            setStatus={setStatus}
-            consultations={consultations}
-            navigate={navigate}
-          />
-          <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-        </Accordion>
-      </div>
-    </main>
+        <div className="border rounded-t-xl bg-smokeWhites  bg-lightCakeBlue shadow-xl  ">
+          <Accordion>
+            <SillNoAnswer
+              setstartOrEndDate={setstartOrEndDate}
+              setStatus={setStatus}
+              consultations={consultations}
+              navigate={navigate}
+            />
+            <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+            <NextConsultations
+              setstartOrEndDate={setstartOrEndDate}
+              setStatus={setStatus}
+              consultations={consultations}
+              navigate={navigate}
+            />
+            <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+            <EndedConsultation
+              setstartOrEndDate={setstartOrEndDate}
+              setStatus={setStatus}
+              consultations={consultations}
+              navigate={navigate}
+            />
+            <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+          </Accordion>
+        </div>
+      </main>
+    </div>
   );
 };
