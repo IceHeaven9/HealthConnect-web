@@ -28,10 +28,10 @@ export const HamburgerMenu = () => {
 
   return (
     <>
-      <section className="flex justify-end items-center w-max absolute top-2 right-1">
+      <section className="flex justify-end items-center w-max relative ">
         {showMenu && (
           <article className="animate-fade-left animate-once animate-duration-500 animate-ease-in animate-normal">
-            <ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-lightBlue">
+            <ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-lightBlue absolute right-0 -bottom-7">
               <li className="pl-6">
                 <Link to="/">
                   <RiHomeHeartFill size={30} color="#ffffff" />
@@ -45,7 +45,7 @@ export const HamburgerMenu = () => {
                 doctorsModalIsOpen={doctorsModalIsOpen}
                 doctorsModaSetIsOpen={doctorsModaSetIsOpen}
               />
-              <li className="relative">
+              <li className="">
                 <button
                   className="mt-2"
                   onClick={() => setShowLogOptions(!showLogOptions)}
@@ -53,7 +53,7 @@ export const HamburgerMenu = () => {
                   <CgProfile size={30} color="#ffffff" />
                 </button>
                 {showLogOptions && (
-                  <ul className="absolute -right-7 bg-white shadow-md rounded-md mt-2">
+                  <ul className=" bg-white shadow-md rounded-md mt-2">
                     {token ? (
                       <li>
                         <button

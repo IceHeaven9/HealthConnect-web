@@ -79,7 +79,7 @@ export const HomeContent = () => {
     <main className="flex flex-col items-center bg-white p-4 gap-4 min-h-screen">
       {/* Texto */}
       <div
-        className="text-center mb-6 max-w-4xl bg-cover bg-center p-6 rounded-lg shadow-md"
+        className="text-center mb-6 w-full bg-cover bg-center p-6 rounded-lg shadow-md"
         style={{ backgroundImage: "url('/images/fondotext.jpg')" }}
       >
         <div className="bg-white bg-opacity-80 p-6 rounded-lg">

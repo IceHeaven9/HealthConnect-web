@@ -20,7 +20,8 @@ export const HomeHeader = () => {
       </div>
       {/* Menú Hamburguesa */}
       <div className="flex justify-center items-center h-12 w-12">
-        <HamburgerMenu />
+          <HamburgerMenu />
+       
         {/* Ocultar el botón de inicio en la página actual */}
         <style>{`
                     a[href="/"] {
