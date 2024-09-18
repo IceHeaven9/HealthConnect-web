@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { RegisterPagetItle } from "./RegisterPagetItle";
@@ -16,123 +16,121 @@ import { RegisterButton } from "./RegisterButton";
 import { handleUserTypeChange } from "./fetch/handleUserType";
 import { handleSubmit } from "./fetch/handleSubmit";
 
-
 export const RegisterForm = () => {
-	const [userType, setUserType] = useState("Patient");
-	const [doctorCode, setDoctorCode] = useState("");
-	const [experience, setExperience] = useState("");
-	const [bio, setBio] = useState("");
-	const [name, setName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-	const [specialties, setSpecialties] = useState([]);
-	const [selectedSpecialties, setSelectedSpecialties] = useState([]);
-	const navigate = useNavigate()
+  const [userType, setUserType] = useState("Patient");
+  const [doctorCode, setDoctorCode] = useState("");
+  const [experience, setExperience] = useState("");
+  const [bio, setBio] = useState("");
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [specialties, setSpecialties] = useState([]);
+  const [selectedSpecialties, setSelectedSpecialties] = useState([]);
+  const navigate = useNavigate();
 
-	const token = localStorage.getItem("TOKEN");
+  const token = localStorage.getItem("TOKEN");
 
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
 
-	useEffect(() => {
-		if (token) {
-				navigate("/");
-		}
-}, [token, navigate]);
+  const handleUserTypeChangeWrapper = (type) => {
+    handleUserTypeChange(
+      type,
+      setUserType,
+      setDoctorCode,
+      setExperience,
+      setBio,
+      setSpecialties
+    );
+  };
 
+  const isFormValid = () => {
+    if (userType === "Doctor") {
+      return (
+        email &&
+        username &&
+        password &&
+        name &&
+        lastName &&
+        doctorCode &&
+        experience &&
+        selectedSpecialties.length > 0
+      );
+    }
 
-	const handleUserTypeChangeWrapper = (type) => {
-		handleUserTypeChange(
-			type,
-			setUserType,
-			setDoctorCode,
-			setExperience,
-			setBio,
-			setSpecialties
-		);
-	};
+    return email && username && password && name && lastName;
+  };
 
-	const isFormValid = () => {
-		if (userType === "Doctor") {
-			return (
-				email &&
-				username &&
-				password &&
-				name &&
-				lastName &&
-				doctorCode &&
-				experience &&
-				selectedSpecialties.length > 0
-			);
-		}
+  const handleSubmitWrapper = (e) => {
+    handleSubmit(
+      e,
+      name,
+      lastName,
+      email,
+      username,
+      password,
+      userType,
+      doctorCode,
+      experience,
+      bio,
+      selectedSpecialties,
+      navigate
+    );
+  };
 
-		return email && username && password && name && lastName;
-	};
+  return (
+    <div>
+      <main className="flex flex-col w-full mb-20 mx-auto p-6 bg-smokeWhite rounded-2xl shadow-xl">
+        <div className="bg-smokeWhite rounded-lg w-full">
+          <RegisterPagetItle />
+          <form onSubmit={handleSubmitWrapper}>
+            <EmailInput email={email} setEmail={setEmail} />
 
-	const handleSubmitWrapper = (e) => {
-		handleSubmit(
-			e,
-			name,
-			lastName,
-			email,
-			username,
-			password,
-			userType,
-			doctorCode,
-			experience,
-			bio,
-			selectedSpecialties,
-			navigate
-		);
-	};
+            <UserNameInput username={username} setUsername={setUsername} />
 
-	return (
-		<div className="bg-white min-h-screen flex flex-col">
-			<main className="flex flex-col w-full mb-20 md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-6 md:p-10 2xl:p-12 3xl:p-14 bg-smokeWhite rounded-2xl shadow-xl">
-				<div className="bg-smokeWhite rounded-lg w-full">
-					<RegisterPagetItle />
-					<form onSubmit={handleSubmitWrapper}>
-						<EmailInput email={email} setEmail={setEmail} />
+            <FirstNameInput name={name} setName={setName} />
 
-						<UserNameInput username={username} setUsername={setUsername} />
+            <LastNameInput lastName={lastName} setLastName={setLastName} />
 
-						<FirstNameInput name={name} setName={setName} />
+            <PasswordInput password={password} setPassword={setPassword} />
 
-						<LastNameInput lastName={lastName} setLastName={setLastName} />
+            <UserTypeInput
+              userType={userType}
+              handleUserTypeChange={handleUserTypeChangeWrapper}
+            />
+            {userType === "Doctor" && (
+              <>
+                <DoctorCodeInput
+                  doctorCode={doctorCode}
+                  setDoctorCode={setDoctorCode}
+                />
 
-						<PasswordInput password={password} setPassword={setPassword} />
+                <ExperienceInput
+                  experience={experience}
+                  setExperience={setExperience}
+                />
 
-						<UserTypeInput
-							userType={userType}
-							handleUserTypeChange={handleUserTypeChangeWrapper}
-						/>
-						{userType === "Doctor" && (
-							<>
-								<DoctorCodeInput
-									doctorCode={doctorCode}
-									setDoctorCode={setDoctorCode}
-								/>
+                <BiographyInput bio={bio} setBio={setBio} />
 
-								<ExperienceInput
-									experience={experience}
-									setExperience={setExperience}
-								/>
-
-								<BiographyInput bio={bio} setBio={setBio} />
-
-								<SpecialtiesSection
-									specialties={specialties}
-									setSelectedSpecialties={setSelectedSpecialties}
-									selectedSpecialties={selectedSpecialties}
-								/>
-							</>
-						)}
-
-						<RegisterButton isFormValid={isFormValid} />
-					</form>
-				</div>
-				<ToastContainer/>
-			</main>
-		</div>
-	);
+                <SpecialtiesSection
+                  specialties={specialties}
+                  setSelectedSpecialties={setSelectedSpecialties}
+                  selectedSpecialties={selectedSpecialties}
+                />
+              </>
+            )}
+            <div className="flex flex-col items-center justify-center w-full">
+              <RegisterButton isFormValid={isFormValid} />
+            </div>
+          </form>
+        </div>
+        <ToastContainer />
+      </main>
+    </div>
+  );
 };
