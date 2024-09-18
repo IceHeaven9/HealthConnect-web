@@ -85,8 +85,8 @@ export const RegisterForm = () => {
 
   return (
     <div>
-      <main className="flex flex-col w-full mb-20 mx-auto p-6 bg-smokeWhite rounded-2xl shadow-xl">
-        <div className="bg-smokeWhite rounded-lg w-full">
+      <main className="flex flex-col w-full mx-auto p-6 mt-4 bg-lightCakeBlue rounded-t-2xl shadow-xl">
+        <div className="bg-smokeWhite rounded-lg p-4 w-full">
           <RegisterPagetItle />
           <form onSubmit={handleSubmitWrapper}>
             <EmailInput email={email} setEmail={setEmail} />

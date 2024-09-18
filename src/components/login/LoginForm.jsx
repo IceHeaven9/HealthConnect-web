@@ -10,59 +10,59 @@ import { LoginFormPassSection } from "./LoginFormPassSection";
 import { LoginFormBottomSection } from "./LoginFormBottomSection";
 
 export const LoginForm = () => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const navigate = useNavigate();
-	const { onLogin} = useContext(AuthContext);
-	const token = localStorage.getItem("TOKEN");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { onLogin } = useContext(AuthContext);
+  const token = localStorage.getItem("TOKEN");
 
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+      notify("Tu sesion esta iniciada");
+    }
+  }, [token, navigate]);
 
-	useEffect(() => {
-		if (token) {
-				navigate("/");
-				notify("Tu sesion esta iniciada");
-		}
-}, [token, navigate]);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
 
-	const handleEmailChange = (e) => {
-		setEmail(e.target.value);
-	};
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-	const handlePasswordChange = (e) => {
-		setPassword(e.target.value);
-	};
+    login(email, password)
+      .then((result) => {
+        if (result.token) {
+          onLogin(result.token);
+          navigate("/");
+        } else {
+          notify(result.message || "Error desconocido");
+        }
+      })
+      .catch((error) => notify(error.message || "Error en la solicitud"));
+  };
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
-		login(email, password)
-			.then((result) => {
-				if (result.token) {
-					onLogin(result.token);
-					navigate("/");
-				} else {
-					notify(result.message || "Error desconocido");
-				}
-			})
-			.catch((error) => notify(error.message || "Error en la solicitud"));
-	};
-
-	return (
-		<div className="flex flex-col w-full mb-12 md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-6 md:p-10 2xl:p-12 3xl:p-14 bg-smokeWhite rounded-2xl shadow-xl">
-			<LoginFormTopSection />
-			<form className="flex flex-col" onSubmit={handleSubmit}>
-				<LoginFormEmailSection
-					email={email}
-					handleEmailChange={handleEmailChange}
-				/>
-				<LoginFormPassSection
-					password={password}
-					handlePasswordChange={handlePasswordChange}
-				/>
-				<LoginFormBottomSection email={email} password={password} />
-			</form>
-			<ToastContainer />
-		</div>
-	);
+  return (
+    <div className="flex flex-col w-full mx-auto p-6 bg-lightCakeBlue rounded-t-2xl shadow-xl mt-4 ">
+      <main className="bg-smokeWhite rounded-lg p-4 w-full">
+        <LoginFormTopSection />
+        <form className="flex flex-col" onSubmit={handleSubmit}>
+          <LoginFormEmailSection
+            email={email}
+            handleEmailChange={handleEmailChange}
+          />
+          <LoginFormPassSection
+            password={password}
+            handlePasswordChange={handlePasswordChange}
+          />
+          <LoginFormBottomSection email={email} password={password} />
+        </form>
+        <ToastContainer />
+      </main>
+    </div>
+  );
 };
