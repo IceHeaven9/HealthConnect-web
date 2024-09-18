@@ -26,6 +26,10 @@ export const HamburgerMenu = () => {
     navigate("/login");
   };
 
+  const handleProfile = () => {
+    navigate("/profile");
+  };
+
   return (
     <>
       <section className="flex justify-end items-center w-max relative ">
@@ -55,14 +59,25 @@ export const HamburgerMenu = () => {
                 {showLogOptions && (
                   <ul className=" bg-white shadow-md rounded-md mt-2">
                     {token ? (
-                      <li>
-                        <button
-                          className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
-                          onClick={handleLogout}
-                        >
-                          <CiLogout size={40} /> Cerrar sesión
-                        </button>
-                      </li>
+                      <>
+                        <li>
+                          <button
+                            className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
+                            onClick={handleProfile}
+                          >
+                            <CgProfile size={30} color="#ffffff" />
+                            Perfil
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
+                            onClick={handleLogout}
+                          >
+                            <CiLogout size={40} /> Cerrar sesión
+                          </button>
+                        </li>
+                      </>
                     ) : (
                       <>
                         <li>
