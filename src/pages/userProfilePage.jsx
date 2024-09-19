@@ -1,14 +1,18 @@
-import { useState } from "react";
-import { Footer } from "../components/Footer";
+import { useContext, useEffect, useState } from "react";
 import { DinamicTitle } from "../components/SingleTitle";
+import { AuthContext } from './../contexts/authContext';
+import { API_HOST } from "../constants";
 
 export const UserProfile = () => {
   // Estado para manejar la imagen
   const [image, setImage] = useState(null);
+  const { currentUser } = useContext(AuthContext);
+  const token = currentUser?.coded;
+
 
   // Estados para manejar el modo de edición y los valores de los campos
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState("Nombre");
+  const [name, setName] = useState("");
   const [lastName, setLastName] = useState("Apellidos");
   const [email, setEmail] = useState("email@example.com");
   const [addressType, setAddressType] = useState("Calle");
@@ -20,6 +24,31 @@ export const UserProfile = () => {
     const file = event.target.files[0];
     setImage(URL.createObjectURL(file));
   };
+
+
+  const fetchProfile = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", token);
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    fetch(`${API_HOST}/profile`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+  };
+
+
+
+
+useEffect(() => {
+
+  fetchProfile();
+}, [])
+
 
   // Función para eliminar la imagen y volver a la del placeholder
   const handleRemoveImage = () => {
@@ -57,7 +86,7 @@ export const UserProfile = () => {
           {/* Contenedor de la Imagen */}
           <div className="relative">
             <img
-              src={image || "./images/placeholder_image.jpg"}
+              src={currentUser?.decoded.avatar}
               alt="Profile"
               className="w-24 h-24 object-cover rounded-full border-4 border-white shadow-md"
             />
@@ -88,7 +117,7 @@ export const UserProfile = () => {
           <h2 className="mt-4 text-2xl font-semibold text-smokeWhite">
             Bienvenido/a, {name} {lastName}
           </h2>
-          <p className="text-sm text-gray-500">{email}</p>
+          <p className="text-sm text-gray-500">{currentUser.decoded.userName}</p>
         </div>
 
         {/* Formulario de Edición / Vista de Información */}
