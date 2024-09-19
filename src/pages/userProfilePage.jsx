@@ -2,7 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { DinamicTitle } from "../components/SingleTitle";
 import { AuthContext } from "./../contexts/authContext";
 import { API_HOST } from "../constants";
-import { useAuthGuard } from './../hooks/authGuard';
+import { useAuthGuard } from "./../hooks/authGuard";
+import { CiEdit } from "react-icons/ci";
+import { FaSave } from "react-icons/fa";
+import { notify } from "../utils/notify";
+import { ToastContainer } from "react-toastify";
 
 export const UserProfile = () => {
 	// Estado para manejar la imagen
@@ -10,22 +14,21 @@ export const UserProfile = () => {
 	const token = currentUser?.coded;
 	const userType = currentUser?.decoded.userType;
 	const [image, setImage] = useState(currentUser?.decoded.avatar);
+	console.log(image);
 	const [isEditing, setIsEditing] = useState(false);
-  const [userName, setUserName] = useState(currentUser?.decoded.userName);
+	const [userName, setUserName] = useState(currentUser?.decoded.userName);
 	const [name, setName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
 	const [biography, setBiography] = useState("");
 	const [experience, setExperience] = useState("");
 
-
-useAuthGuard("/profile")
-
+	useAuthGuard("/profile");
 
 	// Función para manejar la subida de la imagen
 	const handleImageUpload = (event) => {
 		const file = event.target.files[0];
-		setImage(URL.createObjectURL(file));
+		setImage(file);
 	};
 
 	const updateProfile = () => {
@@ -36,7 +39,7 @@ useAuthGuard("/profile")
 		const raw = JSON.stringify({
 			firstName: name,
 			lastName: lastName,
-      userName: userName,
+			userName: userName,
 			email: email,
 			biography: biography,
 			experience: experience,
@@ -76,7 +79,7 @@ useAuthGuard("/profile")
 				setEmail(profile.email);
 				setBiography(profile.biography);
 				setExperience(profile.experience);
-        setUserName(profile.userName);
+				setUserName(profile.userName);
 			})
 			.catch((error) => console.error(error));
 	};
@@ -96,8 +99,9 @@ useAuthGuard("/profile")
 	};
 
 	return (
-		<div className="max-w-full sm:max-w-[600px] bg-smokeWhite  md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
-			<DinamicTitle text="Mi perfil" />
+    <div className="max-w-full sm:max-w-[600px] bg-smokeWhite  md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
+		<ToastContainer/>
+    	<DinamicTitle text="Mi perfil" />
 			<div className="flex flex-col w-full p-6 rounded-t-xl shadow-lg bg-lightCakeBlue ">
 				{/* Encabezado con logo */}
 				<div className="flex flex-row gap-3  ">
@@ -136,30 +140,52 @@ useAuthGuard("/profile")
 								className="hidden"
 								onChange={handleImageUpload}
 							/>
-							📷
+							<CiEdit />
 						</label>
 
 						{/* Botón para eliminar la imagen y volver al placeholder */}
 						{image && (
 							<button
 								className="mt-4 absolute bottom-20 left-20 text-white px-3 py-1 rounded-full"
-								onClick={handleRemoveImage}
+								onClick={() => {
+									const myHeaders = new Headers();
+									myHeaders.append("Authorization", token);
+									const formdata = new FormData();
+									formdata.append("avatarFile", image);
+									const requestOptions = {
+										method: "POST",
+										headers: myHeaders,
+										body: formdata,
+										redirect: "follow",
+									};
+									fetch(
+										`${API_HOST}/profile/${currentUser.decoded.id}/avatar`,
+										requestOptions
+									)
+										.then((response) => response.json())
+										.then((result) => {
+											if (result.status === "error") {
+												console.error(result.message);
+											} else {
+												notify(result.message);
+											}
+										})
+										.catch((error) => console.error(error));
+								}}
 							>
-								✖️
+								<FaSave />
 							</button>
 						)}
 					</div>
 					<h2 className="mt-4 text-2xl font-semibold text-smokeWhite">
 						{name} {lastName}
 					</h2>
-					
 				</div>
 
 				{/* Formulario de Edición / Vista de Información */}
 				<div className="flex flex-col items-center justify-center w-full p-6 rounded-lg bg-gray-100">
 					<form className="w-full max-w-md">
-
-          <div className="pb-2">
+						<div className="pb-2">
 							<label
 								htmlFor="userName"
 								className="block mb-2 text-base font-medium text-gray-700"
@@ -300,8 +326,6 @@ useAuthGuard("/profile")
 						{isEditing ? "Guardar Cambios" : "Editar Perfil"}
 					</button>
 				</div>
-
-			
 			</div>
 		</div>
 	);
