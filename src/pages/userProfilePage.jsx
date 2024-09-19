@@ -76,6 +76,7 @@ useAuthGuard("/profile")
 				setEmail(profile.email);
 				setBiography(profile.biography);
 				setExperience(profile.experience);
+        setUserName(profile.userName);
 			})
 			.catch((error) => console.error(error));
 	};
@@ -151,14 +152,33 @@ useAuthGuard("/profile")
 					<h2 className="mt-4 text-2xl font-semibold text-smokeWhite">
 						{name} {lastName}
 					</h2>
-					<p className="text-sm text-gray-500">
-						{userName}
-					</p>
+					
 				</div>
 
 				{/* Formulario de Edición / Vista de Información */}
 				<div className="flex flex-col items-center justify-center w-full p-6 rounded-lg bg-gray-100">
 					<form className="w-full max-w-md">
+
+          <div className="pb-2">
+							<label
+								htmlFor="userName"
+								className="block mb-2 text-base font-medium text-gray-700"
+							>
+								Nombre de Usuario:
+							</label>
+							{!isEditing ? (
+								<div className="bg-gray-200 p-2 rounded-lg">{userName}</div>
+							) : (
+								<input
+									type="text"
+									id="userName"
+									value={userName}
+									onChange={(e) => setUserName(e.target.value)}
+									className="w-full p-2 border border-gray-300 rounded-lg"
+								/>
+							)}
+						</div>
+
 						{/* Nombre */}
 						<div className="pb-2">
 							<label
@@ -281,12 +301,7 @@ useAuthGuard("/profile")
 					</button>
 				</div>
 
-				{/* Enlace de cierre de sesión */}
-				<div className="text-sm font-light text-gray-500 text-center mt-6">
-					<a href="#" className="font-medium text-blue-500 hover:underline">
-						Cerrar sesión
-					</a>
-				</div>
+			
 			</div>
 		</div>
 	);
