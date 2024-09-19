@@ -1,5 +1,6 @@
 import { API_HOST } from "../../../constants";
 
+
 // utils/userTypeHandler.js
 export const handleUserTypeChange = async (
 	type,
@@ -16,7 +17,7 @@ export const handleUserTypeChange = async (
 		setBio("");
 	} else if (type === "Doctor") {
 		try {
-			const response = await fetch(`${API_HOST}}/specialities`);
+			const response = await fetch(`${API_HOST}/specialities`);
 			const data = await response.json();
 			setSpecialties(data);
 		} catch (error) {
