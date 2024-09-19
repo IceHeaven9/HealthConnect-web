@@ -1,16 +1,15 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import { API_HOST } from "../constants";
 import { AuthContext } from "../contexts/authContext";
-import { HamburgerMenu } from "../components/HamburgerMenu";
-import { ToastContainer } from "react-toastify";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { DinamicTitle } from "../components/SingleTitle";
+import { useNavigate } from "react-router-dom";
 
 export const UnassignedDoctorConsultationPage = () => {
   const { currentUser } = useContext(AuthContext);
   const [unassignedConsultations, setUnassignedConsultations] = useState([]);
   const [data, setData] = useState({});
   const token = currentUser?.coded;
+  const navigate = useNavigate();
 
   // Fetch para los datos del doctor
   const fetchDoctorData = () => {
@@ -18,22 +17,21 @@ export const UnassignedDoctorConsultationPage = () => {
       method: "GET",
       redirect: "follow",
     };
+
     fetch(`${API_HOST}/doctors/${currentUser.decoded.id}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        const specialityIds = data.specialities
-          ? Object.keys(data.specialities).map(Number)
+        const specialityIds = data.specialityIds
+          ? data.specialityIds.split(",").map(Number)
           : [];
-        const specialities = data.specialities
-          ? Object.values(data.specialities).join("")
-          : "No specialities found";
-        setData({ specialityIds, specialities });
+        const specialities = data.specialities;
+        setData({ specialities, specialityIds });
       })
       .catch((error) => console.error(error));
   };
 
   // Fetch para las consultas no asignadas
-  const fetchUnassignedConsultations = useCallback(() => {
+  const fetchUnassignedConsultations = () => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", token);
     myHeaders.append("Content-Type", "application/json");
@@ -51,11 +49,11 @@ export const UnassignedDoctorConsultationPage = () => {
     fetch(`${API_HOST}/unassigned-consultations`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setUnassignedConsultations(data);
       })
       .catch((error) => console.error(error));
-  }, [token, data.specialityIds]);
+  };
+  console.log(unassignedConsultations);
 
   useEffect(() => {
     fetchDoctorData();
@@ -66,7 +64,6 @@ export const UnassignedDoctorConsultationPage = () => {
       fetchUnassignedConsultations();
     }
   }, [data.specialityIds]);
-
   return (
     <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
       <DinamicTitle text="Consultas No Asignadas" />
@@ -95,7 +92,12 @@ export const UnassignedDoctorConsultationPage = () => {
                         {consultation.title}
                       </p>
                       <div className="flex gap-4 w-full">
-                        <button className="bg-lightBlue text-smokeWhite p-2 rounded-lg w-full font-bold text-base active:scale-95 transition-transform transform">
+                        <button
+                          onClick={() =>
+                            navigate(`/consultation/${consultation.id}/details`)
+                          }
+                          className="bg-lightBlue text-smokeWhite p-2 rounded-lg w-full font-bold text-base active:scale-95 transition-transform transform"
+                        >
                           Ver Ficha
                         </button>
                         <button className="bg-lightBlue text-smokeWhite p-2 rounded-lg w-full font-bold text-base active:scale-95 transition-transform transform">
