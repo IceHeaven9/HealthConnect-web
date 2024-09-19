@@ -35,7 +35,7 @@ export const HamburgerMenu = () => {
       <section className="flex justify-end items-center w-max relative ">
         {showMenu && (
           <article className="animate-fade-left animate-once animate-duration-500 animate-ease-in animate-normal">
-            <ul className="flex gap-8 items-center justify-center p-2 rounded-full bg-lightBlue absolute right-0 -bottom-7">
+            <ul className="flex gap-8 items-center justify-center p-2 rounded-xl bg-lightBlue absolute right-0 -bottom-7">
               <li className="pl-6">
                 <Link to="/">
                   <RiHomeHeartFill size={30} color="#ffffff" />
@@ -60,9 +60,10 @@ export const HamburgerMenu = () => {
                   <ul className=" bg-white shadow-md rounded-md mt-2">
                     {token ? (
                       <>
+                      <ul className="bg-lightBlue">
                         <li>
                           <button
-                            className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
+                            className="flex items-center absolute -bottom-12 right-8 gap-2 text-md w-44 bg-lightBlue rounded-lg mt-1 text-white p-2"
                             onClick={handleProfile}
                           >
                             <CgProfile size={30} color="#ffffff" />
@@ -71,12 +72,13 @@ export const HamburgerMenu = () => {
                         </li>
                         <li>
                           <button
-                            className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
+                            className="flex items-center w-44 absolute -bottom-[6.7rem] right-8 gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
                             onClick={handleLogout}
                           >
                             <CiLogout size={40} /> Cerrar sesión
                           </button>
                         </li>
+                        </ul>
                       </>
                     ) : (
                       <>
@@ -118,7 +120,7 @@ export const HamburgerMenu = () => {
             </ul>
           </article>
         )}
-        <div className="w-max p-1 rounded-md m-4">
+        <div className="w-max p-1 rounded-md">
           <button
             className="text-lightBlue"
             onClick={() => {
