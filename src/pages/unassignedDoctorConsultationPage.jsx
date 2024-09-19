@@ -1,8 +1,12 @@
 import { useState, useEffect, useContext } from "react";
-import { API_HOST } from "../constants";
+import { API_HOST, microCustomStyles } from "../constants";
 import { AuthContext } from "../contexts/authContext";
 import { DinamicTitle } from "../components/SingleTitle";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../utils/notify";
+import { ToastContainer } from "react-toastify";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import Modal from "react-modal";
 
 export const UnassignedDoctorConsultationPage = () => {
   const { currentUser } = useContext(AuthContext);
@@ -10,6 +14,8 @@ export const UnassignedDoctorConsultationPage = () => {
   const [data, setData] = useState({});
   const token = currentUser?.coded;
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Fetch para los datos del doctor
   const fetchDoctorData = () => {
@@ -30,13 +36,15 @@ export const UnassignedDoctorConsultationPage = () => {
       .catch((error) => console.error(error));
   };
 
-  // Fetch para las consultas no asignadas
-  const fetchUnassignedConsultations = () => {
+  // Fetch para obtener las consultas no asignadas
+  const fetchUnassignedConsultations = (limit, offset) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", token);
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
       specialityIds: data.specialityIds || [],
+      limit: limit,
+      offset: offset,
     });
 
     const requestOptions = {
@@ -46,14 +54,39 @@ export const UnassignedDoctorConsultationPage = () => {
       redirect: "follow",
     };
 
-    fetch(`${API_HOST}/unassigned-consultations`, requestOptions)
+    fetch(
+      `${API_HOST}/unassigned-consultations?offset=${offset}&limit=${limit}`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then((data) => {
         setUnassignedConsultations(data);
       })
       .catch((error) => console.error(error));
   };
-  console.log(unassignedConsultations);
+
+  // Fetch para asignarse a una consulta
+  const assignConsultation = (consultationId) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", token);
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      consultationId: consultationId,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(`${API_HOST}/assign-consultation`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => notify(result.message))
+      .catch((error) => console.error(error));
+  };
 
   useEffect(() => {
     fetchDoctorData();
@@ -61,12 +94,13 @@ export const UnassignedDoctorConsultationPage = () => {
 
   useEffect(() => {
     if (data.specialityIds) {
-      fetchUnassignedConsultations();
+      fetchUnassignedConsultations(10, currentPage);
     }
-  }, [data.specialityIds]);
+  }, [data.specialityIds, currentPage]);
   return (
     <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
       <DinamicTitle text="Consultas No Asignadas" />
+      <ToastContainer />
       <main>
         <section className="flex flex-col justify-center rounded-xl shadow-xl items-center border">
           <div className="bg-smokeWhite w-full h-max text-center rounded-t-xl text-lightBlue font-bold font-roboto text-lg border-solid border-lightBlue ">
@@ -100,9 +134,40 @@ export const UnassignedDoctorConsultationPage = () => {
                         >
                           Ver Ficha
                         </button>
-                        <button className="bg-lightBlue text-smokeWhite p-2 rounded-lg w-full font-bold text-base active:scale-95 transition-transform transform">
+                        <button
+                          onClick={() => setIsModalOpen(true)}
+                          className="bg-lightBlue text-smokeWhite p-2 rounded-lg w-full font-bold text-base active:scale-95 transition-transform transform"
+                        >
                           Asignarse
                         </button>
+                        <Modal
+                          isOpen={isModalOpen}
+                          onRequestClose={() => setIsModalOpen(false)}
+                          contentLabel="Confirm Assign"
+                          style={microCustomStyles}
+                        >
+                          <h3 className="font-roboto font-bold text-lg p-2 text-center">
+                            ¿Estás seguro de que deseas asignarte a esta
+                            consulta?
+                          </h3>
+                          <div className="flex items-center justify-center gap-6 p-4">
+                            <button
+                              className="border p-4 bg-lightBlue w-full text-smokeWhite rounded-lg font-inter font-bold"
+                              onClick={() => {
+                                assignConsultation(consultation.id);
+                                setIsModalOpen(false);
+                              }}
+                            >
+                              Sí, asignar
+                            </button>
+                            <button
+                              className="border p-4 bg-lightBlue w-full text-smokeWhite rounded-lg font-inter font-bold"
+                              onClick={() => setIsModalOpen(false)}
+                            >
+                              Cancelar
+                            </button>
+                          </div>
+                        </Modal>
                       </div>
                     </div>
                   </li>
@@ -110,6 +175,39 @@ export const UnassignedDoctorConsultationPage = () => {
             </ul>
           </div>
         </section>
+        <div className="flex justify-between w-full px-4 m-2 p-2">
+          <button
+            className={`p-4 w-max rounded-lg font-bold text-base active:scale-95 transition-transform transform ${
+              currentPage === 0
+                ? "bg-light text-smokeWhite"
+                : "bg-lightBlue text-smokeWhite"
+            }`}
+            onClick={() => {
+              const newPage = Math.max(currentPage - 10, 0);
+              setCurrentPage(newPage);
+              fetchUnassignedConsultations(10, newPage * 10);
+            }}
+            disabled={currentPage === 0}
+          >
+            <FaArrowLeft />
+          </button>
+          <button
+            className={`p-4 w-max rounded-lg font-bold text-base active:scale-95 transition-transform transform ${
+              unassignedConsultations.length < 10
+                ? "bg-light text-smokeWhite"
+                : "bg-lightBlue text-smokeWhite"
+            }`}
+            onClick={() => {
+              const newPage = currentPage + 10;
+              setCurrentPage(newPage);
+              fetchUnassignedConsultations(10, newPage * 10);
+              window.scrollTo(0, 0); // Scroll to top when navigating to the next page
+            }}
+            disabled={unassignedConsultations.length < 10}
+          >
+            <FaArrowRight />
+          </button>
+        </div>
       </main>
     </div>
   );

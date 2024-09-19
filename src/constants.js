@@ -84,8 +84,9 @@ export const miniCustomStyles = {
 
 export const microCustomStyles = {
   content: {
-    height: "20%",
+    height: "max-content",
     width: "90%",
+    maxWidth: "400px",
     borderRadius: "25px",
     top: "50%",
     left: "50%",
@@ -95,6 +96,8 @@ export const microCustomStyles = {
     transform: "translate(-50%, -50%)",
     overflow: "auto",
     WebkitOverflowScrolling: "touch",
+    padding: "20px",
+    boxSizing: "border-box",
   },
 };
 
