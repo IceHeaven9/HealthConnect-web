@@ -12,7 +12,7 @@ export const HomeButtons = () => {
           className="flex items-center justify-center gap-2 text-sm bg-red-500 rounded-lg text-white p-3 w-full max-w-xs md:max-w-sm md:w-full"
           onClick={() => {
             localStorage.removeItem("TOKEN");
-            window.location.href = "/login";
+            window.location.href = "/";
           }}
         >
           <CiLogout size={24} /> Cerrar sesión

@@ -212,7 +212,7 @@ export const UnassignedDoctorConsultationPage = () => {
               const newPage = currentPage + 10;
               setCurrentPage(newPage);
               fetchUnassignedConsultations(10, newPage * 10);
-              window.scrollTo(0, 0); // Scroll to top when navigating to the next page
+              window.scrollTo(0, 0);
             }}
             disabled={unassignedConsultations.length < 10}
           >
