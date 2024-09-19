@@ -13,7 +13,7 @@ export const ConsultationFilesButton = ({
     !consultationDetails.consultationFiles ||
     consultationDetails.consultationFiles.length === 0;
   return (
-    <>
+    <div className="w-full">
       <button
         className={`mb-4 p-2 w-full text-end text-smokeWhite rounded-lg flex flex-col items-center font-medium ${
           isDisabled ? "bg-darkBlue" : "bg-lightBlue"
@@ -95,7 +95,7 @@ export const ConsultationFilesButton = ({
           </button>
         </div>
       </Modal>
-    </>
+    </div>
   );
 };
 

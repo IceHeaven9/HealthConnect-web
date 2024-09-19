@@ -68,15 +68,15 @@ export const UnassignedDoctorConsultationPage = () => {
   }, [data.specialityIds]);
 
   return (
-    <div>
+    <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
       <DinamicTitle text="Consultas No Asignadas" />
       <main>
-        <section className="flex flex-col justify-center rounded-xl shadow-xl items-center mx-4 border">
-          <div className="bg-smokeWhite w-full  h-max text-center rounded-t-xl text-lightBlue font-bold font-roboto text-lg border-solid border-lightBlue border-b-[0.1rem]">
+        <section className="flex flex-col justify-center rounded-xl shadow-xl items-center border">
+          <div className="bg-smokeWhite w-full h-max text-center rounded-t-xl text-lightBlue font-bold font-roboto text-lg border-solid border-lightBlue ">
             <p className="pt-4"> CONSULTAS PARA:</p>
             <p className="py-4">{data.specialities}</p>
           </div>
-          <div className="bg-lightCakeBlue w-full h-full text-center text-lightBlue font-bold font-roboto text-lg border-solid border-lightBlue border-b-[0.1rem]">
+          <div className="bg-lightCakeBlue w-full h-full text-center text-lightBlue font-bold font-roboto text-lg border-solid border-lightBlue ">
             <ul>
               {unassignedConsultations &&
                 unassignedConsultations.map((consultation) => (

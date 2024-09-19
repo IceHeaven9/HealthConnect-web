@@ -23,6 +23,7 @@ export const consultationsFilesModal = {
   content: {
     height: "max-content",
     width: "90%",
+    maxWidth: "600px",
     borderRadius: "25px",
     top: "50%",
     left: "50%",
@@ -33,6 +34,8 @@ export const consultationsFilesModal = {
     overflow: "auto",
     WebkitOverflowScrolling: "touch",
     backgroundColor: "rgb(202, 214, 255)",
+    padding: "20px",
+    boxSizing: "border-box",
   },
 };
 

@@ -58,14 +58,14 @@ export const ConsultationDoctorPage = () => {
 
   // COMPONENTES DE LA PAGINA
   return (
-    <div>
+    <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
       {/* MENU */}
       <DinamicTitle text="Mis consultas" />
-      <main className="mb-20">
+      <main className="w-full shadow-xl border rounded-t-xl">
         {/* DATOS DEL DOCTOR */}
         <DoctorUserCard currentUser={currentUser} data={data} />
         {/* BOTON DE ASIGNAR CONSULTA */}
-        <div className="flex  mx-4 md:mb-[27rem] mb-12 gap-2">
+        <div className="flex  mx-4  mb-4 gap-2">
           <LinkBtn
             to="/my-doctor-unassigned-consultations"
             className="bg-lightBlue text-smokeWhite w-full font-bold text-base text-center p-2 rounded-lg active:scale-95 transition-transform transform"
