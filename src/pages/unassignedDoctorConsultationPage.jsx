@@ -16,6 +16,7 @@ export const UnassignedDoctorConsultationPage = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedConsultation, setSelectedConsultation] = useState(null);
 
   // Fetch para los datos del doctor
   const fetchDoctorData = () => {
@@ -97,6 +98,7 @@ export const UnassignedDoctorConsultationPage = () => {
       fetchUnassignedConsultations(10, currentPage);
     }
   }, [data.specialityIds, currentPage]);
+
   return (
     <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
       <DinamicTitle text="Consultas No Asignadas" />
@@ -135,7 +137,10 @@ export const UnassignedDoctorConsultationPage = () => {
                           Ver Ficha
                         </button>
                         <button
-                          onClick={() => setIsModalOpen(true)}
+                          onClick={() => {
+                            setIsModalOpen(true);
+                            setSelectedConsultation(consultation.id);
+                          }}
                           className="bg-lightBlue text-smokeWhite p-2 rounded-lg w-full font-bold text-base active:scale-95 transition-transform transform"
                         >
                           Asignarse
@@ -143,8 +148,13 @@ export const UnassignedDoctorConsultationPage = () => {
                         <Modal
                           isOpen={isModalOpen}
                           onRequestClose={() => setIsModalOpen(false)}
-                          contentLabel="Confirm Assign"
-                          style={microCustomStyles}
+                          contentLabel="Confirm Assignment"
+                          style={{
+                            overlay: {
+                              backgroundColor: "rgba(255, 255, 255, 0.1)",
+                            },
+                            content: microCustomStyles.content,
+                          }}
                         >
                           <h3 className="font-roboto font-bold text-lg p-2 text-center">
                             ¿Estás seguro de que deseas asignarte a esta
@@ -152,10 +162,11 @@ export const UnassignedDoctorConsultationPage = () => {
                           </h3>
                           <div className="flex items-center justify-center gap-6 p-4">
                             <button
-                              className="border p-4 bg-lightBlue w-full text-smokeWhite rounded-lg font-inter font-bold"
+                              className="border p-4 bg-cancelColor w-full text-smokeWhite rounded-lg font-inter font-bold"
                               onClick={() => {
-                                assignConsultation(consultation.id);
-                                setIsModalOpen(false);
+                                assignConsultation(selectedConsultation),
+                                  setIsModalOpen(false),
+                                  navigate(`/my-doctor-consultations`);
                               }}
                             >
                               Sí, asignar
@@ -164,7 +175,7 @@ export const UnassignedDoctorConsultationPage = () => {
                               className="border p-4 bg-lightBlue w-full text-smokeWhite rounded-lg font-inter font-bold"
                               onClick={() => setIsModalOpen(false)}
                             >
-                              Cancelar
+                              Cerrar
                             </button>
                           </div>
                         </Modal>
