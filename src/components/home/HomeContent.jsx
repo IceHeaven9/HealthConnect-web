@@ -161,10 +161,6 @@ export const HomeContent = () => {
                     src={doctor.avatar || "/images/doctors/default-avatar.png"}
                     alt={`${doctor.firstName} ${doctor.lastName}`}
                     className="w-12 h-12 rounded-full mr-4"
-                    onError={(e) => {
-                      e.target.src = "/images/doctors/default-avatar.png";
-                      console.error("Error al cargar la imagen:", e);
-                    }}
                   />
                   <span className="text-blue-800">
                     {doctor.firstName} {doctor.lastName}
