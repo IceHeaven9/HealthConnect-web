@@ -1,6 +1,10 @@
 import { API_HOST } from "../../../constants";
 
-// submitHandler.js
+
+
+
+
+
 export const createConsultationFetch = (
 	event,
 	token,
@@ -17,7 +21,6 @@ export const createConsultationFetch = (
 	setFiles,
 	setPreviews,
 	notify,
-	navigate
 ) => {
 	event.preventDefault();
 
@@ -76,11 +79,8 @@ export const createConsultationFetch = (
 											response.text().then((fileResult) => ({ response, fileResult }))
 									)
 									.then(({ response, fileResult }) => {
-											notify(fileResult.message);
-											if (response.ok) {
-													setTimeout(() => {
-															navigate(`/`);
-													}, 1000);
+										if (response.ok) {
+												notify(fileResult.message);
 											}
 											return result.id; // Retorna el ID de la consulta creada
 									})

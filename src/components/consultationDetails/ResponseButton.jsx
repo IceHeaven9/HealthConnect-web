@@ -11,47 +11,7 @@ import { RiFolderAddFill } from "react-icons/ri";
 import { notify } from "../../utils/notify";
 import { sendRating } from "./fetch/sendRating";
 import { FaFileUpload } from "react-icons/fa";
-export const StarRating = ({
-  rating,
-  handleRating,
-  consultationDetails,
-  currentUser,
-}) => {
-  const [hoverRating, setHoverRating] = useState(0);
-  const [selectedRating, setSelectedRating] = useState(
-    consultationDetails.rating || 0
-  );
-  const [isDisabled, setIsDisabled] = useState(
-    currentUser.decoded.userType === "doctor"
-  );
-  const displayRating = selectedRating || 0;
-
-  const handleClick = (newRating) => {
-    setSelectedRating(newRating);
-    handleRating(newRating);
-  };
-
-  return (
-    <div className="flex items-center ">
-      {[...Array(5)].map((_, index) => (
-        <button
-          key={index}
-          className={`text-3xl ${
-            hoverRating > index || displayRating > index
-              ? "text-yellow-500"
-              : "text-lightBlue"
-          }`}
-          onClick={() => handleClick(index + 1)}
-          onMouseEnter={() => setHoverRating(index + 1)}
-          onMouseLeave={() => setHoverRating(0)}
-          disabled={isDisabled}
-        >
-          ★
-        </button>
-      ))}
-    </div>
-  );
-};
+import { StarRating } from "./StarRating";
 
 export const ResponseButton = ({
   showResponseFiles,
@@ -69,7 +29,7 @@ export const ResponseButton = ({
   );
   // Establecer rating
   const [rating, setRating] = useState(0);
-  // Fin de establecer rating
+
 
   const isDisabled =
     currentUser.decoded.userType === "patient" &&
@@ -122,7 +82,7 @@ export const ResponseButton = ({
     setIsEditing(false);
   };
 
-  const handleFileUpload = (e, fileType) => {
+  const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
     setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
   };
@@ -202,7 +162,6 @@ export const ResponseButton = ({
             )}
             <div className="flex items-center justify-end pt-2 pb-4">
               <StarRating
-                rating={rating}
                 handleRating={handleRating}
                 consultationDetails={consultationDetails}
                 currentUser={currentUser}

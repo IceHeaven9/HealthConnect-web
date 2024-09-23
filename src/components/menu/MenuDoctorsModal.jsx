@@ -6,11 +6,13 @@ import { useState } from 'react';
 import { customStyles, miniCustomStyles } from "../../constants";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 
+
 export const MenuDoctorsModal = ({
     doctorsModalIsOpen,
     doctorsModaSetIsOpen,
 }) => {
     const [doctors, setDoctors] = useState([]);
+    console.log(doctors);
     const [selectedDoctorId, setSelectedDoctorId] = useState(null);
     const [selectedDoctor, setSelectedDoctor] = useState(null);
 
@@ -30,7 +32,7 @@ export const MenuDoctorsModal = ({
         setSelectedDoctor(doctor);
     };
 
-    const handleOnSearch = (string, results) => {
+    const handleOnSearch = (string) => {
         if (string === "") {
             fetchDoctors();
         } else {

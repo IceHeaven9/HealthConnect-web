@@ -14,7 +14,6 @@ export const UserProfile = () => {
 	const token = currentUser?.coded;
 	const userType = currentUser?.decoded.userType;
 	const [image, setImage] = useState(currentUser?.decoded.avatar);
-	console.log(image);
 	const [isEditing, setIsEditing] = useState(false);
 	const [userName, setUserName] = useState(currentUser?.decoded.userName);
 	const [name, setName] = useState("");
@@ -89,9 +88,6 @@ export const UserProfile = () => {
 	}, []);
 
 	// Función para eliminar la imagen y volver a la del placeholder
-	const handleRemoveImage = () => {
-		setImage(null); // Restablecer la imagen a null para mostrar el placeholder
-	};
 
 	// Función para cambiar el estado de edición
 	const handleEditProfile = () => {
@@ -125,7 +121,7 @@ export const UserProfile = () => {
 					{/* Contenedor de la Imagen */}
 					<div className="relative">
 						<img
-							src={image}
+							 src={image || "public/images/defaultAvatar.png"}
 							alt="Profile"
 							className="w-24 h-24 object-cover rounded-full border-4 border-white shadow-md"
 						/>
