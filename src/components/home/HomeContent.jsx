@@ -168,6 +168,10 @@ export const HomeContent = () => {
           )}
         </div>
       </div>
+      {/* Botones */}
+      <div className="flex justify-center items-center w-full max-w-md space-x-4">
+        <HomeButtons />
+      </div>
     </main>
   );
 };
