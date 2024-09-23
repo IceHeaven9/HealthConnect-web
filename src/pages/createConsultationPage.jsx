@@ -9,7 +9,7 @@ import { DescriptionForm } from "./../components/createConsutations/DescriptionF
 import { useAuthGuard } from "../hooks/authGuard";
 import { fetchAvailableTimes } from "../components/createConsutations/fetch/availableTimesFetch";
 import "react-calendar/dist/Calendar.css";
-import { DinamicTitle } from "../components/SingleTitle";
+import { DinamicTitle } from "../components/DinamicTitle";
 
 Modal.setAppElement("#root");
 

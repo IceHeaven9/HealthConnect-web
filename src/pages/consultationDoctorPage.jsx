@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { Accordion } from "@szhsin/react-accordion";
-import { HamburgerMenu } from "../components/HamburgerMenu";
 import { useAuthGuard } from "../hooks/authGuard";
 import { AuthContext } from "../contexts/authContext";
-import { DoctorConsultationsTitle } from "../components/myDoctorConsultations/DoctorConsultationsTitle";
 import { DoctorUserCard } from "../components/myDoctorConsultations/DoctorUserCard";
 import { LinkBtn } from "../components/LinkBtn";
 import { HistoryButton } from "../components/myDoctorConsultations/HistoryButton";
@@ -12,7 +10,7 @@ import { UnansweredSection } from "../components/myDoctorConsultations/Unanswere
 import { NextConsultationsSection } from "../components/myDoctorConsultations/NextConsultationsSection";
 import { fetchDoctorData } from "../components/myDoctorConsultations/fetch/doctorDataFetch";
 import { fetchConsultations } from "../components/myDoctorConsultations/fetch/doctorConsultationsFetch";
-import { DinamicTitle } from "../components/SingleTitle";
+import { DinamicTitle } from "../components/DinamicTitle";
 
 export const ConsultationDoctorPage = () => {
   const { currentUser } = useContext(AuthContext);
