@@ -10,7 +10,7 @@ import { EndedConsultation } from "../components/myConsultations/EndedConsultati
 import { fetchConsultations } from "../components/myConsultations/fetch/consultationsFetch";
 import { useAuthGuard } from "../hooks/authGuard";
 import { UserCard } from "../components/myConsultations/UserCard";
-import { DinamicTitle } from "../components/SingleTitle";
+import { DinamicTitle } from "../components/DinamicTitle";
 
 export const ConsultationPage = () => {
   const { currentUser } = useContext(AuthContext);
@@ -36,47 +36,49 @@ export const ConsultationPage = () => {
   }, [startOrEndDate, status]);
 
   return (
-    <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
-      <main>
-        <DinamicTitle text="Mis consultas" />
-        <ToastContainer />
-        <UserCard />
-        <NewConsultationAndHistoryButton
-          navigate={navigate}
-          openModal={openModal}
-          isModalOpen={isModalOpen}
-          token={token}
-          setHistoryConsultations={setHistoryConsultations}
-          historyConsultations={historyConsultations}
-          closeModal={closeModal}
-        />
+    <>
+      <DinamicTitle text="Mis consultas" />
+      <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
+        <main>
+          <ToastContainer />
+          <UserCard />
+          <NewConsultationAndHistoryButton
+            navigate={navigate}
+            openModal={openModal}
+            isModalOpen={isModalOpen}
+            token={token}
+            setHistoryConsultations={setHistoryConsultations}
+            historyConsultations={historyConsultations}
+            closeModal={closeModal}
+          />
 
-        <div className="border rounded-t-xl bg-smokeWhites  bg-lightCakeBlue shadow-xl  ">
-          <Accordion>
-            <SillNoAnswer
-              setstartOrEndDate={setstartOrEndDate}
-              setStatus={setStatus}
-              consultations={consultations}
-              navigate={navigate}
-            />
-            <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-            <NextConsultations
-              setstartOrEndDate={setstartOrEndDate}
-              setStatus={setStatus}
-              consultations={consultations}
-              navigate={navigate}
-            />
-            <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-            <EndedConsultation
-              setstartOrEndDate={setstartOrEndDate}
-              setStatus={setStatus}
-              consultations={consultations}
-              navigate={navigate}
-            />
-            <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-          </Accordion>
-        </div>
-      </main>
-    </div>
+          <div className="border rounded-t-xl bg-smokeWhites  bg-lightCakeBlue shadow-xl  ">
+            <Accordion>
+              <SillNoAnswer
+                setstartOrEndDate={setstartOrEndDate}
+                setStatus={setStatus}
+                consultations={consultations}
+                navigate={navigate}
+              />
+              <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+              <NextConsultations
+                setstartOrEndDate={setstartOrEndDate}
+                setStatus={setStatus}
+                consultations={consultations}
+                navigate={navigate}
+              />
+              <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+              <EndedConsultation
+                setstartOrEndDate={setstartOrEndDate}
+                setStatus={setStatus}
+                consultations={consultations}
+                navigate={navigate}
+              />
+              <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+            </Accordion>
+          </div>
+        </main>
+      </div>
+    </>
   );
 };

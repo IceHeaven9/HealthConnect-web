@@ -17,7 +17,7 @@ import { ConsultationFilesButton } from "../components/consultationDetails/Consu
 import { ResponseButton } from "../components/consultationDetails/ResponseButton";
 import { EditButton } from "../components/consultationDetails/EditButton";
 import { CancelButton } from "../components/consultationDetails/CancelButton";
-import { DinamicTitle } from "../components/SingleTitle";
+import { DinamicTitle } from "../components/DinamicTitle";
 
 export const DetailsConsultationPage = () => {
   const { id } = useParams();
