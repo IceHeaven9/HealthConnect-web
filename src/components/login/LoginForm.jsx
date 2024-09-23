@@ -47,7 +47,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col w-full mx-auto p-6 bg-lightCakeBlue rounded-t-2xl shadow-xl mt-4 ">
+    <div className="flex flex-col w-full mx-auto p-6 bg-lightCakeBlue rounded-2xl shadow-xl m-4 ">
       <main className="bg-smokeWhite rounded-lg p-4 w-full">
         <LoginFormTopSection />
         <form className="flex flex-col" onSubmit={handleSubmit}>
