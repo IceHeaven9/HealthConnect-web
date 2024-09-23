@@ -85,7 +85,7 @@ export const RegisterForm = () => {
 
   return (
     <div>
-      <main className="flex flex-col w-full mx-auto p-6 mt-4 bg-lightCakeBlue rounded-t-2xl shadow-xl">
+      <main className="flex flex-col w-full h-full m-auto p-6  bg-lightCakeBlue rounded-2xl  shadow-xl">
         <div className="bg-smokeWhite rounded-lg p-4 w-full">
           <RegisterPagetItle />
           <form onSubmit={handleSubmitWrapper}>
