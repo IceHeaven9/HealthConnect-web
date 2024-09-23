@@ -1,4 +1,6 @@
 import { HamburgerMenu } from "../HamburgerMenu";
+import { Link } from "react-router-dom";
+import { PiSignInLight } from "react-icons/pi";
 
 export const HomeHeader = () => {
   return (
@@ -18,16 +20,24 @@ export const HomeHeader = () => {
           </div>
         </div>
       </div>
-      {/* Menú Hamburguesa */}
-      <div className="flex justify-center items-center h-12 w-12">
-        <HamburgerMenu />
 
-        {/* Ocultar el botón de inicio en la página actual */}
-        <style>{`
-                    a[href="/"] {
-                        display: none !important;
-                    }
-                `}</style>
+      {/* Menú Hamburguesa o Palabras Clave */}
+
+      <div className="flex justify-center items-center h-12 w-12 md:hidden">
+        <HamburgerMenu />
+      </div>
+      <div className="hidden md:flex space-x-4">
+        {/* Botón de inicio de sesión */}
+
+        <Link
+          className="flex items-center justify-center gap-2 text-sm bg-lightBlue rounded-lg text-white p-3 w-full max-w-xs md:max-w-sm md:w-full"
+          to="/login"
+        >
+          <PiSignInLight size={24} /> Iniciar sesión
+        </Link>
+        <Link to="/about" className="text-[#628eff]">
+          Sobre Nosotros
+        </Link>
       </div>
     </header>
   );
