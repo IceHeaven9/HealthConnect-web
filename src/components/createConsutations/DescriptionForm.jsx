@@ -7,8 +7,8 @@ import { DescriptionTitle } from "./DescriptionTitle";
 import { DescriptionFormTopSection } from "./DescriptionFormTopSection";
 import { DescriptionFormMidSection } from "./DescriptionFormMidSection";
 import { DescriptionFormBottomSection } from "./DescriptionFormBottomSection";
-import { HamburgerMenu } from "../HamburgerMenu";
-import { DinamicTitle } from "../SingleTitle";
+
+import { DinamicTitle } from "../DinamicTitle";
 export const DescriptionForm = ({
   selectedDate,
   selectedSpecialty,
