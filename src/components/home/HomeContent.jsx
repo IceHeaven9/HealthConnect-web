@@ -83,14 +83,14 @@ export const HomeContent = () => {
         style={{ backgroundImage: "url('/images/fondotext.jpg')" }}
       >
         <div className="bg-white bg-opacity-80 p-6 rounded-lg">
-          <h1 className="text-2xl md:text-3xl font-bold mb-4 text-blue-600">
+          <h1 className="text-2xl md:text-3xl font-bold mb-4 text-lightBlue">
             Tu salud simplificada.
           </h1>
-          <p className="text-base md:text-lg leading-relaxed mb-6 text-blue-600">
+          <p className="text-base md:text-lg leading-relaxed mb-6 text-lightBlue">
             Hacemos que sea fácil reservar citas con los mejores profesionales
             de la salud.
           </p>
-          <ul className="list-disc list-inside text-base md:text-lg leading-relaxed mb-6 text-blue-600">
+          <ul className="list-disc list-outside text-base md:text-lg leading-relaxed mb-6 text-lightBlue pl-5">
             <li>
               <span className="font-semibold">Atención experta:</span> conéctese
               con médicos calificados de diversas especialidades.
@@ -108,22 +108,17 @@ export const HomeContent = () => {
               información médica está protegida con nosotros.
             </li>
           </ul>
-          <p className="text-base md:text-lg leading-relaxed text-blue-600">
+          <p className="text-base md:text-lg leading-relaxed text-lightBlue">
             ¡Únase hoy y tome el control de su salud con facilidad!
           </p>
         </div>
       </div>
 
-      {/* Botones */}
-      <div className="flex justify-center items-center w-full max-w-md mb-8 space-x-4">
-        <HomeButtons />
-      </div>
-
       {/* Contenedor especialidades y doctores */}
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Especialidades */}
-        <div className="bg-blue-200 px-4 pb-4 rounded-lg shadow-lg overflow-auto max-h-96">
-          <h2 className="text-xl font-bold mb-4 text-blue-800 sticky top-0 bg-blue-200 p-2">
+        <div className="bg-lightCakeBlue px-4 pb-4 rounded-lg shadow-lg overflow-auto max-h-[30rem]">
+          <h2 className="text-xl font-bold mb-4 text-lightBlue sticky top-0 bg-lightCakeBlue p-2">
             Especialidades
           </h2>
           {specialties.length > 0 ? (
@@ -139,7 +134,7 @@ export const HomeContent = () => {
                       console.error("Error al cargar la imagen:", e);
                     }}
                   />
-                  <span className="text-blue-800">{specialty.name}</span>
+                  <span className="text-lightBlue">{specialty.name}</span>
                 </li>
               ))}
             </ul>
@@ -149,8 +144,8 @@ export const HomeContent = () => {
         </div>
 
         {/* Doctores */}
-        <div className="bg-blue-200 px-4 pb-4 rounded-lg shadow-lg overflow-auto max-h-96">
-          <h2 className="text-xl font-bold mb-4 text-blue-800 sticky top-0 bg-blue-200 p-2">
+        <div className="bg-lightCakeBlue px-4 pb-4 rounded-lg shadow-lg overflow-auto max-h-[30rem]">
+          <h2 className="text-xl font-bold mb-4 text-lightBlue sticky top-0 bg-lightCakeBlue p-2">
             Doctores
           </h2>
           {doctors.length > 0 ? (
@@ -162,7 +157,7 @@ export const HomeContent = () => {
                     alt={`${doctor.firstName} ${doctor.lastName}`}
                     className="w-12 h-12 rounded-full mr-4"
                   />
-                  <span className="text-blue-800">
+                  <span className="text-lightBlue">
                     {doctor.firstName} {doctor.lastName}
                   </span>
                 </li>
@@ -172,6 +167,10 @@ export const HomeContent = () => {
             <p>No hay doctores disponibles.</p>
           )}
         </div>
+      </div>
+      {/* Botones */}
+      <div className="flex justify-center items-center w-full max-w-md space-x-4">
+        <HomeButtons />
       </div>
     </main>
   );
