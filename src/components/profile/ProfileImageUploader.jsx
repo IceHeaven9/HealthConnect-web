@@ -88,7 +88,7 @@ export const ProfileImageUploader = ({
 ProfileImageUploader.propTypes = {
   currentUser: PropTypes.shape({
     decoded: PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
   token: PropTypes.string.isRequired,

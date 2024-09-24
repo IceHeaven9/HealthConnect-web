@@ -1,5 +1,5 @@
-import {useState} from 'react';
-import PropTypes from "prop-types"
+import { useState } from "react";
+import PropTypes from "prop-types";
 export const StarRating = ({
   handleRating,
   consultationDetails,
@@ -9,9 +9,7 @@ export const StarRating = ({
   const [selectedRating, setSelectedRating] = useState(
     consultationDetails.rating || 0
   );
-  const [isDisabled] = useState(
-    currentUser.decoded.userType === "doctor"
-  );
+  const [isDisabled] = useState(currentUser.decoded.userType === "doctor");
   const displayRating = selectedRating || 0;
 
   const handleClick = (newRating) => {
@@ -41,16 +39,15 @@ export const StarRating = ({
   );
 };
 
-
 StarRating.propTypes = {
-  rating: PropTypes.number.isRequired,
+  rating: PropTypes.number,
   handleRating: PropTypes.func.isRequired,
   consultationDetails: PropTypes.shape({
     rating: PropTypes.number,
   }).isRequired,
   currentUser: PropTypes.shape({
     decoded: PropTypes.shape({
-      userType: PropTypes.string.isRequired,
+      userType: PropTypes.string,
     }).isRequired,
-  }).isRequired,
+  }),
 };

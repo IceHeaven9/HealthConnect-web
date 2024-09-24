@@ -106,6 +106,7 @@ export const DetailsConsultationPage = () => {
                   setShowDoctor={setShowDoctor}
                   showDoctor={showDoctor}
                   consultationDetails={consultationDetails}
+                  currentUser={currentUser}
                 />
               )}
               <ConsultationFilesButton
