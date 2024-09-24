@@ -18,7 +18,7 @@ export default {
         light: "#cad6ff",
         carbon: "#161617",
         blueGray: "#6B7280",
-        smokeWhite: "#f5f5f5",
+        smokeWhite: "#f9f9f9",
         warning: "#ffb032",
         cancelColor: "#ff0000",
       },

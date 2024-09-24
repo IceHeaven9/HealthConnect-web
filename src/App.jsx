@@ -14,6 +14,8 @@ import { Footer } from "./components/Footer";
 import { ConsultationPage } from "./pages/ConsultationPage";
 import { ConsultationDoctorPage } from "./pages/consultationDoctorPage";
 import { UnassignedDoctorConsultationPage } from "./pages/UnassignedDoctorConsultationPage";
+import { DoctorsPage } from "./pages/doctorPage";
+import { SpecialitiesPage } from "./pages/specialitiesPage";
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
               path="/consultation/:id/details"
               element={<DetailsConsultationPage />}
             />
+            <Route path="/doctors" element={<DoctorsPage />} />
+            <Route path="/specialities" element={<SpecialitiesPage />} />
             <Route path="/recovery-account" element={<RecoveryAccountPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="*" element={<NotFoundPage />} />
