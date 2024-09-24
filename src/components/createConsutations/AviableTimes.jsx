@@ -35,17 +35,15 @@ export const AviableTimes = ({
   }
 
   return (
-    <div className="my-8 border-solid border-[0.1rem] border-lightBlue bg-smokeWhite rounded-xl shadow-[0px_12px_11px_2px_rgba(0,0,0,0.2)] p-4 max-w-md mx-auto">
-      {selectedDoctor && (
-        <div className="flex gap-4 items-center justify-start">
-          <img
-            className="border-solid border-[0.15rem] border-lightBlue rounded-xl w-16 h-16"
-            src={currentSlot.avatar}
-            alt=""
-          />
-          <h3 className="text-xl font-medium">{currentSlot.doctorName}</h3>
-        </div>
-      )}
+    <div className="m-4 border-solid border-[0.1rem] border-lightBlue bg-smokeWhite rounded-xl shadow-[0px_12px_11px_2px_rgba(0,0,0,0.2)] p-4 max-w-md">
+      <div className="flex gap-4 items-center justify-start">
+        <img
+          className="border-solid border-[0.15rem] border-lightBlue rounded-xl w-16 h-16"
+          src={currentSlot.avatar}
+          alt=""
+        />
+        <h3 className="text-xl font-medium">{currentSlot.doctorName}</h3>
+      </div>
       <div className="">
         <ul className="grid grid-cols-3 sm:grid-cols-5 mb-4 mt-6 justify-items-center">
           {currentSlot.freeHours.map((hour, idx) => (
