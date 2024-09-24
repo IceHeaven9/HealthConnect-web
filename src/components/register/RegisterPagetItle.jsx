@@ -17,7 +17,7 @@ export const RegisterPagetItle = () => {
         Crear Cuenta
       </p>
       <div className="text-lg font-bold text-[#6B7280] pb-8  font-ubuntu ">
-        Introduce tus datos para complletar el registro
+        Introduce tus datos para completar el registro
       </div>
     </>
   );
