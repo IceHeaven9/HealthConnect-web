@@ -36,49 +36,53 @@ export const ConsultationPage = () => {
   }, [startOrEndDate, status]);
 
   return (
-    <>
-      <DinamicTitle text="Mis consultas" />
-      <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
-        <main>
-          <ToastContainer />
-          <UserCard />
-          <NewConsultationAndHistoryButton
-            navigate={navigate}
-            openModal={openModal}
-            isModalOpen={isModalOpen}
-            token={token}
-            setHistoryConsultations={setHistoryConsultations}
-            historyConsultations={historyConsultations}
-            closeModal={closeModal}
-          />
-
-          <div className="border rounded-t-xl bg-smokeWhites  bg-lightCakeBlue shadow-xl  ">
-            <Accordion>
-              <SillNoAnswer
-                setstartOrEndDate={setstartOrEndDate}
-                setStatus={setStatus}
-                consultations={consultations}
-                navigate={navigate}
-              />
-              <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-              <NextConsultations
-                setstartOrEndDate={setstartOrEndDate}
-                setStatus={setStatus}
-                consultations={consultations}
-                navigate={navigate}
-              />
-              <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-              <EndedConsultation
-                setstartOrEndDate={setstartOrEndDate}
-                setStatus={setStatus}
-                consultations={consultations}
-                navigate={navigate}
-              />
-              <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
-            </Accordion>
-          </div>
-        </main>
+    <div>
+      <div className="absolute top-0 z-10 w-full">
+        <DinamicTitle text="Mis consultas" />
       </div>
-    </>
+      <div className="flex items-center justify-center mx-4 mt-20 sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
+        <div className="max-w-full bg-lightCakeBlue rounded-2xl shadow-xl m-4 p-6 mx-auto ">
+          <main className="bg-smokeWhite rounded-lg w-full">
+            <ToastContainer />
+            <UserCard />
+            <NewConsultationAndHistoryButton
+              navigate={navigate}
+              openModal={openModal}
+              isModalOpen={isModalOpen}
+              token={token}
+              setHistoryConsultations={setHistoryConsultations}
+              historyConsultations={historyConsultations}
+              closeModal={closeModal}
+            />
+
+            <div className="border rounded-t-xl bg-smokeWhites  bg-lightCakeBlue shadow-xl  ">
+              <Accordion>
+                <SillNoAnswer
+                  setstartOrEndDate={setstartOrEndDate}
+                  setStatus={setStatus}
+                  consultations={consultations}
+                  navigate={navigate}
+                />
+                <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+                <NextConsultations
+                  setstartOrEndDate={setstartOrEndDate}
+                  setStatus={setStatus}
+                  consultations={consultations}
+                  navigate={navigate}
+                />
+                <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+                <EndedConsultation
+                  setstartOrEndDate={setstartOrEndDate}
+                  setStatus={setStatus}
+                  consultations={consultations}
+                  navigate={navigate}
+                />
+                <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+              </Accordion>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
   );
 };
