@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-
 export const AviableTimes = ({
   selectedHour,
   setSelectedHour,
@@ -28,7 +27,6 @@ export const AviableTimes = ({
     );
   }
 
-
   const currentSlot = availableTimes[currentIndex];
 
   if (!currentSlot) {
@@ -38,7 +36,7 @@ export const AviableTimes = ({
 
   return (
     <div className="my-8 border-solid border-[0.1rem] border-lightBlue bg-smokeWhite rounded-xl shadow-[0px_12px_11px_2px_rgba(0,0,0,0.2)] p-4 max-w-md mx-auto">
-           {selectedDoctor && (
+      {selectedDoctor && (
         <div className="flex gap-4 items-center justify-start">
           <img
             className="border-solid border-[0.15rem] border-lightBlue rounded-xl w-16 h-16"
@@ -76,7 +74,6 @@ export const AviableTimes = ({
       <div className="flex text-4xl justify-between">
         {!selectedDoctor && (
           <>
-           
             <div className="flex gap-2 items-center justify-center">
               <img
                 className="rounded-xl w-14 h-14"
@@ -84,7 +81,6 @@ export const AviableTimes = ({
                 alt=""
               />
             </div>
-            
           </>
         )}
       </div>
