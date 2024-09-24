@@ -35,9 +35,9 @@ export const AviableTimes = ({
   }
 
   return (
-    <div className="my-8 border-solid border-[0.1rem] border-lightBlue bg-smokeWhite rounded-xl shadow-[0px_12px_11px_2px_rgba(0,0,0,0.2)] p-4 max-w-md mx-auto">
+    <div className="flex flex-col justify-center items-center m-auto border-lightBlue bg-smokeWhite rounded-xl p-4">
       {selectedDoctor && (
-        <div className="flex gap-4 items-center justify-start">
+        <div className="flex gap-6 items-center justify-center mb-4">
           <img
             className="border-solid border-[0.15rem] border-lightBlue rounded-xl w-16 h-16"
             src={currentSlot.avatar}
@@ -46,11 +46,11 @@ export const AviableTimes = ({
           <h3 className="text-xl font-medium">{currentSlot.doctorName}</h3>
         </div>
       )}
-      <div className="">
-        <ul className="grid grid-cols-3 sm:grid-cols-5 mb-4 mt-6 justify-items-center">
+      <div>
+        <ul className="flex flex-wrap m-2 gap-4 w-full items-center justify-center">
           {currentSlot.freeHours.map((hour, idx) => (
             <li
-              className={`rounded-xl font-medium p-1.5 m-1 w-max text-carbon ${
+              className={`rounded-lg font-medium text-lg p-2 text-center text-carbon ${
                 selectedHour === hour
                   ? "bg-lightBlue text-smokeWhite shadow-[inset_0px_0px_9px_5px_rgba(0,0,0,0.2)]"
                   : "bg-light shadow-[0px_0px_5px_1px_rgba(0,0,0,0.2)]"
@@ -70,19 +70,6 @@ export const AviableTimes = ({
             </li>
           ))}
         </ul>
-      </div>
-      <div className="flex text-4xl justify-between">
-        {!selectedDoctor && (
-          <>
-            <div className="flex gap-2 items-center justify-center">
-              <img
-                className="rounded-xl w-14 h-14"
-                src="/images/Perfil_healthConnect_blue.png"
-                alt=""
-              />
-            </div>
-          </>
-        )}
       </div>
     </div>
   );

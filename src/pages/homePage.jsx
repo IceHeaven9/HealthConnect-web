@@ -3,7 +3,7 @@ import { HomeHeader } from "../components/home/HomeHeader";
 
 export const HomePage = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center">
       <div className="absolute top-0 z-10 w-full">
         <HomeHeader />
       </div>
