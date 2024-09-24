@@ -2,7 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ESTILOS RESET */
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 /* FUENTES */
 
@@ -21,13 +38,13 @@
   src: url(/fonts/Ubuntu-Regular.ttf);
 }
 
-
 /* Estilos para el calendario */
-.react-calendar{
+.react-calendar {
   width: 350px;
   max-width: 100%;
-  background: #f5f5f5;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background: #f9f9f9;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
@@ -36,39 +53,35 @@
   margin-right: 2rem;
   margin-bottom: 1.5rem !important;
   margin-bottom: 1.5rem !important;
-  box-shadow: 0px 8px 11px 2px rgba(0,0,0,0.2) !important;
+  box-shadow: 0px 8px 11px 2px rgba(0, 0, 0, 0.2) !important;
 }
 
-.ReactModal__Content{
+.ReactModal__Content {
   overflow-y: hidden;
 }
 
 /* Estilos para la barra de scroll */
 .ReactModal__Content::-webkit-scrollbar {
-  width: 10px; 
+  width: 10px;
 }
 
 .ReactModal__Content::-webkit-scrollbar-thumb {
-  background: transparent; 
+  background: transparent;
   border-radius: 15px;
   height: 1rem;
 }
 
 /* Para Firefox */
 .ReactModal__Content {
-  scrollbar-width:calc(15px) ;
+  scrollbar-width: calc(15px);
   scrollbar-color: transparent;
 }
 
-
-
-.szh-accordion__item-btn{
+.szh-accordion__item-btn {
   width: 100%;
 }
 
-
 /* -------------------------------------------------------------- */
-
 
 .cloud {
   width: 350px;
@@ -87,12 +100,12 @@
   transition: ease 1s;
 }
 
-.cloud:after, .cloud:before {
-  content: '';
+.cloud:after,
+.cloud:before {
+  content: "";
   position: absolute;
   z-index: 10;
   background: #f5f5f5;
-
 }
 
 .cloud:after {
@@ -189,25 +202,49 @@
 }
 
 @keyframes moveclouds {
-  0% { margin-left: 1000px; }
-  0.5% { margin-left: 900px; }
-  100% { margin-left: -1000px; }
+  0% {
+    margin-left: 1000px;
+  }
+  0.5% {
+    margin-left: 900px;
+  }
+  100% {
+    margin-left: -1000px;
+  }
 }
 
 @-webkit-keyframes moveclouds {
-  0% { margin-left: 1000px; }
-  0.5% { margin-left: 900px; }
-  100% { margin-left: -1000px; }
+  0% {
+    margin-left: 1000px;
+  }
+  0.5% {
+    margin-left: 900px;
+  }
+  100% {
+    margin-left: -1000px;
+  }
 }
 
 @-moz-keyframes moveclouds {
-  0% { margin-left: 1000px; }
-  0.5% { margin-left: 900px; }
-  100% { margin-left: -1000px; }
+  0% {
+    margin-left: 1000px;
+  }
+  0.5% {
+    margin-left: 900px;
+  }
+  100% {
+    margin-left: -1000px;
+  }
 }
 
 @-o-keyframes moveclouds {
-  0% { margin-left: 1000px; }
-  0.5% { margin-left: 900px; }
-  100% { margin-left: -1000px; }
+  0% {
+    margin-left: 1000px;
+  }
+  0.5% {
+    margin-left: 900px;
+  }
+  100% {
+    margin-left: -1000px;
+  }
 }

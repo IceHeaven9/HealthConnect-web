@@ -14,42 +14,47 @@ import { Footer } from "./components/Footer";
 import { ConsultationPage } from "./pages/ConsultationPage";
 import { ConsultationDoctorPage } from "./pages/consultationDoctorPage";
 import { UnassignedDoctorConsultationPage } from "./pages/UnassignedDoctorConsultationPage";
+import { DoctorsPage } from "./pages/doctorPage";
+import { SpecialitiesPage } from "./pages/specialitiesPage";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" exact element={<HomePage />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/validate-email" element={<ValidateEmailPage />} />
-          <Route path="/my-consultations" element={<ConsultationPage />} />
-          <Route
-            path="/my-doctor-consultations"
-            element={<ConsultationDoctorPage />}
-          />
-          <Route
-            path="/my-doctor-unassigned-consultations"
-            element={<UnassignedDoctorConsultationPage />}
-          />
-          <Route
-            path="/create-consultation"
-            element={<CreateConsultationPage />}
-          />
-          <Route
-            path="/consultation/:id/details"
-            element={<DetailsConsultationPage />}
-          />
-          <Route path="/recovery-account" element={<RecoveryAccountPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
-
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+    <BrowserRouter>
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-1 my-auto">
+          <Routes>
+            <Route path="/" exact element={<HomePage />} />
+            <Route path="/profile" element={<UserProfile />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/validate-email" element={<ValidateEmailPage />} />
+            <Route path="/my-consultations" element={<ConsultationPage />} />
+            <Route
+              path="/my-doctor-consultations"
+              element={<ConsultationDoctorPage />}
+            />
+            <Route
+              path="/my-doctor-unassigned-consultations"
+              element={<UnassignedDoctorConsultationPage />}
+            />
+            <Route
+              path="/create-consultation"
+              element={<CreateConsultationPage />}
+            />
+            <Route
+              path="/consultation/:id/details"
+              element={<DetailsConsultationPage />}
+            />
+            <Route path="/doctors" element={<DoctorsPage />} />
+            <Route path="/specialities" element={<SpecialitiesPage />} />
+            <Route path="/recovery-account" element={<RecoveryAccountPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
         <Footer />
-      </BrowserRouter>
-    </>
+      </div>
+    </BrowserRouter>
   );
 }
 

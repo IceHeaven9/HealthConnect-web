@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <div className="max-w-full sm:max-w-[600px] bg-smokeWhite md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4 pb-4">
+    <div className="max-w-full">
       <div className="flex flex-col items-center w-full h-fit bg-lightCakeBlue text-[#628eff] pb-4 rounded-b-lg">
         <div className="flex flex-col justify-center items-center">
           <div className=" w-full flex flex-col items-center">

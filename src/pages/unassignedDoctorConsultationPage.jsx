@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { API_HOST, microCustomStyles } from "../constants";
 import { AuthContext } from "../contexts/authContext";
-import { DinamicTitle } from "../components/SingleTitle";
+import { DinamicTitle } from "../components/DinamicTitle";
 import { useNavigate } from "react-router-dom";
 import { notify } from "../utils/notify";
 import { ToastContainer } from "react-toastify";

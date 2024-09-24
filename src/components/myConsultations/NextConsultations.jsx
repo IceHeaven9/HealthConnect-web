@@ -11,7 +11,7 @@ export const NextConsultations = ({
     <>
       <AccordionItem
         header={
-          <div className="flex rounded-t-lg justify-between font-inter font-bold text-lightBlue bg-smokeWhite w-full p-3">
+          <div className="flex rounded-t-lg justify-between font-inter font-bold text-lightBlue bg-lightCakeBlue w-full p-3">
             <div className="w-full text-center h-max text-lg ">
               PRÓXIMAS CONSULTAS
             </div>

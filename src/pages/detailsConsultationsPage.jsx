@@ -17,7 +17,7 @@ import { ConsultationFilesButton } from "../components/consultationDetails/Consu
 import { ResponseButton } from "../components/consultationDetails/ResponseButton";
 import { EditButton } from "../components/consultationDetails/EditButton";
 import { CancelButton } from "../components/consultationDetails/CancelButton";
-import { DinamicTitle } from "../components/SingleTitle";
+import { DinamicTitle } from "../components/DinamicTitle";
 
 export const DetailsConsultationPage = () => {
   const { id } = useParams();
@@ -55,88 +55,92 @@ export const DetailsConsultationPage = () => {
   }
 
   return (
-    <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
-      <DinamicTitle text="Detalles de la consulta" />
-      <div className="flex flex-col items-center justify-center  min-h-full ">
-        <ConsultationDetailsTitle ref={scrollToTopRef} navigate={navigate} />
-        <main className="flex flex-col justify-start items-center bg-smokeWhite border-[0.1rem] border-solid border-lightCakeBlue p-6 rounded-lg shadow-md w-[90%] mx-4 h-full mb-20">
-          <PatientSection consultationDetails={consultationDetails} />
-          <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
-          <DateSection consultationDetails={consultationDetails} />
-          <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
-          <ConsultationTitle
-            userType={userType}
-            isEditing={isEditing}
-            setIsEditing={setIsEditing}
-            id={id}
-            consultationDetails={consultationDetails}
-            setConsultationDetails={setConsultationDetails}
-          />
-          <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
-          <DescriptionSection
-            userType={userType}
-            setIsEditing={setIsEditing}
-            isEditing={isEditing}
-            id={id}
-            consultationDetails={consultationDetails}
-            setConsultationDetails={setConsultationDetails}
-          />
-          <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
-          <SeveritySection
-            userType={userType}
-            setIsEditing={setIsEditing}
-            isEditing={isEditing}
-            id={id}
-            consultationDetails={consultationDetails}
-            setConsultationDetails={setConsultationDetails}
-          />
-          <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
+    <div className="flex flex-col items-center">
+      <ToastContainer />
+      <div className="absolute top-0 z-10 w-full">
+        <DinamicTitle text="Detalles de la consulta" />
+      </div>
+      <div className="flex items-center justify-center m-auto mx-4 mt-20 w-full">
+        <div className="bg-lightCakeBlue rounded-2xl shadow-xl m-4 p-6 w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
+          <main className="bg-smokeWhite rounded-lg p-4">
+            <PatientSection consultationDetails={consultationDetails} />
+            <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
+            <DateSection consultationDetails={consultationDetails} />
+            <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
+            <ConsultationTitle
+              userType={userType}
+              isEditing={isEditing}
+              setIsEditing={setIsEditing}
+              id={id}
+              consultationDetails={consultationDetails}
+              setConsultationDetails={setConsultationDetails}
+            />
+            <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
+            <DescriptionSection
+              userType={userType}
+              setIsEditing={setIsEditing}
+              isEditing={isEditing}
+              id={id}
+              consultationDetails={consultationDetails}
+              setConsultationDetails={setConsultationDetails}
+            />
+            <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
+            <SeveritySection
+              userType={userType}
+              setIsEditing={setIsEditing}
+              isEditing={isEditing}
+              id={id}
+              consultationDetails={consultationDetails}
+              setConsultationDetails={setConsultationDetails}
+            />
+            <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
 
-          <StatusSection consultationDetails={consultationDetails} />
+            <StatusSection consultationDetails={consultationDetails} />
 
-          <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
-          <SpecialtySection consultationDetails={consultationDetails} />
-          <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
-          <div className="w-full flex flex-col items-center gap-4">
-            {userTypeForRender !== "doctor" && (
-              <DoctorButton
-                setShowDoctor={setShowDoctor}
-                showDoctor={showDoctor}
+            <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
+            <SpecialtySection consultationDetails={consultationDetails} />
+            <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2 "></div>
+            <div className="w-full flex flex-col items-center gap-4">
+              {userTypeForRender !== "doctor" && (
+                <DoctorButton
+                  setShowDoctor={setShowDoctor}
+                  showDoctor={showDoctor}
+                  consultationDetails={consultationDetails}
+                />
+              )}
+              <ConsultationFilesButton
+                setShowConsultationFiles={setShowConsultationFiles}
+                showConsultationFiles={showConsultationFiles}
+                consultationDetails={consultationDetails}
+              />
+              <ResponseButton
+                consultationId={consultationId}
+                showResponseFiles={showResponseFiles}
+                setShowResponseFiles={setShowResponseFiles}
                 consultationDetails={consultationDetails}
                 currentUser={currentUser}
               />
-            )}
-            <ConsultationFilesButton
-              setShowConsultationFiles={setShowConsultationFiles}
-              showConsultationFiles={showConsultationFiles}
-              consultationDetails={consultationDetails}
-            />
-            <ResponseButton
-              consultationId={consultationId}
-              showResponseFiles={showResponseFiles}
-              setShowResponseFiles={setShowResponseFiles}
-              consultationDetails={consultationDetails}
-            />
 
-            <div className="w-full flex  mx-4  gap-2">
-              {userTypeForRender !== "doctor" && (
-                <>
-                  <EditButton
-                    consultationDetails={consultationDetails}
-                    scrollToRef={scrollToTopRef}
-                    setIsEditing={setIsEditing}
-                    isEditing={isEditing}
-                  />
-                  <CancelButton
-                    setConsultationDetails={setConsultationDetails}
-                    consultationDetails={consultationDetails}
-                  />
-                </>
-              )}
-              <ToastContainer />
+              <div className="w-full flex  mx-4  gap-2">
+                {userTypeForRender !== "doctor" && (
+                  <>
+                    <EditButton
+                      consultationDetails={consultationDetails}
+                      scrollToRef={scrollToTopRef}
+                      setIsEditing={setIsEditing}
+                      isEditing={isEditing}
+                    />
+                    <CancelButton
+                      setConsultationDetails={setConsultationDetails}
+                      consultationDetails={consultationDetails}
+                    />
+                  </>
+                )}
+                <ToastContainer />
+              </div>
             </div>
-          </div>
-        </main>
+          </main>
+        </div>
       </div>
     </div>
   );
