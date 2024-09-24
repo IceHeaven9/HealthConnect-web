@@ -5,12 +5,12 @@ import { PiCalendarDotsLight } from "react-icons/pi";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
-import { FaUserPlus } from "react-icons/fa6";
+import { FaUserDoctor, FaUserPlus } from "react-icons/fa6";
 import { PiSignInLight } from "react-icons/pi";
 import { IoMdClose } from "react-icons/io";
 import { AuthContext } from "../contexts/authContext";
 import { MenuSpecialtiesModal } from "./menu/MenuSpecialtiesModal";
-import { MenuDoctorsModal } from "./menu/MenuDoctorsModal";
+import { LiaClipboardListSolid } from "react-icons/lia";
 
 export const HamburgerMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -41,14 +41,16 @@ export const HamburgerMenu = () => {
                   <RiHomeHeartFill size={30} color="#ffffff" />
                 </Link>
               </li>
-              <MenuSpecialtiesModal
-                specialtyModalIsOpen={specialtyModalIsOpen}
-                specialtyModaSetIsOpen={specialtyModaSetIsOpen}
-              ></MenuSpecialtiesModal>
-              <MenuDoctorsModal
-                doctorsModalIsOpen={doctorsModalIsOpen}
-                doctorsModaSetIsOpen={doctorsModaSetIsOpen}
-              />
+              <li>
+                <Link to="/specialities">
+                  <LiaClipboardListSolid size={30} color="#ffffff" />
+                </Link>
+              </li>
+              <li>
+                <Link to="/doctors">
+                  <FaUserDoctor size={30} color="#ffffff" />
+                </Link>
+              </li>
               <li className="">
                 <button
                   className="mt-2"
@@ -60,24 +62,24 @@ export const HamburgerMenu = () => {
                   <ul className=" bg-white shadow-md rounded-md mt-2">
                     {token ? (
                       <>
-                      <ul className="bg-lightBlue">
-                        <li>
-                          <button
-                            className="flex items-center absolute -bottom-12 right-8 gap-2 text-md w-44 bg-lightBlue rounded-lg mt-1 text-white p-2"
-                            onClick={handleProfile}
-                          >
-                            <CgProfile size={30} color="#ffffff" />
-                            Perfil
-                          </button>
-                        </li>
-                        <li>
-                          <button
-                            className="flex items-center w-44 absolute -bottom-[6.7rem] right-8 gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
-                            onClick={handleLogout}
-                          >
-                            <CiLogout size={40} /> Cerrar sesión
-                          </button>
-                        </li>
+                        <ul className="bg-lightBlue">
+                          <li>
+                            <button
+                              className="flex items-center absolute -bottom-12 right-8 gap-2 text-md w-44 bg-lightBlue rounded-lg mt-1 text-white p-2"
+                              onClick={handleProfile}
+                            >
+                              <CgProfile size={30} color="#ffffff" />
+                              Perfil
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              className="flex items-center w-44 absolute -bottom-[6.7rem] right-8 gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
+                              onClick={handleLogout}
+                            >
+                              <CiLogout size={40} /> Cerrar sesión
+                            </button>
+                          </li>
                         </ul>
                       </>
                     ) : (
