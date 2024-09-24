@@ -84,14 +84,6 @@ export const UserProfile = () => {
     fetchProfile();
   }, []);
 
-<<<<<<< HEAD
-  // Función para cambiar el estado de edición
-  const handleEditProfile = () => {
-    setIsEditing(!isEditing); // Cambiar entre modo de edición y modo de visualización
-  };
-
-=======
->>>>>>> 9cfc393 (arreglos)
   return (
     <div className="flex flex-col items-center">
       <ToastContainer />
