@@ -87,8 +87,6 @@ export const UserProfile = () => {
 		fetchProfile();
 	}, []);
 
-	// Función para eliminar la imagen y volver a la del placeholder
-
 	// Función para cambiar el estado de edición
 	const handleEditProfile = () => {
 		setIsEditing(!isEditing); // Cambiar entre modo de edición y modo de visualización
