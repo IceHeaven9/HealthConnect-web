@@ -2,8 +2,8 @@ export const LOCAL_STORAGE_TOKEN_KEY = "TOKEN";
 
 export const customStyles = {
   content: {
-    height: "90%",
-    width: "90%",
+    height: "70%",
+    weight: "100%",
     maxWidth: "600px",
     borderRadius: "25px",
     top: "50%",
@@ -22,7 +22,7 @@ export const customStyles = {
 export const consultationsFilesModal = {
   content: {
     height: "max-content",
-    width: "90%",
+    width: "max-content",
     maxWidth: "600px",
     borderRadius: "25px",
     top: "50%",

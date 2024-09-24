@@ -36,14 +36,14 @@ export const ConsultationPage = () => {
   }, [startOrEndDate, status]);
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
+      <ToastContainer />
       <div className="absolute top-0 z-10 w-full">
         <DinamicTitle text="Mis consultas" />
       </div>
-      <div className="flex items-center justify-center mx-4 mt-20 sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
-        <div className="max-w-full bg-lightCakeBlue rounded-2xl shadow-xl m-4 p-6 mx-auto ">
-          <main className="bg-smokeWhite rounded-lg w-full">
-            <ToastContainer />
+      <div className="flex items-center justify-center m-auto mx-4 mt-20 w-full">
+        <div className="bg-lightCakeBlue rounded-2xl shadow-xl m-4 p-6 w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
+          <main className="bg-smokeWhite rounded-lg p-4">
             <UserCard />
             <NewConsultationAndHistoryButton
               navigate={navigate}
@@ -55,7 +55,7 @@ export const ConsultationPage = () => {
               closeModal={closeModal}
             />
 
-            <div className="border rounded-t-xl bg-smokeWhites  bg-lightCakeBlue shadow-xl  ">
+            <div className="border rounded-xl bg-smokeWhites mx-auto bg-lightCakeBlue w-full shadow-xl">
               <Accordion>
                 <SillNoAnswer
                   setstartOrEndDate={setstartOrEndDate}
@@ -63,21 +63,20 @@ export const ConsultationPage = () => {
                   consultations={consultations}
                   navigate={navigate}
                 />
-                <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+                <div className="border-t-[0.1rem] border-lightBlue border-solid"></div>
                 <NextConsultations
                   setstartOrEndDate={setstartOrEndDate}
                   setStatus={setStatus}
                   consultations={consultations}
                   navigate={navigate}
                 />
-                <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
+                <div className="border-t-[0.1rem] border-lightBlue border-solid"></div>
                 <EndedConsultation
                   setstartOrEndDate={setstartOrEndDate}
                   setStatus={setStatus}
                   consultations={consultations}
                   navigate={navigate}
                 />
-                <div className=" border-t-[0.1rem] border-lightBlue border-solid"></div>
               </Accordion>
             </div>
           </main>

@@ -5,12 +5,12 @@ export const PatientSection = ({ consultationDetails }) => {
     <>
       <div className="flex items-center justify-between mb-4 w-full gap-4">
         <img
-          className="w-16 h-16 rounded-full mr-2"
+          className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 rounded-full mr-2"
           src={consultationDetails.patientAvatar}
           alt="Avatar del paciente"
         />
         <div>
-          <p className="text-2xl w-full h-auto break-words font-medium">
+          <p className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl w-full h-auto break-words font-medium">
             {consultationDetails.patientName}
           </p>
         </div>
