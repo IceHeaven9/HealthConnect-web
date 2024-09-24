@@ -2,26 +2,28 @@ import Modal from "react-modal";
 import PropTypes from "prop-types";
 import { IoClose } from "react-icons/io5";
 import { FaUserDoctor } from 'react-icons/fa6';
-import { useState } from 'react';
-import { customStyles, miniCustomStyles } from "../../constants";
-import { ReactSearchAutocomplete } from 'react-search-autocomplete';
-
+import { useContext, useState } from 'react';
+import { API_HOST, customStyles, miniCustomStyles } from "../../constants";
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';// Importa el componente StarRating
+import { AuthContext } from './../../contexts/authContext';
+import { StarRating } from "../consultationDetails/StarRating";
 
 export const MenuDoctorsModal = ({
     doctorsModalIsOpen,
     doctorsModaSetIsOpen,
 }) => {
     const [doctors, setDoctors] = useState([]);
-    console.log(doctors);
     const [selectedDoctorId, setSelectedDoctorId] = useState(null);
     const [selectedDoctor, setSelectedDoctor] = useState(null);
+    const [doctorRating, setDoctorRating] = useState(0);  // Estado para la calificación
+    const {currentUser } = useContext(AuthContext);
 
     const fetchDoctors = () => {
         const requestOptions = {
             method: "GET",
             redirect: "follow"
         };
-        fetch("http://localhost:3000/doctors", requestOptions)
+        fetch(`${API_HOST}/doctors`, requestOptions)
             .then((response) => response.json())
             .then((result) => setDoctors(result))
             .catch((error) => console.error(error));
@@ -30,6 +32,7 @@ export const MenuDoctorsModal = ({
     const handleDoctorSelect = (doctor) => {
         setSelectedDoctorId(doctor.id);
         setSelectedDoctor(doctor);
+        setDoctorRating(doctor.averageRating || 0);  // Establece el rating inicial
     };
 
     const handleOnSearch = (string) => {
@@ -47,6 +50,11 @@ export const MenuDoctorsModal = ({
 
     const handleOnSelect = (item) => {
         handleDoctorSelect(item);
+    };
+
+    const handleRating = (newRating) => {
+        setDoctorRating(newRating);
+        // Aquí podrías agregar la lógica para enviar la nueva calificación a tu backend.
     };
 
     const formatResult = (item) => {
@@ -110,6 +118,11 @@ export const MenuDoctorsModal = ({
                             <img src={doctor.avatar} alt="doctor" className="w-12 h-12 rounded-full" />
                             <span className="text-2xl">{doctor.firstName} {doctor.lastName}</span>
                             <p className="text-center"> {doctor.specialities}</p>
+                            <StarRating
+                            handleRating={handleRating}
+                            consultationDetails={{ rating: doctorRating }}
+                            currentUser={currentUser} 
+                        />
                         </label>
                     ))}
                 </section>
@@ -129,7 +142,11 @@ export const MenuDoctorsModal = ({
                     <div className="flex flex-col items-center justify-center gap-2 text-xl w-full">
                         <h2 className="text-3xl p-6 text-center">{selectedDoctor.firstName} {selectedDoctor.lastName}</h2>
                         <p className="text-center">{selectedDoctor.biography}</p>
-                        <p className="text-center">Rating: {selectedDoctor.averageRating ? parseFloat(selectedDoctor.averageRating).toFixed(1) : 'N/A'}</p>
+                        <StarRating
+                            handleRating={handleRating}
+                            consultationDetails={{ rating: doctorRating }}
+                            currentUser={currentUser} 
+                        />
                     </div>
                 </Modal>
             )}

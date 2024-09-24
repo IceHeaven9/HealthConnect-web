@@ -4,14 +4,34 @@ import { IoMdClose } from "react-icons/io";
 import Modal from "react-modal";
 import { useEffect, useState } from "react";
 import { API_HOST, maxContent } from "../../constants";
+import { StarRating } from "./StarRating";
+import {sendRating} from './fetch/sendRating';
 
 export const DoctorButton = ({
 	setShowDoctor,
 	showDoctor,
 	consultationDetails,
+	currentUser
 }) => {
 	const [isFirstOpen, setIsFirstOpen] = useState(true);
 	const [doctorDetails, setDoctorDetails] = useState({});
+	const [rating, setRating] = useState(consultationDetails.rating);
+	const token = currentUser?.coded;
+
+
+	const handleRating = async (newRating) => {
+		if (!consultationDetails.id) {
+			console.error("Error: consultationId no está definido");
+			return;
+		}
+
+		try {
+			await sendRating(consultationDetails.id, newRating, token);
+			setRating(newRating);
+		} catch (error) {
+			console.error("Error al enviar la calificación", error);
+		}
+	};
 
 	useEffect(() => {
 		if (showDoctor && isFirstOpen) {
@@ -64,11 +84,15 @@ export const DoctorButton = ({
 								{doctorDetails.biography}
 							</p>
 							<div className=" border-t-[0.1rem] border-lightBlue border-solid my-2"></div>
-							<div className="flex justify-between my-4 ">
+							<div className="flex items-center justify-between my-4 ">
 								<p className="font-inter font-bold text-md  ">
 									Años de Experiencia: {doctorDetails.experience}
 								</p>
-								<p>{doctorDetails.averageRating}</p>
+								<StarRating
+                            handleRating={handleRating}
+                            consultationDetails={consultationDetails}
+                            currentUser={currentUser} 
+                        />
 							</div>
 						</div>
 					)}
@@ -88,8 +112,13 @@ DoctorButton.propTypes = {
 	setShowDoctor: PropTypes.func.isRequired,
 	showDoctor: PropTypes.bool.isRequired,
 	consultationDetails: PropTypes.shape({
-		doctorAvatar: PropTypes.string,
-		doctorName: PropTypes.string,
-		doctorId: PropTypes.number,
+			doctorAvatar: PropTypes.string,
+			doctorName: PropTypes.string,
+			doctorId: PropTypes.number,
+			rating: PropTypes.number,
+			id: PropTypes.number,
 	}).isRequired,
+	currentUser: PropTypes.shape({
+			coded: PropTypes.string,
+	}),
 };
