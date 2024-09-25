@@ -15,7 +15,7 @@ export const PatientSection = ({ consultationDetails }) => {
           </p>
         </div>
         <img
-          src="/images/Perfil_healthConnect_blue.png"
+          src="/public/images/Perfil_healthConnect_blue.png"
           alt=""
           className="w-20 h-20"
         />
