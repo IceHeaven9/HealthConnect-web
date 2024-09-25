@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useAuthGuard } from "../hooks/authGuard";
 import { AuthContext } from "../contexts/authContext";
@@ -36,7 +36,7 @@ export const DetailsConsultationPage = () => {
     description: false,
     severity: false,
   });
-  const navigate = useNavigate();
+
 
   useAuthGuard("/consultations/:id/details");
 
@@ -59,6 +59,9 @@ export const DetailsConsultationPage = () => {
       <ToastContainer />
       <div className="absolute top-0 z-10 w-full">
         <DinamicTitle text="Detalles de la consulta" />
+        <ConsultationDetailsTitle    
+        ref={scrollToTopRef}      
+        />
       </div>
       <div className="flex items-center justify-center m-auto mx-4 mt-20 w-full">
         <div className="bg-lightCakeBlue rounded-2xl shadow-xl m-4 p-6 w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">

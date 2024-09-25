@@ -42,6 +42,7 @@ export const consultationsFilesModal = {
 export const maxContent = {
   content: {
     height: "max-content",
+    maxWidth: "1140px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -98,6 +99,7 @@ export const microCustomStyles = {
     WebkitOverflowScrolling: "touch",
     padding: "20px",
     boxSizing: "border-box",
+    backgroundColor: "#bdd0ff"
   },
 };
 

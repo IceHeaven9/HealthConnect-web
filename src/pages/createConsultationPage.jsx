@@ -113,7 +113,7 @@ export const CreateConsultationPage = () => {
             </section>
             <section className="bg-smokeWhite w-full rounded-xl">
               <h2 className="text-center text-xl font-medium bg-smokeWhite w-full text-lightBlue my-4">
-                Horas disponibles para el dia{" "}
+                Horas disponibles para el día{" "}
                 {selectedDate.toLocaleDateString("es-ES")}
               </h2>
               <AviableTimes

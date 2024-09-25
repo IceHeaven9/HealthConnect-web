@@ -49,7 +49,7 @@ export const ProfileImageUploader = ({
     <div className="flex flex-col items-center justify-center">
       <div className="relative mt-4">
         <img
-          src={image || "public/images/defaultAvatar.png"}
+          src={image || "public/images/defaultAvatar.jpg"}
           alt="Profile"
           className="w-24 h-24 sm:w-28 sm:h-28 lg:w-36 lg:h-36 xl:w-44 xl:h-44 object-cover rounded-full border-4 border-white shadow-md"
         />

@@ -9,7 +9,7 @@ export const DescriptionFormTopSection = ({
 	return (
 		<>
 			<label htmlFor="title" className=" font-medium p-2">
-				Titulo:
+				Título:
 			</label>
 			<input
 				aria-label="title"

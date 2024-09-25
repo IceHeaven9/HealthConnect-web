@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createConsultationFetch } from "./fetch/createConsultationFetch";
 import { notify } from "../../utils/notify";
-import { DescriptionTitle } from "./DescriptionTitle";
 import { DescriptionFormTopSection } from "./DescriptionFormTopSection";
 import { DescriptionFormMidSection } from "./DescriptionFormMidSection";
 import { DescriptionFormBottomSection } from "./DescriptionFormBottomSection";
@@ -14,7 +13,6 @@ export const DescriptionForm = ({
   selectedSpecialty,
   selectedDoctor,
   selectedHour,
-  setShowDescriptionForm,
 }) => {
   const [previews, setPreviews] = useState([]);
   const [files, setFiles] = useState([]);
@@ -82,7 +80,6 @@ export const DescriptionForm = ({
     <div>
       <div className="absolute top-0 z-10 w-full">
         <DinamicTitle text="Datos de la consulta" />
-        <DescriptionTitle setShowDescriptionForm={setShowDescriptionForm} />
       </div>
       <div className="bg-lightCakeBlue p-6 w-full mx-auto rounded-2xl mb-4 mt-[6rem] sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
         <div className="bg-smokeWhite rounded-lg">

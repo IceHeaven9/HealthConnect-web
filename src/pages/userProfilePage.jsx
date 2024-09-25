@@ -12,7 +12,7 @@ export const UserProfile = () => {
   const token = currentUser?.coded;
   const userType = currentUser?.decoded.userType;
 
-  const [image, setImage] = useState(currentUser?.decoded.avatar);
+  const [image, setImage] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [userName, setUserName] = useState(currentUser?.decoded.userName);
   const [name, setName] = useState("");
@@ -41,6 +41,7 @@ export const UserProfile = () => {
         setBiography(profile.biography);
         setExperience(profile.experience);
         setUserName(profile.userName);
+        setImage(profile.avatar);
       })
       .catch((error) => console.error(error));
   };
@@ -65,7 +66,7 @@ export const UserProfile = () => {
       body: raw,
       redirect: "follow",
     })
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result) => {
         console.log(result);
         setIsEditing(false);

@@ -17,7 +17,6 @@ export const DoctorButton = ({
   const [doctorDetails, setDoctorDetails] = useState({});
   const [rating, setRating] = useState(consultationDetails.rating);
   const token = currentUser?.coded;
-  console.log("Token:", token);
 
   const handleRating = async (newRating) => {
     if (!consultationDetails.id) {

@@ -19,10 +19,10 @@ export const Footer = () => {
                 HealthConnect
               </div>
               <Link to="#xxx" className="hover:underline text-xl">
-                Sobre nosotros
+                SOBRE NOSOTROS
               </Link>
               <Link to="#xxx" className="hover:underline text-xl">
-                Politica de privacidad
+                Política de privacidad
               </Link>
             </div>
           </div>
