@@ -22,8 +22,8 @@ export const customStyles = {
 export const consultationsFilesModal = {
   content: {
     height: "max-content",
-    width: "max-content",
-    maxWidth: "600px",
+    minWidth: "300px",
+    maxWidth: "1140px",
     borderRadius: "25px",
     top: "50%",
     left: "50%",
@@ -99,7 +99,7 @@ export const microCustomStyles = {
     WebkitOverflowScrolling: "touch",
     padding: "20px",
     boxSizing: "border-box",
-    backgroundColor: "#bdd0ff"
+    backgroundColor: "#bdd0ff",
   },
 };
 

@@ -3,7 +3,7 @@ import { FaUserDoctor } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import Modal from "react-modal";
 import { useEffect, useState } from "react";
-import { API_HOST, maxContent } from "../../constants";
+import { API_HOST, microCustomStyles } from "../../constants";
 import { StarRating } from "./StarRating";
 import { sendRating } from "./fetch/sendRating";
 
@@ -65,43 +65,47 @@ export const DoctorButton = ({
         isOpen={showDoctor}
         onRequestClose={() => setShowDoctor(false)}
         contentLabel="Doctor Details"
-        style={maxContent}
+        style={microCustomStyles}
       >
-        <img
-          className="w-20 h-20 m-2 rounded-full mt-4"
-          src={doctorDetails.avatar}
-          alt="Avatar del doctor"
-        />
-        <div className="w-full gap-2 p-4">
-          <p className="text-2xl font-medium w-full h-auto break-words text-center">
-            {doctorDetails.fullName}
-          </p>
-          {doctorDetails && (
-            <div className="mt-4">
-              <div className=" border-t-[0.1rem] border-lightBlue border-solid my-2"></div>
-              <p className="text-start font-ubuntu font-bold text-lg">
-                {doctorDetails.biography}
-              </p>
-              <div className=" border-t-[0.1rem] border-lightBlue border-solid my-2"></div>
-              <div className="flex items-center justify-between my-4 ">
-                <p className="font-inter font-bold text-md  ">
-                  Años de Experiencia: {doctorDetails.experience}
+        <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center">
+            <img
+              className="w-20 h-20 rounded-full mt-4"
+              src={doctorDetails.avatar}
+              alt="Avatar del doctor"
+            />
+            <p className="text-2xl font-medium mb-4 w-full h-auto break-words text-center">
+              {doctorDetails.fullName}
+            </p>
+          </div>
+          <div className="w-full gap-2 p-4 bg-smokeWhite rounded-xl">
+            {doctorDetails && (
+              <div className="mt-4">
+                <div className=" border-t-[0.1rem] border-lightBlue border-solid my-2"></div>
+                <p className="text-start font-ubuntu font-bold text-lg">
+                  {doctorDetails.biography}
                 </p>
-                <StarRating
-                  handleRating={handleRating}
-                  consultationDetails={consultationDetails}
-                  currentUser={currentUser}
-                />
+                <div className=" border-t-[0.1rem] border-lightBlue border-solid my-2"></div>
+                <div className="flex items-center justify-between my-4 ">
+                  <p className="font-inter font-bold text-md  ">
+                    Años de Experiencia: {doctorDetails.experience}
+                  </p>
+                  <StarRating
+                    handleRating={handleRating}
+                    consultationDetails={consultationDetails}
+                    currentUser={currentUser}
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+          <button
+            className="text-3xl rounded-full mt-4 bg-smokeWhite text-lightBlue p-2"
+            onClick={() => setShowDoctor(false)}
+          >
+            <IoMdClose />
+          </button>
         </div>
-        <button
-          className="text-2xl rounded-full bg-lightBlue text-smokeWhite p-2"
-          onClick={() => setShowDoctor(false)}
-        >
-          <IoMdClose />
-        </button>
       </Modal>
     </>
   );

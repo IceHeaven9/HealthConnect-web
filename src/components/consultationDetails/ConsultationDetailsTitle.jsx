@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { forwardRef } from "react";
 
 export const ConsultationDetailsTitle = forwardRef((_, ref) => {
@@ -8,9 +7,5 @@ export const ConsultationDetailsTitle = forwardRef((_, ref) => {
     </>
   );
 });
-
-ConsultationDetailsTitle.propTypes = {
-  navigate: PropTypes.func.isRequired,
-};
 
 ConsultationDetailsTitle.displayName = "ConsultationDetailsTitle";
