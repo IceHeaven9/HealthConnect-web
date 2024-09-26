@@ -1,8 +1,10 @@
 import Modal from "react-modal";
+import PropTypes from "prop-types";
 import { customStyles } from "../../constants";
 import { IoClose } from "react-icons/io5";
 import { SearchBar } from "../myConsultations/SearchBar";
 import { fetchHistoryConsultations } from "./fetch/historyFetch";
+import {notify} from '../../utils/notify';
 
 export const HistoryButton = ({
 	openModal,
@@ -29,7 +31,7 @@ export const HistoryButton = ({
 						.then((historyConsultations) => {
 							setHistoryConsultations(historyConsultations);
 						})
-						.catch((error) => console.error(error));
+						.catch((error) => notify(error.message));
 				}}
 				onRequestClose={closeModal}
 				style={customStyles}
@@ -90,4 +92,29 @@ export const HistoryButton = ({
 			</Modal>
 		</>
 	);
+};
+
+
+
+
+HistoryButton.propTypes = {
+    openModal: PropTypes.func.isRequired,
+    closeModal: PropTypes.func.isRequired,
+    isModalOpen: PropTypes.bool.isRequired,
+    token: PropTypes.string.isRequired,
+    navigate: PropTypes.func.isRequired,
+    currentUser: PropTypes.shape({
+        decoded: PropTypes.shape({
+            id: PropTypes.number.isRequired,
+        }).isRequired,
+    }).isRequired,
+    historyConsultations: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            date: PropTypes.string.isRequired,
+            status: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    setHistoryConsultations: PropTypes.func.isRequired,
 };

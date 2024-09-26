@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import { notify } from "../../../utils/notify";
 
 export const fetchConsultations = (
 	currentPage,
@@ -44,5 +45,5 @@ export const fetchConsultations = (
 				consultations: myConsultations,
 			}));
 		})
-		.catch((error) => console.error(error));
+		.catch((error) => notify(error.message));
 };

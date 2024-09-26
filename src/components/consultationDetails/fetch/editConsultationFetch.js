@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import {notify} from '../../../utils/notify';
 
 export const handleEditConsultation = async (
 	id,
@@ -33,6 +34,6 @@ export const handleEditConsultation = async (
 		setIsEditing({ title: false, description: false, severity: false });
     navigate(0)
 	} catch (error) {
-		console.error("Error editing consultation:", error);
+		notify( error.message);
 	}
 };

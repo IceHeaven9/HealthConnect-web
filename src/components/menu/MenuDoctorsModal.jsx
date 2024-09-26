@@ -7,6 +7,7 @@ import { API_HOST, customStyles, miniCustomStyles } from "../../constants";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';// Importa el componente StarRating
 import { AuthContext } from './../../contexts/authContext';
 import { StarRating } from "../consultationDetails/StarRating";
+import {notify} from '../../utils/notify';
 
 export const MenuDoctorsModal = ({
     doctorsModalIsOpen,
@@ -26,7 +27,7 @@ export const MenuDoctorsModal = ({
         fetch(`${API_HOST}/doctors`, requestOptions)
             .then((response) => response.json())
             .then((result) => setDoctors(result))
-            .catch((error) => console.error(error));
+            .catch((error) => notify(error));
     };
 
     const handleDoctorSelect = (doctor) => {

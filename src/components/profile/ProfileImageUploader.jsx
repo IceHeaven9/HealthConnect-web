@@ -37,12 +37,12 @@ export const ProfileImageUploader = ({
       .then((response) => response.json())
       .then((result) => {
         if (result.status === "error") {
-          console.error(result.message);
+          notify(result.message);
         } else {
           notify(result.message);
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => notify(error.message));
   };
 
   return (

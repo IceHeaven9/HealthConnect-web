@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import {notify} from '../../../utils/notify';
 
 // fetchDoctors.js
 export const fetchDoctors = (selectedSpecialty, setDoctors) => {
@@ -18,5 +19,5 @@ export const fetchDoctors = (selectedSpecialty, setDoctors) => {
 			}));
 			setDoctors(formattedResult);
 		})
-		.catch((error) => console.error(error));
+		.catch((error) => notify(error.message));
 };

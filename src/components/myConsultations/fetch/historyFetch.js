@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import {notify} from '../../../utils/notify';
 
 export const fetchHistoryConsultations = (token, setHistoryConsultations) => {
 	const historyUrl = `${API_HOST}/my-consultations`;
@@ -23,5 +24,5 @@ export const fetchHistoryConsultations = (token, setHistoryConsultations) => {
 			}));
 			setHistoryConsultations(translatedResult);
 		})
-		.catch((error) => console.error(error));
+		.catch((error) => notify(error));
 };

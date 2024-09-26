@@ -1,16 +1,43 @@
 import { useState, useEffect } from "react";
 import { DinamicTitle } from "../components/DinamicTitle";
-import { API_HOST, microCustomStyles, miniCustomStyles } from "../constants";
+import { API_HOST, microCustomStyles } from "../constants";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import Modal from "react-modal";
 import { IoClose } from 'react-icons/io5';
+import { StarRating } from "../components/consultationDetails/StarRating";
+import { notify } from "../utils/notify";
 
 export const DoctorsPage = () => {
   const [doctors, setDoctors] = useState([]);
   const [selectedDoctorId, setSelectedDoctorId] = useState(null);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
-  const [doctorRating, setDoctorRating] = useState(0);  // Estado par
-  const [isModalOpen, setIsModalOpen] = useState(false);  // Estado para el modal
+  const [doctorRating, setDoctorRating] = useState(0);  
+  const [isModalOpen, setIsModalOpen] = useState(false);  
+
+
+  const handleRatingForDoctor = (newRating, doctorId) => {
+    setDoctors((prevDoctors) =>
+      prevDoctors.map((doctor) =>
+        doctor.id === doctorId ? { ...doctor, averageRating: newRating } : doctor
+      )
+    );
+  
+    // Aquí puedes hacer una llamada a tu API para actualizar el rating del doctor en la base de datos
+    fetch(`${API_HOST}/doctors/${doctorId}/rating`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ rating: newRating }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        notify(result.message);
+      })
+      .catch((error) => notify(error.message));
+  };
+
+
 
   useEffect(() => {
     fetchDoctors();
@@ -24,15 +51,15 @@ export const DoctorsPage = () => {
     fetch(`${API_HOST}/doctors`, requestOptions)
       .then((response) => response.json())
       .then((result) => setDoctors(result))
-      .catch((error) => console.error(error));
+      .catch((error) =>notify(error.message));
   };
 
   
   const handleDoctorSelect = (doctor) => {
     setSelectedDoctorId(doctor.id);
     setSelectedDoctor(doctor);
-    setDoctorRating(doctor.averageRating || 0);  // Establece el rating inicial
-    setIsModalOpen(true);  // Abre el modal
+    setDoctorRating(doctor.averageRating || 0); 
+    setIsModalOpen(true);
   };
 
   const handleOnSearch = (string) => {
@@ -87,26 +114,36 @@ export const DoctorsPage = () => {
             />
           </section>
           <div className="flex flex-wrap justify-center gap-4 p-6 mx-auto mt-10">
-            {doctors.map((doctor) => (
-              <div
-                key={doctor.id}
-                className="bg-white p-4 rounded-lg shadow-md w-60 flex flex-col items-center"
-                onClick={() => handleDoctorSelect(doctor)}  // Maneja la selección del doctor
-              >
-                <img
-                  src={doctor.avatar}
-                  alt={doctor.firstName}
-                  className="w-full h-40 object-cover rounded-lg"
-                />
-                <h3 className="text-lg font-bold">
-                  {doctor.firstName} {doctor.lastName}
-                </h3>
-                <p className="text-sm ">{doctor.specialities}</p>
-                <p className="text-sm">
-                  Rating: {doctor.averageRating || "N/A"}
-                </p>
+            {doctors.length > 0 ? (
+              doctors.map((doctor) => (
+                <div
+  key={doctor.id}
+  className="bg-white p-4 rounded-lg shadow-md w-60 flex flex-col items-center"
+  onClick={() => handleDoctorSelect(doctor)} 
+>
+  <img
+    src={doctor.avatar}
+    alt={doctor.firstName}
+    className="w-full h-40 object-cover rounded-lg"
+  />
+  <h3 className="text-lg font-bold">
+    {doctor.firstName} {doctor.lastName}
+  </h3>
+  <p className="text-sm ">{doctor.specialities}</p>
+  
+  {/* Componente StarRating para cada doctor */}
+  <StarRating
+    consultationDetails={{ rating: Number(doctor.averageRating) || 0 }}
+    currentUser={{ decoded: { userType: "doctor" } }}
+    handleRating={(newRating) => handleRatingForDoctor(newRating, doctor.id)}
+  />
+</div>
+              ))
+            ) : (
+              <div className="bg-white p-4 rounded-lg shadow-md w-60 flex flex-col items-center">
+                <h3 className="text-lg font-bold">No hay resultados</h3>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>

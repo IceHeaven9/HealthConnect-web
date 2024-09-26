@@ -18,6 +18,7 @@ import { FilesImageSection } from "./responseBtnComp/FilesImageSection";
 import { FilesDocSection } from "./responseBtnComp/FilesDocSection";
 import { CloseResponseBtn } from "./responseBtnComp/CloseResponseBtn";
 import { saveResponse } from "./responseBtnComp/fetch/saveResponseFetch";
+import {notify} from '../../utils/notify';
 
 export const ResponseButton = ({
   showResponseFiles,
@@ -44,7 +45,7 @@ export const ResponseButton = ({
 
   const handleRating = async (newRating) => {
     if (!consultationDetails.id) {
-      console.error("Error: consultationId no está definido");
+      notify("Error: consultationId no está definido");
       return;
     }
 
@@ -52,7 +53,7 @@ export const ResponseButton = ({
       await sendRating(consultationId, newRating, token);
       setRating(newRating);
     } catch (error) {
-      console.error("Error al enviar la calificación", error);
+      notify( error.message);
     }
   };
 

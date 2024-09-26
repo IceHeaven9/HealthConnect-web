@@ -23,5 +23,5 @@ export const saveResponse = (consultationId, responseContent, token) => {
   )
     .then((response) => response.json())
     .then((result) => notify(result.message))
-    .catch((error) => console.error(error));
+    .catch((error) => notify(error));
 };

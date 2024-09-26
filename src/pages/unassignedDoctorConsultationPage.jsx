@@ -34,7 +34,7 @@ export const UnassignedDoctorConsultationPage = () => {
         const specialities = data.specialities;
         setData({ specialities, specialityIds });
       })
-      .catch((error) => console.error(error));
+      .catch((error) => notify(error.message));
   };
 
   // Fetch para obtener las consultas no asignadas
@@ -63,7 +63,7 @@ export const UnassignedDoctorConsultationPage = () => {
       .then((data) => {
         setUnassignedConsultations(data);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => notify(error));
   };
 
   // Fetch para asignarse a una consulta
@@ -86,7 +86,7 @@ export const UnassignedDoctorConsultationPage = () => {
     fetch(`${API_HOST}/assign-consultation`, requestOptions)
       .then((response) => response.json())
       .then((result) => notify(result.message))
-      .catch((error) => console.error(error));
+      .catch((error) => notify(error.message));
   };
 
   useEffect(() => {

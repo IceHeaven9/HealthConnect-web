@@ -9,14 +9,16 @@ import {
   specialtiesIcons,
   miniCustomStyles,
   specialtiesResume,
+  API_HOST,
 } from "../../constants";
+import { notify } from "../../utils/notify";
 
 const fetchSpecialties = (setSpecialties) => {
   const requestOptions = {
     method: "GET",
     redirect: "follow",
   };
-  fetch("http://localhost:3000/specialities", requestOptions)
+  fetch(`${API_HOST}/specialities`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       const specialtiesWithIcons = result.map((specialty) => {
@@ -27,7 +29,7 @@ const fetchSpecialties = (setSpecialties) => {
       });
       setSpecialties(specialtiesWithIcons);
     })
-    .catch((error) => console.error(error));
+    .catch((error) => notify(error.message));
 };
 
 export const MenuSpecialtiesModal = ({

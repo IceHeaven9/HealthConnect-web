@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import { notify } from "../../../utils/notify";
 
 export const fetchHistoryConsultations = (token, doctorId) => {
 	const myHeaders = new Headers();
@@ -24,7 +25,7 @@ export const fetchHistoryConsultations = (token, doctorId) => {
 			}));
 		})
 		.catch((error) => {
-			console.error(error);
+			notify(error);
 			throw error;
 		});
 };

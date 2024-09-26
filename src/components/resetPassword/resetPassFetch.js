@@ -1,4 +1,5 @@
 // src/api/resetPassword.js
+import { API_HOST } from '../../constants';
 import { notify } from './../../utils/notify';
 
 
@@ -19,7 +20,7 @@ export const resetPassword = (validationCode, password, confirmPassword, navigat
     redirect: "follow",
   };
 
-  fetch("http://localhost:3000/reset", requestOptions)
+  fetch(`${API_HOST}}/reset`, requestOptions)
     .then((response) => {
       if (response.status === 200) {
         return response.json();

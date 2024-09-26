@@ -33,7 +33,7 @@ export const CancelButton = ({ consultationDetails, setConsultationDetails }) =>
         setIsDisabled(true);
         setIsModalOpen(false);
       })
-      .catch((error) => console.error(error));
+      .catch((error) =>notify(error));
   };
 
   return (

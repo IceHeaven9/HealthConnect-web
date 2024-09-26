@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import {notify} from '../../../utils/notify';
 
 // fetchSpecialties.js
 export const fetchSpecialties = (setSpecialties) => {
@@ -9,5 +10,5 @@ export const fetchSpecialties = (setSpecialties) => {
   fetch(`${API_HOST}/specialities`, requestOptions)
     .then((response) => response.json())
     .then((result) => setSpecialties(result))
-    .catch((error) => console.error(error));
+    .catch((error) => notify(error.message));
 };

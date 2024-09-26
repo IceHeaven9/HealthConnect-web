@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { API_HOST, microCustomStyles } from "../../constants";
 import { StarRating } from "./StarRating";
 import { sendRating } from "./fetch/sendRating";
+import {notify} from '../../utils/notify';
 
 export const DoctorButton = ({
   setShowDoctor,
@@ -20,7 +21,7 @@ export const DoctorButton = ({
 
   const handleRating = async (newRating) => {
     if (!consultationDetails.id) {
-      console.error("Error: consultationId no está definido");
+      notify("Error: consultationId no está definido");
       return;
     }
 
@@ -28,7 +29,7 @@ export const DoctorButton = ({
       await sendRating(consultationDetails.id, newRating, token);
       setRating(newRating);
     } catch (error) {
-      console.error("Error al enviar la calificación", error);
+      notify( error.message);
     }
   };
 
@@ -44,7 +45,7 @@ export const DoctorButton = ({
           setDoctorDetails(result);
           setIsFirstOpen(false);
         })
-        .catch((error) => console.error(error));
+        .catch((error) =>notify(error));
     }
   }, [showDoctor, isFirstOpen, consultationDetails.doctorId]);
 

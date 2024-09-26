@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../../constants";
+import { notify } from "../../../../utils/notify";
 
 export const uploadFiles = (token, selectedFiles, consultationId) => {
   const myHeaders = new Headers();
@@ -18,6 +19,6 @@ export const uploadFiles = (token, selectedFiles, consultationId) => {
     requestOptions
   )
     .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.error(error));
+    .then((result) => notify(result.message))
+    .catch((error) => notify(error));
 };

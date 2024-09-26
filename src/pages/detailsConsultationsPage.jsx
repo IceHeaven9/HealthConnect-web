@@ -55,10 +55,10 @@ export const DetailsConsultationPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center ">
       <ToastContainer />
       <div className="absolute top-0 z-10 w-full">
-        <DinamicTitle text="Detalles de la consulta" />
+        <DinamicTitle text="Detalles" />
         <ConsultationDetailsTitle    
         ref={scrollToTopRef}      
         />

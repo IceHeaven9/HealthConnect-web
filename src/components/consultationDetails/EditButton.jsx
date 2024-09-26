@@ -49,7 +49,7 @@ export const EditButton = ({
       .then((result) => {
         notify(result.message);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => notify(error));
   };
 
   return (

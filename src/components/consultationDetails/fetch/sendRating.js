@@ -1,7 +1,7 @@
 import { API_HOST } from "../../../constants";
+import { notify } from "../../../utils/notify";
 
 export const sendRating = async (consultationId, newRating,token) => {
-console.log('Enviando nueva calificación:', newRating);
 
   const url = `${API_HOST}/consultations/${consultationId}/response/rate`;
 
@@ -17,7 +17,6 @@ console.log('Enviando nueva calificación:', newRating);
     redirect: "follow"
   };
 
-  console.log(raw)
 
   try {
     const response = await fetch(url, requestOptions);
@@ -25,10 +24,10 @@ console.log('Enviando nueva calificación:', newRating);
       throw new Error(`Error al enviar la calificación. Status: ${response.status}`);
     }
     const result = await response.json();
-    console.log('Rating actualizado con éxito:', result);
+   notify('Rating actualizado con éxito:');
     return result;
   } catch (error) {
-    console.error('Error al enviar la calificación:', error);
+    notify('Error al enviar la calificación:');
     throw error;
   }
 };

@@ -3,6 +3,7 @@ import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 import { AuthContext } from './../../contexts/authContext';
 import { API_HOST } from '../../constants';
 import { useNavigate } from 'react-router-dom';
+import { notify } from '../../utils/notify';
 
 export const SearchBar = () => {
   const token = useContext(AuthContext);
@@ -51,7 +52,7 @@ export const SearchBar = () => {
         }));
         setSearchResults(formattedResults);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => notify(error.message));
   };
 
   const handleOnSelect = (item) => {

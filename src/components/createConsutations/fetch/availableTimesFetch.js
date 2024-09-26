@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import {notify} from '../../../utils/notify';
 
 // fetchAvailableTimes.js
 export const fetchAvailableTimes = (
@@ -25,7 +26,7 @@ export const fetchAvailableTimes = (
 			setAvailableTimes(Array.isArray(result) ? result : []);
 		})
 		.catch((error) => {
-			console.error(error);
+			notify(error);
 			setAvailableTimes([]);
 		});
 };

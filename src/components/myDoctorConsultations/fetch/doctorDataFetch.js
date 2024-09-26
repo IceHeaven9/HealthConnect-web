@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import { notify } from "../../../utils/notify";
 export const fetchDoctorData = (currentUser, setData) => {
 	const requestOptions = {
 		method: "GET",
@@ -12,5 +13,5 @@ export const fetchDoctorData = (currentUser, setData) => {
 				: "No specialities found";
 			setData({ specialities });
 		})
-		.catch((error) => console.error(error));
+		.catch((error) => notify(error));
 };

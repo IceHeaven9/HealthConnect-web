@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import { notify } from "../../../utils/notify";
 
 export const fetchConsultations = (
 	startOrEndDate,
@@ -40,5 +41,5 @@ export const fetchConsultations = (
 			});
 			setConsultations(translatedResult);
 		})
-		.catch((error) => console.error(error));
+		.catch((error) => notify(error));
 };

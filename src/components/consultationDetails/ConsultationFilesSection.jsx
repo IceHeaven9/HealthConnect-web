@@ -2,13 +2,18 @@ import PropTypes from "prop-types";
 import { IoMdClose } from "react-icons/io";
 import { TfiFiles } from "react-icons/tfi";
 import Modal from "react-modal";
-import { consultationsFilesModal } from "../../constants";
+import { API_HOST, consultationsFilesModal } from "../../constants";
 
 export const ConsultationFilesButton = ({
   setShowConsultationFiles,
   showConsultationFiles,
   consultationDetails,
 }) => {
+  const getImageUrl = (filePath) => {
+    // Cambia esta URL si tu servidor cambia de dominio
+    const relativePath = filePath.split("public")[1]; // Extrae la ruta relativa después de "public"
+    return `${API_HOST}${relativePath?.replace(/\\/g, "/")}`; // Ajusta el formato de la ruta
+  };
   const isDisabled =
     !consultationDetails.consultationFiles ||
     consultationDetails.consultationFiles.length === 0;
@@ -51,7 +56,7 @@ export const ConsultationFilesButton = ({
                   <div key={index} className="w-full">
                     <img
                       className="w-20 mx-auto h-auto rounded-md border-solid border-lightBlue border-[0.1rem]"
-                      src={file.filePath}
+                      src={getImageUrl(file.filePath)}
                       alt={file.fileName}
                     />
                   </div>

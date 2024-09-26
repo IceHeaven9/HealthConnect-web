@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { ProfileImageUploader } from "../components/profile/ProfileImageUploader";
 import { ProfileForm } from "../components/profile/ProfileForm";
 import { API_HOST } from "../constants";
+import { notify } from "../utils/notify";
 
 export const UserProfile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -43,7 +44,7 @@ export const UserProfile = () => {
         setUserName(profile.userName);
         setImage(profile.avatar);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => notify(error.message));
   };
 
   const updateProfile = () => {
@@ -68,10 +69,10 @@ export const UserProfile = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        notify(result.message);
         setIsEditing(false);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => notify(error));
   };
 
   const handleEditProfile = () => {

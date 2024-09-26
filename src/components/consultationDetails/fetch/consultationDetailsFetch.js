@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import {notify} from '../../../utils/notify';
 export const fetchConsultationDetails = async (setUserType,currentUser,setConsultationDetails,id ) => {
 
   const token = localStorage.getItem("TOKEN");
@@ -49,6 +50,6 @@ export const fetchConsultationDetails = async (setUserType,currentUser,setConsul
   
     setUserType(currentUser.decoded.userType);
   } catch (error) {
-    console.error("Error fetching consultation details:", error);
+    notify("Error fetching consultation details:", error);
   }
 };

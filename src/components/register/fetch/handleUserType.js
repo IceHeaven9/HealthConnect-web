@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../constants";
+import { notify } from "../../../utils/notify";
 
 
 // utils/userTypeHandler.js
@@ -21,7 +22,7 @@ export const handleUserTypeChange = async (
 			const data = await response.json();
 			setSpecialties(data);
 		} catch (error) {
-			console.error("Error fetching specialties", error);
+			notify("Error fetching specialties", error);
 		}
 	}
 };

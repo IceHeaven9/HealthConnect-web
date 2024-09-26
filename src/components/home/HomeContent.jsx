@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { HomeButtons } from "./homeButtons";
 import { API_HOST } from "../../constants";
+import {notify} from '../../utils/notify';
 
 {
   /*Iconos especialidades*/
@@ -53,7 +54,7 @@ export const HomeContent = () => {
       const result = await response.json();
       setSpecialties(result);
     } catch (error) {
-      console.error("Error al obtener las especialidades:", error);
+      notify( error.message);
     }
   };
 
@@ -66,7 +67,7 @@ export const HomeContent = () => {
       const result = await response.json();
       setDoctors(result);
     } catch (error) {
-      console.error("Error al obtener los doctores:", error);
+      notify( error.message);
     }
   };
 
@@ -77,7 +78,6 @@ export const HomeContent = () => {
 
   return (
     <main className="flex flex-col justify-center items-center bg-smokeWhite rounded-2xl p-4 gap-4">
-      {/* Texto */}
       <div
         className="text-center mb-6 w-full bg-cover bg-center p-6 rounded-lg shadow-md"
         style={{ backgroundImage: "url('/images/fondotext.jpg')" }}
@@ -131,7 +131,7 @@ export const HomeContent = () => {
                     className="w-12 h-12 mr-4"
                     onError={(e) => {
                       e.target.src = "/images/specialtyIcons/default.png";
-                      console.error("Error al cargar la imagen:", e);
+                     notify("Error al cargar la imagen:", e);
                     }}
                   />
                   <span className="text-lightBlue">{specialty.name}</span>
