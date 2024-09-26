@@ -11,6 +11,7 @@ import { NextConsultationsSection } from "../components/myDoctorConsultations/Ne
 import { fetchDoctorData } from "../components/myDoctorConsultations/fetch/doctorDataFetch";
 import { fetchConsultations } from "../components/myDoctorConsultations/fetch/doctorConsultationsFetch";
 import { DinamicTitle } from "../components/DinamicTitle";
+import { ToastContainer } from "react-toastify";
 
 export const ConsultationDoctorPage = () => {
   const { currentUser } = useContext(AuthContext);
@@ -56,55 +57,60 @@ export const ConsultationDoctorPage = () => {
 
   // COMPONENTES DE LA PAGINA
   return (
-    <div className="max-w-full bg-smokeWhite sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] mx-auto px-4">
-      {/* MENU */}
-      <DinamicTitle text="Mis consultas" />
-      <main className="w-full shadow-xl border rounded-t-xl">
-        {/* DATOS DEL DOCTOR */}
-        <DoctorUserCard currentUser={currentUser} data={data} />
-        {/* BOTON DE ASIGNAR CONSULTA */}
-        <div className="flex  mx-4  mb-4 gap-2">
-          <LinkBtn
-            to="/my-doctor-unassigned-consultations"
-            className="bg-lightBlue text-smokeWhite w-full font-bold text-base text-center p-2 rounded-lg active:scale-95 transition-transform transform"
-          >
-            Asignar consulta
-          </LinkBtn>
+    <div className="flex flex-col items-center">
+      <ToastContainer />
+      <div className="absolute top-0 z-10 w-full">
+        <DinamicTitle text="Mis consultas" />
+      </div>
+      <div className="flex items-center justify-center m-auto mx-4 mt-20 w-full">
+        <div className="bg-lightCakeBlue rounded-2xl shadow-xl m-4 p-6 w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
+          <main className="bg-smokeWhite rounded-lg p-4">
+            <DoctorUserCard currentUser={currentUser} data={data} />
+            {/* BOTON DE ASIGNAR CONSULTA */}
+            <div className="flex  mx-4  mb-4 gap-2">
+              <LinkBtn
+                to="/my-doctor-unassigned-consultations"
+                className="bg-lightBlue text-smokeWhite w-full font-bold text-base text-center p-2 rounded-lg active:scale-95 transition-transform transform"
+              >
+                Asignar consulta
+              </LinkBtn>
 
-          {/* BOTON DE HISTORIAL */}
-          <HistoryButton
-            openModal={openModal}
-            closeModal={closeModal}
-            isModalOpen={isModalOpen}
-            token={token}
-            navigate={navigate}
-            currentUser={currentUser}
-            historyConsultations={historyConsultations}
-            setHistoryConsultations={setHistoryConsultations}
-          />
+              {/* BOTON DE HISTORIAL */}
+              <HistoryButton
+                openModal={openModal}
+                closeModal={closeModal}
+                isModalOpen={isModalOpen}
+                token={token}
+                navigate={navigate}
+                currentUser={currentUser}
+                historyConsultations={historyConsultations}
+                setHistoryConsultations={setHistoryConsultations}
+              />
+            </div>
+            {/* PRÓXIMAS CONSULTAS */}
+            <section className="w-full px-4">
+              <Accordion>
+                <UnansweredSection
+                  setStartOrEndDate={setStartOrEndDate}
+                  data={data}
+                  currentPage={currentPage}
+                  navigate={navigate}
+                  setCurrentPage={setCurrentPage}
+                  limit={5}
+                />
+                <NextConsultationsSection
+                  setStartOrEndDate={setStartOrEndDate}
+                  data={data}
+                  currentPage={currentPage}
+                  navigate={navigate}
+                  setCurrentPage={setCurrentPage}
+                  limit={5}
+                />
+              </Accordion>
+            </section>
+          </main>
         </div>
-        {/* PRÓXIMAS CONSULTAS */}
-        <section className="w-full px-4">
-          <Accordion>
-            <UnansweredSection
-              setStartOrEndDate={setStartOrEndDate}
-              data={data}
-              currentPage={currentPage}
-              navigate={navigate}
-              setCurrentPage={setCurrentPage}
-              limit={5}
-            />
-            <NextConsultationsSection
-              setStartOrEndDate={setStartOrEndDate}
-              data={data}
-              currentPage={currentPage}
-              navigate={navigate}
-              setCurrentPage={setCurrentPage}
-              limit={5}
-            />
-          </Accordion>
-        </section>
-      </main>
+      </div>
     </div>
   );
 };
