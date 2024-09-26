@@ -7,7 +7,6 @@ import { DescriptionFormTopSection } from "./DescriptionFormTopSection";
 import { DescriptionFormMidSection } from "./DescriptionFormMidSection";
 import { DescriptionFormBottomSection } from "./DescriptionFormBottomSection";
 
-import { DinamicTitle } from "../DinamicTitle";
 export const DescriptionForm = ({
   selectedDate,
   selectedSpecialty,
@@ -79,7 +78,7 @@ export const DescriptionForm = ({
   return (
     <div>
       <div className="absolute top-0 z-10 w-full">
-        <DinamicTitle text="Datos de la consulta" />
+        <Header title="Datos de la consulta" showBackButton={true} />
       </div>
       <div className="bg-lightCakeBlue p-6 w-full mx-auto rounded-2xl mb-4 mt-[6rem] sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
         <div className="bg-smokeWhite rounded-lg">

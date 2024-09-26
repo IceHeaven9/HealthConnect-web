@@ -10,8 +10,8 @@ import { UnansweredSection } from "../components/myDoctorConsultations/Unanswere
 import { NextConsultationsSection } from "../components/myDoctorConsultations/NextConsultationsSection";
 import { fetchDoctorData } from "../components/myDoctorConsultations/fetch/doctorDataFetch";
 import { fetchConsultations } from "../components/myDoctorConsultations/fetch/doctorConsultationsFetch";
-import { DinamicTitle } from "../components/DinamicTitle";
 import { ToastContainer } from "react-toastify";
+import { Header } from "../components/Header";
 
 export const ConsultationDoctorPage = () => {
   const { currentUser } = useContext(AuthContext);
@@ -60,9 +60,9 @@ export const ConsultationDoctorPage = () => {
     <div className="flex flex-col items-center">
       <ToastContainer />
       <div className="absolute top-0 z-10 w-full">
-        <DinamicTitle text="Mis consultas" />
+        <Header title="Mis consultas" showBackButton={true} />
       </div>
-      <div className="flex items-center justify-center m-auto mx-4 mt-20 w-full">
+      <div className="flex items-center justify-center m-auto mx-4 mt-32 w-full">
         <div className="bg-lightCakeBlue rounded-2xl shadow-xl m-4 p-6 w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
           <main className="bg-smokeWhite rounded-lg p-4">
             <DoctorUserCard currentUser={currentUser} data={data} />

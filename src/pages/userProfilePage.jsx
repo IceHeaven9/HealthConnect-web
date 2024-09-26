@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { DinamicTitle } from "../components/DinamicTitle";
 import { AuthContext } from "./../contexts/authContext";
 import { useAuthGuard } from "./../hooks/authGuard";
 import { ToastContainer } from "react-toastify";
@@ -7,6 +6,7 @@ import { ProfileImageUploader } from "../components/profile/ProfileImageUploader
 import { ProfileForm } from "../components/profile/ProfileForm";
 import { API_HOST } from "../constants";
 import { notify } from "../utils/notify";
+import { Header } from "../components/Header";
 
 export const UserProfile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -90,9 +90,9 @@ export const UserProfile = () => {
     <div className="flex flex-col items-center">
       <ToastContainer />
       <div className="absolute top-0 z-10 w-full">
-        <DinamicTitle text="Mi perfil" />
+        <Header title="Mi Perfil" showBackButton={true} />
       </div>
-      <div className="flex items-center justify-center m-auto mx-4 mt-20 w-full">
+      <div className="flex items-center justify-center m-auto mx-4 mt-32 w-full">
         <div className="bg-lightCakeBlue rounded-2xl shadow-xl m-4 p-6 w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
           <main className="bg-smokeWhite rounded-lg">
             <ProfileImageUploader

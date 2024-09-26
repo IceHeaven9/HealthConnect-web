@@ -1,8 +1,12 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import { DinamicTitle } from "../components/DinamicTitle";
-import { specialtiesResume, specialtiesIcons, microCustomStyles } from "../constants";
+import {
+  specialtiesResume,
+  specialtiesIcons,
+  microCustomStyles,
+} from "../constants";
 import { IoClose } from "react-icons/io5";
+import { Header } from "../components/Header";
 
 export const SpecialitiesPage = () => {
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
@@ -37,9 +41,9 @@ export const SpecialitiesPage = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="absolute top-0 z-10 w-full">
-        <DinamicTitle text="Especialidades" />
+        <Header title="Especialidades" showBackButton={true} />
       </div>
-      <ul className="flex flex-wrap justify-center max-w-[1500px] gap-6 p-6 mx-auto mt-20">
+      <ul className="flex flex-wrap justify-center max-w-[1500px] gap-6 p-6 mx-auto mt-32">
         {specialities}
       </ul>
       <Modal
@@ -55,12 +59,12 @@ export const SpecialitiesPage = () => {
             </h2>
             <p>{selectedSpecialty.resume}</p>
             <div className="flex items-center justify-center">
-            <button
-              className="mt-4 bg-lightBlue text-smokeWhite p-2 rounded-full"
-              onClick={() => setIsModalOpen(false)}
-            >
-              <IoClose size={20}/>
-            </button>
+              <button
+                className="mt-4 bg-lightBlue text-smokeWhite p-2 rounded-full"
+                onClick={() => setIsModalOpen(false)}
+              >
+                <IoClose size={20} />
+              </button>
             </div>
           </div>
         )}

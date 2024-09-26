@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from "react";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useAuthGuard } from "../hooks/authGuard";
 import { AuthContext } from "../contexts/authContext";
@@ -17,7 +17,7 @@ import { ConsultationFilesButton } from "../components/consultationDetails/Consu
 import { ResponseButton } from "../components/consultationDetails/ResponseButton";
 import { EditButton } from "../components/consultationDetails/EditButton";
 import { CancelButton } from "../components/consultationDetails/CancelButton";
-import { DinamicTitle } from "../components/DinamicTitle";
+import { Header } from "../components/Header";
 
 export const DetailsConsultationPage = () => {
   const { id } = useParams();
@@ -36,7 +36,6 @@ export const DetailsConsultationPage = () => {
     description: false,
     severity: false,
   });
-
 
   useAuthGuard("/consultations/:id/details");
 
@@ -58,12 +57,10 @@ export const DetailsConsultationPage = () => {
     <div className="flex flex-col items-center ">
       <ToastContainer />
       <div className="absolute top-0 z-10 w-full">
-        <DinamicTitle text="Detalles" />
-        <ConsultationDetailsTitle    
-        ref={scrollToTopRef}      
-        />
+        <Header title="Detalles" showBackButton={true} />
+        <ConsultationDetailsTitle ref={scrollToTopRef} />
       </div>
-      <div className="flex items-center justify-center m-auto mx-4 mt-20 w-full">
+      <div className="flex items-center justify-center m-auto mx-4 mt-32 w-full">
         <div className="bg-lightCakeBlue rounded-2xl shadow-xl m-4 p-6 w-full sm:max-w-[600px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px]">
           <main className="bg-smokeWhite rounded-lg p-4">
             <PatientSection consultationDetails={consultationDetails} />

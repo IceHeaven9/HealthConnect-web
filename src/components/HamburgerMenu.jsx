@@ -1,22 +1,20 @@
-import { CiMenuFries } from "react-icons/ci";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { RiHomeHeartFill } from "react-icons/ri";
-import { CgProfile } from "react-icons/cg";
+import { FaUserCircle } from "react-icons/fa";
 import { PiCalendarDotsLight } from "react-icons/pi";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CiLogout } from "react-icons/ci";
-import { FaUserDoctor, FaUserPlus } from "react-icons/fa6";
-import { PiSignInLight } from "react-icons/pi";
 import { IoMdClose } from "react-icons/io";
 import { AuthContext } from "../contexts/authContext";
-import { MenuSpecialtiesModal } from "./menu/MenuSpecialtiesModal";
 import { LiaClipboardListSolid } from "react-icons/lia";
+import { FaUserDoctor } from "react-icons/fa6";
+import { RxExit } from "react-icons/rx";
+import { PiSignInLight } from "react-icons/pi";
+import { FaUserPlus } from "react-icons/fa6";
 
 export const HamburgerMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [specialtyModalIsOpen, specialtyModaSetIsOpen] = useState(false);
-  const [doctorsModalIsOpen, doctorsModaSetIsOpen] = useState(false);
-  const [showLogOptions, setShowLogOptions] = useState(false);
+  const [showProfileOptions, setShowProfileOptions] = useState(false);
   const { onLogout, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const token = currentUser?.coded;
@@ -32,93 +30,102 @@ export const HamburgerMenu = () => {
 
   return (
     <>
-      <section className="flex justify-end items-center w-max relative ">
+      <section className="flex justify-end items-center w-max">
         {showMenu && (
-          <article className="animate-fade-left animate-once animate-duration-500 animate-ease-in animate-normal">
-            <ul className="flex gap-8 items-center justify-center p-2 rounded-xl bg-lightBlue absolute right-0 -bottom-7">
-              <li className="pl-6">
-                <Link to="/">
-                  <RiHomeHeartFill size={30} color="#ffffff" />
-                </Link>
-              </li>
-              <li>
-                <Link to="/specialities">
-                  <LiaClipboardListSolid size={30} color="#ffffff" />
-                </Link>
-              </li>
-              <li>
-                <Link to="/doctors">
-                  <FaUserDoctor size={30} color="#ffffff" />
-                </Link>
-              </li>
-              <li className="">
-                <button
-                  className="mt-2"
-                  onClick={() => setShowLogOptions(!showLogOptions)}
-                >
-                  <CgProfile size={30} color="#ffffff" />
-                </button>
-                {showLogOptions && (
-                  <ul className=" bg-white shadow-md rounded-md mt-2">
-                    {token ? (
-                      <>
-                        <ul className="bg-lightBlue">
-                          <li>
-                            <button
-                              className="flex items-center absolute -bottom-12 right-8 gap-2 text-md w-44 bg-lightBlue rounded-lg mt-1 text-white p-2"
-                              onClick={handleProfile}
-                            >
-                              <CgProfile size={30} color="#ffffff" />
-                              Perfil
-                            </button>
-                          </li>
-                          <li>
-                            <button
-                              className="flex items-center w-44 absolute -bottom-[6.7rem] right-8 gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
-                              onClick={handleLogout}
-                            >
-                              <CiLogout size={40} /> Cerrar sesión
-                            </button>
-                          </li>
-                        </ul>
-                      </>
-                    ) : (
-                      <>
-                        <li>
-                          <Link
-                            className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
-                            to="/register"
-                          >
-                            <FaUserPlus size={40} />
-                            Registrate
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            className="flex items-center gap-2 text-md bg-lightBlue rounded-lg mt-1 text-white p-2"
-                            to="/login"
-                          >
-                            <PiSignInLight size={40} /> Iniciar Sesión
-                          </Link>
-                        </li>
-                      </>
-                    )}
-                  </ul>
-                )}
-              </li>
-              <li className="pr-6">
-                <Link
-                  to={
-                    token
-                      ? currentUser.decoded.userType === "doctor"
-                        ? "/my-doctor-consultations"
-                        : "/my-consultations"
-                      : "/login"
-                  }
-                >
-                  <PiCalendarDotsLight size={30} color="#ffffff" />
-                </Link>
-              </li>
+          <article className="animate-fade-left relative animate-once animate-duration-500 animate-ease-in animate-normal">
+            <ul className="flex gap-7 w-[300px] h-[60px] p-3 items-center justify-center rounded-xl bg-lightBlue absolute right-0 -bottom-7">
+              {!showProfileOptions ? (
+                // Mostrar iconos del menú
+                <>
+                  <li className="flex items-center justify-center">
+                    <Link to="/">
+                      <RiHomeHeartFill size={30} color="#ffffff" />
+                    </Link>
+                  </li>
+                  <li className="flex items-center justify-center">
+                    <Link to="/specialities">
+                      <LiaClipboardListSolid size={30} color="#ffffff" />
+                    </Link>
+                  </li>
+                  <li className="flex items-center justify-center">
+                    <Link to="/doctors">
+                      <FaUserDoctor size={30} color="#ffffff" />
+                    </Link>
+                  </li>
+                  <li className="flex items-center justify-center">
+                    <button
+                      onClick={() => {
+                        setShowProfileOptions(true);
+                      }}
+                    >
+                      <FaUserCircle size={30} color="#ffffff" />
+                    </button>
+                  </li>
+                  <li className="flex items-center justify-center">
+                    <Link
+                      to={
+                        token
+                          ? currentUser.decoded.userType === "doctor"
+                            ? "/my-doctor-consultations"
+                            : "/my-consultations"
+                          : "/login"
+                      }
+                    >
+                      <PiCalendarDotsLight size={30} color="#ffffff" />
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                // Mostrar opciones de perfil dentro del menú
+                <>
+                  {token ? (
+                    <>
+                      <li className="flex-1">
+                        <button
+                          className="flex items-center justify-center gap-2 text-lg font-bold rounded-lg bg-smokeWhite text-lightBlue p-1 w-full"
+                          onClick={handleProfile}
+                        >
+                          <FaUserCircle size={20} /> Perfil
+                        </button>
+                      </li>
+                      <li className="flex-1">
+                        <button
+                          className="flex items-center justify-center gap-2 text-lg font-bold rounded-lg bg-smokeWhite text-lightBlue p-1 w-full"
+                          onClick={handleLogout}
+                        >
+                          <RxExit size={20} color="cancelColor" />
+                          <spam className="text-cancelColor">Salir</spam>
+                        </button>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className="flex-1">
+                        <Link
+                          className="flex items-center justify-center gap-2 text-md rounded-lg bg-smokeWhite text-lightBlue p-1 w-full"
+                          to="/register"
+                        >
+                          <FaUserPlus size={20} />
+                          <span className="text-lightBlue font-bold text-lg">
+                            Regístrarse
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="flex-1">
+                        <Link
+                          className="flex items-center justify-center gap-2 text-md rounded-lg bg-smokeWhite text-lightBlue p-1 w-full"
+                          to="/login"
+                        >
+                          <PiSignInLight size={20} color="green-500" />
+                          <span className="text-green-500 font-bold text-lg">
+                            Entrar
+                          </span>
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                </>
+              )}
             </ul>
           </article>
         )}
@@ -126,10 +133,11 @@ export const HamburgerMenu = () => {
           <button
             className="text-lightBlue"
             onClick={() => {
-              setShowMenu(!showMenu), setShowLogOptions(false);
+              setShowMenu(!showMenu);
+              setShowProfileOptions(false);
             }}
           >
-            {showMenu ? <IoMdClose size={30} /> : <CiMenuFries size={30} />}
+            {showMenu ? <IoMdClose size={40} /> : <RxHamburgerMenu size={40} />}
           </button>
         </div>
       </section>
