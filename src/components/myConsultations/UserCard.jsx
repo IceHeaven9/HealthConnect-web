@@ -3,9 +3,10 @@ import { AuthContext } from "../../contexts/authContext";
 
 export const UserCard = () => {
   const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   return (
     <>
-      <section className=" flex flex-col gap-3 items-center p-3 justify-between w-[50%] mx-auto ">
+      <section className="flex flex-col gap-3 items-center p-3 justify-between w-[50%] mx-auto ">
         <img
           className="shadow-xl w-20 h-20 sm:w-28 sm:h-28 lg:w-36 lg:h-36 xl:w-44 xl:h-44 rounded-full border-lightBlue border-solid border-[0.1rem]"
           src={currentUser.decoded.avatar || "/public/images/defaultAvatar.jpg"}
