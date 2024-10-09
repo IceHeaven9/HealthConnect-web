@@ -9,13 +9,13 @@ import { ValidateEmailPage } from "./pages/validateEmailPage";
 import { RecoveryAccountPage } from "./pages/recoveryAccountPage";
 import { ResetPasswordPage } from "./pages/resetPasswordPage";
 import { DetailsConsultationPage } from "./pages/detailsConsultationsPage";
-import { UserProfile } from "./pages/UserProfilePage";
 import { Footer } from "./components/Footer";
-import { ConsultationPage } from "./pages/ConsultationPage";
+import { ConsultationPage } from "./pages/consultationPage";
 import { ConsultationDoctorPage } from "./pages/consultationDoctorPage";
-import { UnassignedDoctorConsultationPage } from "./pages/UnassignedDoctorConsultationPage";
+import { UnassignedDoctorConsultationPage } from "./pages/unassignedDoctorConsultationPage";
 import { DoctorsPage } from "./pages/doctorPage";
 import { SpecialitiesPage } from "./pages/specialitiesPage";
+import { UserProfile } from "./pages/userProfilePage";
 
 function App() {
   return (
