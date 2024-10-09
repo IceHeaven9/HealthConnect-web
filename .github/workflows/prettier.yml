@@ -1,4 +1,4 @@
-name: Prettier
+name: Test Build
 
 on: [pull_request]
 
@@ -11,6 +11,17 @@ jobs:
         with:
           node-version: 20 #Versión de Node.js 20 que usamos en el proyecto
       - name: Instalar dependencias
-        run: npm install prettier
+        run: npm install
       - name: prettier check
         run: npx prettier --check .
+
+  build-check:
+    needs: [prettier-check]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.2.1
+      - uses: actions/setup-node@v4.0.4
+      - name: Instalar dependencias
+        run: npm install
+      - name: Build
+        run: npm run build
