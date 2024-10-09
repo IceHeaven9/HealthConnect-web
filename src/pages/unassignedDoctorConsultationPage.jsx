@@ -57,7 +57,7 @@ export const UnassignedDoctorConsultationPage = () => {
 
     fetch(
       `${API_HOST}/unassigned-consultations?offset=${offset}&limit=${limit}`,
-      requestOptions
+      requestOptions,
     )
       .then((response) => response.json())
       .then((data) => {
@@ -135,7 +135,7 @@ export const UnassignedDoctorConsultationPage = () => {
                             <button
                               onClick={() =>
                                 navigate(
-                                  `/consultation/${consultation.id}/details`
+                                  `/consultation/${consultation.id}/details`,
                                 )
                               }
                               className="bg-lightBlue text-smokeWhite p-2 rounded-lg w-full font-bold text-base active:scale-95 transition-transform transform"

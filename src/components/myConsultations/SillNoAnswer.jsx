@@ -79,7 +79,7 @@ SillNoAnswer.propTypes = {
       date: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   navigate: PropTypes.func.isRequired,
 };

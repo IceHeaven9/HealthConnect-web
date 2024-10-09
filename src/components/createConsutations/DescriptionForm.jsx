@@ -32,7 +32,7 @@ export const DescriptionForm = ({
       selectedDateTime.getMonth(),
       selectedDateTime.getDate(),
       parseInt(hour, 10),
-      parseInt(minute, 10)
+      parseInt(minute, 10),
     );
     combinedDateTime.setHours(combinedDateTime.getHours() + 2);
     formattedDateTime = combinedDateTime
@@ -70,7 +70,7 @@ export const DescriptionForm = ({
       setFiles,
       setPreviews,
       notify,
-      navigate
+      navigate,
     );
     if (consultationId) {
       navigate(`/consultation/${consultationId}/details`);

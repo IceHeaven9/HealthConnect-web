@@ -16,7 +16,7 @@ export const uploadFiles = (token, selectedFiles, consultationId) => {
   };
   return fetch(
     `${API_HOST}/consultations/${consultationId}/response/files`,
-    requestOptions
+    requestOptions,
   )
     .then((response) => response.text())
     .then((result) => notify(result.message))

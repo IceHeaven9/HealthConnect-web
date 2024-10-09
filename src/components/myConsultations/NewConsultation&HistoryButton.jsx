@@ -66,7 +66,7 @@ export const NewConsultationAndHistoryButton = ({
                       <div className="flex flex-col p-8">
                         <div className="text-lg flex justify-between items-center font-bold text-[#374151] pb-6">
                           {new Date(consultation.date).toLocaleDateString(
-                            "es-ES"
+                            "es-ES",
                           )}
                           <div className="text-sm text-warning">
                             {consultation.status.toUpperCase()}
@@ -80,7 +80,7 @@ export const NewConsultationAndHistoryButton = ({
                             className="bg-[#628eff] text-[#f5f5f5] w-full font-bold text-base p-2 rounded-lg active:scale-95 transition-transform transform"
                             onClick={() =>
                               navigate(
-                                `/consultation/${consultation.id}/details`
+                                `/consultation/${consultation.id}/details`,
                               )
                             }
                           >
@@ -111,7 +111,7 @@ NewConsultationAndHistoryButton.propTypes = {
       date: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   closeModal: PropTypes.func.isRequired,
 };

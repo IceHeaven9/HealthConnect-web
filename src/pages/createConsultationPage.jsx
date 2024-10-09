@@ -38,7 +38,7 @@ export const CreateConsultationPage = () => {
         selectedDate,
         selectedSpecialty,
         selectedDoctor,
-        setAvailableTimes
+        setAvailableTimes,
       );
     }
   }, [selectedSpecialty, selectedDoctor, selectedDate]);

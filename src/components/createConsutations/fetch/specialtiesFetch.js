@@ -1,5 +1,5 @@
 import { API_HOST } from "../../../constants";
-import {notify} from '../../../utils/notify';
+import { notify } from "../../../utils/notify";
 
 // fetchSpecialties.js
 export const fetchSpecialties = (setSpecialties) => {

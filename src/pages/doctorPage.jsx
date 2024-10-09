@@ -19,8 +19,8 @@ export const DoctorsPage = () => {
       prevDoctors.map((doctor) =>
         doctor.id === doctorId
           ? { ...doctor, averageRating: newRating }
-          : doctor
-      )
+          : doctor,
+      ),
     );
 
     // Aquí puedes hacer una llamada a tu API para actualizar el rating del doctor en la base de datos
@@ -68,7 +68,7 @@ export const DoctorsPage = () => {
         (doctor) =>
           doctor.firstName.toLowerCase().includes(string.toLowerCase()) ||
           doctor.lastName.toLowerCase().includes(string.toLowerCase()) ||
-          doctor.specialities.toLowerCase().includes(string.toLowerCase())
+          doctor.specialities.toLowerCase().includes(string.toLowerCase()),
       );
       setDoctors(filteredDoctors);
     }

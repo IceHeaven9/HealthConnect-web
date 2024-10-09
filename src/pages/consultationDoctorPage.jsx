@@ -51,7 +51,7 @@ export const ConsultationDoctorPage = () => {
       currentUser,
       startOrEndDate,
       urlDate,
-      setData
+      setData,
     );
   }, [startOrEndDate, currentPage]);
 

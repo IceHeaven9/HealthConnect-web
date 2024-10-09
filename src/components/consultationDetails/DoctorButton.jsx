@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { API_HOST, microCustomStyles } from "../../constants";
 import { StarRating } from "./StarRating";
 import { sendRating } from "./fetch/sendRating";
-import {notify} from '../../utils/notify';
+import { notify } from "../../utils/notify";
 
 export const DoctorButton = ({
   setShowDoctor,
@@ -29,7 +29,7 @@ export const DoctorButton = ({
       await sendRating(consultationDetails.id, newRating, token);
       setRating(newRating);
     } catch (error) {
-      notify( error.message);
+      notify(error.message);
     }
   };
 
@@ -38,14 +38,14 @@ export const DoctorButton = ({
       const requestOptions = { method: "GET", redirect: "follow" };
       fetch(
         `${API_HOST}/doctors/${consultationDetails.doctorId}`,
-        requestOptions
+        requestOptions,
       )
         .then((response) => response.json())
         .then((result) => {
           setDoctorDetails(result);
           setIsFirstOpen(false);
         })
-        .catch((error) =>notify(error));
+        .catch((error) => notify(error));
     }
   }, [showDoctor, isFirstOpen, consultationDetails.doctorId]);
 

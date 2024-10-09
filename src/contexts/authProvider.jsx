@@ -11,7 +11,7 @@ export function AuthContextProvider({ children }) {
     localStorage.setItem(LOCAL_STORAGE_TOKEN_KEY, token);
     setCurrentUser({
       decoded: getUserFromToken(token),
-      coded: token
+      coded: token,
     });
   }
 
@@ -39,7 +39,7 @@ function getUserFromLocalStorage() {
   if (userToken) {
     currentUser = {
       decoded: getUserFromToken(userToken),
-      coded: userToken
+      coded: userToken,
     };
   }
   return currentUser;

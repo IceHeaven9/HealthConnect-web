@@ -45,7 +45,7 @@ export const RegisterForm = () => {
       setDoctorCode,
       setExperience,
       setBio,
-      setSpecialties
+      setSpecialties,
     );
   };
 
@@ -79,7 +79,7 @@ export const RegisterForm = () => {
       experience,
       bio,
       selectedSpecialties,
-      navigate
+      navigate,
     );
   };
 

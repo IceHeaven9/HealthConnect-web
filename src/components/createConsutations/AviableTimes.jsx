@@ -81,7 +81,7 @@ AviableTimes.propTypes = {
       doctorName: PropTypes.string.isRequired,
       freeHours: PropTypes.arrayOf(PropTypes.string).isRequired,
       avatar: PropTypes.string,
-    })
+    }),
   ).isRequired,
   selectedHour: PropTypes.string,
   setSelectedHour: PropTypes.func.isRequired,
