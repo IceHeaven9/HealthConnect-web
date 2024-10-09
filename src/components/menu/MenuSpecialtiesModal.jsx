@@ -23,7 +23,7 @@ const fetchSpecialties = (setSpecialties) => {
     .then((result) => {
       const specialtiesWithIcons = result.map((specialty) => {
         const icon = specialtiesIcons.find(
-          (iconObj) => iconObj.id === specialty.id
+          (iconObj) => iconObj.id === specialty.id,
         )?.icon;
         return { ...specialty, icon };
       });
@@ -43,7 +43,7 @@ export const MenuSpecialtiesModal = ({
   const handleSpecialtyChange = (event) => {
     const selectedId = Number(event.target.value);
     const selectedSpecialty = specialties.find(
-      (specialty) => specialty.id === selectedId
+      (specialty) => specialty.id === selectedId,
     );
     setSelectedSpecialty(selectedSpecialty);
     setSecondModalIsOpen(true);
@@ -51,7 +51,7 @@ export const MenuSpecialtiesModal = ({
 
   const handleOnSelect = (item) => {
     const selectedSpecialty = specialties.find(
-      (specialty) => specialty.id === item.id
+      (specialty) => specialty.id === item.id,
     );
     setSelectedSpecialty(selectedSpecialty);
     setSecondModalIsOpen(true);
@@ -159,7 +159,7 @@ export const MenuSpecialtiesModal = ({
             <p className="text-center">
               {
                 specialtiesResume.find(
-                  (resume) => resume.id === selectedSpecialty.id
+                  (resume) => resume.id === selectedSpecialty.id,
                 )?.resume
               }
             </p>

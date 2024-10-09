@@ -18,7 +18,7 @@ import { FilesImageSection } from "./responseBtnComp/FilesImageSection";
 import { FilesDocSection } from "./responseBtnComp/FilesDocSection";
 import { CloseResponseBtn } from "./responseBtnComp/CloseResponseBtn";
 import { saveResponse } from "./responseBtnComp/fetch/saveResponseFetch";
-import {notify} from '../../utils/notify';
+import { notify } from "../../utils/notify";
 
 export const ResponseButton = ({
   showResponseFiles,
@@ -32,7 +32,7 @@ export const ResponseButton = ({
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [responseContent, setResponseContent] = useState(
-    consultationDetails.responseContent || ""
+    consultationDetails.responseContent || "",
   );
   // Establecer rating
   const [rating, setRating] = useState(0);
@@ -53,7 +53,7 @@ export const ResponseButton = ({
       await sendRating(consultationId, newRating, token);
       setRating(newRating);
     } catch (error) {
-      notify( error.message);
+      notify(error.message);
     }
   };
 
@@ -63,7 +63,7 @@ export const ResponseButton = ({
 
   const handleSaveClick = () => {
     saveResponse(consultationId, responseContent, token).then(() =>
-      setIsEditing(false)
+      setIsEditing(false),
     );
   };
 
@@ -167,7 +167,7 @@ ResponseButton.propTypes = {
       PropTypes.shape({
         filePath: PropTypes.string,
         fileName: PropTypes.string,
-      })
+      }),
     ),
   }).isRequired,
   consultationId: PropTypes.number.isRequired,

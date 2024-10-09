@@ -44,13 +44,13 @@ export const ConsultationFilesButton = ({
             {consultationDetails.consultationFiles.filter(
               (file) =>
                 file.filePath.match(/\.(jpeg|jpg|webp|png)$/) ||
-                file.filePath.includes("i.pravatar.cc")
+                file.filePath.includes("i.pravatar.cc"),
             ).length > 0 ? (
               consultationDetails.consultationFiles
                 .filter(
                   (file) =>
                     file.filePath.match(/\.(jpeg|jpg|webp|png)$/) ||
-                    file.filePath.includes("i.pravatar.cc")
+                    file.filePath.includes("i.pravatar.cc"),
                 )
                 .map((file, index) => (
                   <div key={index} className="w-full">
@@ -70,7 +70,7 @@ export const ConsultationFilesButton = ({
           <div className="w-full border-t-[0.1rem] border-solid border-lightBlue my-2"></div>
           <div className="w-full">
             {consultationDetails.consultationFiles.filter(
-              (file) => !file.filePath.match(/\.(jpeg|jpg|gif|png)$/)
+              (file) => !file.filePath.match(/\.(jpeg|jpg|gif|png)$/),
             ).length > 0 ? (
               consultationDetails.consultationFiles
                 .filter((file) => !file.filePath.match(/\.(jpeg|jpg|gif|png)$/))
@@ -112,7 +112,7 @@ ConsultationFilesButton.propTypes = {
       PropTypes.shape({
         filePath: PropTypes.string.isRequired,
         fileName: PropTypes.string.isRequired,
-      })
+      }),
     ).isRequired,
   }).isRequired,
 };

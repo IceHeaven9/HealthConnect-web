@@ -1,9 +1,16 @@
 // src/api/resetPassword.js
-import { API_HOST } from '../../constants';
-import { notify } from './../../utils/notify';
+import { API_HOST } from "../../constants";
+import { notify } from "./../../utils/notify";
 
-
-export const resetPassword = (validationCode, password, confirmPassword, navigate, setValidationCode, setPassword, setConfirmPassword) => {
+export const resetPassword = (
+  validationCode,
+  password,
+  confirmPassword,
+  navigate,
+  setValidationCode,
+  setPassword,
+  setConfirmPassword,
+) => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 

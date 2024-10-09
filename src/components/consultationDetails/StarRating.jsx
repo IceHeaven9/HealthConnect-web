@@ -7,7 +7,7 @@ export const StarRating = ({
 }) => {
   const [hoverRating, setHoverRating] = useState(0);
   const [selectedRating, setSelectedRating] = useState(
-    consultationDetails.rating || 0
+    consultationDetails.rating || 0,
   );
   const [isDisabled] = useState(currentUser.decoded.userType === "doctor");
   const displayRating = selectedRating || 0;

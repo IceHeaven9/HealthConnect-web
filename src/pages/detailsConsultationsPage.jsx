@@ -45,7 +45,7 @@ export const DetailsConsultationPage = () => {
       setUserType,
       currentUser,
       setConsultationDetails,
-      id
+      id,
     );
   }, [id, currentUser]);
 

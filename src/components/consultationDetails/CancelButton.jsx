@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { FaTimes } from "react-icons/fa";
 import Modal from "react-modal";
 import { useContext, useState } from "react";
@@ -6,10 +6,14 @@ import { AuthContext } from "../../contexts/authContext";
 import { API_HOST, microCustomStyles } from "../../constants";
 import { notify } from "../../utils/notify";
 
-export const CancelButton = ({ consultationDetails, setConsultationDetails }) => {
+export const CancelButton = ({
+  consultationDetails,
+  setConsultationDetails,
+}) => {
   const token = useContext(AuthContext);
   const [isDisabled, setIsDisabled] = useState(
-    consultationDetails.status === "Cancelada" || consultationDetails.status === "Completada"
+    consultationDetails.status === "Cancelada" ||
+      consultationDetails.status === "Completada",
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -22,7 +26,10 @@ export const CancelButton = ({ consultationDetails, setConsultationDetails }) =>
       redirect: "follow",
     };
 
-    fetch(`${API_HOST}/consultations/${consultationDetails.id}/cancel`, requestOptions)
+    fetch(
+      `${API_HOST}/consultations/${consultationDetails.id}/cancel`,
+      requestOptions,
+    )
       .then((response) => response.json())
       .then((result) => {
         notify(result.message);
@@ -33,13 +40,13 @@ export const CancelButton = ({ consultationDetails, setConsultationDetails }) =>
         setIsDisabled(true);
         setIsModalOpen(false);
       })
-      .catch((error) =>notify(error));
+      .catch((error) => notify(error));
   };
 
   return (
     <>
       <button
-        className={`mb-4 p-2 w-full text-end text-smokeWhite rounded-lg flex flex-col items-center font-medium ${isDisabled ? "bg-red-300" : "bg-cancelColor" }`}
+        className={`mb-4 p-2 w-full text-end text-smokeWhite rounded-lg flex flex-col items-center font-medium ${isDisabled ? "bg-red-300" : "bg-cancelColor"}`}
         onClick={() => setIsModalOpen(true)}
         disabled={isDisabled}
       >
@@ -52,10 +59,22 @@ export const CancelButton = ({ consultationDetails, setConsultationDetails }) =>
         contentLabel="Confirm Cancel"
         style={microCustomStyles}
       >
-        <h3 className="font-roboto font-bold text-lg p-2 text-center">¿Estás seguro de que deseas cancelar la consulta?</h3>
+        <h3 className="font-roboto font-bold text-lg p-2 text-center">
+          ¿Estás seguro de que deseas cancelar la consulta?
+        </h3>
         <div className="flex items-center justify-center gap-6 p-4">
-        <button className="border p-4 bg-cancelColor w-full text-smokeWhite rounded-lg font-inter font-bold" onClick={handleCancel}>Sí, cancelar</button>
-        <button className="border p-4 bg-lightBlue w-full text-smokeWhite rounded-lg font-inter font-bold" onClick={() => setIsModalOpen(false)}>Cerrar</button>
+          <button
+            className="border p-4 bg-cancelColor w-full text-smokeWhite rounded-lg font-inter font-bold"
+            onClick={handleCancel}
+          >
+            Sí, cancelar
+          </button>
+          <button
+            className="border p-4 bg-lightBlue w-full text-smokeWhite rounded-lg font-inter font-bold"
+            onClick={() => setIsModalOpen(false)}
+          >
+            Cerrar
+          </button>
         </div>
       </Modal>
     </>

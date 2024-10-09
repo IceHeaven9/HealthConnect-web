@@ -32,7 +32,7 @@ export const DescriptionFormBottomSection = ({
                     <FaTimes />
                   </button>
                 </div>
-              )
+              ),
           )
         )}
       </div>
@@ -59,7 +59,7 @@ export const DescriptionFormBottomSection = ({
                     <FaTimes />
                   </button>
                 </div>
-              )
+              ),
           )
         )}
       </div>

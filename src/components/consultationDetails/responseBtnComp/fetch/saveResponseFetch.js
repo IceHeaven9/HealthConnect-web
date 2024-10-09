@@ -19,7 +19,7 @@ export const saveResponse = (consultationId, responseContent, token) => {
 
   return fetch(
     `${API_HOST}/consultations/${consultationId}/response`,
-    requestOptions
+    requestOptions,
   )
     .then((response) => response.json())
     .then((result) => notify(result.message))

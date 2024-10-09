@@ -2,48 +2,48 @@ import { API_HOST } from "../../../constants";
 import { notify } from "../../../utils/notify";
 
 export const fetchConsultations = (
-	currentPage,
-	limit,
-	token,
-	currentUser,
-	startOrEndDate,
-	urlDate,
-	setData
+  currentPage,
+  limit,
+  token,
+  currentUser,
+  startOrEndDate,
+  urlDate,
+  setData,
 ) => {
-	const myHeaders = new Headers();
-	myHeaders.append("Authorization", token);
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", token);
 
-	const requestOptions = {
-		method: "GET",
-		headers: myHeaders,
-		redirect: "follow",
-	};
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
 
-	fetch(
-		`${API_HOST}/my-consultations?offset=${
-			currentPage * limit
-		}&limit=${limit}&doctorId=${
-			currentUser.decoded.id
-		}&${startOrEndDate}=${urlDate}&status=pending`,
-		requestOptions
-	)
-		.then((response) => response.json())
-		.then((result) => {
-			const myConsultations = result.map((consultation) => {
-				return {
-					id: consultation.id,
-					title: consultation.title,
-					date: consultation.date,
-					status: consultation.status,
-					patientAvatar: consultation.patientAvatar,
-					specialityName: consultation.specialityName,
-					severity: consultation.severity,
-				};
-			});
-			setData((prevState) => ({
-				...prevState,
-				consultations: myConsultations,
-			}));
-		})
-		.catch((error) => notify(error.message));
+  fetch(
+    `${API_HOST}/my-consultations?offset=${
+      currentPage * limit
+    }&limit=${limit}&doctorId=${
+      currentUser.decoded.id
+    }&${startOrEndDate}=${urlDate}&status=pending`,
+    requestOptions,
+  )
+    .then((response) => response.json())
+    .then((result) => {
+      const myConsultations = result.map((consultation) => {
+        return {
+          id: consultation.id,
+          title: consultation.title,
+          date: consultation.date,
+          status: consultation.status,
+          patientAvatar: consultation.patientAvatar,
+          specialityName: consultation.specialityName,
+          severity: consultation.severity,
+        };
+      });
+      setData((prevState) => ({
+        ...prevState,
+        consultations: myConsultations,
+      }));
+    })
+    .catch((error) => notify(error.message));
 };

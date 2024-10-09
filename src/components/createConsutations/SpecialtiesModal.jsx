@@ -86,7 +86,7 @@ SpecialtiesModal.propTypes = {
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       name: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   specialtyModalIsOpen: PropTypes.bool.isRequired,
   customStyles: PropTypes.object.isRequired,

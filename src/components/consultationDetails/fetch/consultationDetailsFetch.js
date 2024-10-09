@@ -1,18 +1,19 @@
 import { API_HOST } from "../../../constants";
-import {notify} from '../../../utils/notify';
-export const fetchConsultationDetails = async (setUserType,currentUser,setConsultationDetails,id ) => {
-
+import { notify } from "../../../utils/notify";
+export const fetchConsultationDetails = async (
+  setUserType,
+  currentUser,
+  setConsultationDetails,
+  id,
+) => {
   const token = localStorage.getItem("TOKEN");
 
   try {
-    const response = await fetch(
-      `${API_HOST}/consultations/${id}/details`,
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    );
+    const response = await fetch(`${API_HOST}/consultations/${id}/details`, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -23,17 +24,18 @@ export const fetchConsultationDetails = async (setUserType,currentUser,setConsul
       data.status === "pending"
         ? "Pendiente"
         : data.status === "cancelled"
-        ? "Cancelada"
-        : data.status === "completed"? "Completada" : "";
+          ? "Cancelada"
+          : data.status === "completed"
+            ? "Completada"
+            : "";
 
-        
     setConsultationDetails({
       id: data.id,
       title: data.title,
       severity: data.severity,
       description: data.description,
       status: translatedStatus,
-      doctorId:data.doctorId,
+      doctorId: data.doctorId,
       date: data.date,
       patientAvatar: data.patientAvatar,
       patientName: data.patientName,
@@ -47,7 +49,7 @@ export const fetchConsultationDetails = async (setUserType,currentUser,setConsul
       consultationFiles: data.consultationFiles,
       responseFiles: data.responseFiles,
     });
-  
+
     setUserType(currentUser.decoded.userType);
   } catch (error) {
     notify("Error fetching consultation details:", error);
