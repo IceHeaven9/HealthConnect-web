@@ -1,23 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import {
-  specialtiesResume,
-  specialtiesIcons,
-  microCustomStyles,
-} from "../constants";
+import { specialtiesResume, microCustomStyles, API_HOST} from '../constants';
 import { IoClose } from "react-icons/io5";
 import { Header } from "../components/Header";
+import {notify} from '../utils/notify';
 
 export const SpecialitiesPage = () => {
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [specialties, setSpecialties] = useState([]);
+  const fetchSpecialties = async () => {
+    try {
+      const response = await fetch(`${API_HOST}/specialities`);
+      const result = await response.json();
+      setSpecialties(result);
+    } catch (error) {
+      notify(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchSpecialties();
+  }, []);
 
   const handleSpecialtySelect = (specialty) => {
     setSelectedSpecialty(specialty);
     setIsModalOpen(true);
   };
 
-  const specialities = specialtiesResume.map((specialty, index) => {
+  const specialitiesFormatted = specialties.map((specialty, index) => {
     return (
       <ul
         key={index}
@@ -26,7 +37,7 @@ export const SpecialitiesPage = () => {
       >
         <li className="w-60 h-60 text-center bg-smokeWhite w-full rounded-lg flex flex-col items-center justify-center gap-2 m-2">
           <img
-            src={specialtiesIcons[index].icon}
+            src={specialtiesResume[index].icon}
             alt={specialty.name}
             className="w-60 h-60 p-4 object-contain"
           />
@@ -44,7 +55,7 @@ export const SpecialitiesPage = () => {
         <Header title="Especialidades" showBackButton={true} />
       </div>
       <ul className="flex flex-wrap justify-center max-w-[1500px] gap-6 p-6 mx-auto mt-32">
-        {specialities}
+        {specialitiesFormatted}
       </ul>
       <Modal
         isOpen={isModalOpen}
@@ -57,7 +68,7 @@ export const SpecialitiesPage = () => {
             <h2 className="text-2xl font-bold mb-4">
               {selectedSpecialty.name}
             </h2>
-            <p>{selectedSpecialty.resume}</p>
+            <p>{selectedSpecialty.description}</p>
             <div className="flex items-center justify-center">
               <button
                 className="mt-4 bg-lightBlue text-smokeWhite p-2 rounded-full"

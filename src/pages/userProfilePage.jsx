@@ -117,7 +117,7 @@ export const UserProfile = () => {
                 setEmail={setEmail}
                 biography={biography}
                 setBiography={setBiography}
-                experience={experience}
+                experience={Number(experience)}
                 setExperience={setExperience}
               />
               <button

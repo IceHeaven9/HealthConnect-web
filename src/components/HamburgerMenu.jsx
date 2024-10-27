@@ -11,6 +11,7 @@ import { FaUserDoctor } from "react-icons/fa6";
 import { RxExit } from "react-icons/rx";
 import { PiSignInLight } from "react-icons/pi";
 import { FaUserPlus } from "react-icons/fa6";
+import { BiArrowBack } from "react-icons/bi";
 
 export const HamburgerMenu = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -29,7 +30,7 @@ export const HamburgerMenu = () => {
   };
 
   return (
-    <>
+    
       <section className="flex justify-end items-center w-max">
         {showMenu && (
           <article className="animate-fade-left relative animate-once animate-duration-500 animate-ease-in animate-normal">
@@ -80,6 +81,16 @@ export const HamburgerMenu = () => {
                 <>
                   {token ? (
                     <>
+                      <li className=" w-min">
+                        <button
+                          className="flex items-center justify-center text-lg font-bold rounded-lg bg-smokeWhite text-lightBlue p-1 w-min"
+                          onClick={() => {
+                            setShowProfileOptions(false);
+                          }}
+                        >
+                          <BiArrowBack size={20} /> 
+                        </button>
+                      </li>
                       <li className="flex-1">
                         <button
                           className="flex items-center justify-center gap-2 text-lg font-bold rounded-lg bg-smokeWhite text-lightBlue p-1 w-full"
@@ -94,7 +105,7 @@ export const HamburgerMenu = () => {
                           onClick={handleLogout}
                         >
                           <RxExit size={20} color="cancelColor" />
-                          <spam className="text-cancelColor">Salir</spam>
+                          <span className="text-cancelColor">Salir</span>
                         </button>
                       </li>
                     </>
@@ -141,6 +152,6 @@ export const HamburgerMenu = () => {
           </button>
         </div>
       </section>
-    </>
+    
   );
 };

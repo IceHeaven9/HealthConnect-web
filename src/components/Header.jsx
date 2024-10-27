@@ -1,5 +1,5 @@
 import { HamburgerMenu } from "../components/HamburgerMenu";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PiSignInLight } from "react-icons/pi";
 import { FaUserCircle } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa6";
@@ -15,7 +15,6 @@ import { AiOutlineHome } from "react-icons/ai";
 export const Header = ({ title, showBackButton }) => {
   const { currentUser, onLogout } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation(); // Importamos useLocation para obtener la ruta actual
   const token = currentUser?.coded;
 
   const handleLogout = () => {
@@ -23,37 +22,8 @@ export const Header = ({ title, showBackButton }) => {
     navigate("/login");
   };
 
-  const handleProfile = () => {
-    navigate("/profile");
-  };
-
-  const handleMyConsultations = () => {
-    navigate("/my-consultations");
-  };
-
-  const handleMyDoctorConsultations = () => {
-    navigate("/my-doctor-consultations");
-  };
-
-  const handleDoctors = () => {
-    navigate("/doctors");
-  };
-
-  const handleSpecialities = () => {
-    navigate("/specialities");
-  };
-
-  const handleHome = () => {
-    navigate("/");
-  };
-
-  // Función para comprobar si la ruta actual es igual a la ruta del botón
-  const isCurrentPath = (path) => {
-    return location.pathname === path;
-  };
-
   return (
-    <header className="relative flex items-center justify-between bg-lightCakeBlue text-white h-20 px-4">
+    <header className="relative flex items-center justify-between bg-lightCakeBlue text-white h-20 px-4 ">
       {/* Lado izquierdo: Botón de retroceso o Logo */}
       <div className="flex items-center">
         {showBackButton ? (
@@ -61,12 +31,15 @@ export const Header = ({ title, showBackButton }) => {
             <button onClick={() => navigate(-1)} className="text-center pr-4">
               <IoMdArrowRoundBack size={40} />
             </button>
-            <div className="font-medium text-3xl md:text-4xl text-center text-[#628eff]">
+            <Link
+              to="/"
+              className="font-medium text-3xl md:text-4xl text-center text-[#628eff]"
+            >
               HealthConnect
-            </div>
+            </Link>
           </div>
         ) : (
-          <div className="flex items-center space-x-4" onClick={handleHome}>
+          <div className="flex items-center space-x-4" onClick={() => navigate("/")}>
             <div className="w-20 h-20">
               <img
                 src="/images/Perfil_healthConnect-Photoroom.png"
@@ -75,15 +48,18 @@ export const Header = ({ title, showBackButton }) => {
               />
             </div>
             <div className="flex flex-col items-start justify-center">
-              <div className="font-medium text-3xl md:text-4xl text-center text-[#628eff]">
+              <Link
+                to="/"
+                className="font-medium text-3xl md:text-4xl text-center text-[#628eff]"
+              >
                 HealthConnect
-              </div>
+              </Link>
             </div>
           </div>
         )}
       </div>
 
-      {/* Centro: Título dinámico (si se proporciona) */}
+      {/* Centro: Título dinámico */}
       {title && (
         <p
           className="absolute left-1/2 transform -translate-x-1/2 text-4xl font-bold font-roboto text-lightBlue mt-1 text-center"
@@ -100,131 +76,101 @@ export const Header = ({ title, showBackButton }) => {
       )}
 
       {/* Botones y Menú */}
-      <div className="flex items-center space-x-4">
-        {/* Botón de Inicio (Home) */}
-        {!isCurrentPath("/") && (
-          <button
-            className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden sm:flex"
-            onClick={handleHome}
-          >
-            <AiOutlineHome size={20} />
-            <span className="font-bold">Inicio</span>
-          </button>
-        )}
+      <div className="flex items-center space-x-4 ">
+    
         {token ? (
-          <>
-            {/* Botón de Perfil */}
-            {!isCurrentPath("/profile") && (
-              <button
-                className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden sm:flex"
-                onClick={handleProfile}
-              >
-                <FaUserCircle size={20} />
-                <span className="font-bold">Perfil</span>
-              </button>
-            )}
-
-            {/* Botón de Mis Consultas */}
-            {currentUser?.decoded?.userType === "patient" &&
-              !isCurrentPath("/my-consultations") && (
-                <button
-                  className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden md:flex"
-                  onClick={handleMyConsultations}
-                >
-                  <PiCalendarDotsLight size={30} />
-                  <span className="font-bold">Mis consultas</span>
-                </button>
-              )}
-
-            {currentUser?.decoded?.userType === "doctor" &&
-              !isCurrentPath("/my-doctor-consultations") && (
-                <button
-                  className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden md:flex"
-                  onClick={handleMyDoctorConsultations}
-                >
-                  <PiCalendarDotsLight size={30} />
-                  <span className="font-bold">Mis consultas</span>
-                </button>
-              )}
-
-            {/* Botón de Especialidades */}
-            {!isCurrentPath("/specialities") && (
-              <button
-                className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden lg:flex"
-                onClick={handleSpecialities}
-              >
-                <LiaClipboardListSolid size={30} />
-                <span className="font-bold">Especialidades</span>
-              </button>
-            )}
-
-            {/* Botón de Doctores */}
-            {!isCurrentPath("/doctors") && (
-              <button
-                className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden lg:flex"
-                onClick={handleDoctors}
-              >
-                <FaUserDoctor size={25} />
-                <span className="font-bold">Doctores</span>
-              </button>
-            )}
-
-            {/* Botón de Cerrar sesión */}
+          <section className="flex items-center justify-center gap-2 hidden lg:flex">
+            {/* Botones para usuarios autenticados */}
             <button
-              className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden md:flex"
+              className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 "
+              onClick={() => navigate("/profile")}
+            >
+              <FaUserCircle size={20} />
+              <span className="font-bold">Perfil</span>
+            </button>
+
+            {currentUser?.decoded?.userType === "patient" && (
+              <button
+                className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 "
+                onClick={() => navigate("/my-consultations")}
+              >
+                <PiCalendarDotsLight size={30} />
+                <span className="font-bold">Mis consultas</span>
+              </button>
+            )}
+
+            {currentUser?.decoded?.userType === "doctor" && (
+              <button
+                className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 "
+                onClick={() => navigate("/my-doctor-consultations")}
+              >
+                <PiCalendarDotsLight size={30} />
+                <span className="font-bold">Mis consultas</span>
+              </button>
+            )}
+
+            {/* Botón de Especialidades - Modificado para ser visible en pantallas medianas */}
+            <button
+              className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12"
+              onClick={() => navigate("/specialities")}
+            >
+              <LiaClipboardListSolid size={30} />
+              <span className="font-bold">Especialidades</span>
+            </button>
+
+            <button
+              className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 "
+              onClick={() => navigate("/doctors")}
+            >
+              <FaUserDoctor size={25} />
+              <span className="font-bold">Doctores</span>
+            </button>
+
+            <button
+              className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 "
               onClick={handleLogout}
             >
               <RxExit size={20} color="cancelColor" />
-              <span className="text-cancelColor font-bold ">Salir</span>
+              <span className="text-cancelColor font-bold">Salir</span>
             </button>
-          </>
+          </section>
         ) : (
           <>
-            {/* Botón de Especialidades */}
-            {!isCurrentPath("/specialities") && (
-              <button
-                className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden lg:flex"
-                onClick={handleSpecialities}
-              >
-                <LiaClipboardListSolid size={30} />
-                <span className="font-bold">Especialidades</span>
-              </button>
-            )}
+            {/* Botones para usuarios no autenticados */}
+            <button
+              className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 "
+              onClick={() => navigate("/specialities")}
+            >
+              <LiaClipboardListSolid size={30} />
+              <span className="font-bold">Especialidades</span>
+            </button>
 
-            {/* Botón de Doctores */}
-            {!isCurrentPath("/doctors") && (
-              <button
-                className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden lg:flex"
-                onClick={handleDoctors}
-              >
-                <FaUserDoctor size={25} />
-                <span className="font-bold">Doctores</span>
-              </button>
-            )}
+            <button
+              className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 "
+              onClick={() => navigate("/doctors")}
+            >
+              <FaUserDoctor size={25} />
+              <span className="font-bold">Doctores</span>
+            </button>
 
-            {/* Botón de Registro */}
-            {!isCurrentPath("/register") && (
-              <Link
-                className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden sm:flex"
-                to="/register"
-              >
-                <FaUserPlus size={20} />
-                <span className="font-bold">Regístrate</span>
-              </Link>
-            )}
+            <Link
+              className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 "
+              to="/register"
+            >
+              <FaUserPlus size={20} />
+              <span className="font-bold">Regístrate</span>
+            </Link>
 
-            {/* Botón de Iniciar Sesión */}
-            {!isCurrentPath("/login") && (
-              <Link
-                className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 hidden sm:flex"
-                to="/login"
-              >
-                <PiSignInLight size={20} />
-                <span className="font-bold">Entrar</span>
-              </Link>
-            )}
+            <Link
+              className="flex items-center justify-center gap-1 text-md rounded-lg bg-white text-lightBlue p-2 h-12 "
+              to="/login"
+            >
+              <PiSignInLight size={20} />
+              <span className="font-bold">Entrar</span>
+            </Link>
           </>
         )}
+
         {/* Menú Hamburguesa */}
         <div className="flex items-center h-12 lg:hidden">
           <HamburgerMenu />

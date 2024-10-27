@@ -162,6 +162,6 @@ ProfileForm.propTypes = {
   setEmail: PropTypes.func.isRequired,
   biography: PropTypes.string,
   setBiography: PropTypes.func,
-  experience: PropTypes.string,
+  experience: PropTypes.number,
   setExperience: PropTypes.func,
 };
