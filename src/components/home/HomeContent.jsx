@@ -30,7 +30,7 @@ export const HomeTextCard = () => {
               horario que mejor se adapte a sus necesidades.
             </li>
             <li>
-              <span className="font-semibold">Seguro y Privado:</span> su
+              <span className="font-semibold">Seguro y Privado:</span> 
               información médica está protegida con nosotros.
             </li>
           </ul>
