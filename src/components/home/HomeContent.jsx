@@ -10,8 +10,7 @@ export const HomeTextCard = () => {
             Tu salud simplificada.
           </h1>
           <p className="text-base md:text-lg leading-relaxed mb-6 text-lightBlue">
-            Hacemos que sea fácil reservar citas con los mejores profesionales
-            de la salud.
+            Hacemos que sea fácil reservar citas con los mejores profesionales de la salud.
           </p>
           <ul className="list-disc list-outside text-base md:text-lg leading-relaxed mb-6 text-lightBlue pl-5">
             <li>
