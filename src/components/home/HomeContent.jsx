@@ -1,7 +1,4 @@
-
-
 export const HomeTextCard = () => {
-
   return (
     <main className="flex flex-col justify-center items-center ">
       <div
@@ -30,7 +27,7 @@ export const HomeTextCard = () => {
               horario que mejor se adapte a sus necesidades.
             </li>
             <li>
-              <span className="font-semibold">Seguro y Privado:</span> 
+              <span className="font-semibold">Seguro y Privado:</span>
               información médica está protegida con nosotros.
             </li>
           </ul>

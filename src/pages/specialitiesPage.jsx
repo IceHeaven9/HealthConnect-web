@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { specialtiesResume, microCustomStyles, API_HOST} from '../constants';
+import { specialtiesResume, microCustomStyles, API_HOST } from "../constants";
 import { IoClose } from "react-icons/io5";
 import { Header } from "../components/Header";
-import {notify} from '../utils/notify';
+import { notify } from "../utils/notify";
 
 export const SpecialitiesPage = () => {
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);

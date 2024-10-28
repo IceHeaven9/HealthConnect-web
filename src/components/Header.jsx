@@ -39,7 +39,10 @@ export const Header = ({ title, showBackButton }) => {
             </Link>
           </div>
         ) : (
-          <div className="flex items-center space-x-4" onClick={() => navigate("/")}>
+          <div
+            className="flex items-center space-x-4"
+            onClick={() => navigate("/")}
+          >
             <div className="w-20 h-20">
               <img
                 src="/images/Perfil_healthConnect-Photoroom.png"
@@ -77,7 +80,6 @@ export const Header = ({ title, showBackButton }) => {
 
       {/* Botones y Menú */}
       <div className="flex items-center space-x-4 ">
-    
         {token ? (
           <section className="flex items-center justify-center gap-2 hidden lg:flex">
             {/* Botones para usuarios autenticados */}
