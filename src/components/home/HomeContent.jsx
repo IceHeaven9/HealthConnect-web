@@ -3,7 +3,7 @@ export const HomeTextCard = () => {
     <main className="flex flex-col justify-center items-center ">
       <div
         className="text-center w-full bg-cover bg-center p-2 rounded-lg shadow-md"
-        style={{ backgroundImage: "url('/images/fondotext.jpg')" }}
+        style={{ backgroundImage:"url('/images/fondotext.jpg')" }}
       >
         <div className="bg-white bg-opacity-80 p-6 rounded-lg">
           <h1 className="text-2xl md:text-3xl font-bold mb-4 text-lightBlue">
